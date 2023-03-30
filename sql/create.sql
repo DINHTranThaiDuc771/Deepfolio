@@ -36,7 +36,7 @@ create table portfolio (
 create table page (
     nomUtilisateur varchar(30),
     idPortfolio int,
-    idPage int not null,
+    idPage serial not null,
     jsonPage json not null,
     foreign key (nomUtilisateur, idPortfolio) references portfolio(nomUtilisateur, idPortfolio),
     primary key(nomUtilisateur, idPortfolio, idPage)
