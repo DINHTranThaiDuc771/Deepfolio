@@ -69,11 +69,11 @@
                 -->
               <div class="mb-md-5 mt-md-4 pb-5">
 
-                <h2 class="fw-bold mb-2 text-uppercase">Vos Information</h2>
+                <h2 class="fw-bold mb-2 text-uppercase">Vos Informations</h2>
                 <p class="text-white-50 mb-5"></p>
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="typeEmail" class="form-control"  />
+                  <input type="email" id="typeEmail" class="form-control"  required/>
                   <label class="form-label" for="typeEmail">Prenom</label>
                 </div>
 
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="typeAge" class="form-control form-control-lg" required />
+                  <input type="number" id="typeAge" class="form-control form-control-lg" required />
                   <label class="form-label" for="typeAge">Age</label>
                 </div>
                 
