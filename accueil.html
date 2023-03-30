@@ -15,10 +15,10 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
+    <link rel="stylesheet" href="css/index.css" />
 </head>
 
 <body>
-
     <!-- Start your project here-->
     <!--Side nav-->
     
@@ -37,7 +37,8 @@
             <div class="col collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
                 <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                    <img src="img/email.png" height="30" alt="Messagerie" loading="lazy" />
+                    <img src="img/email.png" id="btnMail" height="30" alt="Messagerie" loading="lazy" />
+                    <img src="img/logolong.png" height="30" alt="Logo" loading="lazy" />
                 </a>
 
             </div>
@@ -71,6 +72,12 @@
     </nav>
     <!-- Navbar -->
     <div class="container mt-5">
+        <div id="sidebar" class="sidebar">
+            <h2>Messagerie</h2>
+            <div id="messages">
+                <!-- ici liste des messages -->
+            </div>
+          </div>
 
         <div class="row my-5">
 
@@ -223,7 +230,7 @@
     <!-- MDB -->
     <script type="text/javascript" src="js/mdbjs/mdb.min.js"></script>
     <!-- Custom scripts -->
-    <script type="text/javascript"></script>
+    <script type="text/javascript" src="js/accueil.js"></script>
 </body>
 
 </html>
