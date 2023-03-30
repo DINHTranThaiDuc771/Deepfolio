@@ -1,7 +1,7 @@
 drop table if exists utilisateur cascade;
 drop table if exists message;
-drop table if exists portfolio;
 drop table if exists page;
+drop table if exists portfolio;
 
 create table utilisateur (
   nomUtilisateur varchar(30) primary key,
