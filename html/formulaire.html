@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Création de compte - DeepFolio</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="../img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="../css/mdb.min.css" />
+  <link rel="stylesheet" href="../css/creercompte.css" />
+</head>
+</head>
+
+<body>
+  <section class="vh-100 ">
+    <div class="container-fluid py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <form id="formCreerCompte" action="accueil.html" class="needs-avalidation" novalidate>
+
+                <div class="card tab" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4 pb-5">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Informations</h2>
+                            <p class="text-white-50 mb-5"></p>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeNom" class="form-control form-control-lg" required/>
+                                <label class="form-label" for="typeNom">Nom</label>
+                                <div class="invalid-feedback">Veuillez entrer un nom</div>
+                            </div>
+                            
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typePrenom" class="form-control form-control-lg" required />
+                                <label class="form-label" for="typePrenom">Prénom</label>
+                                <div class="invalid-feedback">Veuillez entrer un prénom</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="number" min="0" id="typeAge" class="form-control form-control-lg" required />
+                                <label class="form-label" for="typeAge">Age</label>
+                                <div class="invalid-feedback">Veuillez entrer votre age</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="url" id="typeLienCv" class="form-control form-control-lg" required />
+                                <label class="form-label" for="typeLienCv">Lien CV</label>
+                                <div class="invalid-feedback">Veuillez entrer un lien vers votre CV</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeResidence" class="form-control form-control-lg" required />
+                                <label class="form-label" for="typeResidence">Lieu de résidence</label>
+                                <div class="invalid-feedback">Veuillez entrer un lieu de résidence</div>
+                            </div>
+
+
+                            <div class="form-outline mb-4">
+                                <textarea id="typePresentation" class="form-control form-control-lg" placeholder="Présentez vous en quelques lignes" required></textarea>
+                                <label class="form-label" for="typePresentation">Présentation</label>
+                                <div class="invalid-feedback">Veuillez vous présenter</div>
+                            </div>
+
+                            <div class="form-outline mb-4">                    
+                                <select id="typeReseau">
+                                    <option value="linkedin">LinkedIn</option>
+                                    <option value="github">GitHub</option>
+                                    <option value="autre">Autre</option>                        
+                                </select>
+                                <label class="form-label" for="typeReseau">Réseau</label>
+                            </div>                  
+
+                            <button id="suivant" class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card tab" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center hiddenCards">
+                
+                        <div class="mb-md-5 mt-md-4 pb-5 ">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Educations</h2>
+                            <p class="text-white-50 mb-5"></p>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeDiplome" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeDiplome">Diplome</label>
+                                <div class="invalid-feedback">Veuillez entrer un diplome</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeEtablissement" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeEtablissement">Etablissement</label>
+                                <div class="invalid-feedback">Veuillez entrer l'établissement dans lequel vous avez obtenu ce diplôme</div>
+                            </div>
+
+                            <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3ème onglet: parcours professionnel -->
+                <div class="card tab " style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center hiddenCards">
+                
+                        <div class="mb-md-5 mt-md-4 pb-5 ">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Parcours professionnel</h2>
+                            <p class="text-white-50 mb-5"></p>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeEtablissement" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeEtablissement">Poste</label>
+                                <div class="invalid-feedback">Veuillez entrer le nom du poste que vous avez occupé</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeEntreprise" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeEntreprise">Entreprise</label>
+                                <div class="invalid-feedback">Veuillez entrer une entreprise</div>
+                            </div>
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Ajouter</button>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeEtablissement" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeEtablissement">Etablissement</label>
+                                <div class="invalid-feedback">Veuillez entrer l'établissement dans lequel vous avez obtenu ce diplôme</div>
+                            </div>
+
+                            <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4ème onglet: Projets -->
+                <div class="card tab " style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center hiddenCards">
+                
+                        <div class="mb-md-5 mt-md-4 pb-5 ">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Ajouter des projets</h2>
+                            <p class="text-white-50 mb-5"></p>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeNomProjet" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeNomProjet">Nom du projet</label>
+                                <div class="invalid-feedback">Veuillez entrer le nom du poste que vous avez occupé</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="number" id="typeTailleEquipe" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeTailleEquipe">Taille de l'équipe</label>
+                                <div class="invalid-feedback">Veuillez entrer la taille de l'équipe</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="file" id="typePhotoprojet" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typePhotoprojet">Choisir une image</label>
+                                <div class="invalid-feedback">Veuillez entrer une photo</div>
+                            </div>
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Ajouter</button>
+
+                            <div class="listeProjets"></div>
+                            <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5ème onglet: Compétences -->
+                <div class="card tab " style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center hiddenCards">
+                
+                        <div class="mb-md-5 mt-md-4 pb-5 ">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Ajouter des compétences</h2>
+                            <p class="text-white-50 mb-5"></p>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeCompetence" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeCompetence">Nom de la compétence</label>
+                                <div class="invalid-feedback">Veuillez entrer le nom d'une compétence</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="typeDescCompetence" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeDescCompetence">Description</label>
+                                <div class="invalid-feedback">Veuillez entrer la description de la compétence</div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="url" id="typeLienCompetence" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeLienCompetence">Lien</label>
+                                <div class="invalid-feedback">Veuillez entrer un lien</div>
+                            </div>
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Ajouter</button>
+
+                            <div class="listeCompetences"></div>
+
+                            <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- MDB -->
+    <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
+</body>
+
+</html>

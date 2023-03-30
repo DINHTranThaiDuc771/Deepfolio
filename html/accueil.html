@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Page d'accueil</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="../img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="../css/mdb.min.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+</head>
+
+<body>
+    <!-- Start your project here-->
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="col collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                    <img src="../img/email.png" id="btnMail" height="30" alt="Messagerie" loading="lazy" />
+                    <img src="../img/logolong.png" height="30" alt="Logo" loading="lazy" />
+                </a>
+
+            </div>
+
+            <!-- Bar Recherche -->
+            <div class="col d-flex justify-content-center input-group rounded w-50">
+                <input type="search" class="form-control rounded" placeholder="Recherche Portfolio" aria-label="Search"
+                    aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class="fas fa-search"></i>
+                </span>
+            </div>
+
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <div class=" col d-flex justify-content-end">
+
+
+                <!-- Avatar -->
+                <div class="">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                        id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+                </div>
+            </div>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    <div class="container mt-5">
+        <div id="sidebar" class="sidebar">
+            <h2>Messagerie</h2>
+
+            <div id="messages">
+                <!-- ici liste des messages -->
+            </div>
+            
+        </div>
+
+        <div id="portfolios" class="row my-5">
+            <!-- ici liste des portfolios -->
+        </div>
+    </div>
+
+    <!-- End your project here-->
+
+    <!-- MDB -->
+    <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="../js/accueil.js"></script>
+</body>
+
+</html>

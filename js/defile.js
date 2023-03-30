@@ -1,4 +1,4 @@
-var slides = ['img/draw2.svg','img/portfolio.jpeg','img/portfolio2.jpeg']; 
+var slides = ['../img/draw2.svg','../img/portfolio.jpeg','../img/portfolio2.jpeg']; 
 
 var start=0;
 
@@ -46,6 +46,7 @@ window.onload = function(){
         // Loop over them and prevent submission
         Array.prototype.slice.call(forms).forEach((form) => {
         form.addEventListener('submit', (event) => {
+            
             if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();

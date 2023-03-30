@@ -1,5 +1,6 @@
 <?php
-require 'config.php';
+
+require './server/DB.inc.php';
 // Initialize the session
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -13,8 +14,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     exit;
 }
  
-// Include config file
-require_once "config.php";
  
 // Define variables and initialize with empty values
 $username = $password = $status = "";
@@ -23,77 +22,28 @@ $username_err = $password_err = $login_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Check if username is empty
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
-    } else{
-        $username = trim($_POST["username"]);
-    }
     
-    // Check if password is empty
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
-    } else{
-        $password = trim($_POST["password"]);
-    }
+    $username = trim($_POST["username"]);   
+    $password = trim($_POST["password"]);
     
-    // Validate credentials
-    if(empty($username_err) && empty($password_err)){
-        // Prepare a select statement
-        $sql = "SELECT id, username, password, status FROM users WHERE username = ?";
-        
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-            
-            // Set parameters
-            $param_username = $username;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Store result
-                mysqli_stmt_store_result($stmt);
-                
-                // Check if username exists, if yes then verify password
-                if(mysqli_stmt_num_rows($stmt) == 1){                    
-                    // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $status);
-                    if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
-                            session_start();
-                            
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;
-                            $_SESSION['status'] = $status;
-                            $_SESSION['feedback'] = "default";                            
-                            
-                            // Redirect user to welcome page
-                            //header("location: index.php");
-                            header('location: ' . $_SERVER['HTTP_REFERER']);
-                        } else{
-                            // Password is not valid, display a generic error message
-                            $login_err = "Invalid username or password. RATIO BOZO";
-                        }
-                    }
-                } else{
-                    // Username doesn't exist, display a generic error message
-                    $login_err = "Invalid username or password. RATIO BOZO";
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+    $DB = DB::getInstance();
 
-            // Close statement
-            mysqli_stmt_close($stmt);
+    if($DB->userExists($username)){
+        $mdp = $DB->getMdp($username);
+
+        if (password_verify($password, $haskey)) {
+            $_SESSION["loggedin"] = true;
+            $_SESSION["username"] = $username;
+            header("location: accueil.php");
+        }else{
+            $login_err = "Mauvais mot de passe";
         }
+    }else{
+        $login_err = "Nom inconnu";
     }
-    
-    // Close connection
-    mysqli_close($link);
+
 }
+
 ?>
 
 

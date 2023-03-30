@@ -7,15 +7,15 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <title>Création de compte - DeepF	olio</title>
   <!-- MDB icon -->
-  <link rel="icon" href="img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
+  <link rel="icon" href="../img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
   <!-- MDB -->
-  <link rel="stylesheet" href="css/mdb.min.css" />
-  <link rel="stylesheet" href="css/creercompte.css" />
-  <script src="js/creercompte.js"></script>
+  <link rel="stylesheet" href="../css/mdb.min.css" />
+  <link rel="stylesheet" href="../css/creercompte.css" />
+  <script src="../js/creercompte.js"></script>
 </head>
 </head>
 
@@ -24,7 +24,7 @@
     <div class="container-fluid py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <form id="formCreerCompte" class="needs-avalidation" novalidate>
+          <form id="formCreerCompte" action="accueil.html" class="needs-avalidation" novalidate>
 
           <div class="card tab" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
@@ -36,14 +36,16 @@
                   <div class="form-outline mb-4">
                     <input type="text" id="typeNomUtilisateur" class="form-control form-control-lg" required/>
                     <label class="form-label" for="typeNomUtilisateur">Nom d'utilisateur</label>
+                    <div class="invalid-feedback">Veuillez entrer un Nom d'utilisateur</div>
                   </div>
                   
                   <div class="form-outline mb-4">
                     <input type="password" id="typePasswordX" class="form-control form-control-lg" required />
                     <label class="form-label" for="typePasswordX">Mot de passe</label>
+                    <div class="invalid-feedback">Veuillez entrer un Mot de passe</div>
                   </div>
 
-                  <button class="btn btn-primary btn-lg px-5 ml-2" type="button" onclick="nextPrev(1)">Suivant</button>
+                  <button id="suivant" class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
               </div>
             </div>
           </div>
@@ -64,31 +66,33 @@
                 <p class="text-white-50 mb-5"></p>
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="typeEmail" class="form-control"  />
-                  <label class="form-label" for="typeEmail">Prenom</label>
+                  <input type="prenom" id="typePrenom" class="form-control form-control-lg"  />
+                  <label class="form-label" for="typePrenom">Prenom</label>
+                  <div class="invalid-feedback">Veuillez entrer un Prenom</div>
                 </div>
 
                 <div class="form-outline mb-4">
                   <input type="text" id="typeNom" class="form-control form-control-lg"  />
                   <label class="form-label" for="typeNom">Nom</label>
+                  <div class="invalid-feedback">Veuillez entrer un Nom</div>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="typeAge" class="form-control form-control-lg" required />
+                  <input type="number" min="0" max="120" id="typeAge" class="form-control form-control-lg" />
                   <label class="form-label" for="typeAge">Age</label>
                 </div>
                 
                 <div class="form-outline mb-4">
-                  <input type="text" id="typeVille" class="form-control form-control-lg" required />
+                  <input type="text" id="typeVille" class="form-control form-control-lg" />
                   <label class="form-label" for="typeVille">Ville</label>
                 </div>
                 
                 <div class="form-outline mb-4">
-                  <input type="email" id="typeMail" class="form-control form-control-lg" required />
+                  <input type="email" id="typeMail" class="form-control form-control-lg" />
                   <label class="form-label" for="typeMail">Mail</label>
                 </div>
-                <button class="btn btn-secondary btn-lg px-5 mt-5" type="button" onclick="nextPrev(-1)">Précédent</button>
-                <button class="btn btn-primary btn-lg px-5 ml-2" type="button" onclick="nextPrev(1)">Suivant</button>
+                <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
+                <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Suivant</button>
               </div>
             </div>
           </div>
@@ -99,9 +103,9 @@
     </div>
   </section>
     <!-- MDB -->
-    <script type="text/javascript" src="js/mdbjs/mdb.min.js"></script>
+    <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
     <!-- Custom scripts -->
-    <script type="text/javascript" src="js/creercompte.js"></script>
+    <script type="text/javascript" src="../js/creercompte.js"></script>
 </body>
 
 </html>
