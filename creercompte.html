@@ -24,6 +24,7 @@
     <div class="container-fluid py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <form id="formCreerCompte" class="needs-avalidation" novalidate>
 
           <div class="card tab" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
@@ -32,21 +33,17 @@
 
                 <h2 class="fw-bold mb-2 text-uppercase">Créer un compte</h2>
                 <p class="text-white-50 mb-5"></p>
-                <form class="needs-avalidation" novalidate>
                   <div class="form-outline mb-4">
                     <input type="text" id="typeNomUtilisateur" class="form-control form-control-lg" required/>
                     <label class="form-label" for="typeNomUtilisateur">Nom d'utilisateur</label>
-					<div class="invalid-feedback">Veuillez entrer un nom d'utilisateur</div>
                   </div>
                   
                   <div class="form-outline mb-4">
                     <input type="password" id="typePasswordX" class="form-control form-control-lg" required />
                     <label class="form-label" for="typePasswordX">Mot de passe</label>
-					<div class="invalid-feedback">Veuillez entrer un mot de passe</div>
                   </div>
 
-                  <button class="btn btn-primary btn-lg px-5 ml-2" type="submit" onclick="nextPrev(1)">Suivant</button>
-                </form>
+                  <button class="btn btn-primary btn-lg px-5 ml-2" type="button" onclick="nextPrev(1)">Suivant</button>
               </div>
             </div>
           </div>
@@ -90,11 +87,12 @@
                   <input type="email" id="typeMail" class="form-control form-control-lg" required />
                   <label class="form-label" for="typeMail">Mail</label>
                 </div>
-                <button class="btn btn-secondary btn-lg px-5 mt-5" type="submit" onclick="nextPrev(-1)">Précédent</button>
-                <button class="btn btn-primary btn-lg px-5 ml-2" type="submit" onclick="nextPrev(1)">Suivant</button>
+                <button class="btn btn-secondary btn-lg px-5 mt-5" type="button" onclick="nextPrev(-1)">Précédent</button>
+                <button class="btn btn-primary btn-lg px-5 ml-2" type="button" onclick="nextPrev(1)">Suivant</button>
               </div>
             </div>
           </div>
+        </form>
 
         </div>
       </div>
