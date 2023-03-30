@@ -5,7 +5,6 @@ function showTab(n) {
     // This function will display the specified tab of the form ...
     var x = document.getElementsByClassName("tab");
     x[n].style.display = "block";
-
 }
 
 function nextPrev(n) {
