@@ -1,7 +1,7 @@
 drop table if exists utilisateur cascade;
 drop table if exists message;
-drop table if exists portfolio;
 drop table if exists page;
+drop table if exists portfolio;
 
 create table utilisateur (
   nomUtilisateur varchar(30) primary key,
@@ -36,7 +36,7 @@ create table portfolio (
 create table page (
     nomUtilisateur varchar(30),
     idPortfolio int,
-    idPage int not null,
+    idPage serial not null,
     jsonPage json not null,
     foreign key (nomUtilisateur, idPortfolio) references portfolio(nomUtilisateur, idPortfolio),
     primary key(nomUtilisateur, idPortfolio, idPage)
