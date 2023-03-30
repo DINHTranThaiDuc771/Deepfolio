@@ -14,6 +14,14 @@ var listMessages = [new Message("FERRAND", "Enzo", "enzo@gmail.com", "Bonjour", 
                     new Message("BOUVET", "Eliott", "eliott@gmail.com", "Bonjour", "Je suis un message"),
                     new Message("DINH", "Duc", "duc@gmail.com", "Bonjour", "Je suis un message")];
 
+
+function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
+    this.nomUtilisateur = nomUtilisateur;
+    this.idPortfolio = idPortfolio;
+    this.nom = nom;
+    this.accessible = accessible;
+}
+
 function clickBtnMail()
 {
     isClicked = !isClicked;
@@ -21,8 +29,8 @@ function clickBtnMail()
 
     if(isClicked)
     {
-        document.getElementById("sidebar").style.width = "250px";
-        document.getElementById("btnMail").style.marginLeft = "250px";
+        document.getElementById("sidebar").style.width = "15vw";
+        document.getElementById("btnMail").style.marginLeft = "15vw";
     }
     else
     {
