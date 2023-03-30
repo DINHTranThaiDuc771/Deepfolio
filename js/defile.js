@@ -1,4 +1,4 @@
-var slides = ['img/draw2.svg','img/portfolio.jpeg','img/portfolio2.jpeg']; 
+var slides = ['../img/draw2.svg','../img/portfolio.jpeg','../img/portfolio2.jpeg']; 
 
 var start=0;
 

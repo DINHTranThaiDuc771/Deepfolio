@@ -97,7 +97,7 @@
                   <label class="form-label" for="typeMail">Mail</label>
                 </div>
                 <button class="btn btn-secondary btn-lg px-5 mt-5" type="submit" >Précédent</button>
-                <button class="btn btn-primary btn-lg px-5 ml-2" type="submit" ">Suivant</button>
+                <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Suivant</button>
               </div>
             </div>
           </div>

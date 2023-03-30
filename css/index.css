@@ -1,0 +1,19 @@
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #FFEAC8;
+    overflow-x: hidden;
+    transition: .5s;
+    padding-top: 60px;
+}
+
+.bloc-message {
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
