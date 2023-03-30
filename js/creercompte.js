@@ -8,43 +8,62 @@ function showTab(n) {
 }
 
 function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
-  // Hide the current tab:
-  x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form... :
-  if (currentTab >= x.length) {
-    //...the form gets submitted:
-    document.getElementById("formCreerCompte").submit();
-    window.location.assign("accueil.html");
-    return false;
-  }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
+
+    // This function will figure out which tab to display
+    var x = document.getElementsByClassName("tab");
+    // Hide the current tab:
+    x[currentTab].style.display = "none";
+    // Increase or decrease the current tab by 1:
+    currentTab = currentTab + n;
+
+
+    var required;
+
+    required = currentTab == 1;
+   
+    document.getElementById("typePrenom").classList.remove("active");
+    document.getElementById("typeNom").classList.remove("active");
+
+    document.getElementById("typePrenom").required = required;
+    document.getElementById("typeNom").required = required;
+
+    showTab(currentTab);
+}
+
+function valider(event, form)
+{
+    console.log(!form.checkValidity());
+
+
+    if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+    } else {
+        form.classList.remove('was-validated');
+        nextPrev(1);
+        return;
+    }
+
+    form.classList.add('was-validated');
 }
 
 
 
 window.onload = function(){
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (() => {
-        'use strict';
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll('.needs-validation');
-        console.log(forms);
+    var btnPrecedent = document.getElementById("precedent");
+    var btnSuivant = document.getElementById("suivant");
 
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms).forEach((form) => {
-        form.addEventListener('submit', (event) => {
-            if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-        }, false);
-        });
-    })();
+    var form = document.getElementById("formCreerCompte");
+
+    btnPrecedent.addEventListener("click", function() { nextPrev(-1); });
+
+    btnSuivant.addEventListener("click", (event) => {
+        valider(event, form);            
+    }, false);
+
+    form.addEventListener('submit', (event) => {
+        valider(event, form);            
+    }, false);
+
 }
