@@ -7,8 +7,8 @@ create table utilisateur (
   nomUtilisateur varchar(30) primary key,
   mdphash varchar(30) not null,
   hashkey varchar(30) not null,
-  nomUtilisateur varchar(30),
-  prenomUtilisateur varchar(30),
+  nom varchar(30),
+  prenom varchar(30),
   age int,
   ville varchar(30),
   universite varchar(30),
@@ -17,8 +17,9 @@ create table utilisateur (
 
 create table message (
   mailMessage varchar(30) primary key,
+  nomUtilisateur varchar(30) references utilisateur(nomUtilisateur),
   nomEnvoyeur varchar(30),
-  prenomEnvoyeur varchar(30),
+  prenom varchar(30),
   objet varchar(30) not null,
   text text not null,
 );
