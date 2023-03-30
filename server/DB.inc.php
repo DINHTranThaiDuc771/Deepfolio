@@ -120,6 +120,28 @@ class DB {
        * Fonctions qui peuvent être utilisées dans les scripts PHP
        *************************************************************************/
 
+       public function userExists($nomutilisateur){
+            $requete = 'select * from utilisateur where nomUtilisateur = ?';
+            //return a boolean
+            $nomutilisateurP = array( $nomutilisateur);
+            return $this->execQuery($requete, $nomutilisateurP, '');
+            
+       }
+
+
+       public function getHashkey($nomutilisateur){
+            $requete = 'select hashkey from utilisateur where nomUtilisateur = ?';
+            $nomutilisateurP = array( $nomutilisateur);
+            return $this->execQuery($requete, $nomutilisateurP, '');
+            
+       }
+
+       public function getMdp($nomutilisateur){
+            $requete = 'select mdphash from utilisateur where nomUtilisateur = ?';
+            $nomutilisateurP = array( $nomutilisateur);
+            return $this->execQuery($requete, $nomutilisateurP, '');
+            
+       }
 
       //*********************************************************//
       //                     GET                                 //
@@ -134,7 +156,7 @@ class DB {
 
       public function getUsername() {
             $requete = 'select nomUtilisateur from utilisateur';
-	      return $this->execQuery($requete,null, '');
+	        return $this->execQuery($requete,null, '');
       }
 
       public function getPortfolio($username, $id) {
