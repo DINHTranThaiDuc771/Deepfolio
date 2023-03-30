@@ -161,15 +161,15 @@ class DB {
       //                     ADD                                 //
       //*********************************************************//
 
+      public function addUtilisateur($username, $mdp, $hashKey) {
+        $requete = 'insert into utilisateur (nomUtilisateur, mdphash, hashkey) values(?,?,?)';
+        $tparam = array($username, $mdp, $hashKey);
+        return $this->execMaj($requete,$tparam);
+      }
+      
       public function addMessage($username, $mail, $nom, $prenom, $objet, $message) {
         $requete = 'insert into message values(?,?,?,?,?,?)';
         $tparam = array($username, $mail, $nom, $prenom, $objet, $message);
-        return $this->execMaj($requete,$tparam);
-      }
-
-      public function addUtilisateur($username, $mdp, $hashKey) {
-        $requete = 'insert into utilisateur (nomUtilisateur, mdp, hashkey) values(?,?,?)';
-        $tparam = array($username, $mdp, $hashKey);
         return $this->execMaj($requete,$tparam);
       }
 
@@ -179,8 +179,52 @@ class DB {
             return $this->execMaj($requete,$tparam);
         }
 
+        public function addPage($username,$dPortfolio, $jsonPage) {
+            $requete = 'insert into page (nomutilisateur, idportfolio, jsonPage) values ( ?,?,? )';
+            $tparam = array($username,$dPortfolio, $jsonPage);
+            return $this->execMaj($requete,$tparam);
+        }
 
         
+        //*********************************************************//
+        //                     UPDATE                              //
+        //*********************************************************//
+
+        public function changeAccesibility($username, $idPortfolio, $accesibilite) {
+            $requete = 'update portfolio set accesible = ? where username = ? and idPortfolio = ?';
+            $tparam = array($username, $idPortfolio, $accesibilite);
+            return $this->execMaj($requete,$tparam);
+        }
+
+        public function changePersonalInfo($username, $nom, $prenom, $age, $ville, $universite, $mailutilisateur ) {
+            $requete = 'update portfolio set nom = ?, prenom = ?, age = ?, ville = ?, universite = ?, mailutilisateur = ?  where nomUtilisateur = ?';
+            $tparam = array( $nom, $prenom, $age, $ville, $universite, $mailutilisateur, $username);
+            return $this->execMaj($requete,$tparam);
+        }
+
+        public function changePage($username, $idPortfolio, $idPage, $jsonPage) {
+            $requete = 'update page set jsonPage = ? where nomUtilisateur = ? and idPortfolio = ? and idPage = ?';
+            $tparam = array( $jsonPage, $username, $idPortfolio, $idPage);
+            return $this->execMaj($requete,$tparam);
+        }
+
+        public function changePortfolioName($username, $idPortfolio, $nomPortfolio) {
+            $requete = 'update page set nomPortfolio = ? where nomUtilisateur = ? and idPortfolio = ?';
+            $tparam = array( $nomPortfolio, $username, $idPortfolio);
+            return $this->execMaj($requete,$tparam);
+        }
+
+
+        //*********************************************************//
+        //                     DELETE                              //
+        //*********************************************************//
+
+        public function deletePortfolio( $username, $idPortfolio) {
+            $requete = 'delete from portfolio where nomUtilisateur = ? and idPortfolio = ?';
+            $tparam = array( $username, $idPortfolio);
+            return $this->execMaj($requete,$tparam);
+        }
+
 
 } //fin classe DB
 
