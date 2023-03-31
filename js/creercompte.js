@@ -33,7 +33,6 @@ function nextPrev(n) {
 
 function valider(event, form)
 {
-    console.log(!form.checkValidity());
 
 
     if (!form.checkValidity() && currentTab != nbTab) {
@@ -60,7 +59,23 @@ window.onload = function(){
     btnPrecedent.addEventListener("click", function() { nextPrev(-1); });
 
     btnSuivant.addEventListener("click", (event) => {
-        valider(event, form);            
+        var nomUtilisateur = document.getElementById("typeNomUtilisateur").value;
+        $.ajax({
+            type:"POST",
+            url:"./function.php",
+            data:"action=userExists&username=" + nomUtilisateur,
+            complete: function(data) {
+                console.log(data);
+                if (data.responseText.includes("true"))
+                {
+                    alert("Nom déjà utilisé");
+                }
+                else
+                {
+                    valider(event, form);
+                }
+            }
+        })        
     }, false);
 
     form.addEventListener('submit', (event) => {

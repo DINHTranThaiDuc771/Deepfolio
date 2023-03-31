@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -122,7 +123,6 @@ class DB {
 
        public function userExists($nomutilisateur){
             $requete = 'select * from utilisateur where nomUtilisateur = ?';
-            //return a boolean
             $nomutilisateurP = array( $nomutilisateur);
             return $this->execQuery($requete, $nomutilisateurP, ''); 
        }
