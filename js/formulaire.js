@@ -7,7 +7,7 @@ class Competence {
 }
 
 
-var currentTab = 0; // Current tab is set to be the first tab (0)
+var currentTab = 2; // Current tab is set to be the first tab (0)
 var tabCompetences = new Array();   
 
 
@@ -71,7 +71,7 @@ function ajouterTab(event) {
     var vide = false;
     Array.prototype.slice.call(tabInput).forEach((input) => {
         tabText[tabText.length] = input.value;
-        input.textContent = "";
+        input.value = "";
         if ( input.value == "" ) return;
     });
 
@@ -86,10 +86,21 @@ function maj( area ) {
 
     area.innerHTML = "";
 
+    
+
     Array.prototype.slice.call(tabCompetences).forEach((comp) => {
-        var p = document.createElement("p");
-        p.textContent = comp.nom;
-        area.appendChild(p);
+        
+        var divChips = document.createElement("div");
+        divChips.classList.add("chip");
+        divChips.textContent = comp.nom;
+
+        var spanChips = document.createElement("span");
+        spanChips.classList.add("closebtn");
+        spanChips.textContent = "x";
+
+        divChips.appendChild(spanChips);
+
+        area.appendChild(divChips);
     });
 }
 
