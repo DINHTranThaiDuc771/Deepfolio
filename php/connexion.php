@@ -41,7 +41,7 @@
                       <h4 class="mt-1 mb-5 pb-1"></h4>
                     </div>
     
-                    <form class="needs-validation" action="../php/connexion.php" novalidate>
+                    <form class="needs-validation" action="connexion.php" novalidate>
     
                       <div class="form-outline mb-4">
                         <input type="text" id="form2Example11" class="form-control"  placeholder="Au moins 5 caractère" required/>
@@ -126,6 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             header("location: accueil.php");
         }else{
             $login_err = "Mauvais mot de passe";
+            echo'impossible de se connecter';
         }
     }else{
         $login_err = "Nom inconnu";
