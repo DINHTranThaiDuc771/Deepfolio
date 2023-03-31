@@ -22,6 +22,14 @@ class Competence {
     }
 }
 
+class Reseau {
+    constructor(nom, lien) {
+      this.nom = nom;
+      this.lien = lien;
+    }
+}
+
+
 
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var tabElements = new Array();
@@ -57,6 +65,8 @@ function nextPrev(n, btn) {
         tabRequired[3] = true;
         tabRequired[4] = false;
         tabRequired[5] = true;
+        tabRequired[6] = false;
+        tabRequired[7] = false;
     }
 
     if (currentTab == 1 ) 
@@ -90,6 +100,9 @@ function ajouterTab(event) {
         if ( input.value == "" ) return;
     });
 
+    if ( currentTab == 0 ) 
+        tabElements[tabElements.length] = new Reseau(tabText[0], tabText[1]);
+
     if ( currentTab == 2 ) 
         tabElements[tabElements.length] = new Etude(tabText[0], tabText[1]);
     
@@ -109,6 +122,7 @@ function maj( area ) {
 
     for ( var elmt of tabElements ) {
         
+        if ( currentTab == 0 && !(elmt instanceof Reseau)     ) continue;
         if ( currentTab == 2 && !(elmt instanceof Etude)      ) continue;
         if ( currentTab == 3 && !(elmt instanceof Projet)     ) continue;
         if ( currentTab == 4 && !(elmt instanceof Competence) ) continue;
