@@ -40,8 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $_SESSION["username"] = $username;
             header("location: accueil.php");
         }else{
-            $login_err = "Mauvais mot de passe";
-            echo'impossible de se connecter';
+            echo"<style> .alert {display: block;}</style>";
         }
     }else{
         $login_err = "Nom inconnu";
@@ -98,26 +97,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
                     <form class="needs-validation" action="connexion.php" method="POST" novalidate>
     
-                      <div class="form-outline mb-4">
-                        <input type="text" id="form2Example11" class="form-control"  placeholder="Au moins 5 caractère" name='username' required/>
-                        <label class="form-label" for="form2Example11">Nom d'utilisateur</label>
-						<div class="invalid-feedback">Veuillez entrer un nom d'utilisateur</div>
-                      </div>
+						<div class="form-outline mb-4">
+							<input type="text" id="form2Example11" class="form-control"  placeholder="Au moins 5 caractère" name='username' required/>
+							<label class="form-label" for="form2Example11">Nom d'utilisateur</label>
+							<div class="invalid-feedback">Veuillez entrer un nom d'utilisateur</div>
+						</div>
+		
+						<div class="form-outline mb-4">
+							<input type="password" id="form2Example22" class="form-control" name='password' required/>
+							<label class="form-label" for="form2Example22">Mot de passe</label>
+							<div class="invalid-feedback">Veuillez entrer un mot de passe</div>
+						</div>
+		
+						<div class="text-center pt-1 mb-5 pb-1">
+							<button class="btn btn-primary btn-block fa-lg btn-custom-2 mb-3" type="submit">Se connecter</button>
+						</div>
+
+						<span class="alert alert-dark" role="alert" style="display:none;">
+							Mauvais nom d'utilisateur ou mot de passe
+						</span>
     
-                      <div class="form-outline mb-4">
-                        <input type="password" id="form2Example22" class="form-control" name='password' required/>
-                        <label class="form-label" for="form2Example22">Mot de passe</label>
-						<div class="invalid-feedback">Veuillez entrer un mot de passe</div>
-                      </div>
-    
-                      <div class="text-center pt-1 mb-5 pb-1">
-                        <button class="btn btn-primary btn-block fa-lg btn-custom-2 mb-3" type="submit">Se connecter</button>
-                      </div>
-    
-                      <div class="d-flex align-items-center justify-content-center pb-4">
-                        <p class="mb-0 me-2">Pas de compte?</p>
-                        <button type="button" class="btn btn-outline-dark" onclick="window.location.href='creercompte.html'">Créer un compte</button>
-                      </div>
+						<div class="d-flex align-items-center justify-content-center pb-4">
+							<p class="mb-0 me-2">Pas de compte?</p>
+							<button type="button" class="btn btn-outline-dark" onclick="window.location.href='creercompte.html'">Créer un compte</button>
+						</div>
     
                     </form>
     
