@@ -50,41 +50,33 @@ function clickBtnMail()
 
 function searchPortfolio()
 {
+    var container = document.getElementById("portfolios");
+
+    while (container.firstChild)
+    {
+        container.removeChild(container.lastChild);
+    }
+
     var search = document.getElementById("search-bar").value.toUpperCase();
-    var listOk = [];
 
     if (search != "")
     {
+        var cpt = 0;
         for(var p of listPortfolios)
         {
             if(p.nom.toUpperCase().includes(search))
             {
-                listOk.push(p);
+                addPortfolio(p, cpt);
+                cpt++;
             } 
         }
     }
     else
     {
-        listOk = [];
-
         for(var p of listPortfolios)
         {
-            listOk.push(p);
+            addPortfolio(p, listPortfolios.indexOf(p));
         }
-    }
-
-    // supprimer affichages des portfolios
-    var container = document.getElementById("portfolios");
-
-    for (var i=0; i<container.children.length+1; i++)
-    {
-        container.removeChild(container.lastChild);
-    }
-
-    // affichage de listOk
-    for(var p of listOk)
-    {
-        addPortfolio(p, listOk.indexOf(p));
     }
 }
 
@@ -94,10 +86,10 @@ function addPortfolio(p, i)
     var portfolio  = p;
 
     var div0;
+    var id = parseInt((i/3 + 1));
 
     if (i % 3 == 0)
     {
-        var id = parseInt((i/3 + 1));
         div0 = document.createElement("div");
         div0.id = "rowPortfolio" + id;
         div0.classList.add("row");
@@ -105,8 +97,7 @@ function addPortfolio(p, i)
     }
     else
     {
-        var id = parseInt((i/3 + 1));
-        div0 = document.getElementById("rowPortfolio" + id  );
+        div0 = document.getElementById("rowPortfolio" + id);
     }
 
     var div1 = document.createElement("div");
@@ -187,14 +178,13 @@ function init()
             var divBtn = document.createElement("div");
 
                 var btn = document.createElement("button");
-                btn.id = "btn" + message.id;
+                btn.id = "btn" + message.id;   
                 btn.classList.add("btn");
                 btn.classList.add("btn-danger");
                 btn.textContent = message.btn;
                 btn.addEventListener("click", function() {
-                    var id = this.id;
-                    var bloc = document.getElementById("btn" + id).parentNode.parentNode;
-                    bloc.parentNode.removeChild(bloc);
+                    var btnSuppr = document.getElementById(this.id);
+                    btnSuppr.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode);
                 });
 
         messages.appendChild(div);
@@ -210,56 +200,8 @@ function init()
         divBtn.appendChild(btn);
     }
 
-    for (var i = 0; i < 6; i++){ // Création des portfolios
-        var portfolios = document.getElementById("portfolios");
-        var portfolio  = listPortfolios[i];
-
-        if (i % 3 == 0)
-        {
-            var div0 = document.createElement("div");
-            div0.id = "rowPortfolio" + (i/3 + 1);
-            div0.classList.add("row");
-            div0.classList.add("my-5");
-        }
-
-        var div1 = document.createElement("div");
-        div1.classList.add("col-md-4");
-        div1.id = "pf" + portfolio.idPortfolio;
-
-        var div2 = document.createElement("div");
-        div2.classList.add("card");
-
-        var div3 = document.createElement("div");
-        div3.classList.add("bg-image");
-        div3.classList.add("hover-overlay");
-        div3.classList.add("ripple");
-        div3.setAttribute("data-mdb-ripple-color", "light");
-
-        var img = document.createElement("img");
-        img.classList.add("img-fluid");
-        img.setAttribute("src", "https://mdbcdn.b-cdn.net/img/new/standard/nature/11"+(i+4)+".webp");
-
-        var a = document.createElement("a");
-        a.setAttribute("href", "#");
-
-        var div4 = document.createElement("div");
-        div4.classList.add("card-body");
-
-        var h5 = document.createElement("h5");
-        h5.classList.add("card-title");
-        h5.textContent = portfolio.nom;
-
-        var p = document.createElement("p");
-        p.classList.add("card-text");
-
-        portfolios.appendChild(div0);
-        div0.appendChild(div1);
-        div1.appendChild(div2);
-        div2.appendChild(div3);
-        div3.appendChild(img);
-        div3.appendChild(a);
-        div2.appendChild(div4);
-        div4.appendChild(h5);
+    for (var p of listPortfolios){ // Création des portfolios
+        addPortfolio(p, listPortfolios.indexOf(p));
     }
 }
 

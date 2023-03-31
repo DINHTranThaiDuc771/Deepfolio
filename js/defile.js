@@ -47,6 +47,10 @@ function lancerChangement() {
     interval = setInterval(nextSlide,4000);
 }
 
+function displayAlert(){
+    alert("Mauvais mot de passe ou nom d'utilisateur");
+}
+
 
 
 
