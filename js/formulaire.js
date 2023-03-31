@@ -217,9 +217,15 @@ window.onload = () => {
         btnAjouter.addEventListener("click", ajouterTab);
     });
 
+    addEventListener("keypress", (event) => {
+        if (event.key === 'Enter') {
+            valider(event, form, 1);     
+          }
+    });
+
 
     form.addEventListener('submit', (event) => {
-        valider(event, form);            
+        valider(event, form, 1);            
     }, false);
 
 }

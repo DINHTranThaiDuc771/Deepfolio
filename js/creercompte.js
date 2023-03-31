@@ -67,4 +67,11 @@ window.onload = function(){
         valider(event, form);            
     }, false);
 
+    addEventListener("keypress", (event) => {
+        if (event.key === 'Enter') {
+            valider(event, form, 1);     
+          }
+    });
+
+
 }
