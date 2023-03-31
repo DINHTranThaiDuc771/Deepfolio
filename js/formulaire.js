@@ -42,6 +42,7 @@ class Competence {
 
 
 var currentTab = 0; // Current tab is set to be the first tab (0)
+var nbTab = 4;
 var tabElements = new Array();
 
 
@@ -176,7 +177,7 @@ function maj( area ) {
 function valider(event, form, indexSuivant)
 {
 
-    if (!form.checkValidity()) {
+    if (!form.checkValidity() && currentTab != nbTab) {
         event.preventDefault();
         event.stopPropagation();
     } else {
