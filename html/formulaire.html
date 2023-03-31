@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <title>Création de compte - DeepFolio</title>
+
+  <!-- Bootstrap CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <!-- Bootstrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
   <!-- MDB icon -->
   <link rel="icon" href="../img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
   <!-- Font Awesome -->
@@ -14,8 +19,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
   <!-- MDB -->
   <link rel="stylesheet" href="../css/mdb.min.css" />
-  <link rel="stylesheet" href="../css/creercompte.css" />
-</head>
+  <link rel="stylesheet" href="../css/formulaire.css" />
 </head>
 
 <body>
@@ -23,7 +27,7 @@
     <div class="container-fluid py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <form id="formCreerCompte" action="accueil.html" class="needs-avalidation" novalidate>
+            <form id="formCreerPortfolio" action="accueil.html" class="needs-avalidation" novalidate>
 
                 <div class="card tab" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
@@ -57,10 +61,10 @@
                             </div>
 
                             <div class="form-outline mb-4">
-                                <input type="text" id="typeResidence" class="form-control form-control-lg" required />
+                                <input type="text" id="typeResidence" class="form-control form-control-lg" />
                                 <label class="form-label" for="typeResidence">Lieu de résidence</label>
                                 <div class="invalid-feedback">Veuillez entrer un lieu de résidence</div>
-                            </div>
+                            </div>  
 
 
                             <div class="form-outline mb-4">
@@ -69,7 +73,7 @@
                                 <div class="invalid-feedback">Veuillez vous présenter</div>
                             </div>
 
-                            <div class="form-outline mb-4">                    
+                            <div class="form-control form-control-lg">                    
                                 <select id="typeReseau">
                                     <option value="linkedin">LinkedIn</option>
                                     <option value="github">GitHub</option>
@@ -78,7 +82,7 @@
                                 <label class="form-label" for="typeReseau">Réseau</label>
                             </div>                  
 
-                            <button id="suivant" class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
                         </div>
                     </div>
                 </div>
@@ -103,8 +107,8 @@
                                 <div class="invalid-feedback">Veuillez entrer l'établissement dans lequel vous avez obtenu ce diplôme</div>
                             </div>
 
-                            <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
-                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
+                            <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
 
                         </div>
                     </div>
@@ -130,16 +134,12 @@
                                 <label class="form-label" for="typeEntreprise">Entreprise</label>
                                 <div class="invalid-feedback">Veuillez entrer une entreprise</div>
                             </div>
-                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Ajouter</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2 ajouter" type="button">Ajouter</button>
 
-                            <div class="form-outline mb-4">
-                                <input type="text" id="typeEtablissement" class="form-control form-control-lg"  />
-                                <label class="form-label" for="typeEtablissement">Etablissement</label>
-                                <div class="invalid-feedback">Veuillez entrer l'établissement dans lequel vous avez obtenu ce diplôme</div>
-                            </div>
+                            <div class="form-outline mb-4"></div>
 
-                            <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
-                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
+                            <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
 
                         </div>
                     </div>
@@ -171,11 +171,11 @@
                                 <label class="form-label" for="typePhotoprojet">Choisir une image</label>
                                 <div class="invalid-feedback">Veuillez entrer une photo</div>
                             </div>
-                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Ajouter</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2 ajouter" type="button">Ajouter</button>
 
                             <div class="listeProjets"></div>
-                            <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
-                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
+                            <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
 
                         </div>
                     </div>
@@ -207,12 +207,12 @@
                                 <label class="form-label" for="typeLienCompetence">Lien</label>
                                 <div class="invalid-feedback">Veuillez entrer un lien</div>
                             </div>
-                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Ajouter</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2 ajouter" type="button">Ajouter</button>
 
                             <div class="listeCompetences"></div>
 
-                            <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
-                            <button class="btn btn-primary btn-lg px-5 ml-2" type="button">Suivant</button>
+                            <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Terminer</button>
 
                         </div>
                     </div>
@@ -224,6 +224,8 @@
   </section>
     <!-- MDB -->
     <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
+    <!-- our scirpt -->
+    <script type="text/javascript" src="../js/formulaire.js"></script>
 </body>
 
 </html>

@@ -1,41 +1,97 @@
-var slides = ['../img/draw2.svg','../img/portfolio.jpeg','../img/portfolio2.jpeg']; 
+var slides = ['../img/image.png', '../img/image1.jpg']; 
 
-var start=0;
+var index=0;
 
-setInterval(nextSlide,4000);
+var interval;
+
+var tabImages = new Array();
+
 
 function nextSlide(){   
     var divImg = document.getElementById('divImg');
     
-    start = (start+1)%slides.length;
+    var ancien = index;
+    index = (index+1)%slides.length;
 
-    var img = document.getElementById('img');
-    img.setAttribute('src',slides[start]);
-    img.setAttribute('class','img-fluid');
+    changeImage(ancien);
+
+}
+
+function changeImage(ancien){
+
+    var imgActuelle = tabImages[index];
+    var imgAncienne = tabImages[ancien];
+
+    imgAncienne.style.display = "none";
+    imgActuelle.style.display = "block";    
 }
 
 function previousSlide(){
     var divImg = document.getElementById('divImg');
 
-    if(start == 0){
-        start = slides.length-1;
+    var ancien = index;
+    if(index == 0){
+        index = slides.length-1;
     }else{
-        start--;
+        index--;
     }
 
-    var img = document.getElementById('img');
-    img.setAttribute('src',slides[start]);
-    img.setAttribute('class','img-fluid');
+    changeImage(ancien);    
+}
+
+function stopChangement() {
+    clearInterval(interval);
+}
+
+function lancerChangement() {
+    interval = setInterval(nextSlide,4000);
 }
 
 
 
 
 window.onload = function(){
-    document.getElementById('next').addEventListener('click',nextSlide);
-    document.getElementById('previous').addEventListener('click',previousSlide);
+    var btnNext = document.getElementById('next');
+    var btnPrev = document.getElementById('previous');
 
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    btnNext.addEventListener('click',nextSlide);
+    btnPrev.addEventListener('click',previousSlide);
+
+    var div = document.getElementById('next').parentElement;
+    div.style.overflow = "hidden";
+
+    div.removeChild(btnNext);
+    
+
+    for ( var s of slides )
+    {
+        var img = document.createElement("img");
+        
+        img.setAttribute("src", s);
+        img.setAttribute('class','img-fluid');
+        img.setAttribute('width', '95%');
+        
+        img.style.transition = "2s"; 
+        img.style.display = "none";
+
+
+        img.addEventListener("mouseover", stopChangement);
+        img.addEventListener("mouseleave", lancerChangement);
+        
+        tabImages[tabImages.length] = img;  
+
+        div.appendChild(img);
+    }
+
+    div.appendChild(btnNext);
+
+    nextSlide();
+
+    interval = setInterval(nextSlide,4000);
+
+
+
+    // Example indexer JavaScript for disabling form submissions if there are invalid fields
     (() => {
         'use strict';
 
@@ -51,6 +107,7 @@ window.onload = function(){
             event.preventDefault();
             event.stopPropagation();
             }
+
             form.classList.add('was-validated');
         }, false);
         });
