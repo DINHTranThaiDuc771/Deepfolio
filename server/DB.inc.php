@@ -124,8 +124,7 @@ class DB {
             $requete = 'select * from utilisateur where nomUtilisateur = ?';
             //return a boolean
             $nomutilisateurP = array( $nomutilisateur);
-            return $this->execQuery($requete, $nomutilisateurP, '');
-            
+            return $this->execQuery($requete, $nomutilisateurP, ''); 
        }
 
 
@@ -213,7 +212,7 @@ class DB {
         }
 
         public function changePersonalInfo($username, $nom, $prenom, $age, $ville, $universite, $mailutilisateur ) {
-            $requete = 'update portfolio set nom = ?, prenom = ?, age = ?, ville = ?, universite = ?, mailutilisateur = ?  where nomUtilisateur = ?';
+            $requete = 'update utilisateur set nom = ?, prenom = ?, age = ?, ville = ?, universite = ?, mailutilisateur = ?  where nomUtilisateur = ?';
             $tparam = array( $nom, $prenom, $age, $ville, $universite, $mailutilisateur, $username);
             return $this->execMaj($requete,$tparam);
         }
