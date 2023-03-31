@@ -136,7 +136,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }else{
         $login_err = "Nom inconnu";
     }
-
 }
 
 ?>

@@ -102,6 +102,7 @@
   </section>
     <!-- MDB -->
     <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="../js/creercompte.js"></script>
 </body>
@@ -128,13 +129,17 @@
     $DB = DB::getInstance();
 
     if($DB->userExists($nomUtilisateur)) {
-      echo "Nom d'utilisateur déjà utilisé";
+      //echo '<script>alert("Nom d\'utilisateur deja utilise")</script>';
     }
     else
     {
       $hashed_password = password_hash($password, PASSWORD_DEFAULT);
       $DB->addUtilisateur($nomUtilisateur, $hashed_password);
       $DB->changePersonalInfo($nomUtilisateur, $nom, $prenom, $age, $ville, $universite, $mail);
+
+      //redirection accueil
+      //header('Location: accueil.php');
+      //exit();
     }
   } 
 ?>
