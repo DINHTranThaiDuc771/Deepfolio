@@ -117,7 +117,6 @@ $username_err = $password_err = $login_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
     
     $username = htmlspecialchars(trim($_POST["username"]));   
     $password = htmlspecialchars(trim($_POST["password"]));
