@@ -1,4 +1,20 @@
+class Reseau {
+    constructor(nom, lien) {
+      this.nom = nom;
+      this.lien = lien;
+    }
+}
+
 class Etude {
+    constructor (nom, etablissement, annee) {
+        this.nom = nom;
+        this.etablissement = etablissement;
+        this.annee = annee;
+
+    }
+}
+
+class Travail {
     constructor (nom, entreprise) {
         this.nom = nom;
         this.entreprise = entreprise;
@@ -22,12 +38,6 @@ class Competence {
     }
 }
 
-class Reseau {
-    constructor(nom, lien) {
-      this.nom = nom;
-      this.lien = lien;
-    }
-}
 
 
 
@@ -71,15 +81,21 @@ function nextPrev(n, btn) {
 
     if (currentTab == 1 ) 
     {
-        tabRequired[0] = true;
-        tabRequired[1] = true;
+        tabRequired[0] = false;
+        tabRequired[1] = false;
+        tabRequired[2] = false;
+        tabRequired[3] = false;
     }    
 
     var tabInput = x[currentTab].querySelectorAll("input");
 
     var cpt = 0;
     Array.prototype.slice.call(tabInput).forEach((input) => {
-        input.required = tabRequired[cpt++];
+        console.log(input);
+        console.log(tabRequired[cpt]);
+
+        if (tabRequired[cpt] != undefined)
+            input.required = tabRequired[cpt++];
     });
 
     showTab(currentTab);
@@ -96,15 +112,23 @@ function ajouterTab(event) {
     var vide = false;
     Array.prototype.slice.call(tabInput).forEach((input) => {
         tabText[tabText.length] = input.value;
+        
+        if ( input.value === "" || input.value == null) vide = true;
+
         input.value = "";
-        if ( input.value == "" ) return;
     });
+
+    if ( vide ) return;
 
     if ( currentTab == 0 ) 
         tabElements[tabElements.length] = new Reseau(tabText[0], tabText[1]);
 
+    if ( currentTab == 1 ) 
+        tabElements[tabElements.length] = new Etude(tabText[0], tabText[1], tabText[2]);
+    
+
     if ( currentTab == 2 ) 
-        tabElements[tabElements.length] = new Etude(tabText[0], tabText[1]);
+        tabElements[tabElements.length] = new Travail(tabText[0], tabText[1]);
     
     if ( currentTab == 3 )
         tabElements[tabElements.length] = new Projet(tabText[0], tabText[1], tabText[2], tabText[3]);
@@ -123,7 +147,8 @@ function maj( area ) {
     for ( var elmt of tabElements ) {
         
         if ( currentTab == 0 && !(elmt instanceof Reseau)     ) continue;
-        if ( currentTab == 2 && !(elmt instanceof Etude)      ) continue;
+        if ( currentTab == 1 && !(elmt instanceof Etude)      ) continue;
+        if ( currentTab == 2 && !(elmt instanceof Travail)    ) continue;
         if ( currentTab == 3 && !(elmt instanceof Projet)     ) continue;
         if ( currentTab == 4 && !(elmt instanceof Competence) ) continue;
 
@@ -136,19 +161,16 @@ function maj( area ) {
         spanChips.classList.add("closebtn");
         spanChips.textContent = "x";
 
-        spanChips.addEventListener("click", function(){ deleteElement(elmt); });
+        spanChips.addEventListener("click", function(){
+            tabElements = tabElements.filter(elmt => (elmt != elmt ));
+    
+            maj(area);
+         });
 
         divChips.appendChild(spanChips);
 
         area.appendChild(divChips);
     };
-}
-
-function deleteElement( element ) {
-    
-    tabCompetences = tabCompetences.filter(elmt => (elmt != element ));
-    
-    maj(area);
 }
 
 function valider(event, form, indexSuivant)

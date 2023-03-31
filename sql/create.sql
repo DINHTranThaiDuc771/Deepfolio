@@ -5,8 +5,7 @@ drop table if exists portfolio;
 
 create table utilisateur (
   nomUtilisateur varchar(30) primary key,
-  mdphash varchar(30) not null,
-  hashkey varchar(30) not null,
+  mdphash textl not null,
   nom varchar(30),
   prenom varchar(30),
   age int,
