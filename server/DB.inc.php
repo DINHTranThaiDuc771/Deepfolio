@@ -139,7 +139,8 @@ class DB {
        public function getMdp($nomutilisateur){
             $requete = 'select mdphash from utilisateur where nomUtilisateur = ?';
             $nomutilisateurP = array( $nomutilisateur);
-            return $this->execQuery($requete, $nomutilisateurP, '');
+            $result = $this->execQuery($requete, $nomutilisateurP, '');
+            return $result[0]['mdphash'];
             
        }
 

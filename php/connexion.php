@@ -1,3 +1,58 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+
+require '../server/DB.inc.php';
+// Initialize the session
+
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
+ 
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header('location: accueil.php');
+    exit;
+}
+ 
+ 
+// Define variables and initialize with empty values
+$username = $password = $status = "";
+$username_err = $password_err = $login_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    
+    $username = trim($_POST["username"]);   
+    $password = trim($_POST["password"]);
+    
+    $DB = DB::getInstance();
+
+    if($DB->userExists($username)){
+        $mdp = $DB->getMdp($username);
+
+        if (password_verify($password, $mdp)) {
+            $_SESSION["loggedin"] = true;
+            $_SESSION["username"] = $username;
+            header("location: accueil.php");
+        }else{
+            $login_err = "Mauvais mot de passe";
+            echo'impossible de se connecter';
+        }
+    }else{
+        $login_err = "Nom inconnu";
+    }
+
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,16 +96,16 @@
                       <h4 class="mt-1 mb-5 pb-1"></h4>
                     </div>
     
-                    <form class="needs-validation" action="connexion.php" novalidate>
+                    <form class="needs-validation" action="connexion.php" method="POST" novalidate>
     
                       <div class="form-outline mb-4">
-                        <input type="text" id="form2Example11" class="form-control"  placeholder="Au moins 5 caractère" required/>
+                        <input type="text" id="form2Example11" class="form-control"  placeholder="Au moins 5 caractère" name='username' required/>
                         <label class="form-label" for="form2Example11">Nom d'utilisateur</label>
 						<div class="invalid-feedback">Veuillez entrer un nom d'utilisateur</div>
                       </div>
     
                       <div class="form-outline mb-4">
-                        <input type="password" id="form2Example22" class="form-control " required/>
+                        <input type="password" id="form2Example22" class="form-control" name='password' required/>
                         <label class="form-label" for="form2Example22">Mot de passe</label>
 						<div class="invalid-feedback">Veuillez entrer un mot de passe</div>
                       </div>
@@ -84,56 +139,4 @@
     <script type="text/javascript"></script>
   </body>
 </html>
-
-
-
-<?php
-
-require './server/DB.inc.php';
-// Initialize the session
-
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
-
- 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header('location: accueil.php');
-    exit;
-}
- 
- 
-// Define variables and initialize with empty values
-$username = $password = $status = "";
-$username_err = $password_err = $login_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    
-    $username = trim($_POST["username"]);   
-    $password = trim($_POST["password"]);
-    
-    $DB = DB::getInstance();
-
-    if($DB->userExists($username)){
-        $mdp = $DB->getMdp($username);
-
-        if (password_verify($password, $haskey)) {
-            $_SESSION["loggedin"] = true;
-            $_SESSION["username"] = $username;
-            header("location: accueil.php");
-        }else{
-            $login_err = "Mauvais mot de passe";
-            echo'impossible de se connecter';
-        }
-    }else{
-        $login_err = "Nom inconnu";
-    }
-
-}
-
-?>
-
 
