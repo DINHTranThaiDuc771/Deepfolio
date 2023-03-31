@@ -129,13 +129,6 @@ class DB {
        }
 
 
-       public function getHashkey($nomutilisateur){
-            $requete = 'select hashkey from utilisateur where nomUtilisateur = ?';
-            $nomutilisateurP = array( $nomutilisateur);
-            return $this->execQuery($requete, $nomutilisateurP, '');
-            
-       }
-
        public function getMdp($nomutilisateur){
             $requete = 'select mdphash from utilisateur where nomUtilisateur = ?';
             $nomutilisateurP = array( $nomutilisateur);
@@ -184,9 +177,9 @@ class DB {
       //                     ADD                                 //
       //*********************************************************//
 
-      public function addUtilisateur($username, $mdp, $hashKey) {
-        $requete = 'insert into utilisateur (nomUtilisateur, mdphash, hashkey) values(?,?,?)';
-        $tparam = array($username, $mdp, $hashKey);
+      public function addUtilisateur($username, $mdp) {
+        $requete = 'insert into utilisateur (nomUtilisateur, mdphash) values(?,?)';
+        $tparam = array($username, $mdp);
         return $this->execMaj($requete,$tparam);
       }
       
