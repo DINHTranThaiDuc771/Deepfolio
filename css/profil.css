@@ -1,4 +1,4 @@
-html > * {
+* {
   box-sizing: border-box;
 }
 body {
@@ -65,7 +65,10 @@ body {
     height: 80%;
     right :0;
     bottom: 0;
+    overflow-y: auto;
+
   }
+  
   #logo-home {
     position: absolute;
     top   : 0;
@@ -81,10 +84,15 @@ body {
   position: absolute;
   bottom: 50%;
 }
-#img-nom>* {
+#img-nom >* {
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 a {
   color : black;
+}
+
+#tab-portfolio {
+  display: none;
 }

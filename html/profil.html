@@ -21,14 +21,16 @@
 
 <body>
   <!-- Start your project here-->
-    <!-- Toggle button-->
-    <a id="icon-toggle-menu">
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 27H31.5V24H4.5V27ZM4.5 19.5H31.5V16.5H4.5V19.5ZM4.5 9V12H31.5V9H4.5Z" fill="black" fill-opacity="0.87"/>
-        </svg>
-        
-    </a>
-    <!-- Toggle button-->
+  <!-- Toggle button-->
+  <a href="" id="icon-toggle-menu">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M4.5 27H31.5V24H4.5V27ZM4.5 19.5H31.5V16.5H4.5V19.5ZM4.5 9V12H31.5V9H4.5Z" fill="black"
+        fill-opacity="0.87" />
+    </svg>
+
+  </a>
+  <!-- Toggle button-->
 
   <!-- Sidebar -->
   <div class="container mt-5">
@@ -40,15 +42,15 @@
             d="M40.3467 62H35.2998L35.333 59.3936H40.3467C42.0732 59.3936 43.512 59.0339 44.6631 58.3145C45.8141 57.584 46.6774 56.5658 47.2529 55.2598C47.8395 53.9427 48.1328 52.4043 48.1328 50.6445V49.167C48.1328 47.7835 47.9668 46.555 47.6348 45.4814C47.3027 44.3968 46.8158 43.4837 46.1738 42.7422C45.5319 41.9896 44.7461 41.4196 43.8164 41.0322C42.8978 40.6449 41.8408 40.4512 40.6455 40.4512H35.2002V37.8281H40.6455C42.2282 37.8281 43.6725 38.0938 44.9785 38.625C46.2845 39.1452 47.4079 39.9033 48.3486 40.8994C49.3005 41.8844 50.0309 43.0798 50.54 44.4854C51.0492 45.8799 51.3037 47.4515 51.3037 49.2002V50.6445C51.3037 52.3932 51.0492 53.9704 50.54 55.376C50.0309 56.7705 49.2949 57.9603 48.332 58.9453C47.3802 59.9303 46.2292 60.6885 44.8789 61.2197C43.5397 61.7399 42.029 62 40.3467 62ZM37.0098 37.8281V62H33.8057V37.8281H37.0098ZM64.585 37.8281V62H61.4307V37.8281H64.585ZM72.3545 37.8281V40.4512H53.6777V37.8281H72.3545Z"
             fill="white" />
         </svg>
-        <h2 style = "text-align: center;">Thai Duc</h2>
+        <h2 style="text-align: center;">Thai Duc</h2>
       </div>
       <div id="list-infos" style="list-style: none;">
         <li>
-          <ul><a href="">Profil</a>
+          <ul><a id="btn-profil" href="#">Profil</a>
           </ul>
-          <ul><a href="">Vos portfolios</a>
+          <ul><a id="btn-portfolios" href="#">Vos portfolios</a>
           </ul>
-          <ul><a href="">Se déconnexion</a>
+          <ul><a id="btn-deconnecter" href="#">Se déconnexion</a>
           </ul>
         </li>
       </div>
@@ -57,47 +59,69 @@
 
     <!-- Info tab -->
     <div class="container-custom">
-      <div class="row" style="border-radius: 1rem;">
+      <div id="tab-profil"class="row" style="border-radius: 1rem;">
 
         <div class="mb-md-5 mt-md-4 col-md-6 p-5">
 
           <h2 class="fw-bold mb-2 text-uppercase">Votre profil</h2>
           <p class="text-white-50 mb-5"></p>
-
-          <div class="form-outline mb-4">
-            <input type="email" id="typeEmail" class="form-control" />
-            <label class="form-label" for="typeEmail">Prenom</label>
+          <form action="">
+            <div class="form-outline mb-4">
+              <input type="email" id="typeEmail" class="form-control" />
+              <label class="form-label" for="typeEmail">Prenom</label>
+            </div>
+  
+            <div class="form-outline mb-4">
+              <input type="text" id="typeNom" class="form-control form-control-lg" />
+              <label class="form-label" for="typeNom">Nom</label>
+            </div>
+  
+            <div class="form-outline mb-4">
+              <input type="text" id="typeAge" class="form-control form-control-lg" required />
+              <label class="form-label" for="typeAge">Age</label>
+            </div>
+  
+            <div class="form-outline mb-4">
+              <input type="text" id="typeVille" class="form-control form-control-lg" required />
+              <label class="form-label" for="typeVille">Ville</label>
+            </div>
+  
+            <div class="form-outline mb-4">
+              <input type="email" id="typeMail" class="form-control form-control-lg" required />
+              <label class="form-label" for="typeMail">Mail</label>
+            </div>
+            <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Enregistrer</button>
           </div>
-
-          <div class="form-outline mb-4">
-            <input type="text" id="typeNom" class="form-control form-control-lg" />
-            <label class="form-label" for="typeNom">Nom</label>
-          </div>
-
-          <div class="form-outline mb-4">
-            <input type="text" id="typeAge" class="form-control form-control-lg" required />
-            <label class="form-label" for="typeAge">Age</label>
-          </div>
-
-          <div class="form-outline mb-4">
-            <input type="text" id="typeVille" class="form-control form-control-lg" required />
-            <label class="form-label" for="typeVille">Ville</label>
-          </div>
-
-          <div class="form-outline mb-4">
-            <input type="email" id="typeMail" class="form-control form-control-lg" required />
-            <label class="form-label" for="typeMail">Mail</label>
-          </div>
-          <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Enregistrer</button>
-        </div>
+          </form>
 
         <div id="profil-img" class="col-md-6 p-5">
           <svg width="210" height="210" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="105" cy="105" r="105" fill="#FFD285" />
           </svg>
         </div>
+      </div>
 
-
+      <div id="tab-portfolio" class="container" style="padding: 50px">
+        <h1 style="margin-bottom: 50px">Vos portfolios</h1>
+        <div class="card mb-3 w-75">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="../img/portfolio.jpeg" alt="Trendy Pants and Shoes" class="img-fluid rounded-start" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural lead-in to
+                  additional content. This content is a little bit longer.
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -121,9 +145,8 @@
   <!-- End your project here-->
 
   <!-- MDB -->
-  <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
   <!-- Custom scripts -->
-  <script type="text/javascript">
+  <script type="text/javascript" src="../js/profil.js"></script>
 
   </script>
 </body>
