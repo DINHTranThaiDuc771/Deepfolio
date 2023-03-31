@@ -130,7 +130,7 @@
     if($DB->userExists($nomUtilisateur)) {
       echo "Nom d'utilisateur déjà utilisé";
     }
-    else;
+    else
     {
       $hashed_password = password_hash($password, PASSWORD_DEFAULT);
       $DB->addUtilisateur($nomUtilisateur, $hashed_password);
