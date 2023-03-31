@@ -52,7 +52,7 @@ function searchPortfolio()
 {
     var container = document.getElementById("portfolios");
 
-    while  (container.firstChild)
+    while (container.firstChild)
     {
         container.removeChild(container.lastChild);
     }
@@ -178,14 +178,13 @@ function init()
             var divBtn = document.createElement("div");
 
                 var btn = document.createElement("button");
-                btn.id = "btn" + message.id;
+                btn.id = "btn" + message.id;   
                 btn.classList.add("btn");
                 btn.classList.add("btn-danger");
                 btn.textContent = message.btn;
                 btn.addEventListener("click", function() {
-                    var id = this.id;
-                    var bloc = document.getElementById("btn" + id).parentNode.parentNode;
-                    bloc.parentNode.removeChild(bloc);
+                    var btnSuppr = document.getElementById(this.id);
+                    btnSuppr.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode);
                 });
 
         messages.appendChild(div);
