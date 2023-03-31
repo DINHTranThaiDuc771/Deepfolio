@@ -202,6 +202,7 @@
                                 </div>
 
                                 <div class="col-md-6">
+                                    <p class="text-white-50 mb-5"></p>
                                     <div class="form-outline mb-4">
                                         <input type="number" id="typeTailleEquipe" class="form-control form-control-lg"  />
                                         <label class="form-label" for="typeTailleEquipe">Taille de l'équipe</label>
@@ -243,26 +244,38 @@
                             <h2 class="fw-bold mb-2 text-uppercase">Ajouter des compétences</h2>
                             <p class="text-white-50 mb-5"></p>
 
-                            <div class="form-outline mb-4">
-                                <input type="text" id="typeCompetence" class="form-control form-control-lg"  />
-                                <label class="form-label" for="typeCompetence">Nom de la compétence</label>
-                                <div class="invalid-feedback">Veuillez entrer le nom d'une compétence</div>
-                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-outline mb-4 ">
+                                        <input type="text" id="typeCompetence" class="form-control form-control-lg"  />
+                                        <label class="form-label" for="typeCompetence">Nom de la compétence</label>
+                                        <div class="invalid-feedback">Veuillez entrer le nom d'une compétence</div>
+                                    </div>
 
-                            <div class="form-outline mb-4">
-                                <input type="text" id="typeDescCompetence" class="form-control form-control-lg"  />
-                                <label class="form-label" for="typeDescCompetence">Description</label>
-                                <div class="invalid-feedback">Veuillez entrer la description de la compétence</div>
-                            </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="typeDescCompetence" class="form-control form-control-lg"  />
+                                        <label class="form-label" for="typeDescCompetence">Description</label>
+                                        <div class="invalid-feedback">Veuillez entrer la description de la compétence</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-outline mb-4">
+                                        <input type="url" id="typeLienCompetence" class="form-control form-control-lg"  />
+                                        <label class="form-label" for="typeLienCompetence">Lien</label>
+                                        <div class="invalid-feedback">Veuillez entrer un lien</div>
+                                    </div>
 
-                            <div class="form-outline mb-4">
-                                <input type="url" id="typeLienCompetence" class="form-control form-control-lg"  />
-                                <label class="form-label" for="typeLienCompetence">Lien</label>
-                                <div class="invalid-feedback">Veuillez entrer un lien</div>
-                            </div>
+                                    <select class="browser-default custom-select">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                      </select>
+                                </div>                                                 
+                            </div>                       
                             <a class="ajouter" type="button">Ajouter</a>
 
-                            <div class="form-outline mb-4 tableauElmt"></div>
+                            <div class="form-outline mb-4 tableauElmt col-md-12"></div>
 
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
                             <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Terminer</button>
