@@ -147,6 +147,13 @@ class DB {
 	      return $this->execQuery($requete,$tparam, '');
       }
 
+    public function getUserInfos($login) {
+        $requete = 'select * from utilisateur where nomUtilisateur = ? ';
+        $tparam = array( $login );
+        $result = $this->execQuery($requete,$tparam, '');
+        return $result[0];
+    }
+
       public function getUsername() {
             $requete = 'select nomUtilisateur from utilisateur';
 	        return $this->execQuery($requete,null, '');

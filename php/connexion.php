@@ -74,8 +74,8 @@
                 </div>
                 
                 <div id='divImg' class="col-lg-6 d-flex align-items-center slider justify-content-center">  
-                  <a type="button" id='previous'> &lt </a>
-                  <a type="button" id='next'> &gt </a>        
+                  <a type="button" id='previous' style="height: 100%"> &nbsp; </a>
+                  <a type="button" id='next' style="height: 100%"> &nbsp; </a>        
                 </div>                
               </div>
             </div>
