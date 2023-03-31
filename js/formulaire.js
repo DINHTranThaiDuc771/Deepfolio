@@ -100,7 +100,7 @@ function ajouterTab(event) {
         tabElements[tabElements.length] = new Competence(tabText[0], tabText[1], tabText[2]);
     
 
-    maj(divFormulaires.getElementsByClassName("tableauComp")[0]);
+    maj(divFormulaires.getElementsByClassName("tableauElmt")[0]);
 }
 
 function maj( area ) {
