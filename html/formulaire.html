@@ -35,68 +35,68 @@
                         <div class="mb-md-5 mt-md-4 pb-5"><!-- col-md-6 -->
 
                             <h2 class="fw-bold mb-2 text-uppercase">Informations</h2>
-                            <div class="container-fluid" id="conteneur2Elements">
+                            <div class="container" id="conteneur2Elements">
+                                <div class="row">
+                                    <div id="informationsGauche" class="col-md-6">
+                                        <p class="text-white-50 mb-5"></p>
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="typeNom" class="form-control form-control-lg" required/>
+                                            <label class="form-label" for="typeNom">Nom</label>
+                                            <div class="invalid-feedback">Veuillez entrer un nom</div>
+                                        </div>
+                                        
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="typePrenom" class="form-control form-control-lg" required />
+                                            <label class="form-label" for="typePrenom">Prénom</label>
+                                            <div class="invalid-feedback">Veuillez entrer un prénom</div>
+                                        </div>
+        
+                                        <div class="form-outline mb-4">
+                                            <input type="number" min="13" id="typeAge" class="form-control form-control-lg" required />
+                                            <label class="form-label" for="typeAge">Age</label>
+                                            <div class="invalid-feedback">Veuillez entrer votre age</div>
+                                        </div>
+        
+                                        <div class="form-outline mb-4">
+                                            <input type="url" id="typeLienCv" class="form-control form-control-lg" required />
+                                            <label class="form-label" for="typeLienCv">Lien CV</label>
+                                            <div class="invalid-feedback">Veuillez entrer un lien vers votre CV</div>
+                                        </div>
+        
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="typeResidence" class="form-control form-control-lg" />
+                                            <label class="form-label" for="typeResidence">Lieu de résidence</label>
+                                            <div class="invalid-feedback">Veuillez entrer un lieu de résidence</div>
+                                        </div>  
+        
+        
+                                        <div class="form-outline mb-4">
+                                            <textarea id="typePresentation" class="form-control form-control-lg" placeholder="Présentez vous en quelques lignes" required></textarea>
+                                            <label class="form-label" for="typePresentation">Présentation</label>
+                                            <div class="invalid-feedback">Veuillez vous présenter</div>
+                                        </div>
+                                    </div>
 
-                                <div id="informationsGauche" class="col-md-6">
-                                    <p class="text-white-50 mb-5"></p>
-                                    <div class="form-outline mb-4">
-                                        <input type="text" id="typeNom" class="form-control form-control-lg" required/>
-                                        <label class="form-label" for="typeNom">Nom</label>
-                                        <div class="invalid-feedback">Veuillez entrer un nom</div>
+                                    <div id="informationsDroite" class="col-md-6">
+                                        <p class="text-white-50 mb-5"></p>
+                                        <div class="form-outline mb-4">                    
+                                            <input type="text" id="typeReseau" class="form-control form-control-lg" />
+                                            <label class="form-label" for="typeReseau">Réseau</label>
+                                            <div class="invalid-feedback">Veuillez entrer un réseau</div>
+                                        </div>                                 
+                                        
+                                        <div class="form-outline mb-4">
+                                            <input type="url" id="typeLien" class="form-control form-control-lg" required></textarea>
+                                            <label class="form-label" for="typeLien">Lien</label>
+                                            <div class="invalid-feedback">Veuillez entrer un lien</div>
+                                        </div>
+                                        <a type="button">Ajouter</a>
+                                        <div class="form-outline mb-4" id="divReseaux">
+        
+                                        </div>
                                     </div>
-                                    
-                                    <div class="form-outline mb-4">
-                                        <input type="text" id="typePrenom" class="form-control form-control-lg" required />
-                                        <label class="form-label" for="typePrenom">Prénom</label>
-                                        <div class="invalid-feedback">Veuillez entrer un prénom</div>
-                                    </div>
-    
-                                    <div class="form-outline mb-4">
-                                        <input type="number" min="0" id="typeAge" class="form-control form-control-lg" required />
-                                        <label class="form-label" for="typeAge">Age</label>
-                                        <div class="invalid-feedback">Veuillez entrer votre age</div>
-                                    </div>
-    
-                                    <div class="form-outline mb-4">
-                                        <input type="url" id="typeLienCv" class="form-control form-control-lg" required />
-                                        <label class="form-label" for="typeLienCv">Lien CV</label>
-                                        <div class="invalid-feedback">Veuillez entrer un lien vers votre CV</div>
-                                    </div>
-    
-                                    <div class="form-outline mb-4">
-                                        <input type="text" id="typeResidence" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typeResidence">Lieu de résidence</label>
-                                        <div class="invalid-feedback">Veuillez entrer un lieu de résidence</div>
-                                    </div>  
-    
-    
-                                    <div class="form-outline mb-4">
-                                        <textarea id="typePresentation" class="form-control form-control-lg" placeholder="Présentez vous en quelques lignes" required></textarea>
-                                        <label class="form-label" for="typePresentation">Présentation</label>
-                                        <div class="invalid-feedback">Veuillez vous présenter</div>
-                                    </div>
-                                </div>
-
-                                <div id="informationsDroite" class="col-md-6">
-
-                                    <div class="form-control form-control-lg">                    
-                                        <input type="text" id="typeReseau" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typeReseau">Réseau</label>
-                                        <div class="invalid-feedback">Veuillez entrer un résea</div>
-                                    </div>                                 
-                                    
-                                    <div class="form-outline mb-4">
-                                        <input type="url" id="typeLien" class="form-control form-control-lg" placeholder="Présentez vous en quelques lignes" required></textarea>
-                                        <label class="form-label" for="typeLien">Lien</label>
-                                        <div class="invalid-feedback">Veuillez entrer un lien</div>
-                                    </div>
-                                    <button class="" type="button">Ajouter</button>
-                                    <div class="" id="divReseau">
-    
-                                    </div>
-                                </div>
-                            </div>                
-
+                                </div>                
+                            </div>
                             <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                             <p class="text-white-50 mb-5"></p>
 
                             <div class="form-outline mb-4">
-                                <input type="text" id="typeDiplome" class="form-control form-control-lg"  />
+                                <input type="text" id="typeDiplome" class="form-control form-control-lg" />
                                 <label class="form-label" for="typeDiplome">Diplome</label>
                                 <div class="invalid-feedback">Veuillez entrer un diplome</div>
                             </div>
@@ -121,6 +121,14 @@
                                 <label class="form-label" for="typeEtablissement">Etablissement</label>
                                 <div class="invalid-feedback">Veuillez entrer l'établissement dans lequel vous avez obtenu ce diplôme</div>
                             </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="number" min="1950" max="2030" id="typeAnneeObtention" class="form-control form-control-lg" required />
+                                <label class="form-label" for="typeAnneeObtention">Année d'obtention</label>
+                                <div class="invalid-feedback">Veuillez entrer votre l'année d'obtention du diplome</div>
+                            </div>
+                            <a type="button">Ajouter</a>
+                            <div class="form-outline mb-4" id="divDiplomes"></div>
 
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
                             <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
@@ -149,9 +157,19 @@
                                 <label class="form-label" for="typeEntreprise">Entreprise</label>
                                 <div class="invalid-feedback">Veuillez entrer une entreprise</div>
                             </div>
-                            <button class="btn btn-primary btn-lg px-5 ml-2 ajouter" type="button">Ajouter</button>
+                            <div class="form-outline mb-4">
+                                <input type="date" id="typeDateDebut" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeDateDebut">Date de début</label>
+                                <div class="invalid-feedback">Veuillez entrer une date de début</div>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="date" id="typeDateFin" class="form-control form-control-lg"  />
+                                <label class="form-label" for="typeDateFin">Date de Fin</label>
+                                <div class="invalid-feedback">Veuillez entrer une date de fin</div>
+                            </div>
+                            <a type="button">Ajouter</a>
 
-                            <div class="form-outline mb-4"></div>
+                            <div class="form-outline mb-4" id="divEntreprises"></div>
 
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
                             <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
@@ -186,7 +204,7 @@
                                 <label class="form-label" for="typePhotoprojet">Choisir une image</label>
                                 <div class="invalid-feedback">Veuillez entrer une photo</div>
                             </div>
-                            <button class="btn btn-primary btn-lg px-5 ml-2 ajouter" type="button">Ajouter</button>
+                            <a type="button">Ajouter</a>
 
                             <div class="listeProjets"></div>
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
@@ -222,7 +240,7 @@
                                 <label class="form-label" for="typeLienCompetence">Lien</label>
                                 <div class="invalid-feedback">Veuillez entrer un lien</div>
                             </div>
-                            <button class="btn btn-primary btn-lg px-5 ml-2 ajouter" type="button">Ajouter</button>
+                            <a type="button">Ajouter</a>
 
                             <div class="listeCompetences"></div>
 
