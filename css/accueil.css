@@ -1,6 +1,7 @@
 .sidebar {
+    padding: 5px;
     height: 100%;
-    width: 0;
+    width: 240px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -9,10 +10,16 @@
     overflow-x: hidden;
     transition: .5s;
     padding-top: 60px;
+    transform: translateX(-240px);
 }
 
 .bloc-message {
+    padding: 15px;
     margin: 10px;
     border-radius: 10%;
     background-color: #fafafa;
+}
+#btnCloseSideBar {
+    margin-left: 50%;
+    transform: translate(-50%);
 }

@@ -1,4 +1,4 @@
-var isClicked = false;
+var isSideBarOpened = false;
 
 function Message(id, nom, prenom, mail, objet, text) {
     this.id = id;
@@ -11,9 +11,9 @@ function Message(id, nom, prenom, mail, objet, text) {
 }
 
 var listMessages = [new Message("1", "FERRAND", "Enzo", "enzo@gmail.com", "Bonjour", "Je suis un message"),
-                    new Message("2", "LE MEUR", "Pierre", "pierre@gmail.com", "Bonjour", "Je suis un message"),
-                    new Message("3", "BOUVET", "Eliott", "eliott@gmail.com", "Bonjour", "Je suis un message"),
-                    new Message("4", "DINH", "Duc", "duc@gmail.com", "Bonjour", "Je suis un message")];
+new Message("2", "LE MEUR", "Pierre", "pierre@gmail.com", "Bonjour", "Je suis un message"),
+new Message("3", "BOUVET", "Eliott", "eliott@gmail.com", "Bonjour", "Je suis un message"),
+new Message("4", "DINH", "Duc", "duc@gmail.com", "Bonjour", "Je suis un message")];
 
 
 function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
@@ -24,79 +24,64 @@ function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
 }
 
 var listPortfolios = [new Portfolio("FERRAND", "1", "Portfolio S2", true),
-                      new Portfolio("FERRAND", "2", "Portfolio League of Legends", true),
-                      new Portfolio("FERRAND", "3", "Portfolio Le Havre", true),
-                      new Portfolio("FERRAND", "4", "Portfolio IUT", true),
-                      new Portfolio("FERRAND", "5", "Portfolio PLP", true),
-                      new Portfolio("FERRAND", "6", "Portfolio Duc", true)];
+new Portfolio("FERRAND", "2", "Portfolio League of Legends", true),
+new Portfolio("FERRAND", "3", "Portfolio Le Havre", true),
+new Portfolio("FERRAND", "4", "Portfolio IUT", true),
+new Portfolio("FERRAND", "5", "Portfolio PLP", true),
+new Portfolio("FERRAND", "6", "Portfolio Duc", true)];
 
-function clickBtnMail()
-{
-    isClicked = !isClicked;
+function clickBtnMail() {
+    isSideBarOpened = !isSideBarOpened;
 
 
-    if(isClicked)
-    {
-        document.getElementById("sidebar").style.width = "15vw";
-        document.getElementById("btnMail").style.marginLeft = "15vw";
+    if (isSideBarOpened) {
+        document.getElementById("sidebar").style.transform = "translateX(0)";
     }
-    else
-    {
-        document.getElementById("sidebar").style.width = "0";
-        document.getElementById("btnMail").style.marginLeft= "0";
+    else {
+        document.getElementById("sidebar").style.transform = "translateX(-240px)";
     }
 
 }
 
-function searchPortfolio()
-{
+function searchPortfolio() {
     var container = document.getElementById("portfolios");
 
-    while (container.firstChild)
-    {
+    while (container.firstChild) {
         container.removeChild(container.lastChild);
     }
 
     var search = document.getElementById("search-bar").value.toUpperCase();
 
-    if (search != "")
-    {
+    if (search != "") {
         var cpt = 0;
-        for(var p of listPortfolios)
-        {
-            if(p.nom.toUpperCase().includes(search))
-            {
+        for (var p of listPortfolios) {
+            if (p.nom.toUpperCase().includes(search)) {
                 addPortfolio(p, cpt);
                 cpt++;
-            } 
+            }
         }
     }
-    else
-    {
-        for(var p of listPortfolios)
-        {
+    else {
+        for (var p of listPortfolios) {
             addPortfolio(p, listPortfolios.indexOf(p));
         }
     }
 }
 
-function addPortfolio(p, i)
-{
+function addPortfolio(p, i) {
     var portfolios = document.getElementById("portfolios");
-    var portfolio  = p;
+    var portfolio = p;
 
     var div0;
-    var id = parseInt((i/3 + 1));
+    var id = parseInt((i / 3 + 1));
 
-    if (i % 3 == 0)
-    {
+    if (i % 3 == 0) {
         div0 = document.createElement("div");
         div0.id = "rowPortfolio" + id;
         div0.classList.add("row");
         div0.classList.add("my-5");
     }
-    else
-    {
+    else {
         div0 = document.getElementById("rowPortfolio" + id);
     }
 
@@ -115,7 +100,7 @@ function addPortfolio(p, i)
 
     var img = document.createElement("img");
     img.classList.add("img-fluid");
-    img.setAttribute("src", "https://mdbcdn.b-cdn.net/img/new/standard/nature/11"+(i+4)+".webp");
+    img.setAttribute("src", "https://mdbcdn.b-cdn.net/img/new/standard/nature/11" + (i + 4) + ".webp");
 
     var a = document.createElement("a");
     a.setAttribute("href", "#");
@@ -140,10 +125,9 @@ function addPortfolio(p, i)
     div4.appendChild(h5);
 }
 
-function init()
-{
+function init() {
     var btn = document.getElementById("btnMail");
-    btn.addEventListener("click",clickBtnMail,false);
+    btn.addEventListener("click", clickBtnMail, false);
 
     var search = document.getElementById("search-bar");
     search.addEventListener("input", searchPortfolio, false);
@@ -155,37 +139,37 @@ function init()
         var div = document.createElement("div");
         div.classList.add("bloc-message");
 
-            var divNomPrenom = document.createElement("div");
-            
-                var pNomPrenom = document.createElement("p");
-                pNomPrenom.textContent = "de " + message.nom + " " + message.prenom;
+        var divNomPrenom = document.createElement("div");
 
-            var divMail = document.createElement("div");
+        var pNomPrenom = document.createElement("p");
+        pNomPrenom.textContent = "de " + message.nom + " " + message.prenom;
 
-                var pMail = document.createElement("p");
-                pMail.textContent = message.mail;
+        var divMail = document.createElement("div");
 
-            var divObjet = document.createElement("div");
+        var pMail = document.createElement("p");
+        pMail.textContent = message.mail;
 
-                var pObjet = document.createElement("p");
-                pObjet.textContent = message.objet;
+        var divObjet = document.createElement("div");
 
-            var divText = document.createElement("div");
+        var pObjet = document.createElement("p");
+        pObjet.textContent = message.objet;
 
-                var pText = document.createElement("p");
-                pText.textContent = message.text;
+        var divText = document.createElement("div");
 
-            var divBtn = document.createElement("div");
+        var pText = document.createElement("p");
+        pText.textContent = message.text;
 
-                var btn = document.createElement("button");
-                btn.id = "btn" + message.id;   
-                btn.classList.add("btn");
-                btn.classList.add("btn-danger");
-                btn.textContent = message.btn;
-                btn.addEventListener("click", function() {
-                    var btnSuppr = document.getElementById(this.id);
-                    btnSuppr.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode);
-                });
+        var divBtn = document.createElement("div");
+
+        var btn = document.createElement("button");
+        btn.id = "btn" + message.id;
+        btn.classList.add("btn");
+        btn.classList.add("btn-danger");
+        btn.textContent = message.btn;
+        btn.addEventListener("click", function () {
+            var btnSuppr = document.getElementById(this.id);
+            btnSuppr.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode);
+        });
 
         messages.appendChild(div);
         div.appendChild(divNomPrenom);
@@ -200,9 +184,14 @@ function init()
         divBtn.appendChild(btn);
     }
 
-    for (var p of listPortfolios){ // Création des portfolios
+    for (var p of listPortfolios) { // Création des portfolios
         addPortfolio(p, listPortfolios.indexOf(p));
     }
+    var btnCloseSideBar = document.getElementById("btnCloseSideBar");
+    btnCloseSideBar.addEventListener("click", () => {
+        document.getElementById("sidebar").style.transform = "translateX(-240px)";
+
+    }, false)
 }
 
 window.onload = init;

@@ -82,10 +82,11 @@ a {
 #tab-portfolio {
   display: none;
 }
-@media (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   .sidebar {
     height: 100%;
-    width: 0px;
+    transform: translateX(-240px);
+
 }
   .container-custom {
     left: 50%;

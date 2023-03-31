@@ -28,21 +28,21 @@ var btnMenu         = document.getElementById("icon-toggle-menu");
 
 // }
 
-//Toggle menu
-var toggle          = false;
+//isSideBarOpened menu
+var isSideBarOpened          = false;
 btnMenu.addEventListener("click",function(){toggleMenu();},false);
 
 function toggleMenu(){
-    console.log(toggle);
-    toggle = !toggle;
-    if(toggle)
+    console.log(isSideBarOpened);
+    isSideBarOpened = !isSideBarOpened;
+    if(isSideBarOpened)
     {
-        document.getElementById("sidebar").style.width = "240px";
+        document.getElementById("sidebar").style.transform = "translateX(0)";
 
     }
     else
     {
-        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("sidebar").style.transform  = "translateX(-240px)";
     }
 } 
 function changerTab(tab){
