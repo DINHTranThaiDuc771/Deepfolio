@@ -4,7 +4,7 @@ function Message(nom, prenom, mail, objet, text) {
     this.nom = nom;
     this.prenom = prenom;
     this.mail = mail;
-    this.object = objet;
+    this.objet = objet;
     this.text = text;
     this.btn = "Supprimer";
 }
@@ -47,23 +47,94 @@ function clickBtnMail()
 
 }
 
+function searchPortfolio()
+{
+    var search = document.getElementById("search-bar").value;
+
+    if (search != "")
+    {
+        for(var p of listPortfolios)
+        {
+            console.log("--" + p.nom);
+            if(!p.nom.includes(search))
+            {
+                document.getElementById(p.idPortfolio).style.display = "none";
+            }
+            else
+            {
+                console.log("===== " + p.nom);
+                document.getElementById(p.idPortfolio).style.display = "block";
+            }
+            
+        }
+        console.log("==========================");
+    }
+    else
+    {
+        for(var p of listPortfolios)
+        {
+            console.log(p.idPortfolio);
+            document.getElementById(p.idPortfolio).style.display = "block";
+        }
+    }
+}
+
 function init()
 {
     var btn = document.getElementById("btnMail");
     btn.addEventListener("click",clickBtnMail,false);
 
-    for (var i = 0; i < 3; i++) {
-        var messages = document.getElementById("messages");
-        var div = document.createElement("div");
-        div.setAttribute("class", "bloc-message");
+    var search = document.getElementById("search-bar");
+    search.addEventListener("input", searchPortfolio, false);
 
+    for (var i = 0; i < 3; i++) { // Création des messages
+        var messages = document.getElementById("messages");
         var message = listMessages[i];
 
-        div.innerHTML = "<p>de "+ message.nom + " " + message.prenom + "</p>\n<p>à " + message.mail + "</p>\n<p>Objet : " + message.object + "</p>\n<p>" + message.text + "</p>\n<button type=\"button\" class=\"btn btn-danger\">" + message.btn + "</button>";
+        var div = document.createElement("div");
+        div.classList.add("bloc-message");
+
+            var divNomPrenom = document.createElement("div");
+            
+                var pNomPrenom = document.createElement("p");
+                pNomPrenom.textContent = "de " + message.nom + " " + message.prenom;
+
+            var divMail = document.createElement("div");
+
+                var pMail = document.createElement("p");
+                pMail.textContent = message.mail;
+
+            var divObjet = document.createElement("div");
+
+                var pObjet = document.createElement("p");
+                pObjet.textContent = message.objet;
+
+            var divText = document.createElement("div");
+
+                var pText = document.createElement("p");
+                pText.textContent = message.text;
+
+            var divBtn = document.createElement("div");
+
+                var btn = document.createElement("button");
+                btn.classList.add("btn");
+                btn.classList.add("btn-danger");
+                btn.textContent = message.btn;
+
         messages.appendChild(div);
+        div.appendChild(divNomPrenom);
+        divNomPrenom.appendChild(pNomPrenom);
+        div.appendChild(divMail);
+        divMail.appendChild(pMail);
+        div.appendChild(divObjet);
+        divObjet.appendChild(pObjet);
+        div.appendChild(divText);
+        divText.appendChild(pText);
+        div.appendChild(divBtn);
+        divBtn.appendChild(btn);
     }
 
-    for (var i = 0; i < 6; i++){
+    for (var i = 0; i < 6; i++){ // Création des portfolios
         var portfolios = document.getElementById("portfolios");
         var portfolio  = listPortfolios[i];
 
@@ -75,7 +146,8 @@ function init()
         }
 
         var div1 = document.createElement("div");
-        div1.classList.add("col-md");
+        div1.classList.add("col-md-4");
+        div1.id = portfolio.idPortfolio;
 
         var div2 = document.createElement("div");
         div2.classList.add("card");
