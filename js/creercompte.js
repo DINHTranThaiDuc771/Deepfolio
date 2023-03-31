@@ -1,4 +1,5 @@
 var currentTab = 0; // Current tab is set to be the first tab (0)
+var nbTab = 1;
 showTab(currentTab); // Display the current tab
 
 function showTab(n) {
@@ -35,7 +36,7 @@ function valider(event, form)
     console.log(!form.checkValidity());
 
 
-    if (!form.checkValidity()) {
+    if (!form.checkValidity() && currentTab != nbTab) {
         event.preventDefault();
         event.stopPropagation();
     } else {
@@ -65,5 +66,12 @@ window.onload = function(){
     form.addEventListener('submit', (event) => {
         valider(event, form);            
     }, false);
+
+    addEventListener("keypress", (event) => {
+        if (event.key === 'Enter') {
+            valider(event, form, 1);     
+          }
+    });
+
 
 }

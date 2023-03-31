@@ -86,7 +86,7 @@
                                         </div>                                 
                                         
                                         <div class="form-outline mb-4">
-                                            <input type="url" id="typeLien" class="form-control form-control-lg" required></textarea>
+                                            <input type="url" id="typeLien" class="form-control form-control-lg"></textarea>
                                             <label class="form-label" for="typeLien">Lien</label>
                                             <div class="invalid-feedback">Veuillez entrer un lien</div>
                                         </div>
@@ -123,7 +123,7 @@
                             </div>
 
                             <div class="form-outline mb-4">
-                                <input type="number" min="1950" max="2030" id="typeAnneeObtention" class="form-control form-control-lg" required />
+                                <input type="number" min="1950" max="2030" id="typeAnneeObtention" class="form-control form-control-lg" />
                                 <label class="form-label" for="typeAnneeObtention">Année d'obtention</label>
                                 <div class="invalid-feedback">Veuillez entrer votre l'année d'obtention du diplome</div>
                             </div>
@@ -182,31 +182,52 @@
                 <div class="card tab " style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center hiddenCards">
                 
-                        <div class="mb-md-5 mt-md-4 pb-5 ">
-
+                        <div class="mb-md-5 mt-md-4 pb-5 ">                            
                             <h2 class="fw-bold mb-2 text-uppercase">Ajouter des projets</h2>
-                            <p class="text-white-50 mb-5"></p>
 
-                            <div class="form-outline mb-4">
-                                <input type="text" id="typeNomProjet" class="form-control form-control-lg"  />
-                                <label class="form-label" for="typeNomProjet">Nom du projet</label>
-                                <div class="invalid-feedback">Veuillez entrer le nom du poste que vous avez occupé</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="text-white-50 mb-5"></p>
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="typeNomProjet" class="form-control form-control-lg"  />
+                                        <label class="form-label" for="typeNomProjet">Nom du projet</label>
+                                        <div class="invalid-feedback">Veuillez entrer le nom du poste que vous avez occupé</div>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="typeDescProjet" class="form-control form-control-lg"  />
+                                        <label class="form-label" for="typeDescProjet">Description</label>
+                                        <div class="invalid-feedback">Veuillez entrer la description du poste que vous avez occupé</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <p class="text-white-50 mb-5"></p>
+                                    <div class="form-outline mb-4">
+                                        <input type="number" id="typeTailleEquipe" class="form-control form-control-lg"  />
+                                        <label class="form-label" for="typeTailleEquipe">Taille de l'équipe</label>
+                                        <div class="invalid-feedback">Veuillez entrer la taille de l'équipe</div>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="url" id="typeLienProjet" class="form-control form-control-lg"  />
+                                        <label class="form-label" for="typeLienProjet">Lien du projet</label>
+                                        <div class="invalid-feedback">Veuillez entrer le lien vers le projet</div>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="form-outline mb-4">
-                                <input type="number" id="typeTailleEquipe" class="form-control form-control-lg"  />
-                                <label class="form-label" for="typeTailleEquipe">Taille de l'équipe</label>
-                                <div class="invalid-feedback">Veuillez entrer la taille de l'équipe</div>
+                            <div class="row">
+                                <div class="form-outline mb-4 col-md-10">
+                                    <input type="file" accept=".jpg, .jpeg, .png, .svg" id="typePhotoprojet" class="form-control form-control-lg"  />
+                                    <label class="form-label" for="typePhotoprojet"></label>
+                                    <div class="invalid-feedback">Veuillez entrer une photo</div>
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="ajouter" type="button">Ajouter</a>
+                                </div>
                             </div>
-
-                            <div class="form-outline mb-4">
-                                <input type="file" id="typePhotoprojet" class="form-control form-control-lg"  />
-                                <label class="form-label" for="typePhotoprojet">Choisir une image</label>
-                                <div class="invalid-feedback">Veuillez entrer une photo</div>
-                            </div>
-                            <a class="ajouter" type="button">Ajouter</a>
-                            <div class="form-outline mb-4 tableauElmt"></div>
-
+                            <div class="row">
+                                <div class="form-outline mb-4 tableauElmt col-md-12"></div>
+                            </div>     
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
                             <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
 
@@ -223,26 +244,38 @@
                             <h2 class="fw-bold mb-2 text-uppercase">Ajouter des compétences</h2>
                             <p class="text-white-50 mb-5"></p>
 
-                            <div class="form-outline mb-4">
-                                <input type="text" id="typeCompetence" class="form-control form-control-lg"  />
-                                <label class="form-label" for="typeCompetence">Nom de la compétence</label>
-                                <div class="invalid-feedback">Veuillez entrer le nom d'une compétence</div>
-                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-outline mb-4 ">
+                                        <input type="text" id="typeCompetence" class="form-control form-control-lg"  />
+                                        <label class="form-label" for="typeCompetence">Nom de la compétence</label>
+                                        <div class="invalid-feedback">Veuillez entrer le nom d'une compétence</div>
+                                    </div>
 
-                            <div class="form-outline mb-4">
-                                <input type="text" id="typeDescCompetence" class="form-control form-control-lg"  />
-                                <label class="form-label" for="typeDescCompetence">Description</label>
-                                <div class="invalid-feedback">Veuillez entrer la description de la compétence</div>
-                            </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="typeDescCompetence" class="form-control form-control-lg"  />
+                                        <label class="form-label" for="typeDescCompetence">Description</label>
+                                        <div class="invalid-feedback">Veuillez entrer la description de la compétence</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-outline mb-4">
+                                        <input type="url" id="typeLienCompetence" class="form-control form-control-lg"  />
+                                        <label class="form-label" for="typeLienCompetence">Lien</label>
+                                        <div class="invalid-feedback">Veuillez entrer un lien</div>
+                                    </div>
 
-                            <div class="form-outline mb-4">
-                                <input type="url" id="typeLienCompetence" class="form-control form-control-lg"  />
-                                <label class="form-label" for="typeLienCompetence">Lien</label>
-                                <div class="invalid-feedback">Veuillez entrer un lien</div>
-                            </div>
+                                    <select class="browser-default custom-select">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                      </select>
+                                </div>                                                 
+                            </div>                       
                             <a class="ajouter" type="button">Ajouter</a>
 
-                            <div class="form-outline mb-4 tableauElmt"></div>
+                            <div class="form-outline mb-4 tableauElmt col-md-12"></div>
 
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
                             <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Terminer</button>

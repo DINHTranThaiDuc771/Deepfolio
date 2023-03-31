@@ -65,7 +65,7 @@
     
 						<div class="d-flex align-items-center justify-content-center pb-4">
 							<p class="mb-0 me-2">Pas de compte?</p>
-							<button type="button" class="btn btn-outline-dark" onclick="window.location.href='creercompte.html'">Créer un compte</button>
+							<button type="button" class="btn btn-outline-dark" onclick="window.location.href='creercompte.php'">Créer un compte</button>
 						</div>
     
                     </form>
@@ -117,10 +117,9 @@ $username_err = $password_err = $login_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
     
-    $username = trim($_POST["username"]);   
-    $password = trim($_POST["password"]);
+    $username = htmlspecialchars(trim($_POST["username"]));   
+    $password = htmlspecialchars(trim($_POST["password"]));
     
     $DB = DB::getInstance();
 
