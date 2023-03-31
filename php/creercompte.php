@@ -24,7 +24,12 @@
     $username = "lp212835";
     $password = "1234";
 
-    //attente que ca marche ne local
+    $conn = new mysqli($servername, $username, $password);
+
+    if($conn->connect_error){
+      die('Erreur : ' .$conn->connect_error);
+    }
+    echo 'Connexion réussie';
   ?>
 
   <!-- Start your project here-->
