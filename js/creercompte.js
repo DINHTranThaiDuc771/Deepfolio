@@ -65,7 +65,6 @@ window.onload = function(){
             url:"./function.php",
             data:"action=userExists&username=" + nomUtilisateur,
             complete: function(data) {
-                console.log(data);
                 if (data.responseText.includes("true"))
                 {
                     alert("Nom déjà utilisé");

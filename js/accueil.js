@@ -65,7 +65,17 @@ function searchPortfolio() {
         for (var p of listPortfolios) {
             addPortfolio(p, listPortfolios.indexOf(p));
         }
-    }
+    } 
+    
+    /*enzo*/
+        $.ajax({
+        type:"POST",
+        url:"./function.php",
+        data:"action=getPortfolios",
+        complete: function(data) {
+            console.log(data.responseText);
+        }
+    })/**/
 }
 
 function addPortfolio(p, i) {
