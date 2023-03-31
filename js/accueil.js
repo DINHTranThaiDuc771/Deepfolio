@@ -51,34 +51,102 @@ function clickBtnMail()
 function searchPortfolio()
 {
     var search = document.getElementById("search-bar").value.toUpperCase();
+    var listOk = [];
 
     if (search != "")
     {
-        console.log("==========");
         for(var p of listPortfolios)
         {
             if(p.nom.toUpperCase().includes(search))
             {
-                console.log(p.idPortfolio + "===" + p.nom);
-                document.getElementById("pf" + p.idPortfolio).style.display = "block";
-            }
-            else
-            {
-                console.log(p.idPortfolio + "-" + p.nom);
-                document.getElementById("pf" + p.idPortfolio).style.display = "none";
-            }
-            
+                listOk.push(p);
+            } 
         }
-        console.log("==========");
     }
     else
     {
+        listOk = [];
+
         for(var p of listPortfolios)
         {
-            console.log(p.idPortfolio);
-            document.getElementById("pf" + p.idPortfolio).style.display = "block";
+            listOk.push(p);
         }
     }
+
+    // supprimer affichages des portfolios
+    var container = document.getElementById("portfolios");
+
+    for (var i=0; i<container.children.length+1; i++)
+    {
+        container.removeChild(container.lastChild);
+    }
+
+    // affichage de listOk
+    for(var p of listOk)
+    {
+        addPortfolio(p, listOk.indexOf(p));
+    }
+}
+
+function addPortfolio(p, i)
+{
+    var portfolios = document.getElementById("portfolios");
+    var portfolio  = p;
+
+    var div0;
+
+    if (i % 3 == 0)
+    {
+        var id = parseInt((i/3 + 1));
+        div0 = document.createElement("div");
+        div0.id = "rowPortfolio" + id;
+        div0.classList.add("row");
+        div0.classList.add("my-5");
+    }
+    else
+    {
+        var id = parseInt((i/3 + 1));
+        div0 = document.getElementById("rowPortfolio" + id  );
+    }
+
+    var div1 = document.createElement("div");
+    div1.classList.add("col-md-4");
+    div1.id = "pf" + portfolio.idPortfolio;
+
+    var div2 = document.createElement("div");
+    div2.classList.add("card");
+
+    var div3 = document.createElement("div");
+    div3.classList.add("bg-image");
+    div3.classList.add("hover-overlay");
+    div3.classList.add("ripple");
+    div3.setAttribute("data-mdb-ripple-color", "light");
+
+    var img = document.createElement("img");
+    img.classList.add("img-fluid");
+    img.setAttribute("src", "https://mdbcdn.b-cdn.net/img/new/standard/nature/11"+(i+4)+".webp");
+
+    var a = document.createElement("a");
+    a.setAttribute("href", "#");
+
+    var div4 = document.createElement("div");
+    div4.classList.add("card-body");
+
+    var h5 = document.createElement("h5");
+    h5.classList.add("card-title");
+    h5.textContent = portfolio.nom;
+
+    var p = document.createElement("p");
+    p.classList.add("card-text");
+
+    portfolios.appendChild(div0);
+    div0.appendChild(div1);
+    div1.appendChild(div2);
+    div2.appendChild(div3);
+    div3.appendChild(img);
+    div3.appendChild(a);
+    div2.appendChild(div4);
+    div4.appendChild(h5);
 }
 
 function init()
@@ -149,6 +217,7 @@ function init()
         if (i % 3 == 0)
         {
             var div0 = document.createElement("div");
+            div0.id = "rowPortfolio" + (i/3 + 1);
             div0.classList.add("row");
             div0.classList.add("my-5");
         }
