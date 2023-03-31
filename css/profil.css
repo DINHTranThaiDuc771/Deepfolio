@@ -11,7 +11,7 @@ body {
 
 .sidebar {
   height: 100%;
-  width: 0;
+  width: 240px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -22,7 +22,8 @@ body {
   padding-top: 60px;
 }
 
-#icon-toggle-menu ,#icon-toggle-menu>*{
+#icon-toggle-menu {
+  display: none;
   position : fixed;
   left : 10px;
   z-index: 2;
@@ -84,19 +85,14 @@ a {
 @media (max-width: 767px) {
   .sidebar {
     height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #FFEAC8;
-    overflow-x: hidden;
-    transition: .5s;
-    padding-top: 60px;
+    width: 0px;
 }
   .container-custom {
     left: 50%;
     transform: translateX(-50%);
+  }
+  #icon-toggle-menu {
+    display:block;
   }
   #profil-img {
     display :none;

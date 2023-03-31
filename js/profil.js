@@ -14,19 +14,19 @@ var deconnecter = function deconnecter() {
 
 var btnMenu         = document.getElementById("icon-toggle-menu");
 
-var x = window.matchMedia("(max-width: 700px)")
-if (!x.matches)
-{
-    btnMenu.style.display = "none";
-    document.getElementById("sidebar").style.width = "240px";
+// var x = window.matchMedia("(max-width: 700px)")
+// if (!x.matches)
+// {
+//     btnMenu.style.display = "none";
+//     document.getElementById("sidebar").style.width = "240px";
 
-}
-else 
-{
-    btnMenu.style.display = "block";
-    document.getElementById("sidebar").style.width = "0px";
+// }
+// else 
+// {
+//     btnMenu.style.display = "block";
+//     document.getElementById("sidebar").style.width = "0px";
 
-}
+// }
 
 //Toggle menu
 var toggle          = false;
