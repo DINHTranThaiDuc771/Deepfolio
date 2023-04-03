@@ -132,6 +132,7 @@
   </section>
     <!-- MDB -->
     <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
+    <!-- JQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="../js/creercompte.js"></script>
