@@ -19,7 +19,7 @@ function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
     this.accessible = accessible;
 }
 
-var listPortfolios = [];
+var listPortfolios = [new Portfolio("admin", 0, "Créer un portfolio", false)];
 
 function clickBtnMail() {
     isSideBarOpened = !isSideBarOpened;
@@ -43,16 +43,28 @@ function searchPortfolio() {
 
     var search = document.getElementById("search-bar").value.toUpperCase();
 
+    console.log(listPortfolios)
+
+    for (var p of listPortfolios) {
+        if (p.nomUtilisateur == "admin") {
+            addPortfolio(p, 0);
+        }
+    }
+
     if (search != "") {
-        var cpt = 0;
+        var cpt = 1;
         for (var p of listPortfolios) {
-            if (p.nom.toUpperCase().includes(search)) {
+            if (p.nom.toUpperCase().includes(search) && p.nomUtilisateur != "admin") {
                 addPortfolio(p, cpt);
                 cpt++;
             }
         }
     }
     else {
+        while (container.firstChild) {
+            container.removeChild(container.lastChild);
+        }
+
         for (var p of listPortfolios) {
             addPortfolio(p, listPortfolios.indexOf(p));
         }
@@ -91,7 +103,7 @@ function addPortfolio(p, i) {
 
     var img = document.createElement("img");
     img.classList.add("img-fluid");
-    if (i == listPortfolios.length)
+    if (p.nomUtilisateur == "admin")
         img.setAttribute("src", "../img/add.png");
     else
         img.setAttribute("src", "../img/portfolio.jpeg");
@@ -187,14 +199,13 @@ function addPortfolios() {
                                                 json[i].accessible));
             }
 
+
             // Ajout des portfolios
             for (var p of listPortfolios) {
+                console.log(listPortfolios);
                 addPortfolio(p, (listPortfolios.indexOf(p)));
             }
             console.log(listPortfolios.length);
-
-            // Ajout card pour créer un portfolio
-            addPortfolio(new Portfolio("", 0, "Créer un portfolio", false), listPortfolios.length);
         }
     });
 }
