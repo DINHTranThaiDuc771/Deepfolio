@@ -5,7 +5,7 @@
     "lien_cv": "http://...",
     "presentation": "Je suis un développeur Java....",
     "adresse": "1 rue de la paix",
-    
+
     "reseaux" : [
         { "nom": "linkedin", "lien": "http://..." },
         { "nom": "twitter",  "lien": "http://..." },
@@ -27,6 +27,6 @@
         {"nom": "Projet Y", "description" : "Blablabla", "image" : "base64 ou arborescence","tailleEquipe":4 ,"lien": "http://..."}
     ],
 
-    "competence" :[
+    "competences" :[
         { "nom": "JAVA", "description": "...", "lien": "http://..." , "projet" : "Projet X" }]
 }

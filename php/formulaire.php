@@ -81,38 +81,38 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                                     <div id="informationsGauche" class="col-md-6">
                                         <p class="text-white-50 mb-5"></p>
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typeNom" class="form-control form-control-lg" required/>
+                                            <input type="text" id="typeNom" class="form-control form-control-lg" name="nom" required/>
                                             <label class="form-label" for="typeNom">Nom</label>
                                             <div class="invalid-feedback">Veuillez entrer un nom</div>
                                         </div>
                                         
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typePrenom" class="form-control form-control-lg" required />
+                                            <input type="text" id="typePrenom" class="form-control form-control-lg" name="prenom" required />
                                             <label class="form-label" for="typePrenom">Prénom</label>
                                             <div class="invalid-feedback">Veuillez entrer un prénom</div>
                                         </div>
         
                                         <div class="form-outline mb-4">
-                                            <input type="number" min="13" id="typeAge" class="form-control form-control-lg" required />
+                                            <input type="number" min="13" id="typeAge" class="form-control form-control-lg" name="age" required />
                                             <label class="form-label" for="typeAge">Age</label>
                                             <div class="invalid-feedback">Veuillez entrer votre age</div>
                                         </div>
         
                                         <div class="form-outline mb-4">
-                                            <input type="url" id="typeLienCv" class="form-control form-control-lg" required />
+                                            <input type="url" id="typeLienCv" class="form-control form-control-lg" name="lienCv" required />
                                             <label class="form-label" for="typeLienCv">Lien CV</label>
                                             <div class="invalid-feedback">Veuillez entrer un lien vers votre CV</div>
                                         </div>
         
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typeResidence" class="form-control form-control-lg" />
+                                            <input type="text" id="typeResidence" class="form-control form-control-lg" name="adresse"/>
                                             <label class="form-label" for="typeResidence">Lieu de résidence</label>
                                             <div class="invalid-feedback">Veuillez entrer un lieu de résidence</div>
                                         </div>  
         
         
                                         <div class="form-outline mb-4">
-                                            <textarea id="typePresentation" class="form-control form-control-lg" placeholder="Présentez vous en quelques lignes" required></textarea>
+                                            <textarea id="typePresentation" class="form-control form-control-lg" placeholder="Présentez vous en quelques lignes" name="presentation"required></textarea>
                                             <label class="form-label" for="typePresentation">Présentation</label>
                                             <div class="invalid-feedback">Veuillez vous présenter</div>
                                         </div>

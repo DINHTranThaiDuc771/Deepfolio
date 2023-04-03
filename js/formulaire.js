@@ -271,6 +271,54 @@ function valider(event, form, indexSuivant)
     form.classList.add('was-validated');
 }
 
+function terminer(){
+
+    const inputs = document.getElementById("formCreerPortfolio").elements;
+    var tabReseaux     = new Array();
+    var tabDiplomes    = new Array();
+    var tabParcourss   = new Array();
+    var tabProjets     = new Array();
+    var tabCompetences = new Array();
+
+    for(element in tabElements) {
+        switch(element.instanceof) {
+            case Reseau:
+                tabReseaux.push(element);
+                break;
+            case Etude:
+                tabDiplomes.push(element);
+                break;
+            case Travail:
+                tabParcourss.push(element);
+                break;
+            case Projet:
+                tabProjets.push(element);
+                break;
+            case Competence:
+                tabCompetences.push(element);
+                break;
+        }
+    }
+    var nom          = inputs["nom"].value;
+    var prenom       = inputs["prenom"].value;
+    var age          = inputs["age"].value;
+    var lienCv       = inputs["lienCv"].value;
+    var presentation = inputs["presentation"].value;
+    var adresse      = inputs["adresse"].value;
+
+    let json =  {
+        "nom" : nom, "prenom" : prenom, "age" : age, "lienCv" : lienCv, 
+        "presentation" : presentation, "adresse" : adresse, "reseaux" : tabReseaux, 
+        "diplomes" : tabDiplomes, "parcours" : tabParcourss, "projets" : tabProjets, 
+        "competences" : tabCompetences
+    };
+
+    var jsonString = JSON.stringify(json);
+    $.cookie('portfolio', jsonString, { expires: 1 });
+
+}
+
+
 function gereLien( elmt1, elmt2 ) {
 
     if ( elmt1.value != "") {
