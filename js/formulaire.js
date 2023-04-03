@@ -42,7 +42,7 @@ class Competence {
 
 
 
-var currentTab = 3; // Current tab is set to be the first tab (0)
+var currentTab = 0; // Current tab is set to be the first tab (0)
 var nbTab = 4;
 var tabElements = new Array();
 
@@ -134,10 +134,6 @@ function ajouterTab(event) {
         divFormulaires = divFormulaires.parentElement;
         tabChips = divFormulaires.getElementsByClassName("tableauElmt")[0];
     }
-
-    console.log(divFormulaires);
-
-    console.log(tabChips);
 
     var tabInput = divFormulaires.querySelectorAll("input");
 
