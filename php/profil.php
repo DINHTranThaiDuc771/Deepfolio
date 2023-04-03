@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 function formulaire(){
     $db = DB::getInstance();
-    
+
     $user = $_SESSION["user"];
     $user = $db->getUser($user->getNomUtilisateur(), $user->getMdp())[0];
     $_SESSION["user"] = $user;
@@ -137,7 +137,7 @@ function formulaire(){
           </ul>
           <ul>
           <form action="deconnexion.php" method="get">
-                        <input type="submit" value="Deconnexion" class="btn btn-primary">
+                        <input type="submit" value="Se Deconnexion" class="btn btn-primary">
                     </form>
           </ul>
         </li>
