@@ -51,19 +51,22 @@ function creerPages($portfolioJSON, $DB){
     $projets = $portfolioJSON->projets;
     $parcours = $portfolioJSON->parcours;
 
-    $jsonCompetences = creerjsonCompetences($competences);
-    $jsonProjets = creerjsonProjets($projets);
-    $jsonParcours = creerjsonParcours($parcours);
+    $jsonCompetences    = creerJsonCompetences($competences);
+    $jsonProjets        = creerJsonProjets($projets);
+    $jsonParcours       = creerJsonParcours($parcours);
+    $jsonCV             = creerJsonCV($portfolioJSON);
 
-    $username = $_SESSION['user']->getNomUtilisateur();
-    $numPortfolio = $DB->getNewestPortfolioId($username);
+    $username       = $_SESSION['user']->getNomUtilisateur();
+    $numPortfolio   = $DB->getNewestPortfolioId($username);
 
     $DB->addPage($username, $numPortfolio, $jsonCompetences);
     $DB->addPage($username, $numPortfolio, $jsonProjets);
     $DB->addPage($username, $numPortfolio, $jsonParcours);
+    $DB->addPage($username, $numPortfolio, $jsonCV);
+
 }
 
-function creerjsonCompetences($competences){
+function creerJsonCompetences($competences){
 
     $competencesString = "{'page': 'competences', 'competences': [";
     for($i=0; $i < count($competences); $i++){
@@ -77,7 +80,7 @@ function creerjsonCompetences($competences){
     return json_encode($competencesString);
 }
 
-function creerjsonProjets($projets){
+function creerJsonProjets($projets){
     
     $projetsString = "{'page': 'projets', 'projets': [";
     for($i=0; $i < count($projets); $i++){
@@ -91,7 +94,7 @@ function creerjsonProjets($projets){
     return json_encode($projetsString);
 }
 
-function creerjsonParcours($parcours){
+function creerJsonParcours($parcours){
         
     $parcoursString = "{'page': 'parcours', 'parcours': [";
     for($i=0; $i < count($parcours); $i++){
@@ -103,6 +106,42 @@ function creerjsonParcours($parcours){
     $parcoursString .= "]}";
 
     return json_encode($parcoursString);
+}
+
+function creerJsonPageCV($portfolio_json){
+    $nom            = $portfolio_json->nom;
+    $prenom         = $portfolio_json->prenom;
+    $age            = $portfolio_json->age;
+    $lienCV         = $portfolio_json->lienCV;
+    $presentation   = $portfolio_json->presentation;
+    $adresse        = $portfolio_json->adresse;
+    $reseaux        = $portfolio_json->reseaux;   //array
+    $diplomes       = $portfolio_json->diplomes;  //array
+
+    $stringCV = "{'page': 'cv', 'nom': '" . $nom . "', 'prenom': '" . $prenom . "', 'age': '" . $age . 
+        "', 'lienCV': '" . $lienCV . "', 'presentation': '" . $presentation . "', 'adresse': '" 
+        . $adresse . "', 'reseaux': [";
+
+    for($i=0; $i < count($reseaux); $i++){
+        $stringCV .= "{'nom': '" . $reseaux[$i]->nom . "', 'lien': '" . $reseaux[$i]->lien . "'}";
+        if($i < count($reseaux)-1){
+            $stringCV .= ",";
+        }
+    }
+
+    $stringCV .= "], 'diplomes': [";
+
+    for($i=0; $i < count($diplomes); $i++){
+        $stringCV .= "{'nom': '" . $diplomes[$i]->nom . "', 'date': '" . $diplomes[$i]->date . "', 'description': '" . $diplomes[$i]->description . "'}";
+        if($i < count($diplomes)-1){
+            $stringCV .= ",";
+        }
+    }
+
+    $stringCV .= "]}";
+
+    return json_encode($stringCV);
+
 }
 
 ?>
