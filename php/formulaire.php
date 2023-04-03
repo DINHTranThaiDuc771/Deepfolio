@@ -1,44 +1,3 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
-
-require '../server/DB.inc.php';
-require 'creerPages.php';
-
-session_start();
-
-
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-
-    if (isset($_POST['submit'])) {
-        $portfolio_cookie =  html_entity_decode($_COOKIE['portfolio']);
-        $portfolio_json = json_decode($portfolio_cookie);
-
-        $username = $_SESSION['username'];
-        $nomPortfolio = $_POST['nomPortfolio'];
-        $accessible  = $_POST['accessible'];
-
-
-        $DB = DB::getInstance();
-
-        $result = $DB->addPortfolio($username, $nomPortfolio, $accessible);
-        if($result) {
-            echo "Portfolio créé avec succès";
-            creerPages($portfolio_json);
-        }
-        else {
-            echo "Erreur lors de la création du portfolio";
-        }
-    }  
-}else{
-    header("Location: connexion.php");    
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +27,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     <div class="container-fluid py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <form id="formCreerPortfolio"  action="accueil.php"class="needs-avalidation" novalidate>
+            <form id="formCreerPortfolio"  action="creerPages.php" class="needs-avalidation" method="POST" novalidate>
 
                 <div class="card tab" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
@@ -314,6 +273,17 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                                     </div>
 
                                     <select class="browser-default custom-select form-outline mb-4" id="lienProjet"></select>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="nomPortfolio" class="form-control form-control-lg"  name="nomPortfolio"/>
+                                        <label class="form-label" for="nomPortfolio">Nom du portfolio</label>
+                                        <div class="invalid-feedback">Veuillez entrer un nom pour ce portfolio</div>
+                                    </div>
+                                    <div class="form-check mb-4">
+                                        <input type="checkbox" id="accesible" class="form-check-input"  name="accessible"/>
+                                        <label class="form-check-label" for="accesible">Accesible</label>
+                                        <div class="invalid-feedback">Veuillez entrer une visibilité</div>
+                                    </div>
                                 </div>                                                 
                             </div>                       
                             <a class="ajouter" type="button">Ajouter</a>
@@ -321,8 +291,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                             <div class="form-outline mb-4 tableauElmt col-md-12"></div>
 
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
-                            <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Terminer</button>
-
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="submit" name='submit'>Terminer</button>
                         </div>
                     </div>
                 </div>
