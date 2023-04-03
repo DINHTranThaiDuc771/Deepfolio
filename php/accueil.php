@@ -13,11 +13,11 @@ if (session_status() == PHP_SESSION_NONE) {
 if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
     header('location: ./connexion.php');
 }else{
-    $DB = DB::getInstance();
+    $DB = DB::getInstance();    
 
-    $username = $_SESSION["user"];
+    $user = $_SESSION["user"];
 
-    $listePortfolios = $DB->getPortfolios($username);
+    $listePortfolios = $DB->getPortfolios($user->getNomUtilisateur());
 }
 ?>
 
@@ -90,7 +90,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
 
                     <div>
                         <?php
-                            echo 'Bonjour '.$_SESSION["username"].' !';
+                            echo 'Bonjour '.$user->getNomUtilisateur().' !';
                         ?>
                     </div>
                     
