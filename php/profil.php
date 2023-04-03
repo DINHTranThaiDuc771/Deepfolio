@@ -20,7 +20,6 @@ if(!isset($_SESSION["loggedin"])){
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-
   $user = $_SESSION["user"];
   $prenom     = htmlSpecialChars($_POST["prenom"]);
   $nom        = htmlSpecialChars($_POST["nom"]);
@@ -38,11 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 function formulaire(){
     $db = DB::getInstance();
-
+    
     $user = $_SESSION["user"];
     $user = $db->getUser($user->getNomUtilisateur(), $user->getMdp())[0];
     $_SESSION["user"] = $user;
-    
+
     $prenom = $user->getPrenom();
     $nom = $user->getNom();
     $age = $user->getAge();

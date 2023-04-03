@@ -10,12 +10,12 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }  
 
-if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
+if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
     header('location: ./connexion.php');
 }else{
     $DB = DB::getInstance();
 
-    $username = $_SESSION["username"];
+    $username = $_SESSION["user"];
 
     $listePortfolios = $DB->getPortfolios($username);
 }
