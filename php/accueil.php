@@ -42,7 +42,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
         <!-- MDB -->
         <link rel="stylesheet" href="../css/mdb.min.css" />
-        <link rel="stylesheet" href="../css/index.css" />
+        <link rel="stylesheet" href="../css/accueil.css" />
         
     </body>
 
@@ -63,7 +63,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
                 </button>
 
                 <!-- Collapsible wrapper -->
-                <div class="col collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="col " id="navbarSupportedContent">
                     <!-- Navbar brand -->
                     <a class="navbar-brand mt-2 mt-lg-0" href="#">
                         <img src="../img/email.png" id="btnMail" height="30" alt="Messagerie" loading="lazy" />
@@ -91,11 +91,12 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
                     <form action="deconnexion.php" method="get">
                         <input type="submit" value="Deconnexion" class="btn btn-primary">
                     </form>
+                    
                     <!-- Avatar -->
-                    <div class="">
-                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="./profile.php"
+                    <div class="">  
+                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                             id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+                            <img src="../img/image1.jpg" class="rounded-circle" height="25"
                                 alt="Black and White Portrait of a Man" loading="lazy" />
                         </a>
                     </div>
@@ -107,7 +108,9 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
         <!-- Navbar -->
         <div class="container mt-5">
             <div id="sidebar" class="sidebar">
-                <h2>Messagerie</h2>
+                <button id="btnCloseSideBar" type="button" class="btn-close" aria-label="Close"></button>
+
+                <h3 style="text-align: center;margin-left: 50%; transform: translate(-50%);">Messagerie</h3>
 
                 <div id="messages">
                 </div>

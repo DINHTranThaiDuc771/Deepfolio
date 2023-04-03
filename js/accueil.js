@@ -95,7 +95,7 @@ function addPortfolio(p, i) {
 
     var img = document.createElement("img");
     img.classList.add("img-fluid");
-    img.setAttribute("src", "https://mdbcdn.b-cdn.net/img/new/standard/nature/11" + (i + 4) + ".webp");
+    img.setAttribute("src", "../img/image1.jpg");
 
     var a = document.createElement("a");
     a.setAttribute("href", "#");
@@ -127,7 +127,7 @@ function init() {
     var search = document.getElementById("search-bar");
     search.addEventListener("input", searchPortfolio, false);
 
-    for (var i = 0; i < 0; i++) { // Création des messages
+    for (var i = 0; i <listMessages.length; i++) { // Création des messages
         var messages = document.getElementById("messages");
         var message = listMessages[i];
 
@@ -199,13 +199,13 @@ function init() {
                 addPortfolio(p, listPortfolios.indexOf(p));
             }
         }
-    })
-
-    /*var btnCloseSideBar = document.getElementById("btnCloseSideBar");
+    });
+    
+    var btnCloseSideBar = document.getElementById("btnCloseSideBar");
     btnCloseSideBar.addEventListener("click", () => {
         document.getElementById("sidebar").style.transform = "translateX(-240px)";
 
-    }, false)*/
+    }, false)
 }
 
 window.onload = init;
