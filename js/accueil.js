@@ -91,7 +91,10 @@ function addPortfolio(p, i) {
 
     var img = document.createElement("img");
     img.classList.add("img-fluid");
-    img.setAttribute("src", "../img/image1.jpg");
+    if (i == listPortfolios.length)
+        img.setAttribute("src", "../img/add.png");
+    else
+        img.setAttribute("src", "../img/portfolio.jpeg");
 
     var a = document.createElement("a");
     a.setAttribute("href", "#");
@@ -186,8 +189,12 @@ function addPortfolios() {
 
             // Ajout des portfolios
             for (var p of listPortfolios) {
-                addPortfolio(p, listPortfolios.indexOf(p));
+                addPortfolio(p, (listPortfolios.indexOf(p)));
             }
+            console.log(listPortfolios.length);
+
+            // Ajout card pour créer un portfolio
+            addPortfolio(new Portfolio("", 0, "Créer un portfolio", false), listPortfolios.length);
         }
     });
 }
