@@ -15,7 +15,7 @@ class Etude {
 }
 
 class Travail {
-    constructor (nom, entreprise) {
+    constructor (nom, entreprise, description, dateDebut, dateFin) {
         this.nom = nom;
         this.entreprise = entreprise;
     }
@@ -168,8 +168,11 @@ function ajouterTab(event) {
         tabElements[tabElements.length] = new Etude(tabText[0], tabText[1], tabText[2]);
     
 
-    if ( currentTab == 2 ) 
-        tabElements[tabElements.length] = new Travail(tabText[0], tabText[1]);
+    if ( currentTab == 2 ) {
+        var textPoste = document.getElementById("typeDescriptionPoste"); 
+
+        tabElements[tabElements.length] = new Travail(tabText[0], tabText[1], textPoste.value, tabText[2], tabText[3] );
+    }
     
     if ( currentTab == 3 ) {
 
