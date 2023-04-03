@@ -42,7 +42,7 @@ class Competence {
 
 
 
-var currentTab = 4; // Current tab is set to be the first tab (0)
+var currentTab = 3; // Current tab is set to be the first tab (0)
 var nbTab = 4;
 var tabElements = new Array();
 
@@ -145,15 +145,25 @@ function ajouterTab(event) {
 
     var vide = false;
     Array.prototype.slice.call(tabInput).forEach((input) => {
-        tabText[tabText.length] = input.value;
-        
-        if ( input.value === "" || input.value == null) vide = true;
+        if ( input.type != "file") {
 
-        input.value = "";
-        input.disabled = false;
+            tabText[tabText.length] = input.value;
+            
+            if ( ( input.value === "" || input.value == null ) && input.classList.contains("require") ) vide = true;
+
+            input.disabled = false;
+        }
     });
 
-    if ( vide ) return;
+    if ( vide ) {
+        return;
+    } else {
+        Array.prototype.slice.call(tabInput).forEach((input) => {
+            if ( input.type != "file") {
+                input.value = "";
+            }
+        });
+    }
 
     if ( currentTab == 0 ) 
         tabElements[tabElements.length] = new Reseau(tabText[0], tabText[1]);
@@ -167,20 +177,21 @@ function ajouterTab(event) {
     
     if ( currentTab == 3 ) {
 
-        var file = document.getElementById("typePhotoprojet").files;
+        var inputFile = document.getElementById("typePhotoprojet");
 
         var img = "";
 
-        if ( file.length > 0 ) {
-            img = file[0];
+        if ( inputFile.files.length > 0 ) {
+            img = inputFile.files[0];
         }
 
-        document.getElementById("typePhotoprojet").value = "";
+        inputFile.value = "";
 
         tabElements[tabElements.length] = new Projet(tabText[0], tabText[1], tabText[2], tabText[3], img);
     }
     
     if ( currentTab == 4 ) {
+
         var lienProjet = document.getElementById("lienProjet");
         var lienNonProjet = document.getElementById("lienNonProjet");
 
@@ -192,6 +203,7 @@ function ajouterTab(event) {
         }
 
         lienProjet.disabled = false;
+        lienProjet.selectedIndex = 0;
 
         tabElements[tabElements.length] = new Competence(tabText[0], tabText[1], lien);
     }
@@ -217,10 +229,12 @@ function maj( area ) {
         divChips.classList.add("chip");
         divChips.textContent = elmt.nom;
 
-        if ( currentTab == 4 ) {
-            if ( elmt.lien != "") {
+        if ( currentTab == 3 ) {
+            console.log(elmt.image);
+            if ( elmt.image != "") {
+
                 var image = document.createElement("img");
-                image.src = URL.createObjectURL(elmt.lien);
+                image.src = URL.createObjectURL(elmt.image);
                 image.width = "96";
                 image.height = "96";
                 image.alt = "Image de la compétence";
@@ -232,10 +246,11 @@ function maj( area ) {
         var spanChips = document.createElement("span");
         spanChips.classList.add("closebtn");
         spanChips.textContent = "x";
+        spanChips.value = elmt;
 
-        spanChips.addEventListener("click", function(){
-            tabElements = tabElements.filter(elmt => (elmt != elmt ));
-    
+        spanChips.addEventListener("click", function(event){
+            tabElements = tabElements.filter(elmtTab => (elmtTab != event.target.value));
+                
             maj(area);
          });
 
@@ -273,9 +288,6 @@ function gereLien( elmt1, elmt2 ) {
 
 
 window.onload = () => {
-
-    tabElements[0] = new Projet("shhesh", "shesh","", "");
-
 
     showTab(currentTab);
 
