@@ -5,15 +5,16 @@ ini_set('display_startup_errors', 1);
 
 
 require '../server/DB.inc.php';
-if($_SESSION == PHP_NONE) {
-    session_start();
-}
+require 'creerPages.php';
 
-if(isset($_SESSION['username'])) {
+session_start();
+
+
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
     if (isset($_POST['submit'])) {
-        $portfolio_cookie = $_COOKIE['portfolio'];
-        $portfolio_json = JSON.parse($portfolio_cookie);
+        $portfolio_cookie =  html_entity_decode($_COOKIE['portfolio']);
+        $portfolio_json = json_decode($portfolio_cookie);
 
         $username = $_SESSION['username'];
         $nomPortfolio = $_POST['nomPortfolio'];
@@ -25,13 +26,14 @@ if(isset($_SESSION['username'])) {
         $result = $DB->addPortfolio($username, $nomPortfolio, $accessible);
         if($result) {
             echo "Portfolio créé avec succès";
-            //TODO: créer les pages du portfolio
+            creerPages($portfolio_json);
         }
         else {
             echo "Erreur lors de la création du portfolio";
         }
-        /* PREVOIR LE CAS OU L'INSERTION NE MARCHE PAS */
     }  
+}else{
+    header("Location: connexion.php");    
 }
 
 ?>
@@ -79,38 +81,38 @@ if(isset($_SESSION['username'])) {
                                     <div id="informationsGauche" class="col-md-6">
                                         <p class="text-white-50 mb-5"></p>
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typeNom" class="form-control form-control-lg" required/>
+                                            <input type="text" id="typeNom" class="form-control form-control-lg" name="nom" required/>
                                             <label class="form-label" for="typeNom">Nom</label>
                                             <div class="invalid-feedback">Veuillez entrer un nom</div>
                                         </div>
                                         
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typePrenom" class="form-control form-control-lg" required />
+                                            <input type="text" id="typePrenom" class="form-control form-control-lg" name="prenom" required />
                                             <label class="form-label" for="typePrenom">Prénom</label>
                                             <div class="invalid-feedback">Veuillez entrer un prénom</div>
                                         </div>
         
                                         <div class="form-outline mb-4">
-                                            <input type="number" min="13" id="typeAge" class="form-control form-control-lg" required />
+                                            <input type="number" min="13" id="typeAge" class="form-control form-control-lg" name="age" required />
                                             <label class="form-label" for="typeAge">Age</label>
                                             <div class="invalid-feedback">Veuillez entrer votre age</div>
                                         </div>
         
                                         <div class="form-outline mb-4">
-                                            <input type="url" id="typeLienCv" class="form-control form-control-lg" required />
+                                            <input type="url" id="typeLienCv" class="form-control form-control-lg" name="lienCv" required />
                                             <label class="form-label" for="typeLienCv">Lien CV</label>
                                             <div class="invalid-feedback">Veuillez entrer un lien vers votre CV</div>
                                         </div>
         
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typeResidence" class="form-control form-control-lg" />
+                                            <input type="text" id="typeResidence" class="form-control form-control-lg" name="adresse"/>
                                             <label class="form-label" for="typeResidence">Lieu de résidence</label>
                                             <div class="invalid-feedback">Veuillez entrer un lieu de résidence</div>
                                         </div>  
         
         
                                         <div class="form-outline mb-4">
-                                            <textarea id="typePresentation" class="form-control form-control-lg" placeholder="Présentez vous en quelques lignes" required></textarea>
+                                            <textarea id="typePresentation" class="form-control form-control-lg" placeholder="Présentez vous en quelques lignes" name="presentation"required></textarea>
                                             <label class="form-label" for="typePresentation">Présentation</label>
                                             <div class="invalid-feedback">Veuillez vous présenter</div>
                                         </div>
@@ -205,6 +207,11 @@ if(isset($_SESSION['username'])) {
                                 <input type="date" id="typeDateFin" class="form-control form-control-lg active require"  />
                                 <label class="form-label" for="typeDateFin">Date de Fin</label>
                                 <div class="invalid-feedback">Veuillez entrer une date de fin</div>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <textarea id="typeDescriptionPoste" class="form-control form-control-lg require"></textarea>
+                                <label class="form-label" for="typeDescriptionPoste">Description</label>
+                                <div class="invalid-feedback">Veuillez entrer une description</div>
                             </div>
                             <a class="ajouter" type="button">Ajouter</a>
 
