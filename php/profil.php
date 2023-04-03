@@ -18,6 +18,25 @@ if(!isset($_SESSION["loggedin"])){
     exit;
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $nomUtilisateur = $_SESSION["username"];
+  $prenom     = htmlSpecialChars($_POST["prenom"]);
+  $nom        = htmlSpecialChars($_POST["nom"]);
+  $age        = htmlSpecialChars($_POST["age"]);
+  $ville      = htmlSpecialChars($_POST["ville"]);
+  $universite = htmlSpecialChars($_POST["universite"]);
+  $mail       = htmlSpecialChars($_POST["mail"]);
+
+  $db = DB::getInstance();
+
+  $db->changePersonalInfo($nomUtilisateur, $nom, $prenom, $age, $ville, $universite, $mail);
+
+
+}
+
+
+
 function formulaire(){
     $DB = DB::getInstance();
     $user = $DB->getUserInfos($_SESSION["username"]);
@@ -26,30 +45,31 @@ function formulaire(){
     $age = $user["age"];
     $ville = $user["ville"];
     $mail = $user["mailutilisateur"];
+
     echo"
             <form action=\"profil.php\" method=\"POST\">
                 <div class=\"form-outline mb-4 \">
-                <input type=\"text\" id=\"modifPrenom\" class=\"form-control active\" value=\"$prenom\"/>
+                <input name=\"prenom\" type=\"text\" id=\"modifPrenom\" class=\"form-control active\" value=\"$prenom\"/>
                 <label class=\"form-label\" for=\"modifPrenom\">Prenom</label>
             </div>
 
             <div class=\"form-outline mb-4\">
-                <input type=\"text\" id=\"typeNom\" class=\"form-control form-control-lg active\" value=\"$nom\"/>
+                <input name=\"nom\" type=\"text\" id=\"typeNom\" class=\"form-control form-control-lg active\" value=\"$nom\"/>
                 <label class=\"form-label\" for=\"typeNom\">Nom</label>
             </div>
 
             <div class=\"form-outline mb-4\">
-                <input type=\"text\" id=\"typeAge\" class=\"form-control form-control-lg active\" required value=\"$age\"/>
+                <input name=\"age\" type=\"text\" id=\"typeAge\" class=\"form-control form-control-lg active\" value=\"$age\"/>
                 <label class=\"form-label\" for=\"typeAge\">Age</label>
             </div>
 
             <div class=\"form-outline mb-4\">
-                <input type=\"text\" id=\"typeVille\" class=\"form-control form-control-lg active\" required value=\"$ville\"/>
+                <input name=\"ville\" type=\"text\" id=\"typeVille\" class=\"form-control form-control-lg active\" value=\"$ville\"/>
                 <label class=\"form-label\" for=\"typeVille\">Ville</label>
             </div>
 
             <div class=\"form-outline mb-4\">
-                <input type=\"email\" id=\"typeMail\" class=\"form-control form-control-lg active\" required value=\"$mail\"/>
+                <input name=\"mail\" type=\"email\" id=\"typeMail\" class=\"form-control form-control-lg active\" value=\"$mail\"/>
                 <label class=\"form-label\" for=\"typeMail\">Mail</label>
             </div>
                 <button class=\"btn btn-primary btn-lg px-5 ml-2\" type=\"submit\">Enregistrer</button>
@@ -57,7 +77,6 @@ function formulaire(){
             </form>";
 }
 
- 
 ?>  
 
 
