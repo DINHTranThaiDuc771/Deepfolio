@@ -5,6 +5,7 @@
 
     if(isset($_POST['action'])) {
         if ($_POST['action'] == 'userExists') { userExists(); }
+        if ($_POST['action'] == 'getPortfolios') { getPortfolios(); }
     }
 
     function userExists() {
@@ -15,5 +16,12 @@
         } else {
             echo "false";
         }   
+    }
+
+    function getPortfolios() {
+        $DB = DB::getInstance();
+        $username = htmlspecialchars($_SESSION["username"]);
+        $portfolios = $DB->getPortfolios($username);
+        echo json_encode($portfolios);
     }
 ?>

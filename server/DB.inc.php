@@ -160,13 +160,13 @@ class DB {
       }
 
       public function getPortfolio($username, $id) {
-            $requete = 'select * from portfolio where username = ? and idPortfolio = ?';
+            $requete = 'select * from portfolio where nomUtilisateur = ? and idPortfolio = ?';
             $tparaam = array( $username, $id);
             return $this->execQuery($requete, $tparaam, '');
       }
 
       public function getPortfolios($username) {
-            $requete = 'select * from portfolio where username = ?';
+            $requete = 'select * from portfolio where nomUtilisateur = ?';
             $tparaam = array( $username);
             return $this->execQuery($requete, $tparaam, '');
       }
@@ -196,9 +196,12 @@ class DB {
       }
 
       public function addPortfolio($username,$nomPortfolio, $accesible) {
-            $requete = 'insert into portfolio (nomUtilisateur, nomPortfolio, accesible) values(?,?,?,?)';
+            $requete = 'insert into portfolio (nomUtilisateur, nomPortfolio, accesible) values(?,?,?)';
             $tparam = array($username, $nomPortfolio, $accesible);
-            return $this->execMaj($requete,$tparam);
+            $result = $this->execMaj($requete,$tparam);
+            if(strcmp($result,"int(1)")){
+                return true;
+            }else{return false;}
         }
 
         public function addPage($username,$dPortfolio, $jsonPage) {
@@ -207,13 +210,14 @@ class DB {
             return $this->execMaj($requete,$tparam);
         }
 
+
         
         //*********************************************************//
         //                     UPDATE                              //
         //*********************************************************//
 
         public function changeAccesibility($username, $idPortfolio, $accesibilite) {
-            $requete = 'update portfolio set accesible = ? where username = ? and idPortfolio = ?';
+            $requete = 'update portfolio set accesible = ? where nomUtilisateur = ? and idPortfolio = ?';
             $tparam = array($username, $idPortfolio, $accesibilite);
             return $this->execMaj($requete,$tparam);
         }

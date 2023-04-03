@@ -47,6 +47,25 @@ function valider(event, form)
     form.classList.add('was-validated');
 }
 
+function verifierNom(event, form) {
+    var nomUtilisateur = document.getElementById("typeNomUtilisateur").value;
+    $.ajax({
+        type:"POST",
+        url:"./function.php",
+        data:"action=userExists&username=" + nomUtilisateur,
+        complete: function(data) {
+            if (data.responseText.includes("true"))
+            {
+                alert("Nom déjà utilisé");
+            }
+            else
+            {
+                valider(event, form);
+            }
+        }
+    });   
+}
+
 
 
 window.onload = function(){
@@ -59,23 +78,7 @@ window.onload = function(){
     btnPrecedent.addEventListener("click", function() { nextPrev(-1); });
 
     btnSuivant.addEventListener("click", (event) => {
-        var nomUtilisateur = document.getElementById("typeNomUtilisateur").value;
-        $.ajax({
-            type:"POST",
-            url:"./function.php",
-            data:"action=userExists&username=" + nomUtilisateur,
-            complete: function(data) {
-                console.log(data);
-                if (data.responseText.includes("true"))
-                {
-                    alert("Nom déjà utilisé");
-                }
-                else
-                {
-                    valider(event, form);
-                }
-            }
-        })        
+           verifierNom(event, form);
     }, false);
 
     form.addEventListener('submit', (event) => {
@@ -84,7 +87,7 @@ window.onload = function(){
 
     addEventListener("keypress", (event) => {
         if (event.key === 'Enter') {
-            valider(event, form, 1);     
+            verifierNom(event, form);   
           }
     });
 

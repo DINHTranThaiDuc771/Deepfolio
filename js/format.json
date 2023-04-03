@@ -1,0 +1,32 @@
+{
+    "nom": "Jean Dupont",
+    "prenom": "Jean",
+    "age": 25,   
+    "lien_cv": "http://...",
+    "presentation": "Je suis un développeur Java....",
+    "adresse": "1 rue de la paix",
+
+    "reseaux" : [
+        { "nom": "linkedin", "lien": "http://..." },
+        { "nom": "twitter",  "lien": "http://..." },
+        { "nom": "facebook", "lien": "http://..." }
+    ],
+
+    "diplomes" : [
+        {"nom": "DUT Informatique", "etablissement": "IUT du Havre", "anneObtention": "2023"},
+        {"nom": "BAC Général", "etablissement": "Lycée x", "anneObtention": "2021"}
+    ],
+
+    "parcours" : [
+        {"poste" : "Developpeur web", "entreprise": "Société X", "dateDebut": "11/032021", "dateFin": "2022", "description": "..."},
+        {"poste" : "Developpeur web", "entreprise": "Société Y", "dateDebut": "20/06/2022", "dateFin": "2023", "description": "..."}
+    ],
+
+    "projets" : [
+        {"nom": "Projet X", "description" : "Blablabla", "image" : "base64 ou arborescence","tailleEquipe":2 ,"lien": "http://..."},
+        {"nom": "Projet Y", "description" : "Blablabla", "image" : "base64 ou arborescence","tailleEquipe":4 ,"lien": "http://..."}
+    ],
+
+    "competences" :[
+        { "nom": "JAVA", "description": "...", "lien": "http://..." , "projet" : "Projet X" }]
+}

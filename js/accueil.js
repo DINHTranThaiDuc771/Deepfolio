@@ -11,9 +11,9 @@ function Message(id, nom, prenom, mail, objet, text) {
 }
 
 var listMessages = [new Message("1", "FERRAND", "Enzo", "enzo@gmail.com", "Bonjour", "Je suis un message"),
-new Message("2", "LE MEUR", "Pierre", "pierre@gmail.com", "Bonjour", "Je suis un message"),
-new Message("3", "BOUVET", "Eliott", "eliott@gmail.com", "Bonjour", "Je suis un message"),
-new Message("4", "DINH", "Duc", "duc@gmail.com", "Bonjour", "Je suis un message")];
+                    new Message("2", "LE MEUR", "Pierre", "pierre@gmail.com", "Bonjour", "Je suis un message"),
+                    new Message("3", "BOUVET", "Eliott", "eliott@gmail.com", "Bonjour", "Je suis un message"),
+                    new Message("4", "DINH", "Duc", "duc@gmail.com", "Bonjour", "Je suis un message")];
 
 
 function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
@@ -23,12 +23,7 @@ function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
     this.accessible = accessible;
 }
 
-var listPortfolios = [new Portfolio("FERRAND", "1", "Portfolio S2", true),
-new Portfolio("FERRAND", "2", "Portfolio League of Legends", true),
-new Portfolio("FERRAND", "3", "Portfolio Le Havre", true),
-new Portfolio("FERRAND", "4", "Portfolio IUT", true),
-new Portfolio("FERRAND", "5", "Portfolio PLP", true),
-new Portfolio("FERRAND", "6", "Portfolio Duc", true)];
+var listPortfolios = [];
 
 function clickBtnMail() {
     isSideBarOpened = !isSideBarOpened;
@@ -65,7 +60,7 @@ function searchPortfolio() {
         for (var p of listPortfolios) {
             addPortfolio(p, listPortfolios.indexOf(p));
         }
-    }
+    } 
 }
 
 function addPortfolio(p, i) {
@@ -100,7 +95,7 @@ function addPortfolio(p, i) {
 
     var img = document.createElement("img");
     img.classList.add("img-fluid");
-    img.setAttribute("src", "https://mdbcdn.b-cdn.net/img/new/standard/nature/11" + (i + 4) + ".webp");
+    img.setAttribute("src", "../img/image1.jpg");
 
     var a = document.createElement("a");
     a.setAttribute("href", "#");
@@ -132,7 +127,7 @@ function init() {
     var search = document.getElementById("search-bar");
     search.addEventListener("input", searchPortfolio, false);
 
-    for (var i = 0; i < 3; i++) { // Création des messages
+    for (var i = 0; i <listMessages.length; i++) { // Création des messages
         var messages = document.getElementById("messages");
         var message = listMessages[i];
 
@@ -184,9 +179,28 @@ function init() {
         divBtn.appendChild(btn);
     }
 
-    for (var p of listPortfolios) { // Création des portfolios
-        addPortfolio(p, listPortfolios.indexOf(p));
-    }
+    // Récupération des portfolios de l'utilisateur
+    $.ajax({
+        type:"POST",
+        url:"./function.php",
+        data:"action=getPortfolios",
+        complete: function(data) {
+            var json = JSON.parse(data.responseText);
+
+            for (var i=0; i<json.length; i++) {
+                listPortfolios.push(new Portfolio(json[i].nomutilisateur, 
+                                                  json[i].idportfolio, 
+                                                  json[i].nomportfolio,
+                                                  json[i].accessible));
+            }
+
+            // Ajout des portfolios
+            for (var p of listPortfolios) {
+                addPortfolio(p, listPortfolios.indexOf(p));
+            }
+        }
+    });
+    
     var btnCloseSideBar = document.getElementById("btnCloseSideBar");
     btnCloseSideBar.addEventListener("click", () => {
         document.getElementById("sidebar").style.transform = "translateX(-240px)";
