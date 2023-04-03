@@ -47,7 +47,7 @@ function valider(event, form)
     form.classList.add('was-validated');
 }
 
-function verifierNom(event) {
+function verifierNom(event, form) {
     var nomUtilisateur = document.getElementById("typeNomUtilisateur").value;
     $.ajax({
         type:"POST",
@@ -78,7 +78,7 @@ window.onload = function(){
     btnPrecedent.addEventListener("click", function() { nextPrev(-1); });
 
     btnSuivant.addEventListener("click", (event) => {
-           verifierNom(event);
+           verifierNom(event, form);
     }, false);
 
     form.addEventListener('submit', (event) => {
