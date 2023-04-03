@@ -90,10 +90,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
 
                     <div>
                         <?php
-                            $user = $DB->getUserInfos($_SESSION["username"]);
-                            $nom = $user["nom"];
-                            $prenom = $user["prenom"];
-                            echo 'Bonjour '.$prenom.' '.$nom.' !';
+                            echo 'Bonjour '.$_SESSION["username"].' !';
                         ?>
                     </div>
                     
