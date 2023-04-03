@@ -266,6 +266,11 @@ function valider(event, form, indexSuivant)
         event.preventDefault();
         event.stopPropagation();
     } else {
+        if ( currentTab == nbTab)
+        {
+            terminer();
+        }
+        
         form.classList.remove('was-validated');
         nextPrev(indexSuivant, event.target);
         return;
