@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
 
 require '../server/DB.inc.php';
 if($_SESSION == PHP_NONE) {
@@ -10,13 +14,22 @@ if(isset($_SESSION['username'])) {
     if (isset($_POST['submit'])) {
         $portfolio_cookie = $_COOKIE['portfolio'];
         $portfolio_json = JSON.parse($portfolio_cookie);
+
         $username = $_SESSION['username'];
+        $nomPortfolio = $_POST['nomPortfolio'];
         $accessible  = $_POST['accessible'];
 
 
         $DB = DB::getInstance();
 
-        $DB->addPortfolio($username, $portfolio_json, $accessible);
+        $result = $DB->addPortfolio($username, $nomPortfolio, $accessible);
+        if($result) {
+            echo "Portfolio créé avec succès";
+            //TODO: créer les pages du portfolio
+        }
+        else {
+            echo "Erreur lors de la création du portfolio";
+        }
         /* PREVOIR LE CAS OU L'INSERTION NE MARCHE PAS */
     }  
 }
