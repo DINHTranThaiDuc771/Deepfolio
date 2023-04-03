@@ -207,6 +207,7 @@ class DB {
             return $this->execMaj($requete,$tparam);
         }
 
+
         
         //*********************************************************//
         //                     UPDATE                              //
