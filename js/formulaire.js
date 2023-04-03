@@ -22,11 +22,12 @@ class Travail {
 }
 
 class Projet {
-    constructor(nom, taille, description, lien) {
+    constructor(nom, taille, description, lien, image) {
       this.nom = nom;
       this.taille = taille;
       this.description = description;
       this.lien = lien;
+      this.image = image;
     }
 }
 
@@ -41,7 +42,7 @@ class Competence {
 
 
 
-var currentTab = 0; // Current tab is set to be the first tab (0)
+var currentTab = 4; // Current tab is set to be the first tab (0)
 var nbTab = 4;
 var tabElements = new Array();
 
@@ -50,9 +51,33 @@ function showTab(n) {
     // This function will display the specified tab of the form ...
     var x = document.getElementsByClassName("tab");
     x[n].style.display = "block";
+
+    if ( currentTab == 4 ) 
+    {
+        var lienProjet = document.getElementById("lienProjet");
+
+        for ( var opt of lienProjet.options) {
+            lienProjet.remove(0);
+        }
+
+        var option = document.createElement("option");
+        option.label = "";
+
+        lienProjet.add(option);
+        
+        for ( var elmt of tabElements) {
+            if (!(elmt instanceof Projet)) continue;
+
+            var opt = document.createElement("option");
+            opt.label = elmt.nom;
+            opt.value = elmt.id;
+
+            lienProjet.add(opt);
+        }
+    }
 }
 
-function nextPrev(n, btn) {
+function nextPrev(n) {
 
     var x = document.querySelectorAll(" .tab");
 
@@ -86,15 +111,12 @@ function nextPrev(n, btn) {
         tabRequired[1] = false;
         tabRequired[2] = false;
         tabRequired[3] = false;
-    }    
+    }  
 
     var tabInput = x[currentTab].querySelectorAll("input");
 
     var cpt = 0;
     Array.prototype.slice.call(tabInput).forEach((input) => {
-        console.log(input);
-        console.log(tabRequired[cpt]);
-
         if (tabRequired[cpt] != undefined)
             input.required = tabRequired[cpt++];
     });
@@ -105,6 +127,17 @@ function nextPrev(n, btn) {
 function ajouterTab(event) {
 
     var divFormulaires = event.target.parentElement;
+
+    var tabChips = divFormulaires.getElementsByClassName("tableauElmt")[0];
+     
+    while ( tabChips == undefined) {
+        divFormulaires = divFormulaires.parentElement;
+        tabChips = divFormulaires.getElementsByClassName("tableauElmt")[0];
+    }
+
+    console.log(divFormulaires);
+
+    console.log(tabChips);
 
     var tabInput = divFormulaires.querySelectorAll("input");
 
@@ -117,6 +150,7 @@ function ajouterTab(event) {
         if ( input.value === "" || input.value == null) vide = true;
 
         input.value = "";
+        input.disabled = false;
     });
 
     if ( vide ) return;
@@ -131,14 +165,39 @@ function ajouterTab(event) {
     if ( currentTab == 2 ) 
         tabElements[tabElements.length] = new Travail(tabText[0], tabText[1]);
     
-    if ( currentTab == 3 )
-        tabElements[tabElements.length] = new Projet(tabText[0], tabText[1], tabText[2], tabText[3]);
+    if ( currentTab == 3 ) {
+
+        var file = document.getElementById("typePhotoprojet").files;
+
+        var img = "";
+
+        if ( file.length > 0 ) {
+            img = file[0];
+        }
+
+        document.getElementById("typePhotoprojet").value = "";
+
+        tabElements[tabElements.length] = new Projet(tabText[0], tabText[1], tabText[2], tabText[3], img);
+    }
     
-    if ( currentTab == 4 )
-        tabElements[tabElements.length] = new Competence(tabText[0], tabText[1], tabText[2]);
+    if ( currentTab == 4 ) {
+        var lienProjet = document.getElementById("lienProjet");
+        var lienNonProjet = document.getElementById("lienNonProjet");
+
+        var lien;
+        if ( lienNonProjet.value = "") {
+            lien = lienProjet.value;
+        } else {
+            lien = lienNonProjet.value;
+        }
+
+        lienProjet.disabled = false;
+
+        tabElements[tabElements.length] = new Competence(tabText[0], tabText[1], lien);
+    }
     
 
-    maj(divFormulaires.getElementsByClassName("tableauElmt")[0]);
+    maj(tabChips);
 }
 
 function maj( area ) {
@@ -157,6 +216,18 @@ function maj( area ) {
         var divChips = document.createElement("div");
         divChips.classList.add("chip");
         divChips.textContent = elmt.nom;
+
+        if ( currentTab == 4 ) {
+            if ( elmt.lien != "") {
+                var image = document.createElement("img");
+                image.src = URL.createObjectURL(elmt.lien);
+                image.width = "96";
+                image.height = "96";
+                image.alt = "Image de la compétence";
+
+                divChips.appendChild(image);
+            }
+        }
 
         var spanChips = document.createElement("span");
         spanChips.classList.add("closebtn");
@@ -189,17 +260,34 @@ function valider(event, form, indexSuivant)
     form.classList.add('was-validated');
 }
 
+function gereLien( elmt1, elmt2 ) {
+
+    if ( elmt1.value != "") {
+        elmt2.disabled = true;
+    } else {
+        elmt1.disabled = false;
+        elmt2.disabled = false;
+    }
+}
+
 
 
 window.onload = () => {
 
+    tabElements[0] = new Projet("shhesh", "shesh","", "");
+
+
     showTab(currentTab);
 
-    var tabBtnPrec = document.querySelectorAll(" .precedent");
-    var tabBtnSuiv = document.querySelectorAll(" .suivant");
-    var tabBtnAjouter = document.querySelectorAll(" .ajouter");
+    const tabBtnPrec = document.querySelectorAll(" .precedent");
+    const tabBtnSuiv = document.querySelectorAll(" .suivant");
+    const tabBtnAjouter = document.querySelectorAll(" .ajouter");
 
-    var form = document.getElementById("formCreerPortfolio");
+    const form = document.getElementById("formCreerPortfolio");
+
+    const lienProjet = document.getElementById("lienProjet");
+    const lien = document.getElementById("lienNonProjet");
+
 
     Array.prototype.slice.call(tabBtnSuiv).forEach((btnSuivant) => {
         btnSuivant.addEventListener("click", (event) => {
@@ -228,4 +316,7 @@ window.onload = () => {
         valider(event, form, 1);            
     }, false);
 
+    lien.addEventListener("input", function(){ gereLien(lien, lienProjet); });
+
+    lienProjet.addEventListener("change", function(){ gereLien(lienProjet, lien); });
 }
