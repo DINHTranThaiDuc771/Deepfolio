@@ -187,6 +187,12 @@ class DB {
             return $result[0]['idportfolio'];
         }
 
+        public function getPages($username, $idportfolio){
+            $requete = 'select jsonpage from page where nomutilisateur = ? and idportfolio = ?';
+            $tparam = array($username, $idportfolio);
+            return $this->execQuery($requete, $tparam, '');
+        }
+
       
       
       //*********************************************************//

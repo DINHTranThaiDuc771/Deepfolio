@@ -22,10 +22,31 @@ var_dump(base64_decode($cle));
 
 //affichePages($username, $idPortfolio);
 
+function affichePages($username, $idPortfolio, $DB){
+    //recuperer toutes les donnees du portfolio
+    $pages = $DB->getPages($username, $idPortfolio);
 
+    foreach($pages as $page){
+        $jsonPage = json_decode($page);
+        switch($jsonPage->page){
+            case 'cv':
+                setCVInfos($jsonPage);
+                break;
+            case 'competences':
+                setCompetencesInfos($jsonPage);
+                break;
+            case 'projets':
+                setProjetsInfos($jsonPage);
+                break;
+            case 'parcours':
+                setParcourssInfos($jsonPage);
+                break;
+            case 'style':
+                setStyleInfos($jsonPage);
+                break;
+        }
 
-function affichePages($username, $idPortfolio){
-    //recuperer toutes les donnes du portfolio
+    }
 
     echo "<!DOCTYPE html>
     <html lang=\"en\">

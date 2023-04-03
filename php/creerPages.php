@@ -26,7 +26,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         $result = $db->addPortfolio($username, $nomPortfolio, $accessible);
 
         if($result) {
-            echo "Portfolio créé avec succès";
             creerPages($portfolio_json, $db);
         }
         else {
