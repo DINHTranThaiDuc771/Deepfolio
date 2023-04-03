@@ -16,7 +16,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         $portfolio_cookie =  html_entity_decode($_COOKIE['portfolio']);
         $portfolio_json = json_decode($portfolio_cookie);
 
-        $username = $_SESSION['username'];
+        $username = $_SESSION['user']->getNomUtilisateur();
         $nomPortfolio = $_POST['nomPortfolio'];
         $accessible  = isset($_POST['accessible']);
         if($accessible){
@@ -55,7 +55,7 @@ function creerPages($portfolioJSON, $DB){
     $jsonProjets = creerjsonProjets($projets);
     $jsonParcours = creerjsonParcours($parcours);
 
-    $username = 'shesh';
+    $username = $_SESSION['user']->getNomUtilisateur();
     $numPortfolio = $DB->getNewestPortfolioId($username);
 
     $DB->addPage($username, $numPortfolio, $jsonCompetences);
