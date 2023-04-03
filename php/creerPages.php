@@ -12,6 +12,7 @@ session_start();
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
     if (isset($_POST['submit'])) {
+
         $portfolio_cookie =  html_entity_decode($_COOKIE['portfolio']);
         $portfolio_json = json_decode($portfolio_cookie);
 
@@ -23,14 +24,12 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         }else{
             $accessible = 0;
         }
-        var_dump($nomPortfolio) ;
 
         $DB = DB::getInstance();
 
         $result = $DB->addPortfolio($username, $nomPortfolio, $accessible);
         if($result) {
             echo "Portfolio créé avec succès";
-            var_dump(creerPages($portfolio_json));
         }
         else {
             echo "Erreur lors de la création du portfolio";
@@ -45,12 +44,14 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
 function creerPages($portfolioJSON){
     //TODO: creer les pages du portfolio
-    $jsonCV;
-    $jsonCompetences = $portfolioJSON.'competences';
-    $jsonProjets = $portfolioJSON.projets;
-    $jsonParcours = $portfolioJSON.parcours;
 
-    return $jsonCompetences;
+    $jsonCV;
+    $jsonCompetences = $portfolioJSON->competences;
+    $jsonProjets = $portfolioJSON->projets;
+    $jsonParcours = $portfolioJSON->parcours;
+
+
+    //return $jsonCompetences;
 }
 
 ?>
