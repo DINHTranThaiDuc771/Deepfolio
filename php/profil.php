@@ -18,38 +18,61 @@ if(!isset($_SESSION["loggedin"])){
     exit;
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+  $user = $_SESSION["user"];
+  $prenom     = htmlSpecialChars($_POST["prenom"]);
+  $nom        = htmlSpecialChars($_POST["nom"]);
+  $age        = htmlSpecialChars($_POST["age"]);
+  $ville      = htmlSpecialChars($_POST["ville"]);
+  $mail       = htmlSpecialChars($_POST["mail"]);
+
+  $db = DB::getInstance();
+
+  $db->changePersonalInfo($user->getNomUtilisateur(), $nom, $prenom, $age, $ville, $user->getUniversite(), $mail);
+
+}
+
+
+
 function formulaire(){
-    $DB = DB::getInstance();
-    $user = $DB->getUserInfos($_SESSION["username"]);
-    $prenom = $user["prenom"];
-    $nom = $user["nom"];
-    $age = $user["age"];
-    $ville = $user["ville"];
-    $mail = $user["mailutilisateur"];
+    $db = DB::getInstance();
+
+    $user = $_SESSION["user"];
+    $user = $db->getUser($user->getNomUtilisateur(), $user->getMdp())[0];
+    $_SESSION["user"] = $user;
+    
+    $prenom = $user->getPrenom();
+    $nom = $user->getNom();
+    $age = $user->getAge();
+    $ville = $user->getVille();
+    $mail = $user->getMail();
+
     echo"
             <form action=\"profil.php\" method=\"POST\">
                 <div class=\"form-outline mb-4 \">
-                <input type=\"text\" id=\"modifPrenom\" class=\"form-control active\" value=\"$prenom\"/>
+                <input name=\"prenom\" type=\"text\" id=\"modifPrenom\" class=\"form-control active\" value=\"$prenom\"/>
                 <label class=\"form-label\" for=\"modifPrenom\">Prenom</label>
             </div>
 
             <div class=\"form-outline mb-4\">
-                <input type=\"text\" id=\"typeNom\" class=\"form-control form-control-lg active\" value=\"$nom\"/>
+                <input name=\"nom\" type=\"text\" id=\"typeNom\" class=\"form-control form-control-lg active\" value=\"$nom\"/>
                 <label class=\"form-label\" for=\"typeNom\">Nom</label>
             </div>
 
             <div class=\"form-outline mb-4\">
-                <input type=\"text\" id=\"typeAge\" class=\"form-control form-control-lg active\" required value=\"$age\"/>
+                <input name=\"age\" type=\"text\" id=\"typeAge\" class=\"form-control form-control-lg active\" value=\"$age\"/>
                 <label class=\"form-label\" for=\"typeAge\">Age</label>
             </div>
 
             <div class=\"form-outline mb-4\">
-                <input type=\"text\" id=\"typeVille\" class=\"form-control form-control-lg active\" required value=\"$ville\"/>
+                <input name=\"ville\" type=\"text\" id=\"typeVille\" class=\"form-control form-control-lg active\" value=\"$ville\"/>
                 <label class=\"form-label\" for=\"typeVille\">Ville</label>
             </div>
 
             <div class=\"form-outline mb-4\">
-                <input type=\"email\" id=\"typeMail\" class=\"form-control form-control-lg active\" required value=\"$mail\"/>
+                <input name=\"mail\" type=\"email\" id=\"typeMail\" class=\"form-control form-control-lg active\" value=\"$mail\"/>
                 <label class=\"form-label\" for=\"typeMail\">Mail</label>
             </div>
                 <button class=\"btn btn-primary btn-lg px-5 ml-2\" type=\"submit\">Enregistrer</button>
@@ -57,7 +80,6 @@ function formulaire(){
             </form>";
 }
 
- 
 ?>  
 
 
@@ -103,25 +125,24 @@ function formulaire(){
     <div id="sidebar" class="sidebar">
 
       <div id="img-nom">
-        <svg width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg">
           <circle cx="50.5" cy="50.5" r="50.5" fill="#FFD285" />
-          <path
-            d="M40.3467 62H35.2998L35.333 59.3936H40.3467C42.0732 59.3936 43.512 59.0339 44.6631 58.3145C45.8141 57.584 46.6774 56.5658 47.2529 55.2598C47.8395 53.9427 48.1328 52.4043 48.1328 50.6445V49.167C48.1328 47.7835 47.9668 46.555 47.6348 45.4814C47.3027 44.3968 46.8158 43.4837 46.1738 42.7422C45.5319 41.9896 44.7461 41.4196 43.8164 41.0322C42.8978 40.6449 41.8408 40.4512 40.6455 40.4512H35.2002V37.8281H40.6455C42.2282 37.8281 43.6725 38.0938 44.9785 38.625C46.2845 39.1452 47.4079 39.9033 48.3486 40.8994C49.3005 41.8844 50.0309 43.0798 50.54 44.4854C51.0492 45.8799 51.3037 47.4515 51.3037 49.2002V50.6445C51.3037 52.3932 51.0492 53.9704 50.54 55.376C50.0309 56.7705 49.2949 57.9603 48.332 58.9453C47.3802 59.9303 46.2292 60.6885 44.8789 61.2197C43.5397 61.7399 42.029 62 40.3467 62ZM37.0098 37.8281V62H33.8057V37.8281H37.0098ZM64.585 37.8281V62H61.4307V37.8281H64.585ZM72.3545 37.8281V40.4512H53.6777V37.8281H72.3545Z"
-            fill="white" />
         </svg>
-        <h2 style="text-align: center;">Thai Duc</h2>
-        </div>
-        <div id="list-infos" style="list-style: none;">
-            <li>
-                <ul><a id="btn-profil" href="#">Profil</a>  </ul>
-                <ul><a id="btn-portfolios" href="#">Vos portfolios</a>  </ul>
-                <ul>  
-                    <form action="deconnexion.php" method="get">
+        <h2 style="text-align: center;"> <?php echo $_SESSION["user"]->getNomUtilisateur() ?></h2>
+      </div>
+      <div id="list-infos" style="list-style: none;">
+        <li>
+          <ul><a id="btn-profil" href="#">Profil</a>
+          </ul>
+          <ul><a id="btn-portfolios" href="#">Vos portfolios</a>
+          </ul>
+          <ul>
+          <form action="deconnexion.php" method="get">
                         <input type="submit" value="Deconnexion" class="btn btn-primary">
                     </form>
-                </ul>
-            </li>
-        </div>
+          </ul>
+        </li>
+      </div>
     </div>
     <!-- Sidenav -->
 
@@ -136,7 +157,7 @@ function formulaire(){
             <?php formulaire() ?>
 
         <div id="profil-img" class="col-md-6 p-5">
-          <svg width="210" height="210" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="210" height="210" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg"  class="svg">
             <circle cx="105" cy="105" r="105" fill="#FFD285" />
           </svg>
         </div>
@@ -185,13 +206,13 @@ function formulaire(){
       </svg>
     </a>
   </div>
-  <!-- End your project here-->
 
-  <!-- MDB -->
+  <!-- JQuery -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <!-- Custom scripts -->
   <script type="text/javascript" src="../js/profil.js"></script>
 
-  </script>
+  <?php echo "<script> changerSvg(\"" . $_SESSION["user"]->getNom() . "\"); </script>" ?>
 </body>
 </body>
 

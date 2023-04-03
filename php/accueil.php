@@ -74,7 +74,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
 
                 <!-- Bar Recherche -->
                 <div class="col d-flex justify-content-center input-group rounded w-50">
-                    <input id="search-bar" type="search" class="form-control rounded" placeholder="Recherche Portfolio" aria-label="Search"
+                    <input id="search-bar" type="search" class="form-control rounded" placeholder="Rechercher un Portfolio" aria-label="Search"
                         aria-describedby="search-addon" />
                     <span class="input-group-text border-0" id="search-addon">
                         <i class="fas fa-search"></i>
@@ -86,18 +86,20 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
                 <!-- Collapsible wrapper -->
 
                 <!-- Right elements -->
-                <div class=" col d-flex justify-content-end">
+                <div class="col d-flex justify-content-end align-items-center">
 
-                    <form action="deconnexion.php" method="get">
-                        <input type="submit" value="Deconnexion" class="btn btn-primary">
-                    </form>
+                    <div>
+                        <?php
+                            echo 'Bonjour '.$_SESSION["username"].' !';
+                        ?>
+                    </div>
                     
                     <!-- Avatar -->
-                    <div class="">  
-                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
-                            id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="../img/image1.jpg" class="rounded-circle" height="25"
-                                alt="Black and White Portrait of a Man" loading="lazy" />
+                    <div>  
+                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="profil.php"
+                            id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
+                            <img src="../img/profil.png" class="rounded-circle" height="30"
+                                alt="Image Profil" loading="lazy" />
                         </a>
                     </div>
                 </div>
@@ -110,7 +112,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
             <div id="sidebar" class="sidebar">
                 <button id="btnCloseSideBar" type="button" class="btn-close" aria-label="Close"></button>
 
-                <h3 style="text-align: center;margin-left: 50%; transform: translate(-50%);">Messagerie</h3>
+                <h3 style="text-align: center;">Messagerie</h3>
 
                 <div id="messages">
                 </div>

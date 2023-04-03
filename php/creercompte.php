@@ -5,6 +5,15 @@
 
   require("../server/DB.inc.php");
 
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+
+  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header('location: accueil.php');
+    exit;
+  }
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomUtilisateur = htmlSpecialChars($_POST["nomUtilisateur"]);
     $password       = htmlSpecialChars($_POST["password"]);
@@ -23,6 +32,11 @@
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $DB->addUtilisateur($nomUtilisateur, $hashed_password);
     $DB->changePersonalInfo($nomUtilisateur, $nom, $prenom, $age, $ville, $universite, $mail);
+
+    $user = $DB->getUser($username, $mdp);
+
+    $_SESSION["loggedin"] = true;
+    $_SESSION["user"] = $user[0];
 
     //redirection accueil
     header('Location: accueil.php');

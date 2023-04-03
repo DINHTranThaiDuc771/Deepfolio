@@ -1,6 +1,9 @@
 
 <?php
 
+require "Portfolio.inc.php";
+require "Utilisateur.inc.php";
+
 
 class DB {
       private static $instance = null; //mémorisation de l'instance de DB pour appliquer le pattern Singleton
@@ -142,9 +145,9 @@ class DB {
       
       
       public function getUser($login, $pwd) {
-            $requete = 'select * from utilisateur where login = ? and pwd = ? ';
+            $requete = 'select * from utilisateur where nomUtilisateur = ? and mdphash = ? ';
             $tparam = array( $login, $pwd );
-	      return $this->execQuery($requete,$tparam, '');
+	      return $this->execQuery($requete,$tparam, "Utilisateur");
       }
 
     public function getUserInfos($login) {
@@ -162,7 +165,7 @@ class DB {
       public function getPortfolio($username, $id) {
             $requete = 'select * from portfolio where nomUtilisateur = ? and idPortfolio = ?';
             $tparaam = array( $username, $id);
-            return $this->execQuery($requete, $tparaam, '');
+            return $this->execQuery($requete, $tparaam, "Portfolio");
       }
 
       public function getPortfolios($username) {
