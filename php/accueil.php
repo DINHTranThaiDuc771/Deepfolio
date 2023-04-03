@@ -100,7 +100,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
                     <!-- Avatar -->
                     <div>  
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="profil.php"
-                            id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
                             <img src="../img/profil.png" class="rounded-circle" height="30"
                                 alt="Image Profil" loading="lazy" />
                         </a>
