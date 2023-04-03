@@ -6,6 +6,7 @@
     if(isset($_POST['action'])) {
         if ($_POST['action'] == 'userExists') { userExists(); }
         if ($_POST['action'] == 'getPortfolios') { getPortfolios(); }
+        if ($_POST['action'] == 'getMessages') { getMessages(); }
     }
 
     function userExists() {
@@ -23,5 +24,12 @@
         $username = htmlspecialchars($_SESSION["username"]);
         $portfolios = $DB->getPortfolios($username);
         echo json_encode($portfolios);
+    }
+
+    function getMessages() {
+        $DB = DB::getInstance();
+        $username = htmlspecialchars($_SESSION["username"]);
+        $messages = $DB->getMessages($username);
+        echo json_encode($messages);
     }
 ?>
