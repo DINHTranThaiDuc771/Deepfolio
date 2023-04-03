@@ -138,3 +138,6 @@ section article > * { /*all children not class img hover*/
     display:none;
   }
 }
+.isEditText {
+  border: 2px dashed blue;
+}
