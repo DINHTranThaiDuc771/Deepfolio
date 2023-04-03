@@ -1,0 +1,140 @@
+nav {
+  margin-bottom: 80px;
+}
+nav>*,nav {
+  position: relative;
+  z-index: 1;
+}
+.navbar-nav li {
+  font-weight: bold;
+}
+
+body {
+  background-color: #FDF2ED;
+}
+h1 {
+  padding-left: 9px;
+  font-weight: bold;
+}
+
+#quote {
+  /* "La vie est un mystère qu'il faut vivre, et non un problème à résoudre." */
+
+  width: 663px;
+  height: 331px;
+  text-align: center;
+
+  /* Headline 2 */
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 72px;
+  /* or 120% */
+  letter-spacing: -0.5px;
+
+  color: #000000;
+
+
+}
+
+#hero-image {
+  /* image-removebg-preview 1 */
+  width: 663px;
+  height: 331px;
+}
+
+#pageAccueil {
+  position: relative;
+  z-index: -1;
+}
+.tab {
+  display: none;
+}
+/* Mes compétences */
+section {
+	margin: auto;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	width: 70%;
+}
+section article div h1,section h1{
+	font-family: 'Inter',sans-serif;
+	color : #000000;
+	font-size: 48px;
+	text-align: left;
+}
+section.content h1{
+	font-family: 'Inter',sans-serif;
+	color : #000000;
+	font-size: 30px;
+	margin-left: 40px;
+	margin-bottom: 40px;
+}
+section article  {
+	border-radius: 20px;
+	box-shadow: 0px -30px 0px #FFEAC8;
+	position: relative;
+  background-color: white;
+
+}
+/*3 poinst*/
+section article:before  {
+	content: "";
+	display: block; /*dont forget this, if not it wont be affiched*/
+	width: 10px;
+	height: 10px;
+	background: transparent;
+	position: absolute; /*relative to its own element*/
+	top : -30px;
+	right : 0%;
+	border-radius: 50%;
+	box-shadow: -10px 10px 0px white,
+				-40px 10px 0px white,
+				-70px 10px 0px white;
+}
+
+
+/*items of flexbox*/
+section article > * { /*all children not class img hover*/
+	height : 70%;
+  margin :5%;
+	font-family: 'Inter',sans-serif;
+	/*The text-justify property specifies the justification method of text when text-align is set to "justify".*/
+}
+/*
+------------------------
+/* FIN Mes compétences */
+
+
+
+
+
+/*Mobile*/
+@media (max-width: 767px) {
+  #quote {
+    /* "La vie est un mystère qu'il faut vivre, et non un problème à résoudre." */
+    width: 312px;
+    height: 203px;
+    margin-left: 0 auto;
+
+
+    /* Headline 4 */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 36px;
+    /* or 106% */
+
+    color: #000000; 
+  }
+  #hero-image {
+    /* image-removebg-preview 1 */
+    width: 332px;
+    height: 236px;
+  }
+  #logo-nav {
+    display:none;
+  }
+}
