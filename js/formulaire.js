@@ -18,14 +18,17 @@ class Travail {
     constructor (nom, entreprise, description, dateDebut, dateFin) {
         this.nom = nom;
         this.entreprise = entreprise;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
     }
 }
 
 class Projet {
-    constructor(nom, taille, description, lien, image) {
+    constructor(nom, description, taille, lien, image) {
       this.nom = nom;
-      this.taille = taille;
       this.description = description;
+      this.taille = taille;
       this.lien = lien;
       this.image = image;
     }
@@ -288,24 +291,17 @@ function terminer(){
     var tabProjets     = new Array();
     var tabCompetences = new Array();
 
-    for(element in tabElements) {
-        switch(element.instanceof) {
-            case Reseau:
-                tabReseaux.push(element);
-                break;
-            case Etude:
-                tabDiplomes.push(element);
-                break;
-            case Travail:
-                tabParcourss.push(element);
-                break;
-            case Projet:
-                tabProjets.push(element);
-                break;
-            case Competence:
-                tabCompetences.push(element);
-                break;
-        }
+    for(var element of tabElements) {
+        if(element instanceof Reseau)
+            tabReseaux.push(element);
+        else if(element instanceof Etude)
+            tabDiplomes.push(element);
+        else if(element instanceof Travail)
+            tabParcourss.push(element);
+        else if(element instanceof Projet)
+            tabProjets.push(element);
+        else if(element instanceof Competence)
+            tabCompetences.push(element);
     }
     var nom          = inputs["nom"].value;
     var prenom       = inputs["prenom"].value;
@@ -322,6 +318,8 @@ function terminer(){
     };
 
     var jsonString = JSON.stringify(json);
+    console.log("JSON: "+json);
+    //document.cookie = "SameSite=None ; Secure ; portfolio="+jsonString;
     $.cookie('portfolio', jsonString, { expires: 1 });
 
 }

@@ -68,7 +68,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     <div class="container-fluid py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <form id="formCreerPortfolio" action="accueil.html" class="needs-avalidation" novalidate>
+            <form id="formCreerPortfolio"  action="accueil.php"class="needs-avalidation" novalidate>
 
                 <div class="card tab" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
@@ -333,8 +333,13 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
   </section>
     <!-- MDB -->
     <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <!-- jQuery Cookie plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <!-- our scirpt -->
     <script type="text/javascript" src="../js/formulaire.js"></script>
+    
 </body>
 
 </html>
