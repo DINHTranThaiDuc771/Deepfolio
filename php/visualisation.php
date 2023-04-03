@@ -18,13 +18,19 @@ if(!isset($_GET['cle'])){
 
 $cle = $_GET['cle'];
 
-var_dump(base64_decode($cle));
+$cle = base64_decode($cle);
 
-//affichePages($username, $idPortfolio);
+$tabInfos = explode("&", $cle);
 
-function affichePages($username, $idPortfolio, $DB){
+//TODO: donner les infos et afficher la page;
+
+$db = DB::getInstance();
+
+affichePages($username, $idPortfolio, $db);
+
+function affichePages($username, $idPortfolio, $db){
     //recuperer toutes les donnees du portfolio
-    $pages = $DB->getPages($username, $idPortfolio);
+    $pages = $db->getPages($username, $idPortfolio);
 
     foreach($pages as $page){
         $jsonPage = json_decode($page);
