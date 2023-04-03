@@ -92,6 +92,12 @@ function addPortfolio(p, i) {
     div1.classList.add("col-md-4");
     div1.id = "pf" + portfolio.idPortfolio;
 
+    var a = document.createElement("a");
+    if (p.nomUtilisateur == "admin")
+        a.setAttribute("href", "../php/formulaire.php");
+    else
+        a.setAttribute("href", "#");
+
     var div2 = document.createElement("div");
     div2.classList.add("card");
 
@@ -108,9 +114,6 @@ function addPortfolio(p, i) {
     else
         img.setAttribute("src", "../img/portfolio.jpeg");
 
-    var a = document.createElement("a");
-    a.setAttribute("href", "#");
-
     var div4 = document.createElement("div");
     div4.classList.add("card-body");
 
@@ -123,10 +126,10 @@ function addPortfolio(p, i) {
 
     portfolios.appendChild(div0);
     div0.appendChild(div1);
-    div1.appendChild(div2);
+    div1.appendChild(a);
+    a.appendChild(div2);
     div2.appendChild(div3);
     div3.appendChild(img);
-    div3.appendChild(a);
     div2.appendChild(div4);
     div4.appendChild(h5);
 }
