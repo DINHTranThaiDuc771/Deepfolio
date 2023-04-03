@@ -35,10 +35,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $mdp = $DB->getMdp($username);
 
         if (password_verify($password, $mdp)) {
-            $_SESSION["loggedin"] = true;
             
             $user = $DB->getUser($username, $mdp);
 
+            $_SESSION["loggedin"] = true;
             $_SESSION["user"] = $user[0];
 
             header("location: accueil.php");

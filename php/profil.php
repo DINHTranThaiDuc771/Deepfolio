@@ -20,31 +20,34 @@ if(!isset($_SESSION["loggedin"])){
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  $nomUtilisateur = $_SESSION["username"];
+
+  $user = $_SESSION["user"];
   $prenom     = htmlSpecialChars($_POST["prenom"]);
   $nom        = htmlSpecialChars($_POST["nom"]);
   $age        = htmlSpecialChars($_POST["age"]);
   $ville      = htmlSpecialChars($_POST["ville"]);
-  $universite = htmlSpecialChars($_POST["universite"]);
   $mail       = htmlSpecialChars($_POST["mail"]);
 
   $db = DB::getInstance();
 
-  $db->changePersonalInfo($nomUtilisateur, $nom, $prenom, $age, $ville, $universite, $mail);
-
+  $db->changePersonalInfo($user->getNomUtilisateur(), $nom, $prenom, $age, $ville, $user->getUniversite(), $mail);
 
 }
 
 
 
 function formulaire(){
-    $DB = DB::getInstance();
-    $user = $DB->getUserInfos($_SESSION["username"]);
-    $prenom = $user["prenom"];
-    $nom = $user["nom"];
-    $age = $user["age"];
-    $ville = $user["ville"];
-    $mail = $user["mailutilisateur"];
+    $db = DB::getInstance();
+
+    $user = $_SESSION["user"];
+    $user = $db->getUser($user->getNomUtilisateur(), $user->getMdp())[0];
+    $_SESSION["user"] = $user;
+    
+    $prenom = $user->getPrenom();
+    $nom = $user->getNom();
+    $age = $user->getAge();
+    $ville = $user->getVille();
+    $mail = $user->getMail();
 
     echo"
             <form action=\"profil.php\" method=\"POST\">
@@ -125,7 +128,7 @@ function formulaire(){
         <svg width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg">
           <circle cx="50.5" cy="50.5" r="50.5" fill="#FFD285" />
         </svg>
-        <h2 style="text-align: center;"> <?php echo $_SESSION["username"] ?></h2>
+        <h2 style="text-align: center;"> <?php echo $_SESSION["user"]->getNomUtilisateur() ?></h2>
       </div>
       <div id="list-infos" style="list-style: none;">
         <li>
@@ -209,7 +212,7 @@ function formulaire(){
   <!-- Custom scripts -->
   <script type="text/javascript" src="../js/profil.js"></script>
 
-  <?php echo "<script> changerSvg(\"" . $_SESSION["username"] . "\"); </script>" ?>
+  <?php echo "<script> changerSvg(\"" . $_SESSION["user"]->getNom() . "\"); </script>" ?>
 </body>
 </body>
 

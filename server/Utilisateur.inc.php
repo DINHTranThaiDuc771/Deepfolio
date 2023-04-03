@@ -25,6 +25,7 @@
         }
 
         public function getNomUtilisateur() { return $this->nomutilisateur; }
+        public function getMdp() { return $this->mdphash; }
         public function getPrenom() { return $this->prenom; }
         public function getNom() { return $this->nom; }
         public function getAge() { return $this->age; }
