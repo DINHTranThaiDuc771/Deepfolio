@@ -20,7 +20,7 @@
 
     function getPortfolios() {
         $DB = DB::getInstance();
-        $username = htmlspecialchars($_SESSION["nomutilisateur"]);
+        $username = htmlspecialchars($_SESSION["username"]);
         $portfolios = $DB->getPortfolios($username);
         echo json_encode($portfolios);
     }
