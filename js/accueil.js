@@ -205,10 +205,8 @@ function addPortfolios() {
 
             // Ajout des portfolios
             for (var p of listPortfolios) {
-                console.log(listPortfolios);
                 addPortfolio(p, (listPortfolios.indexOf(p)));
             }
-            console.log(listPortfolios.length);
         }
     });
 }
