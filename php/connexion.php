@@ -76,7 +76,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <!-- JS -->
     <script src="../js/defile.js"></script>
   </head>
-  </head>
   <body>
     <!-- Start your project here-->
     <section class="h-100 gradient-form" style="background-color: #eee;">

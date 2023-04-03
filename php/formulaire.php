@@ -314,7 +314,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                             <div class="form-outline mb-4 tableauElmt col-md-12"></div>
 
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
-                            <button class="btn btn-primary btn-lg px-5 ml-2" type="submit" name='submit'>Terminer</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Terminer</button>
                         </div>
                     </div>
                 </div>

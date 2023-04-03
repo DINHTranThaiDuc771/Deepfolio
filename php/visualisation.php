@@ -8,16 +8,19 @@ session_start();
 
 if(!isset($_SESSION['user'])){
     header("Location: connexion.php");
-}else{
-    if(isset($_GET['cle'])){
-        //dehacher la clé 
-        //virifier si le portfolio est accessible
-        //si oui, afficher la page
-        afficherPages($username, $idPortfolio);
-    }else{
-        header("Location: accueil.php");
-    }
+    exit();
 }
+
+if(!isset($_GET['cle'])){
+    header("Location: accueil.php");
+    exit();
+}
+
+$cle = $_GET['cle'];
+
+var_dump(base64_decode($cle));
+
+//affichePages($username, $idPortfolio);
 
 
 
