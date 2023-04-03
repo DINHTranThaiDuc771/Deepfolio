@@ -5,6 +5,7 @@ ini_set('display_startup_errors', 1);
 
 
 require '../server/DB.inc.php';
+require 'creerPages.php';
 
 session_start();
 
@@ -12,8 +13,8 @@ session_start();
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
     if (isset($_POST['submit'])) {
-        $portfolio_cookie = $_COOKIE['portfolio'];
-        $portfolio_json = JSON.parse($portfolio_cookie);
+        $portfolio_cookie =  html_entity_decode($_COOKIE['portfolio']);
+        $portfolio_json = json_decode($portfolio_cookie);
 
         $username = $_SESSION['username'];
         $nomPortfolio = $_POST['nomPortfolio'];
@@ -25,12 +26,11 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         $result = $DB->addPortfolio($username, $nomPortfolio, $accessible);
         if($result) {
             echo "Portfolio créé avec succès";
-            //TODO: créer les pages du portfolio
+            creerPages($portfolio_json);
         }
         else {
             echo "Erreur lors de la création du portfolio";
         }
-        /* PREVOIR LE CAS OU L'INSERTION NE MARCHE PAS */
     }  
 }else{
     header("Location: connexion.php");    
