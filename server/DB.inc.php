@@ -196,9 +196,12 @@ class DB {
       }
 
       public function addPortfolio($username,$nomPortfolio, $accesible) {
-            $requete = 'insert into portfolio (nomUtilisateur, nomPortfolio, accesible) values(?,?,?,?)';
+            $requete = 'insert into portfolio (nomUtilisateur, nomPortfolio, accesible) values(?,?,?)';
             $tparam = array($username, $nomPortfolio, $accesible);
-            return $this->execMaj($requete,$tparam);
+            $result = $this->execMaj($requete,$tparam);
+            if(strcmp($result,"int(1)")){
+                return true;
+            }else{return false;}
         }
 
         public function addPage($username,$dPortfolio, $jsonPage) {
@@ -206,6 +209,7 @@ class DB {
             $tparam = array($username,$dPortfolio, $jsonPage);
             return $this->execMaj($requete,$tparam);
         }
+
 
         
         //*********************************************************//
