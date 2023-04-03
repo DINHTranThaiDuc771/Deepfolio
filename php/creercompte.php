@@ -1,3 +1,35 @@
+<?php
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+
+  require("../server/DB.inc.php");
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nomUtilisateur = htmlSpecialChars($_POST["nomUtilisateur"]);
+    $password       = htmlSpecialChars($_POST["password"]);
+    $prenom     = htmlSpecialChars($_POST["prenom"]);
+    $nom        = htmlSpecialChars($_POST["nom"]);
+    $age        = htmlSpecialChars($_POST["age"]);
+    $ville      = htmlSpecialChars($_POST["ville"]);
+    $universite = htmlSpecialChars($_POST["universite"]);
+    $mail       = htmlSpecialChars($_POST["mail"]);
+
+    if ( $age == "") $age = 18;
+    
+    $DB = DB::getInstance();
+
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $DB->addUtilisateur($nomUtilisateur, $hashed_password);
+    $DB->changePersonalInfo($nomUtilisateur, $nom, $prenom, $age, $ville, $universite, $mail);
+
+    //redirection accueil
+    header('Location: accueil.php');
+    exit();
+  } 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,13 +66,13 @@
                 <h2 class="fw-bold mb-2 text-uppercase">Créer un compte</h2>
                 <p class="text-white-50 mb-5"></p>
                   <div class="form-outline mb-4">
-                    <input type="text" name="nomUtilisateur" id="typeNomUtilisateur" class="form-control form-control-lg" required/>
+                    <input type="text" name="nomUtilisateur" id="typeNomUtilisateur" class="form-control form-control-lg" required onkeypress="return noenter()"/>
                     <label class="form-label" for="typeNomUtilisateur">Nom d'utilisateur</label>
                     <div class="invalid-feedback">Veuillez entrer un Nom d'utilisateur</div>
                   </div>
                   
                   <div class="form-outline mb-4">
-                    <input type="password" name="password" id="typePasswordX" class="form-control form-control-lg" required />
+                    <input type="password" name="password" id="typePasswordX" class="form-control form-control-lg" required onkeypress="return noenter()"/>
                     <label class="form-label" for="typePasswordX">Mot de passe</label>
                     <div class="invalid-feedback">Veuillez entrer un Mot de passe</div>
                   </div>
@@ -102,44 +134,15 @@
   </section>
     <!-- MDB -->
     <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
+    <!-- JQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="../js/creercompte.js"></script>
+
+    <script type="text/javascript">
+      function noenter() {
+        return !(window.event && window.event.keyCode == 13); }
+    </script>
 </body>
 
 </html>
-
-<?php
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
-  ini_set('display_startup_errors', 1);
-
-  require("../server/DB.inc.php");
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nomUtilisateur = htmlSpecialChars($_POST["nomUtilisateur"]);
-    $password       = htmlSpecialChars($_POST["password"]);
-    $prenom     = htmlSpecialChars($_POST["prenom"]);
-    $nom        = htmlSpecialChars($_POST["nom"]);
-    $age        = htmlSpecialChars($_POST["age"]);
-    $ville      = htmlSpecialChars($_POST["ville"]);
-    $universite = htmlSpecialChars($_POST["universite"]);
-    $mail       = htmlSpecialChars($_POST["mail"]);
-    
-    $DB = DB::getInstance();
-
-    if($DB->userExists($nomUtilisateur)) {
-      //echo '<script>alert("Nom d\'utilisateur deja utilise")</script>';
-    }
-    else
-    {
-      $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-      $DB->addUtilisateur($nomUtilisateur, $hashed_password);
-      $DB->changePersonalInfo($nomUtilisateur, $nom, $prenom, $age, $ville, $universite, $mail);
-
-      //redirection accueil
-      //header('Location: accueil.php');
-      //exit();
-    }
-  } 
-?>
