@@ -31,6 +31,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         if($result) {
             echo "Portfolio créé avec succès";
             creerPages($portfolio_json, $DB);
+            header('location: ./accueil.php');
         }
         else {
             echo "Erreur lors de la création du portfolio";

@@ -6,23 +6,69 @@ ini_set('display_startup_errors', 1);
 require '../server/DB.inc.php';
 session_start();
 
-if(!isset($_SESSION['user'])){
-    header("Location: connexion.php");
+if(isset($_GET['cle'])){
+    //dehacher la clé 
+    //virifier si le portfolio est accessible
+    //si oui, afficher la page
+    $DB = DB::getInstance();
+    afficherPages($username, $idPortfolio);
 }else{
-    if(isset($_GET['cle'])){
-        //dehacher la clé 
-        //virifier si le portfolio est accessible
-        //si oui, afficher la page
-        afficherPages($username, $idPortfolio);
-    }else{
-        header("Location: accueil.php");
-    }
+    header("Location: accueil.php");
 }
 
 
+function setCVInfos($jsonPage){
+    global $nom, $prenom, $age, $lienCV, $presentation, $adresse; 
+    
+    $nom            = $jsonPage->nom;
+    $prenom         = $jsonPage->prenom;
+    $age            = $jsonPage->age;
+    $lienCV         = $jsonPage->lienCV;
+    $presentation   = $jsonPage->presentation;
+    $adresse        = $jsonPage->adresse;
+}
 
-function affichePages($username, $idPortfolio){
-    //recuperer toutes les donnes du portfolio
+function setCompetencesInfos($jsonPage){
+
+}
+
+function setProjetsInfos($jsonPage){
+
+}
+
+function setParcoursInfos($jsonPage){
+
+}
+
+function setStyleInfos($jsonPage){
+
+}
+
+function affichePages($username, $idPortfolio, $DB){
+    //recuperer toutes les donnees du portfolio
+    $pages = $DB->getPages($username, $idPortfolio);
+
+    foreach($pages as $page){
+        $jsonPage = json_decode($page);
+        switch($jsonPage->page){
+            case 'cv':
+                setCVInfos($jsonPage);
+                break;
+            case 'competences':
+                setCompetencesInfos($jsonPage);
+                break;
+            case 'projets':
+                setProjetsInfos($jsonPage);
+                break;
+            case 'parcours':
+                setParcourssInfos($jsonPage);
+                break;
+            case 'style':
+                setStyleInfos($jsonPage);
+                break;
+        }
+
+    }
 
     echo "<!DOCTYPE html>
     <html lang=\"en\">
