@@ -5,11 +5,11 @@ ini_set('display_startup_errors', 1);
 
 
 require '../server/DB.inc.php';
-if($_SESSION == PHP_NONE) {
-    session_start();
-}
 
-if(isset($_SESSION['username'])) {
+session_start();
+
+
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
     if (isset($_POST['submit'])) {
         $portfolio_cookie = $_COOKIE['portfolio'];
@@ -32,6 +32,8 @@ if(isset($_SESSION['username'])) {
         }
         /* PREVOIR LE CAS OU L'INSERTION NE MARCHE PAS */
     }  
+}else{
+    header("Location: connexion.php");    
 }
 
 ?>
@@ -205,6 +207,11 @@ if(isset($_SESSION['username'])) {
                                 <input type="date" id="typeDateFin" class="form-control form-control-lg active require"  />
                                 <label class="form-label" for="typeDateFin">Date de Fin</label>
                                 <div class="invalid-feedback">Veuillez entrer une date de fin</div>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <textarea id="typeDescriptionPoste" class="form-control form-control-lg require"></textarea>
+                                <label class="form-label" for="typeDescriptionPoste">Description</label>
+                                <div class="invalid-feedback">Veuillez entrer une description</div>
                             </div>
                             <a class="ajouter" type="button">Ajouter</a>
 
