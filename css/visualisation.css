@@ -54,7 +54,7 @@ h1 {
 }
 
 .tab {
-  display: none;
+  display: none !important;
 }
 
 /* Mes compétences */
