@@ -4,15 +4,15 @@ class Message {
       private $titre;
       private $auteur;
       private $email;
-      private $datep;
+      private $date;
       private $texte;
 
 
-        public function __construct($titre, $auteur, $email, $dateP, $texte) {
+        public function __construct($titre, $auteur, $email, $date, $texte) {
                 $this->titre = $titre;
                 $this->auteur = $auteur;
                 $this->email = $email;
-                $this->dateP = $dateP;
+                $this->date = $date;
                 $this->texte = $texte;
         }
 
@@ -29,22 +29,12 @@ class Message {
         }
 
         public function getDateP() {
-                return $this->dateP;
+                return $this->date;
         }
 
         public function getTexte() {
                 return $this->texte;
         }
-        
-        public function __toString(){
-                return 
-                "<article><h3>Titre: "         .$this->titre    ."</h3>".
-                "\n<h4>auteur: "        .$this->auteur   ." - ". 
-                "\nDate: "              .$this->dateP    ."</h4>".
-                "\e<h5>mail: "          .$this->email    ."</h5>".                
-                "\n<p>texte: "          .$this->texte    ."</p></article>";   
-        }
-
 }
 
 ?>
