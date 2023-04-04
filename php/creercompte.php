@@ -106,13 +106,13 @@
                 <p class="text-white-50 mb-5"></p>
 
                 <div class="form-outline mb-4">
-                  <input type="prenom" name="prenom" id="typePrenom" class="form-control form-control-lg"  required/>
+                  <input type="prenom" name="prenom" id="typePrenom" class="form-control form-control-lg"/>
                   <label class="form-label" for="typePrenom">Prenom</label>
                   <div class="invalid-feedback">Veuillez entrer un Prenom</div>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="text" name="nom" id="typeNom" class="form-control form-control-lg"  required/>
+                  <input type="text" name="nom" id="typeNom" class="form-control form-control-lg"/>
                   <label class="form-label" for="typeNom">Nom</label>
                   <div class="invalid-feedback">Veuillez entrer un Nom</div>
                 </div>

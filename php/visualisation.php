@@ -10,18 +10,40 @@ require '../server/Projet.inc.php';
 require '../server/Diplome.inc.php';
 require '../server/ExperiencePro.inc.php';
 
+
+
+
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-
-if(!isset($_SESSION['user'])){
-    header("Location: connexion.php");
-    exit();
 }
 
 if(!isset($_GET['cle'])){
     header("Location: accueil.php");
     exit();
+}
+
+
+Twig_Autoloader::register();
+$twig = new Twig_Environment( new Twig_Loader_Filesystem("../templates"));
+
+
+$cle = $_GET['cle'];
+
+$cle = base64_decode($cle);
+
+$jsonCle = json_decode($cle);
+
+$username = $jsonCle->auteur;
+$idPortfolio = $jsonCle->idPortfolio;
+
+$db = DB::getInstance();
+
+if($db->isPortfolioAccessible($username, $idPortfolio) !=0){
+    if(!isset($_SESSION["user"]) || $_SESSION["user"]->getNomUtilisateur() != $username){
+        header("Location: accueil.php");
+        exit();
+    }
 }
 
 
@@ -46,18 +68,8 @@ $diplomes;
 
 
 
-$cle = $_GET['cle'];
-
-$cle = base64_decode($cle);
-
-$jsonCle = json_decode($cle);
-
-$username = $jsonCle->auteur;
-$idPortfolio = $jsonCle->idPortfolio;
-
 setcookie('proprio_portfolio', $username, []);
 
-$db = DB::getInstance();
 
 affichePages($username, $idPortfolio, $db);
 
