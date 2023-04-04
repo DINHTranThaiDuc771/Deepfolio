@@ -73,7 +73,7 @@ function showTab(n) {
 
             var opt = document.createElement("option");
             opt.label = elmt.nom;
-            opt.value = elmt.id;
+            opt.value = elmt.nom;
 
             lienProjet.add(opt);
         }
@@ -127,11 +127,8 @@ function nextPrev(n) {
 
     var cpt = 0;
     Array.prototype.slice.call(tabInput).forEach((input) => {
-
         if (tabRequired[cpt] != undefined)
             input.required = tabRequired[cpt++];
-
-        
     });
 
     showTab(currentTab);
@@ -208,12 +205,10 @@ function ajouterTab(event) {
     if ( currentTab == 4 ) {
 
         var lienProjet = document.getElementById("lienProjet");
-        var lienNonProjet = document.getElementById("lienNonProjet");
 
         var lien;
-        if ( lienNonProjet.value = "") {
-            console.log(lienProjet);
-            lien = lienProjet.value;
+        if ( tabText[2] == "") {
+            lien = "#" + lienProjet.value;
         } else {
             lien = tabText[2];
         }
@@ -305,17 +300,30 @@ function terminer(){
     var tabCompetences = new Array();
 
     for(var element of tabElements) {
-        if(element instanceof Reseau)
+        if(element instanceof Reseau) {
             tabReseaux.push(element);
-        else if(element instanceof Etude)
+            continue;
+        }
+        
+        if(element instanceof Etude) {
             tabDiplomes.push(element);
-        else if(element instanceof Travail)
-            tabParcourss.push(element);
-        else if(element instanceof Projet)
-            tabProjets.push(element);
+            continue;
+        }
 
-        else if(element instanceof Competence)
+        if(element instanceof Travail) {
+            tabParcourss.push(element);
+            continue;
+        }
+
+        if(element instanceof Projet) {
+            tabProjets.push(element);
+            continue;
+        }
+        
+        if(element instanceof Competence) {
             tabCompetences.push(element);
+            continue;
+        }
     }
 
     var nom          = inputs["nom"].value;

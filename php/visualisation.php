@@ -158,8 +158,6 @@ function recupInfosCompetences($page){
 
     $competences = array();
 
-    var_dump($tabCompetences);
-
     foreach($tabCompetences as $competence){
        array_push($competences, new Competence($competence['nom'], $competence['description'], $competence['lien']));
     }
