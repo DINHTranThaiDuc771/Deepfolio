@@ -24,3 +24,11 @@
     margin-left: 50%;
     transform: translate(-50%);
 }
+
+.add {
+    border:5px dashed rgb(190, 190, 190);
+}
+
+.pf {
+    border:1px solid rgb(190, 190, 190);
+}

@@ -93,6 +93,9 @@ function addPortfolio(p, i) {
 
     var div2 = document.createElement("div");
     div2.classList.add("card");
+    if (p.nomUtilisateur == "admin") {
+        div2.classList.add("add");
+    }
     div2.setAttribute("style", "margin-top:15px;height:18rem;")
 
     var div3 = document.createElement("div");
