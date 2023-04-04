@@ -62,6 +62,7 @@
   <!-- MDB -->
   <link rel="stylesheet" href="../css/mdb.min.css" />
   <link rel="stylesheet" href="../css/creercompte.css" />
+
   <script src="../js/creercompte.js"></script>
 </head>
 </head>
@@ -71,9 +72,13 @@
     <div class="container-fluid py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <form id="formCreerCompte" action="creercompte.php" method="POST" class="needs-avalidation" novalidate>
+			<form id="formCreerCompte" action="creercompte.php" method="POST" class="needs-avalidation" novalidate>
+			
+			<div class="progress" style="height: 20px; border-radius: 1rem 1rem 0 0">
+					<div class="progress-bar" role="progressbar" id="progressbarPortfolio"  style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
 
-          <div class="card tab" style="border-radius: 1rem;">
+          <div class="card tab" style="border-radius: 0 0 1rem 1rem;">
             <div class="card-body p-5 text-center">
 
               <div class="mb-md-5 mt-md-4 pb-5">
@@ -97,7 +102,7 @@
             </div>
           </div>
 
-          <div class="card tab " style="border-radius: 1rem;">
+          <div class="card tab " style="border-radius: 0 0 1rem 1rem;">
             <div class="card-body p-5 text-center hiddenCards">
     
               <div class="mb-md-5 mt-md-4 pb-5 ">

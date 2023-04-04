@@ -1,5 +1,6 @@
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var nbTab = 1;
+var avancement = 0;
  // Display the current tab
 
 function showTab(n) {
@@ -15,6 +16,8 @@ function nextPrev(n) {
     // Hide the current tab:
     x[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
+
+    var previoustab = currentTab;
     currentTab = currentTab + n;
 
 
@@ -29,6 +32,20 @@ function nextPrev(n) {
     document.getElementById("typeNom").required = required;
 
     showTab(currentTab);
+
+    updateProgressbar(currentTab - previoustab);
+
+}
+
+function updateProgressbar(n){
+    if(n < 0){
+        avancement-=50;
+    }else{
+        avancement+=50;
+    }
+    $(".progress-bar").animate({
+        width: avancement+"%",
+    }, 1500);
 }
 
 function valider(event, form)

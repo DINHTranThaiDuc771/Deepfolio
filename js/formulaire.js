@@ -80,6 +80,8 @@ function showTab(n) {
     }
 }
 
+var avancement = 0;
+
 function nextPrev(n) {
 
     var x = document.querySelectorAll(" .tab");
@@ -91,6 +93,8 @@ function nextPrev(n) {
     Array.prototype.slice.call(tabInput).forEach((input) => {
         input.required = false;
     });
+
+    var previousTab = currentTab;
 
     currentTab = currentTab + n;
 
@@ -132,6 +136,19 @@ function nextPrev(n) {
     });
 
     showTab(currentTab);
+
+    updateProgressbar(currentTab-previousTab);
+}
+
+function updateProgressbar(n){
+    if(n < 0){
+        avancement-=20;
+    }else{
+        avancement+=20;
+    }
+    $(".progress-bar").animate({
+        width: avancement+"%",
+    }, 1500);
 }
 
 function ajouterTab(event) {

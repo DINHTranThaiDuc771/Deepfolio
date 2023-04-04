@@ -52,7 +52,10 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <form id="formCreerPortfolio"  action="creerPages.php" class="needs-avalidation" method="POST" novalidate>
 
-                <div class="card tab" style="border-radius: 1rem;">
+                <div class="progress" style="height: 20px; border-radius: 1rem 1rem 0 0">
+                    <div class="progress-bar" role="progressbar" id="progressbarPortfolio"  style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="card tab" style="border-radius: 0 0 1rem 1rem;">
                     <div class="card-body p-5 text-center">
 
                         <div class="mb-md-5 mt-md-4 pb-5"><!-- col-md-6 -->
@@ -125,7 +128,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                     </div>
                 </div>
 
-                <div class="card tab" style="border-radius: 1rem;">
+                <div class="card tab" style="border-radius: 0 0 1rem 1rem;">
                     <div class="card-body p-5 text-center hiddenCards">
                 
                         <div class="mb-md-5 mt-md-4 pb-5 ">
@@ -161,7 +164,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                 </div>
 
                 <!-- 3ème onglet: parcours professionnel -->
-                <div class="card tab " style="border-radius: 1rem;">
+                <div class="card tab " style="border-radius: 0 0 1rem 1rem;">
                     <div class="card-body p-5 text-center hiddenCards">
                 
                         <div class="mb-md-5 mt-md-4 pb-5 ">
@@ -207,7 +210,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                 </div>
 
                 <!-- 4ème onglet: Projets -->
-                <div class="card tab " style="border-radius: 1rem;">
+                <div class="card tab " style="border-radius: 0 0 1rem 1rem;">
                     <div class="card-body p-5 text-center hiddenCards">
                 
                         <div class="mb-md-5 mt-md-4 pb-5 ">                            
@@ -266,7 +269,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                 </div>
 
                 <!-- 5ème onglet: Compétences -->
-                <div class="card tab " style="border-radius: 1rem;">
+                <div class="card tab " style="border-radius: 0 0 1rem 1rem;">
                     <div class="card-body p-5 text-center hiddenCards">
                 
                         <div class="mb-md-5 mt-md-4 pb-5 ">
