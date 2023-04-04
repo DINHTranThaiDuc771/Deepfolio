@@ -64,7 +64,7 @@ function creerPages($portfolioJSON, $db){
 
 function creerPageCompetences($competences){
 
-    $competencesString = '{ "competences": ';
+    $competencesString = '{"competences": ';
 
     $competencesString .= json_encode($competences);
 
@@ -77,7 +77,7 @@ function creerPageCompetences($competences){
 
 function creerPageProjets($projets){
     
-    $projetsString = '{ "projets": ';
+    $projetsString = '{"projets": ';
 
     $projetsString .= json_encode($projets);
 
@@ -90,7 +90,7 @@ function creerPageProjets($projets){
 
 function creerPageParcours($parcours){
         
-    $parcoursString = '{ "parcours": ';
+    $parcoursString = '{"parcours": ';
     
     $parcoursString .= json_encode($parcours);
 
@@ -105,7 +105,7 @@ function creerPageCV($portfolio_json){
 
     $stringCV = json_encode($portfolio_json);
 
-    $stringCV = '{"page": "cv",' . substr($stringCV, 1, strlen($stringCV) -1 );
+    $stringCV = '{' . substr($stringCV, 1, strlen($stringCV) -1 );
 
     $jsonCV = json_encode($stringCV);
 

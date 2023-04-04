@@ -295,25 +295,31 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                                         <div class="invalid-feedback">Veuillez entrer un lien</div>
                                     </div>
 
-                                    <select class="browser-default custom-select form-outline mb-4" id="lienProjet"></select>
-
-                                    <div class="form-outline mb-4">
-                                        <input type="text" id="nomPortfolio" class="form-control form-control-lg"  name="nomPortfolio"/>
-                                        <label class="form-label" for="nomPortfolio">Nom du portfolio</label>
-                                        <div class="invalid-feedback">Veuillez entrer un nom pour ce portfolio</div>
-                                    </div>
-                                    <div class="form-check mb-4">
-                                        <input type="checkbox" id="accesible" class="form-check-input"  name="accesible"/>
-                                        <label class="form-check-label" for="accesible">Accesible</label>
-                                        <div class="invalid-feedback">Veuillez entrer une visibilité</div>
-                                    </div>
+                                    <select class="browser-default custom-select form-outline mb-4" id="lienProjet"></select>                                  
+                                
                                 </div>                                                 
                             </div>                       
                             <a class="ajouter" type="button">Ajouter</a>
 
                             <div class="form-outline mb-4 tableauElmt col-md-12"></div>
 
-                            <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
+                            <div class="row mt-5">
+                                <div class="col-md-6">
+                                <div class="form-outline mb-1">
+                                        <input type="text" id="nomPortfolio" class="form-control form-control-lg"  name="nomPortfolio"/>
+                                        <label class="form-label" for="nomPortfolio">Nom du portfolio</label>
+                                        <div class="invalid-feedback">Veuillez entrer un nom pour ce portfolio</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                <div class="form-check mb-1">
+                                        <input type="checkbox" id="accesible" class="form-check-input"  name="accesible"/>
+                                        <label class="form-check-label" for="accesible">Accesible</label>
+                                        <div class="invalid-feedback">Veuillez entrer une visibilité</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary btn-lg px-5 mt-2 precedent" type="button">Précédent</button>
                             <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Terminer</button>
                         </div>
                     </div>
