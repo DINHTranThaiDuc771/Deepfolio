@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
 require_once '../server/DB.inc.php';
-require_once "../../Twig/lib/Twig/Autoloader.php";
+require_once "../Twig/lib/Twig/Autoloader.php";
 
 session_start();
 
