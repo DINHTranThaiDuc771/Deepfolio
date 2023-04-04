@@ -1,7 +1,7 @@
 
 {% block cv %}
     <div class="row mb-2">
-        <h1 class="editableText"> {{ prenom }} {{ nom }}</h1>
+        <h1 class="editableText"> {{ nom }}  {{ prenom }}</h1>
         <h1 class="editableText">( {{ age }})</h1>
     </div>
     <hr>
