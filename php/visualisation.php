@@ -160,8 +160,6 @@ function recupInfosParcours($page){
         array_push($parcours, new ExperiencePro($experience['nom'], $experience['entreprise'], $experience['description'], $experience['dateDebut'] ,$experience['dateFin']));
     }
 
-    var_dump($parcours);
-
 }
 
 function recupInfosDiplomes($page){
