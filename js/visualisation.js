@@ -1,13 +1,16 @@
 var isEditing = false;
 var xEditBar;
 var yEditBar;
-var lstEditableText
+var lstEditableText;
+var editbar;
 window.addEventListener("mousemove", function(event) {
     xEditBar = event.clientX;
     yEditBar = event.clientY;
 
     });
 window.onload = () => {
+    editbar = document.getElementById("editbar");
+
     /**Changer Tab */
     var pageAccueil             = document.getElementById("pageAccueil");
     var pageCompetences         = document.getElementById("pageCompetences");
@@ -43,7 +46,7 @@ btnAjouterProjet.style.display = "none";
 btnAjouterComp  .style.display = "none";
 function afficherEditorBar(event){
 
-    var editbar = document.getElementById("editbar");
+    editbar.style.display="flex";
     editbar.style.left = `${xEditBar}px`;
     editbar.style.top = `${yEditBar}px`;
 }
@@ -113,6 +116,8 @@ function toggleEdit() {
             lstEditableText[i].setAttribute("contenteditable","true");
             lstEditableText[i].setAttribute("tabindex","0");
             lstEditableText[i].addEventListener("focus",afficherEditorBar,false);
+            lstEditableText[i].addEventListener("blur",()=>{editbar.style.display="none";},false);
+
             lstEditableText[i].classList.add("isEditText");
         }
         btnAjouterProjet.style.display = "inline-block";
