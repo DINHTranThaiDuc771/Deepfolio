@@ -222,8 +222,8 @@ class DB {
             }else{return false;}
         }
 
-        public function addPage($username,$dPortfolio, $jsonPage) {
-            $requete = 'insert into page (nomutilisateur, idportfolio, jsonPage) values ( ?,?,? )';
+        public function addPage($username,$dPortfolio, $jsonPage, $typePage) {
+            $requete = 'insert into page (nomutilisateur, idportfolio, jsonPage) values (?, ?, ?, ?)';
             $tparam = array($username,$dPortfolio, $jsonPage);
             return $this->execMaj($requete,$tparam);
         }
