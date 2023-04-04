@@ -15,9 +15,12 @@ if( !isset($_SESSION["loggedin"])) {
     exit();    
 }
 
-if (isset($_POST['nomPortfolio'])) {
+$db;
+$username;
+$numPortfolio;
 
-    global $db, $username, $numPortfolio;
+
+if (isset($_POST['nomPortfolio'])) {
 
     $portfolio_cookie =  html_entity_decode($_COOKIE['portfolio']);
     $portfolio_json = json_decode($portfolio_cookie);
@@ -72,6 +75,9 @@ function creerPageCompetences($competences) {
 
     $jsonCompetences = json_encode($competencesString);
 
+
+    global $db, $username, $numPortfolio;
+
     $db->addPage($username, $numPortfolio, $jsonCompetences, "competences");
 }
 
@@ -84,6 +90,8 @@ function creerPageProjets($projets){
     $projetsString .= "}";
 
     $jsonProjets = json_encode($projetsString);
+
+    global $db, $username, $numPortfolio;
 
     $db->addPage($username, $numPortfolio, $jsonProjets, "projets");
 }
@@ -98,6 +106,8 @@ function creerPageParcours($parcours){
 
     $jsonParcours = json_encode($parcoursString);
 
+    global $db, $username, $numPortfolio;
+
     $db->addPage($username, $numPortfolio, $jsonParcours, "parcours");
 }
 
@@ -108,6 +118,8 @@ function creerPageCV($portfolio_json){
     $stringCV = '{' . substr($stringCV, 1, strlen($stringCV) -1 );
 
     $jsonCV = json_encode($stringCV);
+
+    global $db, $username, $numPortfolio;
 
     $db->addPage($username, $numPortfolio, $jsonCV, "cv");
 }
