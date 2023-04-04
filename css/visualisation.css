@@ -125,11 +125,10 @@ section article>* {
 #editbar {
   display: block;
   position: fixed;
-  top: 0;
-  right: 0;
+
   background-color: white;
-  width: 240px;
-  height: 100%;
+  width: 150px;
+  height: 50px;
   z-index: 2;
 }
 
