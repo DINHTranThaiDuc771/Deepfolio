@@ -18,6 +18,10 @@ if(!isset($_GET['cle'])){
     exit();
 }
 
+Twig_Autoloader::register();
+$twig = new Twig_Environment( new Twig_Loader_Filesystem("../templates"));
+
+
 $cle = $_GET['cle'];
 
 $cle = base64_decode($cle);
@@ -26,15 +30,6 @@ $jsonCle = json_decode($cle);
 
 $username = $jsonCle->auteur;
 $idPortfolio = $jsonCle->idPortfolio;
-
-
-    //-----------------------------------------//
-    //                 TWIG                    //
-    //-----------------------------------------//
-
-    Twig_Autoloader::register();
-    $twig = new Twig_Environment( new Twig_Loader_Filesystem("./tpl2"));
-
 
 $db = DB::getInstance();
 

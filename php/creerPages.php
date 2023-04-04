@@ -54,11 +54,13 @@ function creerPages($portfolioJSON, $db){
     $competences = $portfolioJSON->competences;
     $projets = $portfolioJSON->projets;
     $parcours = $portfolioJSON->parcours;
+    $diplomes = $portfolioJSON->diplomes;
 
     $username       = $_SESSION['user']->getNomUtilisateur();
     $numPortfolio   = $db->getNewestPortfolioId($username);
 
     creerPageCompetences($competences,$numPortfolio);
+    creerPageDiplomes($diplomes,$numPortfolio);
     creerPageProjets($projets,$numPortfolio);
     creerPageParcours($parcours,$numPortfolio);
     creerPageCV($portfolioJSON,$numPortfolio);
@@ -80,6 +82,19 @@ function creerPageCompetences($competences,$numPortfolio) {
     $competencesString .= "}";
 
     $db->addPage($username, $numPortfolio, $competencesString, "competences");
+}
+
+function creerPageDiplomes($diplomes,$numPortfolio){
+
+    global $db, $username;
+
+    $diplomesString = '{"diplomes": ';
+
+    $diplomesString .= json_encode($diplomes);
+
+    $diplomesString .= "}";
+
+    $db->addPage($username, $numPortfolio, $diplomesString, "diplomes");
 }
 
 function creerPageProjets($projets,$numPortfolio){
