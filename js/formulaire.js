@@ -26,19 +26,20 @@ class Travail {
 
 class Projet {
     constructor(nom, description, taille, lien, image) {
-      this.nom = nom;
-      this.description = description;
-      this.taille = taille;
-      this.lien = lien;
-      this.image = image;
+        this.nom = nom;
+        this.description = description;
+        this.taille = taille;
+        this.lien = lien;
+        this.image = image;
     }
 }
 
 class Competence {
-    constructor(nom, description, lien) {
-      this.nom = nom;
-      this.description = description;
-      this.lien = lien;
+    constructor(nom, description, lien, projet) {
+        this.nom = nom;
+        this.description = description;
+        this.lien = lien;
+        this.projet = projet;
     }
 }
 

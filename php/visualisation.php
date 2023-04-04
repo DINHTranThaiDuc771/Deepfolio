@@ -45,7 +45,11 @@ function affichePages($username, $idPortfolio, $db){
     $pages = $db->getPages($username, $idPortfolio);
 
     foreach($pages as $page) {
-        //var_dump($page);
+
+        var_dump($page);
+        //$typePage = $page
+
+        //switch($typePage)
     }
 
     }
