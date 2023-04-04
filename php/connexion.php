@@ -17,12 +17,11 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header('location: accueil.php');
     exit;
 }
- 
- 
+
 // Define variables and initialize with empty values
 $username = $password = $status = "";
 $username_err = $password_err = $login_err = "";
- 
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     
@@ -76,7 +75,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="../css/connexion.css" />
     <!-- JS -->
     <script src="../js/defile.js"></script>
-  </head>
   </head>
   <body>
     <!-- Start your project here-->

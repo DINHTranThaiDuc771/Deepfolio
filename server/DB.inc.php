@@ -3,6 +3,8 @@
 
 require "Portfolio.inc.php";
 require "Utilisateur.inc.php";
+require "Page.inc.php";
+
 
 
 class DB {
@@ -150,35 +152,48 @@ class DB {
 	      return $this->execQuery($requete,$tparam, "Utilisateur");
       }
 
-    public function getUserInfos($login) {
-        $requete = 'select * from utilisateur where nomUtilisateur = ? ';
-        $tparam = array( $login );
-        $result = $this->execQuery($requete,$tparam, '');
-        return $result[0];
-    }
+        public function getUserInfos($login) {
+            $requete = 'select * from utilisateur where nomUtilisateur = ? ';
+            $tparam = array( $login );
+            $result = $this->execQuery($requete,$tparam, '');
+            return $result[0];
+        }
 
-      public function getUsername() {
-            $requete = 'select nomUtilisateur from utilisateur';
-	        return $this->execQuery($requete,null, '');
-      }
+        public function getUsername() {
+                $requete = 'select nomUtilisateur from utilisateur';
+                return $this->execQuery($requete,null, '');
+        }
 
       public function getPortfolio($username, $id) {
             $requete = 'select * from portfolio where nomUtilisateur = ? and idPortfolio = ?';
             $tparaam = array( $username, $id);
-            return $this->execQuery($requete, $tparaam, "Portfolio");
-      }
-
-      public function getPortfolios($username) {
-            $requete = 'select * from portfolio where nomUtilisateur = ?';
-            $tparaam = array( $username);
             return $this->execQuery($requete, $tparaam, '');
       }
 
-      public function getMessages($username) {
-            $requete = 'select * from message where nomUtilisateur = ?';
-            $tparaam = array( $username);
-            return $this->execQuery($requete, $tparaam, '');
-      }
+        public function getPortfolios($username) {
+                $requete = 'select * from portfolio where nomUtilisateur = ?';
+                $tparaam = array( $username);
+                return $this->execQuery($requete, $tparaam, '');
+        }
+
+        public function getMessages($username) {
+                $requete = 'select * from message where nomUtilisateur = ?';
+                $tparaam = array( $username);
+                return $this->execQuery($requete, $tparaam, '');
+        }
+
+        public function getNewestPortfolioId($username){
+            $requete = 'select idportfolio from portfolio where idportfolio = (select max(idportfolio) from portfolio where nomutilisateur = ?);';
+            $tparam = array($username);
+            $result = $this->execQuery($requete, $tparam, '');
+            return $result[0]['idportfolio'];
+        }
+
+        public function getPages($username, $idportfolio){
+            $requete = 'select jsonpage from page where nomutilisateur = ? and idportfolio = ?';
+            $tparam = array($username, $idportfolio);
+            return $this->execQuery($requete, $tparam, 'Page');
+        }
 
       
       
@@ -198,7 +213,7 @@ class DB {
         return $this->execMaj($requete,$tparam);
       }
 
-      public function addPortfolio($username,$nomPortfolio, $accesible) {
+        public function addPortfolio($username,$nomPortfolio, $accesible) {
             $requete = 'insert into portfolio (nomUtilisateur, nomPortfolio, accesible) values(?,?,?)';
             $tparam = array($username, $nomPortfolio, $accesible);
             $result = $this->execMaj($requete,$tparam);
@@ -207,8 +222,8 @@ class DB {
             }else{return false;}
         }
 
-        public function addPage($username,$dPortfolio, $jsonPage) {
-            $requete = 'insert into page (nomutilisateur, idportfolio, jsonPage) values ( ?,?,? )';
+        public function addPage($username,$dPortfolio, $jsonPage, $typePage) {
+            $requete = 'insert into page (nomutilisateur, idportfolio, jsonPage) values (?, ?, ?, ?)';
             $tparam = array($username,$dPortfolio, $jsonPage);
             return $this->execMaj($requete,$tparam);
         }

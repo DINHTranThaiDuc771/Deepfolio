@@ -1,3 +1,26 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+require '../server/DB.inc.php';
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}  
+
+if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
+    header('location: ./connexion.php');
+}
+
+    $user = $_SESSION["user"];
+    $prenom = $user->getPrenom();
+    $nom = $user->getNom();
+    $age = $user->getAge();
+    $ville = $user->getVille();
+    $mail = $user->getMail();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,19 +63,19 @@
                                     <div id="informationsGauche" class="col-md-6">
                                         <p class="text-white-50 mb-5"></p>
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typeNom" class="form-control form-control-lg" name="nom" required/>
+                                            <input type="text" id="typeNom" class="form-control form-control-lg <?php if ($nom != "") echo "active"; ?>" value=<?php echo "\"$nom\"";?> name="nom" required/>
                                             <label class="form-label" for="typeNom">Nom</label>
                                             <div class="invalid-feedback">Veuillez entrer un nom</div>
                                         </div>
                                         
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typePrenom" class="form-control form-control-lg" name="prenom" required />
+                                            <input type="text" id="typePrenom" class="form-control form-control-lg <?php if ($prenom != "") echo "active"; ?>" value=<?php echo "\"$prenom\"";?> name="prenom" required />
                                             <label class="form-label" for="typePrenom">Prénom</label>
                                             <div class="invalid-feedback">Veuillez entrer un prénom</div>
                                         </div>
         
                                         <div class="form-outline mb-4">
-                                            <input type="number" min="13" id="typeAge" class="form-control form-control-lg" name="age" required />
+                                            <input type="number" min="13" id="typeAge" class="form-control form-control-lg <?php if ($age != "") echo "active"; ?>" name="age" value=<?php echo "\"$age\"";?> required />
                                             <label class="form-label" for="typeAge">Age</label>
                                             <div class="invalid-feedback">Veuillez entrer votre age</div>
                                         </div>
@@ -64,7 +87,7 @@
                                         </div>
         
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typeResidence" class="form-control form-control-lg" name="adresse"/>
+                                            <input type="text" id="typeResidence" class="form-control form-control-lg <?php if ($ville != "") echo "active"; ?>" value=<?php echo "\"$ville\"";?> name="adresse"/>
                                             <label class="form-label" for="typeResidence">Lieu de résidence</label>
                                             <div class="invalid-feedback">Veuillez entrer un lieu de résidence</div>
                                         </div>  
@@ -272,26 +295,32 @@
                                         <div class="invalid-feedback">Veuillez entrer un lien</div>
                                     </div>
 
-                                    <select class="browser-default custom-select form-outline mb-4" id="lienProjet"></select>
-
-                                    <div class="form-outline mb-4">
-                                        <input type="text" id="nomPortfolio" class="form-control form-control-lg"  name="nomPortfolio"/>
-                                        <label class="form-label" for="nomPortfolio">Nom du portfolio</label>
-                                        <div class="invalid-feedback">Veuillez entrer un nom pour ce portfolio</div>
-                                    </div>
-                                    <div class="form-check mb-4">
-                                        <input type="checkbox" id="accesible" class="form-check-input"  name="accessible"/>
-                                        <label class="form-check-label" for="accesible">Accesible</label>
-                                        <div class="invalid-feedback">Veuillez entrer une visibilité</div>
-                                    </div>
+                                    <select class="browser-default custom-select form-outline mb-4" id="lienProjet"></select>                                  
+                                
                                 </div>                                                 
                             </div>                       
                             <a class="ajouter" type="button">Ajouter</a>
 
                             <div class="form-outline mb-4 tableauElmt col-md-12"></div>
 
-                            <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
-                            <button class="btn btn-primary btn-lg px-5 ml-2" type="submit" name='submit'>Terminer</button>
+                            <div class="row mt-5">
+                                <div class="col-md-6">
+                                <div class="form-outline mb-1">
+                                        <input type="text" id="nomPortfolio" class="form-control form-control-lg"  name="nomPortfolio"/>
+                                        <label class="form-label" for="nomPortfolio">Nom du portfolio</label>
+                                        <div class="invalid-feedback">Veuillez entrer un nom pour ce portfolio</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                <div class="form-check mb-1">
+                                        <input type="checkbox" id="accesible" class="form-check-input"  name="accesible"/>
+                                        <label class="form-check-label" for="accesible">Accesible</label>
+                                        <div class="invalid-feedback">Veuillez entrer une visibilité</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary btn-lg px-5 mt-2 precedent" type="button">Précédent</button>
+                            <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Terminer</button>
                         </div>
                     </div>
                 </div>

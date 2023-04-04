@@ -23,7 +23,7 @@
     font-size: 16px;
     line-height: 50px;
     border-radius: 25px;
-    background-color: #f1f1f1;
+    background-color: #f1f1f1;  
   }
 
   .chip img {
@@ -32,4 +32,5 @@
     height: 50px;
     width: 50px;
     border-radius: 50%;
+    border: 1px solid black;
   }

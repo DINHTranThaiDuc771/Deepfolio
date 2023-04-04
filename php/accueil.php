@@ -10,14 +10,14 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }  
 
-if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
+if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
     header('location: ./connexion.php');
 }else{
-    $DB = DB::getInstance();
+    $DB = DB::getInstance();    
 
-    $username = $_SESSION["username"];
+    $user = $_SESSION["user"];
 
-    $listePortfolios = $DB->getPortfolios($username);
+    $listePortfolios = $DB->getPortfolios($user->getNomUtilisateur());
 }
 ?>
 
@@ -90,7 +90,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
 
                     <div>
                         <?php
-                            echo 'Bonjour '.$_SESSION["username"].' !';
+                            echo 'Bonjour '.$user->getNomUtilisateur().' !';
                         ?>
                     </div>
                     
@@ -131,6 +131,8 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["username"])) {
     <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
     <!-- JQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <!-- JSON Stringify -->
+    <script type="text/javascript" src="https://github.com/douglascrockford/JSON-js/blob/master/json2.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="../js/accueil.js"></script>
 </body>

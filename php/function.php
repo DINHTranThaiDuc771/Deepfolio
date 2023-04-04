@@ -11,8 +11,8 @@
 
     function userExists() {
         $DB = DB::getInstance();
-        $username = htmlspecialchars($_POST["username"]);
-        if(count($DB->userExists($username)) > 0) {
+        $user = $_SESSION["user"];
+        if(count($DB->userExists($user->getNomUtilisateur())) > 0) {
             echo "true";
         } else {
             echo "false";
@@ -21,15 +21,15 @@
 
     function getPortfolios() {
         $DB = DB::getInstance();
-        $username = htmlspecialchars($_SESSION["username"]);
-        $portfolios = $DB->getPortfolios($username);
+        $user = $_SESSION["user"];
+        $portfolios = $DB->getPortfolios($user->getNomUtilisateur());
         echo json_encode($portfolios);
     }
 
     function getMessages() {
         $DB = DB::getInstance();
-        $username = htmlspecialchars($_SESSION["username"]);
-        $messages = $DB->getMessages($username);
+        $user = $_SESSION["user"];
+        $messages = $DB->getMessages($user->getNomUtilisateur());
         echo json_encode($messages);
     }
 ?>

@@ -116,12 +116,25 @@ function nextPrev(n) {
         tabRequired[3] = false;
     }  
 
+    if (currentTab == nbTab ) 
+    {
+        tabRequired[0] = false;
+        tabRequired[1] = false;
+        tabRequired[2] = false;
+        tabRequired[3] = true;
+    }
+
     var tabInput = x[currentTab].querySelectorAll("input");
 
     var cpt = 0;
     Array.prototype.slice.call(tabInput).forEach((input) => {
+        console.log(input);
+        console.log(tabRequired[cpt]);
+
         if (tabRequired[cpt] != undefined)
             input.required = tabRequired[cpt++];
+
+        
     });
 
     showTab(currentTab);
@@ -173,8 +186,11 @@ function ajouterTab(event) {
 
     if ( currentTab == 2 ) {
         var textPoste = document.getElementById("typeDescriptionPoste"); 
+        description = textPoste.value;
 
-        tabElements[tabElements.length] = new Travail(tabText[0], tabText[1], textPoste.value, tabText[2], tabText[3] );
+        textPoste.value = "";
+
+        tabElements[tabElements.length] = new Travail(tabText[0], tabText[1], description, tabText[2], tabText[3] );
     }
     
     if ( currentTab == 3 ) {
@@ -265,7 +281,7 @@ function maj( area ) {
 function valider(event, form, indexSuivant)
 {
 
-    if (!form.checkValidity() && currentTab != nbTab) {
+    if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();
     } else {

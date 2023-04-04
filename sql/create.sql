@@ -37,6 +37,7 @@ create table page (
     idPortfolio int,
     idPage serial not null,
     jsonPage json not null,
+    type varchar(30) not null,
     foreign key (nomUtilisateur, idPortfolio) references portfolio(nomUtilisateur, idPortfolio),
     primary key(nomUtilisateur, idPortfolio, idPage)
 );
