@@ -1,7 +1,7 @@
 
 {% block cv %}
     <div class="row mb-2">
-        <h1 class="editableText"> {{ prenom }} {{ nom }}</h1>
+        <h1 class="editableText"> {{ nom }}  {{ prenom }}</h1>
         <h1 class="editableText">( {{ age }})</h1>
     </div>
     <hr>
@@ -17,7 +17,7 @@
         <h2>Compétences</h2>
         <li style="list-style: none;">
             {% for competence in competences %}
-                <ul class="editableText">{{ nomCompetence }} </ul>
+                <ul class="editableText">{{ competence.getNom() }} </ul>
             {% endfor %}
         </li>
     </div>
@@ -51,8 +51,8 @@
         <li style="list-style: none;">
             {% for diplome in diplomes %}
                 <ul>
-                    <h3 class="editableText">{{ diplome.getEtablissement() }}</h3>
-                    <p class="editableText">{{ diplome.getDescription() }}</p>
+                    <h3 class="editableText">{{ diplome.getNom() }} à {{ diplome.getEtablissement() }}</h3>
+                    <p class="editableText">{{ diplome.getAnneeObtention() }}</p>
                 </ul>
             {% endfor %}
         </li>

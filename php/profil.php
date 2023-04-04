@@ -27,6 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $ville      = htmlSpecialChars($_POST["ville"]);
   $mail       = htmlSpecialChars($_POST["mail"]);
 
+  if ( $age == "" || $age == null) $age = 18;
+
   $db = DB::getInstance();
 
   $db->changePersonalInfo($user->getNomUtilisateur(), $nom, $prenom, $age, $ville, $user->getUniversite(), $mail);
@@ -180,7 +182,7 @@ function formulaire(){
   <!-- Custom scripts -->
   <script type="text/javascript" src="../js/profil.js"></script>
 
-  <?php echo "<script> changerSvg(\"" . $_SESSION["user"]->getNom() . "\"); </script>" ?>
+  <?php echo "<script> changerSvg(\"" . $_SESSION["user"]->getNomUtilisateur() . "\"); </script>" ?>
 </body>
 </body>
 

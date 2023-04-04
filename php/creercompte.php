@@ -33,7 +33,8 @@
     $DB->addUtilisateur($nomUtilisateur, $hashed_password);
     $DB->changePersonalInfo($nomUtilisateur, $nom, $prenom, $age, $ville, $universite, $mail);
 
-    $user = $DB->getUser($username, $mdp);
+    $user = $DB->getUser($nomUtilisateur, $hashed_password);
+
 
     $_SESSION["loggedin"] = true;
     $_SESSION["user"] = $user[0];

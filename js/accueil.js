@@ -106,29 +106,33 @@ function addPortfolio(p, i) {
 
     var div2 = document.createElement("div");
     div2.classList.add("card");
+    div2.setAttribute("style", "margin-top:15px;height:18rem;")
 
     var div3 = document.createElement("div");
     div3.classList.add("bg-image");
     div3.classList.add("hover-overlay");
     div3.classList.add("ripple");
     div3.setAttribute("data-mdb-ripple-color", "light");
+    div3.setAttribute("style", "height:12rem;margin:auto;")
 
     var img = document.createElement("img");
     img.classList.add("img-fluid");
-    if (p.nomUtilisateur == "admin")
+    if (p.nomUtilisateur == "admin") {
         img.setAttribute("src", "../img/add.png");
-    else
+        img.setAttribute("style", "height:8rem;margin:auto;opacity:0.25;margin-top:40%;");
+    }
+    else {
         img.setAttribute("src", "../img/portfolio.jpeg");
+        img.setAttribute("style", "height:12rem;margin:auto;opacity:0.60;");
+    }
 
     var div4 = document.createElement("div");
     div4.classList.add("card-body");
 
     var h5 = document.createElement("h5");
     h5.classList.add("card-title");
+    h5.setAttribute("style", "text-align:center;")
     h5.textContent = portfolio.nom;
-
-    var p = document.createElement("p");
-    p.classList.add("card-text");
 
     portfolios.appendChild(div0);
     div0.appendChild(div1);
