@@ -24,7 +24,7 @@
     $universite = htmlSpecialChars($_POST["universite"]);
     $mail       = htmlSpecialChars($_POST["mail"]);
 
-    if ( $age == "") $age = 18;
+    if ($age == "") $age = 18;
     
     $DB = DB::getInstance();
 

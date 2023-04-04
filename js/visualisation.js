@@ -22,11 +22,73 @@ window.onload = () => {
     
     //Editer
     var lstEditableText = document.getElementsByClassName("editableText");
-    var btnEditer = document.getElementById("btnEditer");
-    btnEditer       .addEventListener("click",()=>{toggleEdit(lstEditableText)},false);
+    var btnToggleEdit = document.getElementById("btnToggleEdit");
+    btnToggleEdit       .addEventListener("click",()=>{toggleEdit(lstEditableText)},false);
+    //Les btn pour ajouter
+    var btnAjouterProjet = document.getElementById("btnAjouterProjet");
+    var btnAjouterComp   = document.getElementById("btnAjouterComp");
+    btnAjouterProjet.addEventListener("click",ajouterProjet,false);
+    btnAjouterComp  .addEventListener("click",ajouterComp  ,false);
 
 }
+btnAjouterProjet.style.display = "none";
+btnAjouterComp  .style.display = "none";
+function ajouterProjet()
+{
+    var html = '<div class="row">' +
+    '<div class="mb-5 col-md-4 d-flex justify-content-center">' +
+    '<img src="../img/favicon_io/android-chrome-192x192.png" alt="">' +
+    '</div>' +
+    '<div style="padding:30px;" class="col-md-8 d-flex justify-content-center">' +
+    '<p class="editableText">' +
+    '<strong class="editableText" style="font-size: 24px;">Nom Projet</strong><br>' +
+    '<strong class="editableText">5 personnes</strong><br>' +
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ' +
+    'et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut ' +
+    'aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse ' +
+    'cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in ' +
+    'culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur ' +
+    'adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ' +
+    'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequatunt in ' +
+    'culpa qui officia deserunt mollit anim id est laborum.' +
+    '</p>' +
+    '</div>' +
+    '</div>';
+    btnAjouterProjet.parentNode.insertAdjacentHTML("beforebegin", html);
+    lstEditableText = document.getElementsByClassName("editableText");
+    for (var i=0; i< lstEditableText.length; i++)
 
+    {   
+        lstEditableText[i].setAttribute("contenteditable","true");
+        lstEditableText[i].classList.add("isEditText");
+    }
+}
+function ajouterComp () 
+{
+    const newHtml = `
+            <section class="content ">
+            <h1 class="editableText">Elaborer des conceptions simples</h1>
+            <article class="editableText">
+                <div class="left">
+                    <ul>
+                        <li>Je sais construire UML diagram (en respectant les normes grâce à uml-diagrams.org)</li>
+                        <li>Je sais utiliser Github pour gerer les versions de mon projet</li>
+                    </ul>
+                </div>
+
+            </article>
+        </section>
+    `;
+
+    btnAjouterComp.parentNode.insertAdjacentHTML('beforebegin', newHtml);
+    lstEditableText = document.getElementsByClassName("editableText");
+    for (var i=0; i< lstEditableText.length; i++)
+
+    {   
+        lstEditableText[i].setAttribute("contenteditable","true");
+        lstEditableText[i].classList.add("isEditText");
+    }
+}
 function toggleEdit(lstEditableText) {
     isEditing = !isEditing;
     if (isEditing)
@@ -37,6 +99,8 @@ function toggleEdit(lstEditableText) {
             lstEditableText[i].setAttribute("contenteditable","true");
             lstEditableText[i].classList.add("isEditText");
         }
+        btnAjouterProjet.style.display = "inline-block";
+        btnAjouterComp  .style.display = "inline-block";
         return;
     }
     if (!isEditing)
@@ -47,6 +111,8 @@ function toggleEdit(lstEditableText) {
             lstEditableText[i].classList.remove("isEditText");
 
         }
+        btnAjouterProjet.style.display = "none";
+        btnAjouterComp  .style.display = "none";
         return;
     }
 }
