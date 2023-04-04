@@ -4,7 +4,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
 require_once '../server/DB.inc.php';
-require_once "../../Twig/lib/Twig/Autoloader.php";
+require_once "../Twig/lib/Twig/Autoloader.php";
+require '../server/Competence.inc.php';
+require '../server/Projet.inc.php';
+require '../server/Diplome.inc.php';
+require '../server/ExperiencePro.inc.php';
 
 session_start();
 
@@ -17,6 +21,13 @@ if(!isset($_GET['cle'])){
     header("Location: accueil.php");
     exit();
 }
+
+
+//------------ Variables globales ------------//
+$nomportfolio; $adresse; $mail;
+$reseaux; $description; $nom;
+$prenom; $age; $competences; 
+$projets; $parcours; $diplomes;
 
 Twig_Autoloader::register();
 $twig = new Twig_Environment( new Twig_Loader_Filesystem("../templates"));
@@ -36,18 +47,30 @@ $db = DB::getInstance();
 affichePages($username, $idPortfolio, $db);
 
 $tpl = $twig->loadTemplate( "tplVisu.tpl" );
-        
-echo $tpl->render(array());
 
+echo $tpl->render(array(
+    //'nomportfolio' => $nomportfolio,
+    'ville' => $adresse,
+    //'mail' => $mail,
+    'reseaux' => $reseaux,
+    'description' => $description,
+    'competences' => $competences,
+    'prenom' => $prenom,
+    'nom' => $nom,
+    'age' => $age,
+    'projets' => $projets,
+    'parcours' => $parcours,
+    'diplomes' => $diplomes
+));
+        
 function affichePages($username, $idPortfolio, $db){
     
     $pages = $db->getPages($username, $idPortfolio);
 
     foreach($pages as $page) {
 
-        var_dump($page);
-        //$typePage = $page
-        /*
+        $typePage = $page->getType();
+
         switch($typePage){
             case 'cv':
                 //TODO: recuperer les infos
@@ -70,54 +93,85 @@ function affichePages($username, $idPortfolio, $db){
                 recupInfosDiplomes($page);
                 break;
         }
-        */
     }
 
 }
 
 function recupInfosCV($page){
-    $jsonpage = $page['jsonPage'];
+
+    global $adresse, $reseaux, $description, $nom, $prenom, $age;
+
+    $jsonpage = $page->getJson();
+    $cvJson = json_decode($jsonpage, true); //array avec les infos du cv
+
+    //$nomportfolio = $cvJson['nomportfolio'];
+    $adresse = $cvJson['adresse'];
+    //$mail = $cvJson['mail'];
+    $reseaux = $cvJson['reseaux'];
+    $description = $cvJson['presentation'];
+    $nom = $cvJson['nom'];
+    $prenom = $cvJson['prenom'];
+    $age = $cvJson['age'];
 }
 
 function recupInfosCompetences($page){
 
-    $jsonPage       = $page['jsonPage'];
-    $competences    = $jsonPage->competences; //tableau de competences
+    global $competences;
 
-    foreach($competences as $competence){
-       new Competence($competence->nom, $competence->description, $competence->lien);
+    $jsonPage           = $page->getJson();
+    $competencesJson    = json_decode($jsonPage, true); //tableau de competences
+    $tabCompetences     = $competencesJson['competences']; 
+
+    $competences = array();
+
+    foreach($tabCompetences as $competence){
+       array_push($competences, new Competence($competence['nom'], $competence['description'], $competence['lien']));
     }
 }
 
 function recupInfosProjets($page){
 
-    $jsonPage       = $page['jsonPage'];
-    $projets        = $jsonPage->projets; //tableau de projets
+    global $projets;
 
-    foreach($projets as $projet){
-        new Projet($projet->nom, $projet->description, $projet->taille, $projet->lien, $projet->image);
+    $jsonPage       = $page->getJson();
+    $projetsJson    = json_decode($jsonPage, true); //tableau de projets
+    $tabProjets     = $projetsJson['projets'];
+
+    $projets = array();
+
+    foreach($tabProjets as $projet){
+        array_push($projets, new Projet($projet['nom'], $projet['description'], $projet['taille'], $projet['lien'], $projet['image']));
     }
-
 }
 
 function recupInfosParcours($page){
 
-    $jsonPage       = $page['jsonPage'];
-    $experiences    = $jsonPage->parcours; //tableau d'experiences
+    global $parcours;
 
-    foreach($experiences as $experience){
-        new ExperiencePro($experience->nom, $experience->entreprise, $experience->description, $experience->dateDebut ,$experience->dateFin);
+    $jsonPage           = $page->getJson();
+    $experiencesJson    = json_decode($jsonPage, true); //tableau d'experiences
+    $tabExperiences     = $experiencesJson['parcours'];
+
+    $parcours = array();
+
+    foreach($tabExperiences as $experience){
+        array_push($parcours, new ExperiencePro($experience['nom'], $experience['entreprise'], $experience['description'], $experience['dateDebut'] ,$experience['dateFin']));
     }
 
 }
 
 function recupInfosDiplomes($page){
 
-    $jsonPage   = $page['jsonPage'];
-    $diplomes   = $jsonPage->diplomes; //tableau de diplomes
+    global $diplomes;
 
-    foreach($diplomes as $diplome){
-        new Diplome($diplome->nom, $diplome->etablissement, $diplome->annee);
+    $jsonPage       = $page->getJson();
+    $diplomesJson   = json_decode($jsonPage, true); //tableau de diplomes
+    $tabDiplomes    = $diplomesJson['diplomes'];
+
+    $diplomes = array();
+
+    foreach($tabDiplomes as $diplome){
+        array_push($diplomes, new Diplome($diplome['nom'], $diplome['etablissement'], $diplome['annee']));
     }
 
 }

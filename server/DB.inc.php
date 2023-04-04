@@ -190,7 +190,7 @@ class DB {
         }
 
         public function getPages($username, $idportfolio){
-            $requete = 'select jsonpage from page where nomutilisateur = ? and idportfolio = ?';
+            $requete = 'select * from page where nomutilisateur = ? and idportfolio = ?';
             $tparam = array($username, $idportfolio);
             return $this->execQuery($requete, $tparam, 'Page');
         }
