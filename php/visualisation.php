@@ -44,6 +44,8 @@ $jsonCle = json_decode($cle);
 $username = $jsonCle->auteur;
 $idPortfolio = $jsonCle->idPortfolio;
 
+setcookie('proprio_portfolio', $username, []);
+
 $db = DB::getInstance();
 
 affichePages($username, $idPortfolio, $db);
