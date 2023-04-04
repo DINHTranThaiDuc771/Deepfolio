@@ -39,7 +39,7 @@
                 <!-- Left links -->
                 <img id="logo-nav" src="..\img\favicon_io\logo-79x76.png" alt="">
                 <div style="margin-left: 20px;">
-                    <h1 class="editableText">Portfolio A</h1>
+                    <h1 class="editableText">{{ nomPortfolio }}</h1>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a id="linkAccueil"class="nav-link active" aria-current="page" href="#">Accueil</a>
