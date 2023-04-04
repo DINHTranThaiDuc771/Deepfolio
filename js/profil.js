@@ -3,7 +3,6 @@ var tabPortfolio;
 
 var isSideBarOpened;
 
-
 function Portfolio(nomUtilisateur, idPortfolio, nom, accessible, ville) {
     this.nomUtilisateur = nomUtilisateur;
     this.idPortfolio = idPortfolio;
@@ -28,7 +27,6 @@ function toggleMenu(){
         document.getElementById("sidebar").style.transform  = "translateX(-240px)";
     }
 } 
-
 
 function changerTab(tab){
 
@@ -128,13 +126,13 @@ function addPortfolio(p) {
     btnDel.classList.add("btn");
     btnDel.classList.add("btn-danger");
     btnDel.id = "btnDel"+portfolio.idPortfolio;
-    btnDel.addEventListener("click", function() {
+    btnDel.addEventListener("click", function(event) {
         $.ajax({
             type:"POST",
             url:"./function.php",
             data:"action=deletePortfolio&idPortfolio="+portfolio.idPortfolio,
             complete: function() {
-                var btnSuppr = document.getElementById("btnDel"+portfolio.idPortfolio);
+                var btnSuppr = event.target;
                 btnSuppr.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode.parentNode.parentNode.parentNode);
             }
         })

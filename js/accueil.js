@@ -21,19 +21,6 @@ function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
 
 var listPortfolios = [new Portfolio("admin", 0, "Créer un portfolio", false)];
 
-function clickBtnMail() {
-    isSideBarOpened = !isSideBarOpened;
-
-
-    if (isSideBarOpened) {
-        document.getElementById("sidebar").style.transform = "translateX(0)";
-    }
-    else {
-        document.getElementById("sidebar").style.transform = "translateX(-240px)";
-    }
-
-}
-
 function searchPortfolio() {
     var container = document.getElementById("portfolios");
 
@@ -113,7 +100,7 @@ function addPortfolio(p, i) {
     div3.classList.add("hover-overlay");
     div3.classList.add("ripple");
     div3.setAttribute("data-mdb-ripple-color", "light");
-    div3.setAttribute("style", "height:12rem;margin:auto;");
+    div3.setAttribute("style", "height:12rem;margin:auto;")
 
     var img = document.createElement("img");
     img.classList.add("img-fluid");
@@ -174,17 +161,18 @@ function addMessage(m) {
     var divBtn = document.createElement("div");
 
     var btn = document.createElement("button");
+    console.log("btn" + message.nomUtilisateur + message.mail);
     btn.id = "btn" + message.nomUtilisateur + message.mail;
     btn.classList.add("btn");
     btn.classList.add("btn-danger");
     btn.textContent = message.btn;
-    btn.addEventListener("click", function () {
+    btn.addEventListener("click", function (event) {
         $.ajax({
             type:"POST",
             url:"./function.php",
             data:"action=deleteMessage&nomUtilisateur=" + message.nomUtilisateur + "&mail=" + message.mail,
             complete: function() {
-                var btnSuppr = document.getElementById(this.id);
+                var btnSuppr = event.target;
                 btnSuppr.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode);
             }
         });
@@ -255,7 +243,9 @@ function addMessages() {
 }
 function init() {
     var btn = document.getElementById("btnMail");
-    btn.addEventListener("click", clickBtnMail, false);
+    btn.addEventListener("click", () => {
+        document.getElementById("sidebar").style.transform = "translateX(0)";
+    }, false);
 
     var btnCloseSideBar = document.getElementById("btnCloseSideBar");
     btnCloseSideBar.addEventListener("click", () => {
