@@ -3,7 +3,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-require '../server/DB.inc.php';
+require_once '../server/DB.inc.php';
+require_once "../../Twig/lib/Twig/Autoloader.php";
+
 session_start();
 
 if(!isset($_SESSION['user'])){
@@ -24,6 +26,14 @@ $jsonCle = json_decode($cle);
 
 $username = $jsonCle->auteur;
 $idPortfolio = $jsonCle->idPortfolio;
+
+
+    //-----------------------------------------//
+    //                 TWIG                    //
+    //-----------------------------------------//
+
+    Twig_Autoloader::register();
+    $twig = new Twig_Environment( new Twig_Loader_Filesystem("./tpl2"));
 
 
 $db = DB::getInstance();
