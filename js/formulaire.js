@@ -49,6 +49,7 @@ var currentTab = 0; // Current tab is set to be the first tab (0)
 var nbTab = 4;
 var tabElements = new Array();
 
+var reseaux = ["Facebook", "GitHub", "Google", "Instagram", "LinkedIn", "Twitter", "YouTube"];
 
 function showTab(n) {
     // This function will display the specified tab of the form ...
