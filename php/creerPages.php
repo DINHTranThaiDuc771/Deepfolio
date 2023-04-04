@@ -54,10 +54,10 @@ function creerPages($portfolioJSON, $db){
     $username       = $_SESSION['user']->getNomUtilisateur();
     $numPortfolio   = $db->getNewestPortfolioId($username);
 
-    creerJsonCompetences($competences);
-    creerJsonProjets($projets);
-    creerJsonParcours($parcours);
-    creerJsonPageCV($portfolioJSON);
+    creerPageCompetences($competences);
+    creerPageProjets($projets);
+    creerPageParcours($parcours);
+    creerPageCV($portfolioJSON);
 
     $url['auteur'] = $username;
     $url['idPortfolio'] = $numPortfolio;
