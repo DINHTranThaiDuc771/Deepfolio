@@ -202,6 +202,13 @@ class DB {
             return(strcmp($result[0]['count'],"1"));
         }
 
+        public function isPortfolioAccessible($username, $idPortfolio){
+            $requete = 'select accesible from portfolio where nomutilisateur = ? and idportfolio = ?';
+            $tparam = array($username, $idPortfolio);
+            $result = $this->execQuery($requete, $tparam, '');
+            return(strcmp($result[0]['accesible'],"1"));
+        }
+
       
       
       //*********************************************************//
