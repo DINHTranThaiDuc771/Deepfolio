@@ -3,12 +3,11 @@ var tabPortfolio;
 
 var isSideBarOpened;
 
-function Portfolio(nomUtilisateur, idPortfolio, nom, accessible, ville) {
+function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
     this.nomUtilisateur = nomUtilisateur;
     this.idPortfolio = idPortfolio;
     this.nom = nom;
     this.accessible = accessible;
-    this.ville = ville;
 }
 
 var listPortfolios = [];
@@ -53,8 +52,7 @@ function addPortfolios() {
                 listPortfolios.push(new Portfolio(json[i].nomutilisateur,
                                                 json[i].idportfolio,
                                                 json[i].nomportfolio,
-                                                json[i].accessible,
-                                                json[i].ville));
+                                                json[i].accessible));
             }
 
             // Ajout des portfolios
@@ -68,6 +66,16 @@ function addPortfolios() {
 function addPortfolio(p) {
     var portfolios = document.getElementById("tab-portfolio");
     var portfolio = p;
+
+    var ville = "test";
+    $.ajax({
+        type:"POST",
+        url:"./function.php",
+        data:"action=getPages&idPortfolio="+portfolio.idPortfolio,
+        complete: function(data) {
+            console.log(data.responseText);
+        }
+    })
 
     var div0 = document.createElement("div");
     div0.classList.add("card");
@@ -109,7 +117,7 @@ function addPortfolio(p) {
 
     var small = document.createElement("small");
     small.classList.add("text-muted");
-    small.textContent = "Ville" + portfolio.ville;
+    small.textContent = ville;
 
     var div8 = document.createElement("div");
     div8.classList.add("col-md-4");
@@ -151,6 +159,7 @@ function addPortfolio(p) {
     div5.appendChild(div6);
     div6.appendChild(h5);
     div5.appendChild(div7);
+    div7.appendChild(small);
     div4.appendChild(div8);
     div8.appendChild(btnDl);
     btnDl.appendChild(imgDl);

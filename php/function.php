@@ -95,4 +95,12 @@
         $idPortfolio = $_POST['idPortfolio'];
         $DB->deletePortfolio($user->getNomUtilisateur(), $idPortfolio);
     }
+
+    function getPages() {
+        $DB = DB::getInstance();
+        $user = $_SESSION["user"];
+        $idPortfolio = $_POST['idPortfolio'];
+        $pages = $DB->getPages($user->getNomUtilisateur(), $idPortfolio);
+        echo json_encode($pages);
+    }
 ?>

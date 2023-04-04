@@ -42,14 +42,9 @@ class Competence {
     }
 }
 
-
-
-
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var nbTab = 4;
 var tabElements = new Array();
-
-var reseaux = ["Facebook", "GitHub", "Google", "Instagram", "LinkedIn", "Twitter", "YouTube"];
 
 function showTab(n) {
     // This function will display the specified tab of the form ...
@@ -157,7 +152,7 @@ function ajouterTab(event) {
     var divFormulaires = event.target.parentElement;
 
     var tabChips = divFormulaires.getElementsByClassName("tableauElmt")[0];
-     
+
     while ( tabChips == undefined) {
         divFormulaires = divFormulaires.parentElement;
         tabChips = divFormulaires.getElementsByClassName("tableauElmt")[0];
@@ -410,7 +405,7 @@ window.onload = () => {
     addEventListener("keypress", (event) => {
         if (event.key === 'Enter') {
             valider(event, form, 1);     
-          }
+        }
     });
 
 
