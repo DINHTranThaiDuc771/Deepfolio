@@ -10,7 +10,9 @@ require '../server/Projet.inc.php';
 require '../server/Diplome.inc.php';
 require '../server/ExperiencePro.inc.php';
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 if(!isset($_SESSION['user'])){
     header("Location: connexion.php");
