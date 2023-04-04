@@ -1,6 +1,6 @@
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var nbTab = 1;
-showTab(currentTab); // Display the current tab
+ // Display the current tab
 
 function showTab(n) {
     // This function will display the specified tab of the form ...
@@ -21,7 +21,7 @@ function nextPrev(n) {
     var required;
 
     required = currentTab == 1;
-   
+
     document.getElementById("typePrenom").classList.remove("active");
     document.getElementById("typeNom").classList.remove("active");
 
@@ -35,7 +35,7 @@ function valider(event, form)
 {
 
 
-    if (!form.checkValidity() && currentTab != nbTab) {
+    if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();
     } else {
@@ -49,11 +49,13 @@ function valider(event, form)
 
 function verifierNom(event, form) {
     var nomUtilisateur = document.getElementById("typeNomUtilisateur").value;
+    console.log("verifier nom utilisateur " + nomUtilisateur);
     $.ajax({
         type:"POST",
         url:"./function.php",
         data:"action=userExists&username=" + nomUtilisateur,
         complete: function(data) {
+            console.log(data.responseText);
             if (data.responseText.includes("true"))
             {
                 alert("Nom déjà utilisé");
@@ -65,8 +67,6 @@ function verifierNom(event, form) {
         }
     });   
 }
-
-
 
 window.onload = function(){
 
@@ -91,5 +91,5 @@ window.onload = function(){
         }
     });
 
-
+    showTab(currentTab);
 }

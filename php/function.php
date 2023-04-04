@@ -41,11 +41,9 @@
 
 
     function userExists() {
-
-        global $db;
-
-        $user = $_SESSION["user"];
-        if(count($db->userExists($user->getNomUtilisateur())) > 0) {
+        $DB = DB::getInstance();
+        $user = $_POST["username"];
+        if(count($DB->userExists($user)) > 0) {
             echo "true";
         } else {
             echo "false";
