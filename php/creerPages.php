@@ -10,34 +10,34 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }  
 
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+if( !isset($_SESSION["loggedin"])) {
+    header("Location: connexion.php");
+    exit();    
+}
 
-    if (isset($_POST['nomPortfolio'])) {
+if (isset($_POST['nomPortfolio'])) {
 
 
-        $portfolio_cookie =  html_entity_decode($_COOKIE['portfolio']);
-        $portfolio_json = json_decode($portfolio_cookie);
+    $portfolio_cookie =  html_entity_decode($_COOKIE['portfolio']);
+    $portfolio_json = json_decode($portfolio_cookie);
 
-        $username = $_SESSION['user']->getNomUtilisateur();
-        $nomPortfolio = $_POST['nomPortfolio'];
-        $accesible  = isset($_POST['accesible']);
+    $username = $_SESSION['user']->getNomUtilisateur();
+    $nomPortfolio = $_POST['nomPortfolio'];
+    $accesible  = isset($_POST['accesible']);
 
-        $db = DB::getInstance();
+    $db = DB::getInstance();
 
-        $result = $db->addPortfolio($username, $nomPortfolio, var_export($accesible, true));
+    $result = $db->addPortfolio($username, $nomPortfolio, var_export($accesible, true));
 
-        if($result) {
-            creerPages($portfolio_json, $db);
-        }
-        else {
-            echo "Erreur lors de la création du portfolio";
-        }
-
+    if($result) {
+        creerPages($portfolio_json, $db);
+    }
+    else {
+        echo "Erreur lors de la création du portfolio";
     }
 
-}else{
-    header("Location: connexion.php");    
 }
+
 
 
 function creerPages($portfolioJSON, $db){
@@ -66,7 +66,7 @@ function creerPages($portfolioJSON, $db){
     header("Location: visualisation.php?cle=\"" . base64_encode(json_encode($url)) . "\""); 
 }
 
-function creerJsonCompetences($competences){
+function creerJsonCompetences($competences) {
 
     $competencesString = '{"page": "competences", "competences": ';
 
