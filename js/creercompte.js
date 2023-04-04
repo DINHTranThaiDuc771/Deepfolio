@@ -38,8 +38,10 @@ function valider(event, form)
     if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();
+        console.log("pas valide");
     } else {
         form.classList.remove('was-validated');
+        console.log("valide");
         nextPrev(1);
         return;
     }
