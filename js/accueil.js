@@ -21,19 +21,6 @@ function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
 
 var listPortfolios = [new Portfolio("admin", 0, "Créer un portfolio", false)];
 
-function clickBtnMail() {
-    isSideBarOpened = !isSideBarOpened;
-
-
-    if (isSideBarOpened) {
-        document.getElementById("sidebar").style.transform = "translateX(0)";
-    }
-    else {
-        document.getElementById("sidebar").style.transform = "translateX(-240px)";
-    }
-
-}
-
 function searchPortfolio() {
     var container = document.getElementById("portfolios");
 
@@ -106,29 +93,33 @@ function addPortfolio(p, i) {
 
     var div2 = document.createElement("div");
     div2.classList.add("card");
+    div2.setAttribute("style", "margin-top:15px;height:18rem;")
 
     var div3 = document.createElement("div");
     div3.classList.add("bg-image");
     div3.classList.add("hover-overlay");
     div3.classList.add("ripple");
     div3.setAttribute("data-mdb-ripple-color", "light");
+    div3.setAttribute("style", "height:12rem;margin:auto;")
 
     var img = document.createElement("img");
     img.classList.add("img-fluid");
-    if (p.nomUtilisateur == "admin")
+    if (p.nomUtilisateur == "admin") {
         img.setAttribute("src", "../img/add.png");
-    else
+        img.setAttribute("style", "height:8rem;margin:auto;opacity:0.25;margin-top:40%;");
+    }
+    else {
         img.setAttribute("src", "../img/portfolio.jpeg");
+        img.setAttribute("style", "height:12rem;margin:auto;opacity:0.60;");
+    }
 
     var div4 = document.createElement("div");
     div4.classList.add("card-body");
 
     var h5 = document.createElement("h5");
     h5.classList.add("card-title");
+    h5.setAttribute("style", "text-align:center;")
     h5.textContent = portfolio.nom;
-
-    var p = document.createElement("p");
-    p.classList.add("card-text");
 
     portfolios.appendChild(div0);
     div0.appendChild(div1);
@@ -170,13 +161,21 @@ function addMessage(m) {
     var divBtn = document.createElement("div");
 
     var btn = document.createElement("button");
-    btn.id = "btn" + message.id;
+    console.log("btn" + message.nomUtilisateur + message.mail);
+    btn.id = "btn" + message.nomUtilisateur + message.mail;
     btn.classList.add("btn");
     btn.classList.add("btn-danger");
     btn.textContent = message.btn;
-    btn.addEventListener("click", function () {
-        var btnSuppr = document.getElementById(this.id);
-        btnSuppr.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode);
+    btn.addEventListener("click", function (event) {
+        $.ajax({
+            type:"POST",
+            url:"./function.php",
+            data:"action=deleteMessage&nomUtilisateur=" + message.nomUtilisateur + "&mail=" + message.mail,
+            complete: function() {
+                var btnSuppr = event.target;
+                btnSuppr.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode);
+            }
+        });
     });
 
     messages.appendChild(div);
@@ -230,8 +229,8 @@ function addMessages() {
                 listMessages.push(new Message(json[i].nomutilisateur, 
                                             json[i].nomenvoyeur, 
                                             json[i].prenom,
+                                            json[i].mailmessage,
                                             json[i].objet,
-                                            json[i].mail,
                                             json[i].message));
             }
 
@@ -244,7 +243,9 @@ function addMessages() {
 }
 function init() {
     var btn = document.getElementById("btnMail");
-    btn.addEventListener("click", clickBtnMail, false);
+    btn.addEventListener("click", () => {
+        document.getElementById("sidebar").style.transform = "translateX(0)";
+    }, false);
 
     var btnCloseSideBar = document.getElementById("btnCloseSideBar");
     btnCloseSideBar.addEventListener("click", () => {

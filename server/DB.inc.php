@@ -190,7 +190,7 @@ class DB {
         }
 
         public function getPages($username, $idportfolio){
-            $requete = 'select jsonpage from page where nomutilisateur = ? and idportfolio = ?';
+            $requete = 'select * from page where nomutilisateur = ? and idportfolio = ?';
             $tparam = array($username, $idportfolio);
             return $this->execQuery($requete, $tparam, 'Page');
         }
@@ -266,6 +266,12 @@ class DB {
         public function deletePortfolio( $username, $idPortfolio) {
             $requete = 'delete from portfolio where nomUtilisateur = ? and idPortfolio = ?';
             $tparam = array( $username, $idPortfolio);
+            return $this->execMaj($requete,$tparam);
+        }
+
+        public function deleteMessage($username, $mail) {
+            $requete = 'delete from message where nomUtilisateur = ? and mailMessage = ?';
+            $tparam = array( $username, $mail);
             return $this->execMaj($requete,$tparam);
         }
 

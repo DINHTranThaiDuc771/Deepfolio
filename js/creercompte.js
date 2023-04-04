@@ -78,7 +78,7 @@ window.onload = function(){
     btnPrecedent.addEventListener("click", function() { nextPrev(-1); });
 
     btnSuivant.addEventListener("click", (event) => {
-           verifierNom(event, form);
+            verifierNom(event, form);
     }, false);
 
     form.addEventListener('submit', (event) => {
@@ -88,7 +88,7 @@ window.onload = function(){
     addEventListener("keypress", (event) => {
         if (event.key === 'Enter') {
             verifierNom(event, form);   
-          }
+        }
     });
 
 

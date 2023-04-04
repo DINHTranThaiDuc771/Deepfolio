@@ -24,7 +24,7 @@
     $universite = htmlSpecialChars($_POST["universite"]);
     $mail       = htmlSpecialChars($_POST["mail"]);
 
-    if ( $age == "") $age = 18;
+    if ($age == "") $age = 18;
     
     $DB = DB::getInstance();
 
@@ -33,7 +33,8 @@
     $DB->addUtilisateur($nomUtilisateur, $hashed_password);
     $DB->changePersonalInfo($nomUtilisateur, $nom, $prenom, $age, $ville, $universite, $mail);
 
-    $user = $DB->getUser($username, $mdp);
+    $user = $DB->getUser($nomUtilisateur, $hashed_password);
+
 
     $_SESSION["loggedin"] = true;
     $_SESSION["user"] = $user[0];
