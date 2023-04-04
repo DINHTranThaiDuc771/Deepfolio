@@ -269,6 +269,12 @@ class DB {
             return $this->execMaj($requete,$tparam);
         }
 
+        public function deleteMessage($username, $mail) {
+            $requete = 'delete from message where nomUtilisateur = ? and mailMessage = ?';
+            $tparam = array( $username, $mail);
+            return $this->execMaj($requete,$tparam);
+        }
+
 
 } //fin classe DB
 
