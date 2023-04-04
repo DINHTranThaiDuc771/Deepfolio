@@ -61,7 +61,7 @@ echo $tpl->render(array(
     'nom' => $nom,
     'age' => $age,
     'projets' => $projets,
-    'parcours' => $parcours,
+    'postes' => $parcours,
     'diplomes' => $diplomes
 ));
         
@@ -159,6 +159,8 @@ function recupInfosParcours($page){
     foreach($tabExperiences as $experience){
         array_push($parcours, new ExperiencePro($experience['nom'], $experience['entreprise'], $experience['description'], $experience['dateDebut'] ,$experience['dateFin']));
     }
+
+    var_dump($parcours);
 
 }
 
