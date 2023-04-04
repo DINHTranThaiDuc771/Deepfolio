@@ -49,7 +49,6 @@ function addPortfolios() {
         url:"./function.php",
         data:"action=getPortfolios",
         complete: function(data) {
-            console.log(data.responseText)
             var json = JSON.parse(data.responseText);
 
             for (var i=0; i<json.length; i++) {
@@ -60,13 +59,8 @@ function addPortfolios() {
                                                 json[i].ville));
             }
 
-            console.log("==="+listPortfolios);
-
             // Ajout des portfolios
             for (var p of listPortfolios) {
-                console.log(listPortfolios.indexOf(p)+":"+p.nomUtilisateur);
-                console.log(listPortfolios.indexOf(p)+":"+p.nomPortfolio);
-                console.log(listPortfolios.indexOf(p)+":"+p.ville);
                 addPortfolio(p);
             }
         }
@@ -133,6 +127,18 @@ function addPortfolio(p) {
     var btnDel = document.createElement("button");
     btnDel.classList.add("btn");
     btnDel.classList.add("btn-danger");
+    btnDel.id = "btnDel"+portfolio.idPortfolio;
+    btnDel.addEventListener("click", function() {
+        $.ajax({
+            type:"POST",
+            url:"./function.php",
+            data:"action=deletePortfolio&idPortfolio="+portfolio.idPortfolio,
+            complete: function() {
+                var btnSuppr = document.getElementById("btnDel"+portfolio.idPortfolio);
+                btnSuppr.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode.parentNode.parentNode.parentNode);
+            }
+        })
+    })
 
     var imgDel = document.createElement("img");
     imgDel.setAttribute("src", "../img/trash.png");
@@ -168,7 +174,7 @@ window.onload = () => {
 
     var btnMenu         = document.getElementById("icon-toggle-menu");
 
-    isSideBarOpened          = false;
+    isSideBarOpened     = false;
 
     btnMenu.addEventListener("click",function(){toggleMenu();},false);
 

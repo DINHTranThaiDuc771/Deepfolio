@@ -113,7 +113,7 @@ function addPortfolio(p, i) {
     div3.classList.add("hover-overlay");
     div3.classList.add("ripple");
     div3.setAttribute("data-mdb-ripple-color", "light");
-    div3.setAttribute("style", "height:12rem;margin:auto;")
+    div3.setAttribute("style", "height:12rem;margin:auto;");
 
     var img = document.createElement("img");
     img.classList.add("img-fluid");
@@ -174,13 +174,20 @@ function addMessage(m) {
     var divBtn = document.createElement("div");
 
     var btn = document.createElement("button");
-    btn.id = "btn" + message.id;
+    btn.id = "btn" + message.nomUtilisateur + message.mail;
     btn.classList.add("btn");
     btn.classList.add("btn-danger");
     btn.textContent = message.btn;
     btn.addEventListener("click", function () {
-        var btnSuppr = document.getElementById(this.id);
-        btnSuppr.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode);
+        $.ajax({
+            type:"POST",
+            url:"./function.php",
+            data:"action=deleteMessage&nomUtilisateur=" + message.nomUtilisateur + "&mail=" + message.mail,
+            complete: function() {
+                var btnSuppr = document.getElementById(this.id);
+                btnSuppr.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode);
+            }
+        });
     });
 
     messages.appendChild(div);
@@ -234,8 +241,8 @@ function addMessages() {
                 listMessages.push(new Message(json[i].nomutilisateur, 
                                             json[i].nomenvoyeur, 
                                             json[i].prenom,
+                                            json[i].mailmessage,
                                             json[i].objet,
-                                            json[i].mail,
                                             json[i].message));
             }
 
