@@ -1,14 +1,14 @@
 
 {% block cv %}
     <div class="row mb-2">
-        <h1 class="editableText"> {{ nom }}  {{ prenom }}</h1>
+        <h1 class="editableText"> {{ nom }} &nbsp {{ prenom }}</h1>
         <h1 class="editableText">( {{ age }})</h1>
     </div>
     <hr>
     <div class="row">
         <h2>Profil</h2>
         <p class="editableText">
-            <strong>Ville : {{ ville }}</strong> <br>
+            <strong>Ville : &nbsp {{ ville }}</strong> <br>
             {{ description }}
         </p class="editableText">
     </div>
@@ -17,7 +17,7 @@
         <h2>Compétences</h2>
         <li style="list-style: none;">
             {% for competence in competences %}
-                <ul class="editableText">{{ competence.getNom() }} </ul>
+                <ul class="editableText"> {{ competence.getNom() }} </ul>
             {% endfor %}
         </li>
     </div>
@@ -27,7 +27,7 @@
         <li style="list-style: none;">
             {% for projet in projets %}
                 <ul>
-                    <a href="#"><h3 class="editableText"> {{ projet.getNom() }}</h3></a>
+                    <a href="#"><h3 class="editableText"> {{ projet.getNom() }} </h3></a>
                     <p class="editableText"> {{ projet.getDescription() }}</p>
                 </ul>
             {% endfor %}
@@ -39,7 +39,8 @@
         <li style="list-style: none;">
             {% for poste in postes %}
                 <ul>
-                    <h3 class="editableText"> {{ poste.getNom() }} dans {{poste.getEntreprise() }}</h3>
+                    <h3 class="editableText"> {{ poste.getPoste() }}-{{poste.getEntreprise() }}</h3>
+                    <strong>{{ poste.getDateDebut() }}/{{ poste.getDateFin() }}</strong><br>
                     <p class="editableText"> {{ poste.getDescription() }}</p>
                 </ul>
             {% endfor %}
@@ -51,7 +52,7 @@
         <li style="list-style: none;">
             {% for diplome in diplomes %}
                 <ul>
-                    <h3 class="editableText">{{ diplome.getNom() }} à {{ diplome.getEtablissement() }}</h3>
+                    <h3 class="editableText">{{ diplome.getNom() }}-{{ diplome.getEtablissement() }}</h3>
                     <p class="editableText">{{ diplome.getAnneeObtention() }}</p>
                 </ul>
             {% endfor %}

@@ -195,6 +195,20 @@ class DB {
             return $this->execQuery($requete, $tparam, 'Page');
         }
 
+        public function messageExists($username, $mail){
+            $requete = 'select count(nomutilisateur) from message where nomutilisateur = ? and mailmessage = ? ';
+            $tparam = array($username, $mail);
+            $result = $this->execQuery($requete, $tparam, '');
+            return(strcmp($result[0]['count'],"1"));
+        }
+
+        public function isPortfolioAccessible($username, $idPortfolio){
+            $requete = 'select accesible from portfolio where nomutilisateur = ? and idportfolio = ?';
+            $tparam = array($username, $idPortfolio);
+            $result = $this->execQuery($requete, $tparam, '');
+            return(strcmp($result[0]['accesible'],"1"));
+        }
+
       
       
       //*********************************************************//
@@ -229,10 +243,25 @@ class DB {
         }
 
 
+        public function envoyerMessage($username, $mail, $nomEnvoyeur, $prenom, $objet, $message){
+            $requete = 'insert into message values(?,?,?,?,?,?)';
+            $tparam = array($mail, $username, $nomEnvoyeur, $prenom, $objet, $message);
+            $result = $this->execMaj($requete,$tparam);
+            if(strcmp($result,"int(1)")){
+                return true;
+            }else{return false;}
+        }
+
         
         //*********************************************************//
         //                     UPDATE                              //
         //*********************************************************//
+
+        public function updateMessage($username, $mail, $nom, $prenom, $objet, $message) {
+            $requete = 'update message set nomenvoyeur = ?, prenom = ?, objet = ?, message = ? where nomUtilisateur = ? and mailmessage = ?';
+            $tparam = array($nom, $prenom, $objet, $message, $username, $mail);
+            return $this->execMaj($requete,$tparam);
+        }
 
         public function changeAccesibility($username, $idPortfolio, $accesibilite) {
             $requete = 'update portfolio set accesible = ? where nomUtilisateur = ? and idPortfolio = ?';

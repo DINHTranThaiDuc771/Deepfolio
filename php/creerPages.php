@@ -15,10 +15,6 @@ if( !isset($_SESSION["loggedin"])) {
     exit();    
 }
 
-$db;
-$username;
-$numPortfolio;
-
 
 if(!isset($_POST['nomPortfolio'])) {
     header("Location: ./accueil.php");
@@ -46,9 +42,13 @@ else {
 
 
 
-
+$db;
+$username;
+$numPortfolio;
 
 function creerPages($portfolioJSON, $db){
+
+    global $username, $numPortfolio;
 
     $jsonCV = null;
     $competences = $portfolioJSON->competences;
@@ -56,14 +56,14 @@ function creerPages($portfolioJSON, $db){
     $parcours = $portfolioJSON->parcours;
     $diplomes = $portfolioJSON->diplomes;
 
-    $username       = $_SESSION['user']->getNomUtilisateur();
     $numPortfolio   = $db->getNewestPortfolioId($username);
 
-    creerPageCompetences($competences,$numPortfolio);
-    creerPageDiplomes($diplomes,$numPortfolio);
-    creerPageProjets($projets,$numPortfolio);
-    creerPageParcours($parcours,$numPortfolio);
-    creerPageCV($portfolioJSON,$numPortfolio);
+    creerPageCompetences($competences);
+    creerPageDiplomes($diplomes);
+    creerPageProjets($projets);
+    creerPageParcours($parcours);
+    creerPageCV($portfolioJSON);
+    creerPageInfo($portfolioJSON);
 
     $url['auteur'] = $username;
     $url['idPortfolio'] = $numPortfolio;
@@ -71,9 +71,9 @@ function creerPages($portfolioJSON, $db){
     header("Location: visualisation.php?cle=\"" . base64_encode(json_encode($url)) . "\""); 
 }
 
-function creerPageCompetences($competences,$numPortfolio) {
+function creerPageCompetences($competences) {
 
-    global $db, $username;
+    global $db, $username, $numPortfolio;
 
     $competencesString = '{"competences": ';
 
@@ -84,9 +84,9 @@ function creerPageCompetences($competences,$numPortfolio) {
     $db->addPage($username, $numPortfolio, $competencesString, "competences");
 }
 
-function creerPageDiplomes($diplomes,$numPortfolio){
+function creerPageDiplomes($diplomes){
 
-    global $db, $username;
+    global $db, $username, $numPortfolio;
 
     $diplomesString = '{"diplomes": ';
 
@@ -97,10 +97,10 @@ function creerPageDiplomes($diplomes,$numPortfolio){
     $db->addPage($username, $numPortfolio, $diplomesString, "diplomes");
 }
 
-function creerPageProjets($projets,$numPortfolio){
+function creerPageProjets($projets){
 
-    global $db, $username;
-    
+    global $db, $username, $numPortfolio;
+
     $projetsString = '{"projets": ';
 
     $projetsString .= json_encode($projets);
@@ -110,10 +110,10 @@ function creerPageProjets($projets,$numPortfolio){
     $db->addPage($username, $numPortfolio, $projetsString, "projets");
 }
 
-function creerPageParcours($parcours,$numPortfolio){
+function creerPageParcours($parcours){
 
-    global $db, $username;
-        
+    global $db, $username, $numPortfolio;
+
     $parcoursString = '{"parcours": ';
     
     $parcoursString .= json_encode($parcours);
@@ -123,15 +123,26 @@ function creerPageParcours($parcours,$numPortfolio){
     $db->addPage($username, $numPortfolio, $parcoursString, "parcours");
 }
 
-function creerPageCV($portfolio_json,$numPortfolio){
+function creerPageCV($portfolio_json){
 
-    global $db, $username;
+    global $db, $username, $numPortfolio;
 
     $stringCV = json_encode($portfolio_json);
 
     $stringCV = '{' . substr($stringCV, 1, strlen($stringCV) -1 );
 
     $db->addPage($username, $numPortfolio, $stringCV, "cv");
+}
+
+function creerPageInfo($competences) {
+
+    global $db, $username, $numPortfolio, $nomPortfolio, $accesible;
+
+    $infos['nomPortfolio'] = $nomPortfolio;
+    $infos['accesible'] = $accesible;
+
+
+    $db->addPage($username, $numPortfolio, json_encode($infos), "infos");
 }
 
 ?>

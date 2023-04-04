@@ -6,7 +6,7 @@
             <div class="container-fluid py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <form id="formCreerCompte" action="./function.php" method="POST" class="needs-avalidation" novalidate>
+                        <form id="formCreerCompte" action="./function.php" method="POST" class="needs-validation">
 
                             <div class="card " style="border-radius: 1rem;">
                                 <div class="card-body p-5 text-center">
@@ -16,35 +16,35 @@
                                         <h2 class="fw-bold mb-4 text-uppercase">Contact</h2>
                                         <div class="form-outline mb-4">
                                             <input type="text" id="typePrenom"
-                                                class="form-control form-control-lg" required
-                                                name="prenom" onkeypress="return noenter()" />
+                                                class="form-control form-control-lg "
+                                                name="prenom" onkeypress="return noenter()" required/>
                                             <label class="form-label" for="typeNomUtilisateur">Prénom</label>
                                             <div class="invalid-feedback">Veuillez entrer un Nom d'utilisateur</div>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typeNom" class="form-control form-control-lg"
-                                                name="nom" required onkeypress="return noenter()" />
+                                            <input type="text" id="typeNom" class="form-control form-control-lg "
+                                                name="nom" onkeypress="return noenter()" required/>
                                             <label class="form-label" for="typeNom">Nom</label>
                                             <div class="invalid-feedback">Veuillez entrer un Mot de passe</div>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="typeMail" class="form-control form-control-lg"
-                                                name="mail" required onkeypress="return noenter()" />
+                                            <input type="email" id="typeMail" class="form-control form-control-lg "
+                                                name="mail" onkeypress="return noenter()" required/>
                                             <label class="form-label" for="typeMail">Mail</label>
                                             <div class="invalid-feedback">Veuillez entrer votre addresse mail</div>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="text" id="typeObjet" class="form-control form-control-lg"
-                                                name="objet" required onkeypress="return noenter()" />
+                                            <input type="text" id="typeObjet" class="form-control form-control-lg "
+                                                name="objet" onkeypress="return noenter()" required/>
                                             <label class="form-label" for="typeObjet">Objet</label>
                                             <div class="invalid-feedback">Veuillez entrer votre Objet de message</div>
                                         </div>
 
                                         <div class="form-outline shadow-textarea mb-4">
-                                            <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6"
+                                            <textarea class="form-control z-depth-1 " id="exampleFormControlTextarea6"
                                                 rows="3" name="message" placeholder="Message" required></textarea>
                                         </div>
 

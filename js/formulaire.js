@@ -30,7 +30,6 @@ class Projet {
         this.description = description;
         this.taille = taille;
         this.lien = lien;
-        this.image = image;
     }
 }
 
@@ -50,6 +49,7 @@ var currentTab = 0; // Current tab is set to be the first tab (0)
 var nbTab = 4;
 var tabElements = new Array();
 
+var reseaux = ["Facebook", "GitHub", "Google", "Instagram", "LinkedIn", "Twitter", "YouTube"];
 
 function showTab(n) {
     // This function will display the specified tab of the form ...
@@ -74,12 +74,14 @@ function showTab(n) {
 
             var opt = document.createElement("option");
             opt.label = elmt.nom;
-            opt.value = elmt.id;
+            opt.value = elmt.nom;
 
             lienProjet.add(opt);
         }
     }
 }
+
+var avancement = 0;
 
 function nextPrev(n) {
 
@@ -93,6 +95,8 @@ function nextPrev(n) {
         input.required = false;
     });
 
+    var previousTab = currentTab;
+
     currentTab = currentTab + n;
 
     var tabRequired = new Array();
@@ -104,9 +108,8 @@ function nextPrev(n) {
         tabRequired[2] = true;
         tabRequired[3] = true;
         tabRequired[4] = false;
-        tabRequired[5] = true;
+        tabRequired[5] = false;
         tabRequired[6] = false;
-        tabRequired[7] = false;
     }
 
     if (currentTab == 1 ) 
@@ -129,16 +132,24 @@ function nextPrev(n) {
 
     var cpt = 0;
     Array.prototype.slice.call(tabInput).forEach((input) => {
-        console.log(input);
-        console.log(tabRequired[cpt]);
-
         if (tabRequired[cpt] != undefined)
             input.required = tabRequired[cpt++];
-
-        
     });
 
     showTab(currentTab);
+
+    updateProgressbar(currentTab-previousTab);
+}
+
+function updateProgressbar(n){
+    if(n < 0){
+        avancement-=20;
+    }else{
+        avancement+=20;
+    }
+    $(".progress-bar").animate({
+        width: avancement+"%",
+    }, 1500);
 }
 
 function ajouterTab(event) {
@@ -212,13 +223,12 @@ function ajouterTab(event) {
     if ( currentTab == 4 ) {
 
         var lienProjet = document.getElementById("lienProjet");
-        var lienNonProjet = document.getElementById("lienNonProjet");
 
         var lien;
-        if ( lienNonProjet.value = "") {
-            lien = lienProjet.value;
+        if ( tabText[2] == "") {
+            lien = "#" + lienProjet.value;
         } else {
-            lien = lienNonProjet.value;
+            lien = tabText[2];
         }
 
         lienProjet.disabled = false;
@@ -249,8 +259,7 @@ function maj( area ) {
         divChips.textContent = elmt.nom;
 
         if ( currentTab == 3 ) {
-            console.log(elmt.image);
-            if ( elmt.image != "") {
+            if ( elmt.image != "" && elmt.image != null) {
 
                 var image = document.createElement("img");
                 image.src = URL.createObjectURL(elmt.image);
@@ -309,17 +318,32 @@ function terminer(){
     var tabCompetences = new Array();
 
     for(var element of tabElements) {
-        if(element instanceof Reseau)
+        if(element instanceof Reseau) {
             tabReseaux.push(element);
-        else if(element instanceof Etude)
+            continue;
+        }
+        
+        if(element instanceof Etude) {
             tabDiplomes.push(element);
-        else if(element instanceof Travail)
+            continue;
+        }
+
+        if(element instanceof Travail) {
             tabParcourss.push(element);
-        else if(element instanceof Projet)
+            continue;
+        }
+
+        if(element instanceof Projet) {
             tabProjets.push(element);
-        else if(element instanceof Competence)
+            continue;
+        }
+        
+        if(element instanceof Competence) {
             tabCompetences.push(element);
+            continue;
+        }
     }
+
     var nom          = inputs["nom"].value;
     var prenom       = inputs["prenom"].value;
     var age          = inputs["age"].value;
@@ -335,7 +359,6 @@ function terminer(){
     };
 
     var jsonString = JSON.stringify(json);
-    console.log("JSON: "+json);
     //document.cookie = "SameSite=None ; Secure ; portfolio="+jsonString;
     $.cookie('portfolio', jsonString, { expires: 1 });
 

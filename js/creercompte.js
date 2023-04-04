@@ -1,6 +1,7 @@
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var nbTab = 1;
-showTab(currentTab); // Display the current tab
+var avancement = 0;
+ // Display the current tab
 
 function showTab(n) {
     // This function will display the specified tab of the form ...
@@ -15,13 +16,15 @@ function nextPrev(n) {
     // Hide the current tab:
     x[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
+
+    var previoustab = currentTab;
     currentTab = currentTab + n;
 
 
     var required;
 
     required = currentTab == 1;
-   
+
     document.getElementById("typePrenom").classList.remove("active");
     document.getElementById("typeNom").classList.remove("active");
 
@@ -29,17 +32,33 @@ function nextPrev(n) {
     document.getElementById("typeNom").required = required;
 
     showTab(currentTab);
+
+    updateProgressbar(currentTab - previoustab);
+
+}
+
+function updateProgressbar(n){
+    if(n < 0){
+        avancement-=50;
+    }else{
+        avancement+=50;
+    }
+    $(".progress-bar").animate({
+        width: avancement+"%",
+    }, 1500);
 }
 
 function valider(event, form)
 {
 
 
-    if (!form.checkValidity() && currentTab != nbTab) {
+    if (!form.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();
+        console.log("pas valide");
     } else {
         form.classList.remove('was-validated');
+        console.log("valide");
         nextPrev(1);
         return;
     }
@@ -49,11 +68,13 @@ function valider(event, form)
 
 function verifierNom(event, form) {
     var nomUtilisateur = document.getElementById("typeNomUtilisateur").value;
+    console.log("verifier nom utilisateur " + nomUtilisateur);
     $.ajax({
         type:"POST",
         url:"./function.php",
         data:"action=userExists&username=" + nomUtilisateur,
         complete: function(data) {
+            console.log(data.responseText);
             if (data.responseText.includes("true"))
             {
                 alert("Nom déjà utilisé");
@@ -65,8 +86,6 @@ function verifierNom(event, form) {
         }
     });   
 }
-
-
 
 window.onload = function(){
 
@@ -91,5 +110,5 @@ window.onload = function(){
         }
     });
 
-
+    showTab(currentTab);
 }
