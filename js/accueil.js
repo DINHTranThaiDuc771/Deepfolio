@@ -93,10 +93,16 @@ function addPortfolio(p, i) {
     div1.id = "pf" + portfolio.idPortfolio;
 
     var a = document.createElement("a");
-    if (p.nomUtilisateur == "admin")
+    if (p.nomUtilisateur == "admin") {
         a.setAttribute("href", "../php/formulaire.php");
-    else
-        a.setAttribute("href", "#");
+    }
+    else {
+        var url = {};
+        url.auteur =  p.nomUtilisateur;
+        url.idPortfolio =  p.idPortfolio;
+
+        a.setAttribute("href", "visualisation.php?cle=\"" + btoa(JSON.stringify(url)) + "\"");
+    }
 
     var div2 = document.createElement("div");
     div2.classList.add("card");

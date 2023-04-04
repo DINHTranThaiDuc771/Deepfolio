@@ -131,6 +131,8 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
     <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
     <!-- JQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <!-- JSON Stringify -->
+    <script type="text/javascript" src="https://github.com/douglascrockford/JSON-js/blob/master/json2.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="../js/accueil.js"></script>
 </body>

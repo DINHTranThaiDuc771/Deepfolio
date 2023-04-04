@@ -20,58 +20,46 @@ $cle = $_GET['cle'];
 
 $cle = base64_decode($cle);
 
-$tabInfos = explode("&", $cle);
+$jsonCle = json_decode($cle);
 
-//TODO: donner les infos et afficher la page;
+$username = $jsonCle->auteur;
+$idPortfolio = $jsonCle->idPortfolio;
+
 
 $db = DB::getInstance();
 
 affichePages($username, $idPortfolio, $db);
 
 function affichePages($username, $idPortfolio, $db){
-    //recuperer toutes les donnees du portfolio
+    
     $pages = $db->getPages($username, $idPortfolio);
 
-    foreach($pages as $page){
-        $jsonPage = json_decode($page);
-        switch($jsonPage->page){
-            case 'cv':
-                setCVInfos($jsonPage);
-                break;
-            case 'competences':
-                setCompetencesInfos($jsonPage);
-                break;
-            case 'projets':
-                setProjetsInfos($jsonPage);
-                break;
-            case 'parcours':
-                setParcourssInfos($jsonPage);
-                break;
-            case 'style':
-                setStyleInfos($jsonPage);
-                break;
-        }
+    foreach($pages as $page) {
+        //var_dump($page);
+    }
 
     }
 
-    echo "<!DOCTYPE html>
-    <html lang=\"en\">
+?>
+
+    <!DOCTYPE html>
+    <html lang="en">
 
     <head>
-        <meta charset=\"UTF-8\" />
-        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />
-        <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <title>Portfolio A</title>
         <!-- MDB icon -->
-        <link rel=\"icon\" href=\"../img/mdb-favicon.ico\" type=\"image/x-icon\" />
+        <link rel="icon" href="../img/mdb-favicon.ico" type="image/x-icon" />
         <!-- Font Awesome -->
-        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css\" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
         <!-- Google Fonts Roboto -->
-        <link rel=\"stylesheet\"
-            href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap\" />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
         <!-- MDB -->
-        <link rel=\"stylesheet\" href=\"../css/mdb.min.css\" />
-        <link rel=\"stylesheet\" href=\"../css/visualisation.css\" />
+        <link rel="stylesheet" href="../css/mdb.min.css" />
+        <link rel="stylesheet" href="../css/visualisation.css" />
 
     </head>
 
@@ -80,47 +68,47 @@ function affichePages($username, $idPortfolio, $db){
         <!------------------->
         <!--NavBar ---------->
         <!------------------->
-        <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <!-- Container wrapper -->
 
-            <div class=\"container-fluid\">
+            <div class="container-fluid">
                 <!-- Toggle button -->
-                <button class=\"navbar-toggler\" type=\"button\" data-mdb-toggle=\"collapse\"
-                    data-mdb-target=\"#navbarLeftAlignExample\" aria-controls=\"navbarLeftAlignExample\" aria-expanded=\"false\"
-                    aria-label=\"Toggle navigation\">
-                    <i class=\"fas fa-bars\"></i>
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarLeftAlignExample" aria-controls="navbarLeftAlignExample" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
                 </button>
 
                 <!-- Collapsible wrapper -->
-                <div class=\"collapse navbar-collapse\" id=\"navbarLeftAlignExample\">
+                <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
                     <!-- Left links -->
-                    <img id=\"logo-nav\" src=\"..\img\favicon_io\logo-79x76.png\" alt=\"\">
-                    <div style=\"margin-left: 20px;\">
-                        <h1 class=\"editableText\">Portfolio A</h1>
-                        <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
-                            <li class=\"nav-item\">
-                                <a id=\"linkAccueil\"class=\"nav-link active\" aria-current=\"page\" href=\"#\">Accueil</a>
+                    <img id="logo-nav" src="..\img\favicon_io\logo-79x76.png" alt="">
+                    <div style="margin-left: 20px;">
+                        <h1 class="editableText">Portfolio A</h1>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a id="linkAccueil"class="nav-link active" aria-current="page" href="#">Accueil</a>
                             </li>
-                            <li class=\"nav-item\">
-                                <a id=\"linkCompetences\"class=\"nav-link active\" href=\"#\">Compétences</a>
-                            </li>
-
-                            <li class=\"nav-item\">
-                                <a id=\"linkProjets\"href=\"#\" class=\"nav-link active\">Projets</a>
+                            <li class="nav-item">
+                                <a id="linkCompetences"class="nav-link active" href="#">Compétences</a>
                             </li>
 
-                            <li class=\"nav-item\">
-                                <a id=\"linkCV\"href=\"#\" class=\"nav-link active\">CV</a>
+                            <li class="nav-item">
+                                <a id="linkProjets"href="#" class="nav-link active">Projets</a>
                             </li>
 
-                            <li class=\"nav-item\">
-                                <a id=\"linkContact\"href=\"#\" class=\"nav-link active\">Contact</a>
+                            <li class="nav-item">
+                                <a id="linkCV"href="#" class="nav-link active">CV</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a id="linkContact"href="#" class="nav-link active">Contact</a>
                             </li>
                         </ul>
                     </div>
-                    <div id=\"btnEditer\"class=\"col d-flex justify-content-end\">
-                        <a href=\"#\">
-                            <img src=\"..\img\favicon_io\editer.png\" alt=\"\">
+                    <div id="btnEditer"class="col d-flex justify-content-end">
+                        <a href="#">
+                            <img src="..\img\favicon_io\editer.png" alt="">
                         </a>
 
                     </div>
@@ -141,13 +129,13 @@ function affichePages($username, $idPortfolio, $db){
         <!--Accueil---------->
         <!------------------->
 
-        <div id=\"pageAccueil\" class=\" container-fluid\">
-            <div class=\"row\">
-                <div class=\"col-md-6 d-flex justify-content-center\">
-                    <p  class=\"editableText\" id=\"quote\">\"La vie est un mystère qu'il faut vivre, et non un problème à résoudre.\"</p>
+        <div id="pageAccueil" class=" container-fluid">
+            <div class="row">
+                <div class="col-md-6 d-flex justify-content-center">
+                    <p  class="editableText" id="quote">"La vie est un mystère qu'il faut vivre, et non un problème à résoudre."</p>
                 </div>
-                <div class=\"col-md-6 d-flex justify-content-center\">
-                    <img id=\"hero-image\" src=\"..\img\favicon_io\hero-image.jpg\" alt=\"hero-image\">
+                <div class="col-md-6 d-flex justify-content-center">
+                    <img id="hero-image" src="..\img\favicon_io\hero-image.jpg" alt="hero-image">
                 </div>
             </div>
         </div>
@@ -160,11 +148,11 @@ function affichePages($username, $idPortfolio, $db){
         <!-- Mes compétences-->
         <!------------------->
 
-        <div id=\"pageCompetences\"class=\"container-fluid tab\">
-            <section class=\"content \">
-                <h1 class=\"editableText\">Elaborer des conceptions simples</h1>
-                <article  class=\"editableText\">
-                    <div class=\"left\">
+        <div id="pageCompetences"class="container-fluid tab">
+            <section class="content ">
+                <h1 class="editableText">Elaborer des conceptions simples</h1>
+                <article  class="editableText">
+                    <div class="left">
                         <ul>
                             <li>Je sais construire UML diagram (en respectant les normes grâce à uml-diagrams.org)</li>
                             <li>Je sais utiliser Github pour gerer les versions de mon projet</li>
@@ -173,10 +161,10 @@ function affichePages($username, $idPortfolio, $db){
 
                 </article>
             </section>
-            <section class=\"content \">
-                <h1  class=\"editableText\">Elaborer des conceptions simples</h1>
-                <article  class=\"editableText\">
-                    <div class=\"left\">
+            <section class="content ">
+                <h1  class="editableText">Elaborer des conceptions simples</h1>
+                <article  class="editableText">
+                    <div class="left">
                         <ul>
                             <li>Je sais construire UML diagram (en respectant les normes grâce à uml-diagrams.org)</li>
                             <li>Je sais utiliser Github pour gerer les versions de mon projet</li>
@@ -193,13 +181,13 @@ function affichePages($username, $idPortfolio, $db){
         <!------------------->
         <!--    Projets------>
         <!------------------->
-        <div id=\"pageProjets\" class=\"container-fluid tab\">
-            <div class=\"row\">
-                <div class=\"mb-5 col-md-4 d-flex justify-content-center\">
-                    <img src=\"..\img\favicon_io\android-chrome-192x192.png\" alt=\"\">
+        <div id="pageProjets" class="container-fluid tab">
+            <div class="row">
+                <div class="mb-5 col-md-4 d-flex justify-content-center">
+                    <img src="..\img\favicon_io\android-chrome-192x192.png" alt="">
                 </div>
-                <div style=\"padding:30px;\" class=\"col-md-8 d-flex justify-content-center\">
-                    <p class=\"editableText\">
+                <div style="padding:30px;" class="col-md-8 d-flex justify-content-center">
+                    <p class="editableText">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                         aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -213,12 +201,12 @@ function affichePages($username, $idPortfolio, $db){
             </div>
 
 
-            <div class=\"row\">
-                <div class=\"mb-5 col-md-4 d-flex justify-content-center\">
-                    <img src=\"..\img\favicon_io\android-chrome-192x192.png\" alt=\"\">
+            <div class="row">
+                <div class="mb-5 col-md-4 d-flex justify-content-center">
+                    <img src="..\img\favicon_io\android-chrome-192x192.png" alt="">
                 </div>
-                <div style=\"padding:30px;\" class=\"col-md-8 d-flex justify-content-center\">
-                    <p class=\"editableText\">
+                <div style="padding:30px;" class="col-md-8 d-flex justify-content-center">
+                    <p class="editableText">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                         aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -239,129 +227,129 @@ function affichePages($username, $idPortfolio, $db){
         <!------------------->
         <!--    CV     ------>
         <!------------------->
-        <div id=\"pageCV\"class=\"tab container justify-content-center\">
-            <div class=\"row mb-2\">
-                <h1 class=\"editableText\">Prénom nom</h1>
+        <div id="pageCV"class="tab container justify-content-center">
+            <div class="row mb-2">
+                <h1 class="editableText">Prénom nom</h1>
             </div>
             <hr>
-            <div class=\"row\">
+            <div class="row">
                 <h2>Profil</h2>
-                <p class=\"editableText\">
+                <p class="editableText">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in r adipiscing e r
                     adipiscing e o eiusmoo eiusmo.
-                </p class=\"editableText\">
+                </p class="editableText">
             </div>
             <hr>
-            <div class=\"row  mb-2\">
+            <div class="row  mb-2">
                 <h2>Compétences</h2>
-                <li style=\"list-style: none;\">
-                    <ul class=\"editableText\">Compétence 1</ul>
-                    <ul class=\"editableText\">Compétence 2</ul>
-                    <ul class=\"editableText\">Compétence 3</ul>
+                <li style="list-style: none;">
+                    <ul class="editableText">Compétence 1</ul>
+                    <ul class="editableText">Compétence 2</ul>
+                    <ul class="editableText">Compétence 3</ul>
                 </li>
             </div>
             <hr>
-            <div class=\"row  mb-2\">
+            <div class="row  mb-2">
                 <h2>Projet</h2>
-                <li style=\"list-style: none;\">
+                <li style="list-style: none;">
                     <ul>
-                        <h3 class=\"editableText\">Nom du projet A</h3>
-                        <p class=\"editableText\">Description</p>
+                        <h3 class="editableText">Nom du projet A</h3>
+                        <p class="editableText">Description</p>
                     </ul>
                     <ul>
-                        <h3 class=\"editableText\">Nom du projet B</h3>
-                        <p class=\"editableText\">sum dolor sit amet, consectetur sum dolor sit amet, consectetur sum dolor sit amet, consectetur
+                        <h3 class="editableText">Nom du projet B</h3>
+                        <p class="editableText">sum dolor sit amet, consectetur sum dolor sit amet, consectetur sum dolor sit amet, consectetur
                             sum dolor sit amet, consectetur </p>
                     </ul>
                     <ul>
-                        <h3 class=\"editableText\">Nom du projet C</h3>
-                        <p class=\"editableText\">Descrition</p>
+                        <h3 class="editableText">Nom du projet C</h3>
+                        <p class="editableText">Descrition</p>
                     </ul>
                 </li>
             </div>
             <hr>
-            <div class=\"row  mb-2\">
+            <div class="row  mb-2">
                 <h2>Expérience</h2>
-                <li style=\"list-style: none;\">
+                <li style="list-style: none;">
                     <ul>
-                        <h3 class=\"editableText\">Nom Poste et Entreprise</h3>
-                        <p class=\"editableText\">Description</p>
+                        <h3 class="editableText">Nom Poste et Entreprise</h3>
+                        <p class="editableText">Description</p>
                     </ul>
                     <ul>
-                        <h3 class=\"editableText\">Dévélopeur JS</h3>
-                        <p class=\"editableText\">sum dolor sit amet, consectetur sum dolor sit amet, consectetur sum dolor sit amet, consectetur
+                        <h3 class="editableText">Dévélopeur JS</h3>
+                        <p class="editableText">sum dolor sit amet, consectetur sum dolor sit amet, consectetur sum dolor sit amet, consectetur
                             sum dolor sit amet, consectetur </p>
                     </ul>
                     <ul>
-                        <h3 class=\"editableText\">Dévélopeur PHP</h3>
-                        <p class=\"editableText\">Descrition</p>
+                        <h3 class="editableText">Dévélopeur PHP</h3>
+                        <p class="editableText">Descrition</p>
                     </ul>
                 </li>
             </div>
             <hr>
-            <div class=\"row  mb-2\">
+            <div class="row  mb-2">
                 <h2>Parcours Académique</h2>
-                <li style=\"list-style: none;\">
+                <li style="list-style: none;">
                     <ul>
-                        <h3 class=\"editableText\">Nom d'établissment</h3>
-                        <p class=\"editableText\">Description</p>
+                        <h3 class="editableText">Nom d'établissment</h3>
+                        <p class="editableText">Description</p>
                     </ul>
                 </li>
             </div>
-            <button class=\"btn btn-primary btn-lg px-5 ml-2  mb-4\">Télécharger</button>
+            <button class="btn btn-primary btn-lg px-5 ml-2  mb-4">Télécharger</button>
         </div>
         <!------------------->
         <!--    Contact------>
         <!------------------->
-        <div id=\"pageContact\"class=\"tab\">
-            <section class=\"vh-100 \">
-                <div class=\"container-fluid py-5 h-100\">
-                    <div class=\"row d-flex justify-content-center align-items-center h-100\">
-                        <div class=\"col-12 col-md-8 col-lg-6 col-xl-5\">
-                            <form id=\"formCreerCompte\" action=\"accueil.html\" class=\"needs-avalidation\" novalidate>
+        <div id="pageContact"class="tab">
+            <section class="vh-100 ">
+                <div class="container-fluid py-5 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                            <form id="formCreerCompte" action="accueil.html" class="needs-avalidation" novalidate>
 
-                                <div class=\"card \" style=\"border-radius: 1rem;\">
-                                    <div class=\"card-body p-5 text-center\">
+                                <div class="card " style="border-radius: 1rem;">
+                                    <div class="card-body p-5 text-center">
 
-                                        <div class=\"mb-md-5 mt-md-4 pb-5\">
+                                        <div class="mb-md-5 mt-md-4 pb-5">
 
-                                            <h2 class=\"fw-bold mb-4 text-uppercase\">Contact</h2>
-                                            <div class=\"form-outline mb-4\">
-                                                <input type=\"text\" id=\"typeNomUtilisateur\"
-                                                    class=\"form-control form-control-lg\" required
-                                                    onkeypress=\"return noenter()\" />
-                                                <label class=\"form-label\" for=\"typeNomUtilisateur\">Prénom</label>
-                                                <div class=\"invalid-feedback\">Veuillez entrer un Nom d'utilisateur</div>
+                                            <h2 class="fw-bold mb-4 text-uppercase">Contact</h2>
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="typeNomUtilisateur"
+                                                    class="form-control form-control-lg" required
+                                                    onkeypress="return noenter()" />
+                                                <label class="form-label" for="typeNomUtilisateur">Prénom</label>
+                                                <div class="invalid-feedback">Veuillez entrer un Nom d'utilisateur</div>
                                             </div>
 
-                                            <div class=\"form-outline mb-4\">
-                                                <input type=\"text\" id=\"typeNom\" class=\"form-control form-control-lg\"
-                                                    required onkeypress=\"return noenter()\" />
-                                                <label class=\"form-label\" for=\"typeNom\">Nom</label>
-                                                <div class=\"invalid-feedback\">Veuillez entrer un Mot de passe</div>
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="typeNom" class="form-control form-control-lg"
+                                                    required onkeypress="return noenter()" />
+                                                <label class="form-label" for="typeNom">Nom</label>
+                                                <div class="invalid-feedback">Veuillez entrer un Mot de passe</div>
                                             </div>
 
-                                            <div class=\"form-outline mb-4\">
-                                                <input type=\"email\" id=\"typeMail\" class=\"form-control form-control-lg\"
-                                                    required onkeypress=\"return noenter()\" />
-                                                <label class=\"form-label\" for=\"typeMail\">Mail</label>
-                                                <div class=\"invalid-feedback\">Veuillez entrer votre addresse mail</div>
+                                            <div class="form-outline mb-4">
+                                                <input type="email" id="typeMail" class="form-control form-control-lg"
+                                                    required onkeypress="return noenter()" />
+                                                <label class="form-label" for="typeMail">Mail</label>
+                                                <div class="invalid-feedback">Veuillez entrer votre addresse mail</div>
                                             </div>
 
-                                            <div class=\"form-outline mb-4\">
-                                                <input type=\"text\" id=\"typeObjet\" class=\"form-control form-control-lg\"
-                                                    required onkeypress=\"return noenter()\" />
-                                                <label class=\"form-label\" for=\"typeObjet\">Objet</label>
-                                                <div class=\"invalid-feedback\">Veuillez entrer votre Objet de message</div>
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="typeObjet" class="form-control form-control-lg"
+                                                    required onkeypress="return noenter()" />
+                                                <label class="form-label" for="typeObjet">Objet</label>
+                                                <div class="invalid-feedback">Veuillez entrer votre Objet de message</div>
                                             </div>
 
-                                            <div class=\"form-outline shadow-textarea mb-4\">
-                                                <textarea class=\"form-control z-depth-1\" id=\"exampleFormControlTextarea6\"
-                                                    rows=\"3\" placeholder=\"Message\"></textarea>
+                                            <div class="form-outline shadow-textarea mb-4">
+                                                <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6"
+                                                    rows="3" placeholder="Message"></textarea>
                                             </div>
 
-                                            <button id=\"envoyer\" class=\"btn btn-primary btn-lg px-5 ml-2\"
-                                                type=\"submit\">Envoyer</button>
+                                            <button id="envoyer" class="btn btn-primary btn-lg px-5 ml-2"
+                                                type="submit">Envoyer</button>
                                         </div>
                                     </div>
                                 </div>
@@ -390,15 +378,12 @@ function affichePages($username, $idPortfolio, $db){
         <!-- End your project here-->
 
         <!-- MDB -->
-        <script type=\"text/javascript\" src=\"../js/mdbjs/mdb.min.js\"></script>
+        <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
         <!-- Custom scripts -->
-        <script type=\"text/javascript\" src=\"../js/visualisation.js\">
+        <script type="text/javascript" src="../js/visualisation.js">
         </script>
     </body>
     </body>
 
     </html>
-";
 }
-
-?>

@@ -303,7 +303,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                                         <div class="invalid-feedback">Veuillez entrer un nom pour ce portfolio</div>
                                     </div>
                                     <div class="form-check mb-4">
-                                        <input type="checkbox" id="accesible" class="form-check-input"  name="accessible"/>
+                                        <input type="checkbox" id="accesible" class="form-check-input"  name="accesible"/>
                                         <label class="form-check-label" for="accesible">Accesible</label>
                                         <div class="invalid-feedback">Veuillez entrer une visibilité</div>
                                     </div>

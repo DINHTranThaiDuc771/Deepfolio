@@ -186,8 +186,11 @@ function ajouterTab(event) {
 
     if ( currentTab == 2 ) {
         var textPoste = document.getElementById("typeDescriptionPoste"); 
+        description = textPoste.value;
 
-        tabElements[tabElements.length] = new Travail(tabText[0], tabText[1], textPoste.value, tabText[2], tabText[3] );
+        textPoste.value = "";
+
+        tabElements[tabElements.length] = new Travail(tabText[0], tabText[1], description, tabText[2], tabText[3] );
     }
     
     if ( currentTab == 3 ) {
