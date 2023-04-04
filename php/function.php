@@ -35,7 +35,7 @@
         }else{
             updateMessage($username, $mailE, $nomE, $prenomE, $objet, $message);            
         }
-        //header("Location: ./visualisation.php");
+        header("Location: ./visualisation.php");
     }
 
 
