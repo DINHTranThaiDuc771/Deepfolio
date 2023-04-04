@@ -14,9 +14,9 @@
 
                     <p class="editableText">
                         <strong class="editableText" style="font-size: 24px;"> {{ projet.getNom() }}</strong><br>
-                        <strong class="editableText" > {{ projet.getTailleEquipe() }}</strong><br>
-                        {{projet.getDescription()}}
-                        <a href="{{ projet.getLien() }}"<strong class="editableText" > En savoir plus </strong><br>
+                        <strong class="editableText" > Taille de l'équipe &nbsp {{ projet.getTailleEquipe() }}</strong><br>
+                        {{projet.getDescription()}} <br>
+                        <a href="{{ projet.getLien() }}"<strong class="editableText" > En savoir plus </strong></a><br>
                     </p>
                 </div>
             </div>

@@ -30,7 +30,6 @@ class Projet {
         this.description = description;
         this.taille = taille;
         this.lien = lien;
-        this.image = image;
     }
 }
 
@@ -317,9 +316,11 @@ function terminer(){
             tabParcourss.push(element);
         else if(element instanceof Projet)
             tabProjets.push(element);
+
         else if(element instanceof Competence)
             tabCompetences.push(element);
     }
+
     var nom          = inputs["nom"].value;
     var prenom       = inputs["prenom"].value;
     var age          = inputs["age"].value;
@@ -335,7 +336,6 @@ function terminer(){
     };
 
     var jsonString = JSON.stringify(json);
-    console.log("JSON: "+json);
     //document.cookie = "SameSite=None ; Secure ; portfolio="+jsonString;
     $.cookie('portfolio', jsonString, { expires: 1 });
 

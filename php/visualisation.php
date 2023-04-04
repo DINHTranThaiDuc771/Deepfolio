@@ -25,14 +25,25 @@ if(!isset($_GET['cle'])){
 }
 
 
-//------------ Variables globales ------------//
-$nomportfolio; $adresse; $mail;
-$reseaux; $description; $nom;
-$prenom; $age; $competences; 
-$projets; $parcours; $diplomes;
-
 Twig_Autoloader::register();
 $twig = new Twig_Environment( new Twig_Loader_Filesystem("../templates"));
+
+
+//------------ Variables globales ------------//
+$nomPortfolio; 
+$adresse; 
+$mail;
+$reseaux; 
+$description; 
+$nom;
+$prenom; 
+$age; 
+$competences; 
+$projets; 
+$parcours; 
+$diplomes;
+//------------ Variables globales ------------//
+
 
 
 $cle = $_GET['cle'];
@@ -53,9 +64,9 @@ affichePages($username, $idPortfolio, $db);
 $tpl = $twig->loadTemplate( "tplVisu.tpl" );
 
 echo $tpl->render(array(
-    //'nomportfolio' => $nomportfolio,
+    'nomPortfolio' => $nomPortfolio,
     'ville' => $adresse,
-    //'mail' => $mail,
+    'mail' => $mail,
     'reseaux' => $reseaux,
     'description' => $description,
     'competences' => $competences,
@@ -71,9 +82,12 @@ function affichePages($username, $idPortfolio, $db){
     
     $pages = $db->getPages($username, $idPortfolio);
 
+    
+
     foreach($pages as $page) {
 
         $typePage = $page->getType();
+        
 
         switch($typePage){
             case 'cv':
@@ -95,6 +109,10 @@ function affichePages($username, $idPortfolio, $db){
             case 'diplomes':
                 //TODO: recuperer les infos
                 recupInfosDiplomes($page);
+                break;
+            case 'infos':
+                //TODO: recuperer les infos
+                recupInfos($page);
                 break;
         }
     }
@@ -128,6 +146,8 @@ function recupInfosCompetences($page){
 
     $competences = array();
 
+    var_dump($tabCompetences);
+
     foreach($tabCompetences as $competence){
        array_push($competences, new Competence($competence['nom'], $competence['description'], $competence['lien']));
     }
@@ -158,10 +178,9 @@ function recupInfosParcours($page){
 
     $parcours = array();
 
-    foreach($tabExperiences as $experience){
-        array_push($parcours, new ExperiencePro($experience['nom'], $experience['entreprise'], $experience['description'], $experience['dateDebut'] ,$experience['dateFin']));
+    foreach($tabExperiences as $experience) {
+        array_push($parcours, new ExperiencePro($experience['nom'], $experience['entreprise'], $experience['dateDebut'] ,$experience['dateFin'], $experience['description']));
     }
-
 }
 
 function recupInfosDiplomes($page){
@@ -177,7 +196,19 @@ function recupInfosDiplomes($page){
     foreach($tabDiplomes as $diplome){
         array_push($diplomes, new Diplome($diplome['nom'], $diplome['etablissement'], $diplome['annee']));
     }
+}
 
+function recupInfos($page) {
+
+    global $db, $nomPortfolio, $username, $mail;
+
+    $json = json_decode($page->getJson());
+
+    $mdpHash = $db->getMdp($username);
+    $user = $db->getUser($username, $mdpHash);
+
+    $mail = $user[0]->getMail();
+    $nomPortfolio = $json->nomPortfolio;
 }
 
 ?>
