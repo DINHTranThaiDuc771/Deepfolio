@@ -103,9 +103,8 @@ function nextPrev(n) {
         tabRequired[2] = true;
         tabRequired[3] = true;
         tabRequired[4] = false;
-        tabRequired[5] = true;
+        tabRequired[5] = false;
         tabRequired[6] = false;
-        tabRequired[7] = false;
     }
 
     if (currentTab == 1 ) 
@@ -128,8 +127,6 @@ function nextPrev(n) {
 
     var cpt = 0;
     Array.prototype.slice.call(tabInput).forEach((input) => {
-        console.log(input);
-        console.log(tabRequired[cpt]);
 
         if (tabRequired[cpt] != undefined)
             input.required = tabRequired[cpt++];
@@ -215,9 +212,10 @@ function ajouterTab(event) {
 
         var lien;
         if ( lienNonProjet.value = "") {
+            console.log(lienProjet);
             lien = lienProjet.value;
         } else {
-            lien = lienNonProjet.value;
+            lien = tabText[2];
         }
 
         lienProjet.disabled = false;
@@ -248,8 +246,7 @@ function maj( area ) {
         divChips.textContent = elmt.nom;
 
         if ( currentTab == 3 ) {
-            console.log(elmt.image);
-            if ( elmt.image != "") {
+            if ( elmt.image != "" && elmt.image != null) {
 
                 var image = document.createElement("img");
                 image.src = URL.createObjectURL(elmt.image);

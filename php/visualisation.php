@@ -164,7 +164,13 @@ function recupInfosProjets($page){
     $projets = array();
 
     foreach($tabProjets as $projet){
-        array_push($projets, new Projet($projet['nom'], $projet['description'], $projet['taille'], $projet['lien'], $projet['image']));
+        $img = "";
+        if ( !isset($projet['image'])) {
+            $img = "";
+        } else {
+            $img = $projet['image'];
+        }
+        array_push($projets, new Projet($projet['nom'], $projet['description'], $projet['taille'], $projet['lien'], ));
     }
 }
 
