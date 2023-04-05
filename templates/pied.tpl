@@ -55,9 +55,7 @@
                                 </div>
                             </div>
 
-
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -93,10 +91,11 @@
         <input  style="height: 40px;" type="color" id="selectColor">
 
     </div>
-
     <!--    Editbar------>
     <!------------------>
-    <footer class="text-center text-lg-start bg-white text-muted">
+
+
+    <footer id="contentFooter" class="text-center text-lg-start bg-white text-muted">
         <!-- Section: Social media -->
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <!-- Left -->
