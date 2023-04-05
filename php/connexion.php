@@ -130,8 +130,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                   <a type="button" id='next' style="height: 100%"> &nbsp; </a>        
                 </div>  -->
 				<!-- Carousel wrapper -->
-				<div class="col-lg-6 d-flex align-items-center justify-content-center">
-					<div id="carouselBasicExample" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+				<div class="col-lg-6 ">
+					<div id="carouselBasicExample" class="carousel slide carousel-dark" data-mdb-ride="carousel">
 					<!-- Indicators -->
 					<div class="carousel-indicators">
 						<button
