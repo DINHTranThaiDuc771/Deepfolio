@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title> {{ nomPortfolio }}</title>
+    <title class="nom-portfolio"> {{ nomPortfolio }}</title>
     <!-- MDB icon -->
     <link rel="icon" href="../img/mdb-favicon.ico" type="image/x-icon" />
     <!-- Font Awesome -->
@@ -63,7 +63,7 @@
                 </div>
                 <div class="col d-flex justify-content-end gap-3">
                     <div id="cbAccess" class="form-check form-switch d-flex align-items-center">
-                        <input class="form-check-input me-3" type="checkbox" role="switch"
+                        <input class="form-check-input me-3 accessibilité" type="checkbox" role="switch"
                             id="flexSwitchCheckDefault" />
                         <label class="form-check-label" for="flexSwitchCheckDefault">Accessibilité</label>
                     </div>

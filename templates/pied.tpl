@@ -126,9 +126,9 @@
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3 text-secondary" class="editableText"></i>{{nomPortfolio}}
+                            <i class="fas fa-gem me-3 text-secondary"></i>{{nomPortfolio}}
                         </h6>
-                        <p class="editableText">
+                        <p class="editableText description-site">
                             Here you can use rows and columns to organize your footer content. Lorem ipsum
                             dolor sit amet, consectetur adipisicing elit.
                         </p>
@@ -140,20 +140,18 @@
                         <h6 class="text-uppercase fw-bold mb-4">
                             <i class="fas fa-address-card"></i> Mon CV
                         </h6>
-                        <p class="editableText text-break">
+                        <p class="editableText text-break lien-cv">
                             <a href="{{ lienCv }}" target="_blank">{{ lienCv }}</a>
                         </p>
                     </div>
-
-    
 
 
                     <!-- Grid column -->
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                        <p class="editableText"><i class="fas fa-home me-3 text-secondary"></i> {{ ville }}</p>
-                        <p class="editableText">
+                        <p class="editableText ville"><i class="fas fa-home me-3 text-secondary"></i> {{ ville }}</p>
+                        <p class="editableText mail">
                             <i class="fas fa-envelope me-3 text-secondary text-break"></i>
                             {{ mail }}
                         </p>
