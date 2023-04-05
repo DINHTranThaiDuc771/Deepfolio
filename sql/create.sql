@@ -4,40 +4,40 @@ drop table if exists page;
 drop table if exists portfolio;
 
 create table utilisateur (
-  nomUtilisateur varchar(30) primary key,
+  nomUtilisateur text primary key,
   mdphash textl not null,
-  nom varchar(30),
-  prenom varchar(30),
+  nom text,
+  prenom text,
   age int,
-  ville varchar(30),
-  universite varchar(30),
-  mailUtilisateur varchar(30)
+  ville text,
+  universite text,
+  mailUtilisateur text
 );
 
 create table message (
-  mailMessage varchar(30),
-  nomUtilisateur varchar(30) references utilisateur(nomUtilisateur),
-  nomEnvoyeur varchar(30),
-  prenom varchar(30),
-  objet varchar(30) not null,
+  mailMessage text,
+  nomUtilisateur text references utilisateur(nomUtilisateur),
+  nomEnvoyeur text,
+  prenom text,
+  objet text not null,
   message text not null,
   primary key(mailMessage, nomUtilisateur)
 );
 
 create table portfolio (
-    nomUtilisateur varchar(30) references utilisateur(nomUtilisateur),
+    nomUtilisateur text references utilisateur(nomUtilisateur),
     idPortfolio serial not null,
-    nomPortfolio varchar(30) not null,
+    nomPortfolio text not null,
     accesible boolean,
     primary key(nomUtilisateur, idPortfolio)
 );
 
 create table page (
-    nomUtilisateur varchar(30),
+    nomUtilisateur text,
     idPortfolio int,
     idPage serial not null,
     jsonPage json not null,
-    type varchar(30) not null,
+    type text not null,
     foreign key (nomUtilisateur, idPortfolio) references portfolio(nomUtilisateur, idPortfolio),
     primary key(nomUtilisateur, idPortfolio, idPage)
 );
