@@ -294,14 +294,14 @@ function valider(event, form, indexSuivant)
         event.preventDefault();
         event.stopPropagation();
     } else {
-
         if ( currentTab == nbTab)
         {
             terminer();
+        } else {
+            form.classList.remove('was-validated');
+            nextPrev(indexSuivant, event.target);
         }
-        
-        form.classList.remove('was-validated');
-        nextPrev(indexSuivant, event.target);
+
         return;
     }
 
@@ -361,7 +361,6 @@ function terminer(){
     };
 
     var jsonString = JSON.stringify(json);
-    //document.cookie = "SameSite=None ; Secure ; portfolio="+jsonString;
     $.cookie('portfolio', jsonString, { expires: 1 });
 
 }
