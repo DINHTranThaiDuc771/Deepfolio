@@ -1,7 +1,7 @@
 
 {% block accueil %}
     <div class="row">
-        <div class="col-md-6 d-flex justify-content-center">
+        <div class="col-md-6 d-flex justify-content-center text-break">
             <p  class="editableText" id="quote"> " {{ description }} "</p>
         </div>
         <div class="col-md-6 d-flex justify-content-center">

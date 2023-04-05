@@ -10,7 +10,7 @@
     overflow-x: hidden;
     transition: .5s;
     padding-top: 60px;
-    transform: translateX(-240px);
+    transform: translateX(-480px);
 }
 
 .bloc-message {

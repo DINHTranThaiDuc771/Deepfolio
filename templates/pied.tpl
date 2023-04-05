@@ -140,7 +140,7 @@
                         <h6 class="text-uppercase fw-bold mb-4">
                             <i class="fas fa-address-card"></i> Mon CV
                         </h6>
-                        <p class="editableText">
+                        <p class="editableText text-break">
                             <a href="{{ lienCv }}" target="_blank">{{ lienCv }}</a>
                         </p>
                     </div>
@@ -154,7 +154,7 @@
                         <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
                         <p class="editableText"><i class="fas fa-home me-3 text-secondary"></i> {{ ville }}</p>
                         <p class="editableText">
-                            <i class="fas fa-envelope me-3 text-secondary"></i>
+                            <i class="fas fa-envelope me-3 text-secondary text-break"></i>
                             {{ mail }}
                         </p>
                     </div>
