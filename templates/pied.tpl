@@ -100,7 +100,7 @@
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <!-- Left -->
             <div class="me-5 d-none d-lg-block">
-                <span class="editableText">Connectez-vous avec nous sur les réseaux sociaux</span>
+                <span class="editableText description-reseau">Connectez-vous avec nous sur les réseaux sociaux</span>
             </div>
             <!-- Left -->
 
@@ -154,6 +154,8 @@
                             <i class="fas fa-envelope me-3 text-secondary text-break"></i>
                             {{ mail }}
                         </p>
+                        <input type="hidden" id="idPortfolio" value={{idPortfolio}}></p>
+                        <input type="hidden" id="auteur" value={{auteur}}></p>
                     </div>
                     <!-- Grid column -->
                 </div>
