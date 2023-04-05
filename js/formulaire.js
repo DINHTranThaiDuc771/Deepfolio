@@ -410,6 +410,8 @@ window.onload = () => {
 
     addEventListener("keypress", (event) => {
         if (event.key === 'Enter') {
+            event.preventDefault();
+            event.stopPropagation();
             valider(event, form, 1);     
         }
     });

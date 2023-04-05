@@ -24,9 +24,6 @@ if(!isset($_GET['cle'])){
 }
 
 
-Twig_Autoloader::register();
-$twig = new Twig_Environment( new Twig_Loader_Filesystem("../templates"));
-
 
 $cle = $_GET['cle'];
 
@@ -181,7 +178,7 @@ function recupInfosProjets($page){
         } else {
             $img = $projet['image'];
         }
-        array_push($projets, new Projet($projet['nom'], $projet['description'], $projet['taille'], $projet['lien'], ));
+        array_push($projets, new Projet($projet['nom'], $projet['description'], $projet['taille'], $projet['lien'], $projet['image']));
     }
 }
 
