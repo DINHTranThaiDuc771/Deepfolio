@@ -7,7 +7,6 @@ var btnBold,btnUnderline,btnItalic;
 var selectFont,selectSize,selectColor;
 var lstEditableTextChanged;
 var btnNavbar;
-var lstLinkAtNav;
 lstEditableTextChanged = new Set();
 
 document.addEventListener("mousemove", function(event) {
@@ -17,7 +16,6 @@ document.addEventListener("mousemove", function(event) {
 
 window.onload = () => {
     btnNavbar       = document.querySelector('.navbar-toggler');
-    lstLinkAtNav    = document.getElementsByClassName("nav-link");
     editbar         = document.getElementById("editbar");
     btnBold         = document.getElementById("btnBold");
     btnUnderline    = document.getElementById("btnUnderline");
@@ -41,15 +39,9 @@ window.onload = () => {
     selectColor.addEventListener("input",()=>{
         styleColor(selectColor.value);
     },false);
-    /*Close nav when link clicked*/
-    if (window.matchMedia("(max-width: 767px)").matches)
-    {   
-        for (var i =0; i<= lstLinkAtNav.length;i++)
-        {
-            lstLinkAtNav[i].addEventListener("click",()=>{btnNavbar.click()},false);
-        }
-    }
-    /**Changer Tab */
+
+
+
     var pageAccueil             = document.getElementById("pageAccueil");
     var pageCompetences         = document.getElementById("pageCompetences");
     var pageProjets             = document.getElementById("pageProjets");
@@ -214,7 +206,11 @@ function toggleEdit() {
 }
 
 function changerTab(tab){
-    
+        /*Close nav when link clicked*/
+        if (window.matchMedia("(max-width: 767px)").matches)
+        {   
+            btnNavbar.click();
+        }
     if (tab==="linkAccueil") {
         pageAccueil     .classList.remove("tab");
         pageCompetences .classList.add("tab");
