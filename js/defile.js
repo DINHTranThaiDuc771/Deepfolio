@@ -6,7 +6,7 @@ var interval;
 
 var tabImages = new Array();
 
-
+/*
 function nextSlide(){   
     var divImg = document.getElementById('divImg');
     
@@ -50,11 +50,11 @@ function lancerChangement() {
 function displayAlert(){
     alert("Mauvais mot de passe ou nom d'utilisateur");
 }
+*/
 
 
 
-
-window.onload = function(){
+window.onload = function(){/*
     var btnNext = document.getElementById('next');
     var btnPrev = document.getElementById('previous');
 
@@ -92,7 +92,7 @@ window.onload = function(){
     nextSlide();
 
     interval = setInterval(nextSlide,4000);
-
+*/
 
 
     // Example indexer JavaScript for disabling form submissions if there are invalid fields
