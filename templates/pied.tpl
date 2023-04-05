@@ -108,7 +108,7 @@
             <!-- Right -->
             <div>
                 {% for reseau in reseaux %}
-                    <a href="{{ reseau.lien }}" class="me-4 link-secondary"> {{reseau.nom}}
+                    <a href="{{ reseau.lien }}" target="_blank" class="me-4 link-secondary"> {{reseau.nom}}
                         <i class="fab fa-{{reseau.nomClasse}}"></i>
                     </a>
                 {% endfor %}
@@ -141,7 +141,7 @@
                             <i class="fas fa-address-card"></i> Mon CV
                         </h6>
                         <p class="editableText">
-                            <a href="#">linkCV.com</a>
+                            <a href="{{ lienCv }}" target="_blank">{{ lienCv }}</a>
                         </p>
                     </div>
 
@@ -181,6 +181,13 @@
 
     <!-- MDB -->
     <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    
     <!-- Custom scripts -->
     <script type="text/javascript" src="../js/visualisation.js">
     </script>

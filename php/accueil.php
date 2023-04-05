@@ -67,7 +67,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                     <!-- Navbar brand -->
                     <a class="navbar-brand mt-2 mt-lg-0" href="#">
                         <img src="../img/email.png" id="btnMail" height="30" alt="Messagerie" loading="lazy" />
-                        <img src="../img/logolong.png" height="30" alt="Logo" loading="lazy" />
+                        <img src="../img/logolong.png" height="40" alt="Logo" loading="lazy" />
                     </a>
 
                 </div>
