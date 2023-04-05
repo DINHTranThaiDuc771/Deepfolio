@@ -195,6 +195,12 @@ class DB {
             return $this->execQuery($requete, $tparam, 'Page');
         }
 
+        public function getPage($username, $idportfolio, $type){
+            $requete = 'select * from page where nomutilisateur = ? and idportfolio = ? and type = ?';
+            $tparam = array($username, $idportfolio, $type);
+            return $this->execQuery($requete, $tparam, 'Page');
+        }
+
         public function messageExists($username, $mail){
             $requete = 'select count(nomutilisateur) from message where nomutilisateur = ? and mailmessage = ? ';
             $tparam = array($username, $mail);
@@ -293,7 +299,14 @@ class DB {
         //*********************************************************//
 
         public function deletePortfolio( $username, $idPortfolio) {
+            $this->deletePages($username, $idPortfolio);
             $requete = 'delete from portfolio where nomUtilisateur = ? and idPortfolio = ?';
+            $tparam = array( $username, $idPortfolio);
+            return $this->execMaj($requete,$tparam);
+        }
+
+        public function deletePages($username, $idPortfolio) {
+            $requete = 'delete from page where nomUtilisateur = ? and idPortfolio = ?';
             $tparam = array( $username, $idPortfolio);
             return $this->execMaj($requete,$tparam);
         }

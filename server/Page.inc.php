@@ -1,6 +1,6 @@
 <?php
 
-    class Page {
+    class Page implements JsonSerializable {
 
         private $nomutilisateur;
         private $idportfolio;
@@ -21,6 +21,17 @@
         public function getIdPage()         { return $this->idpage; }
         public function getJson()           { return $this->jsonpage; }
         public function getType()           { return $this->type; }
+
+
+        public function jsonSerialize() {
+            return [
+                "nomutilisateur" => $this->nomutilisateur,
+                "idportfolio"    => $this->idportfolio,
+                "idpage"         => $this->idpage,
+                "jsonpage"       => $this->jsonpage,
+                "type"           => $this->type
+            ];
+        }
 
     }
 
