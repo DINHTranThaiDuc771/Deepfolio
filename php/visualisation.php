@@ -12,9 +12,6 @@ require '../server/Reseau.inc.php';
 require '../server/ExperiencePro.inc.php';
 
 
-
-
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -23,7 +20,6 @@ if(!isset($_GET['cle'])){
     header("Location: accueil.php");
     exit();
 }
-
 
 
 $cle = $_GET['cle'];
@@ -62,6 +58,7 @@ $competences;
 $projets; 
 $parcours; 
 $diplomes;
+$cv;
 //------------ Variables globales ------------//
 
 
@@ -86,7 +83,8 @@ echo $tpl->render(array(
     'projets' => $projets,
     'postes' => $parcours,
     'diplomes' => $diplomes,
-    'cle' => $cle
+    'cle' => $cle,
+    'lienCv'=>$cv
 ));
         
 function affichePages($username, $idPortfolio, $db){
@@ -97,34 +95,26 @@ function affichePages($username, $idPortfolio, $db){
 
         $typePage = $page->getType();
         
-
         switch($typePage){
             case 'cv':
-                //TODO: recuperer les infos
                 recupInfosCV($page);
                 break;
             case 'competences':
-                //TODO: recuperer les infos
                 recupInfosCompetences($page);
                 break;
             case 'projets':
-                //TODO: recuperer les infos
                 recupInfosProjets($page);
                 break;
             case 'parcours':
-                //TODO: recuperer les infos
                 recupInfosParcours($page);
                 break;
-            case 'diplomes':
-                //TODO: recuperer les infos
+            case 'diplomes': 
                 recupInfosDiplomes($page);
                 break;
-            case 'reseaux':
-                //TODO: recuperer les infos
+            case 'reseaux':    
                 recupReseaux($page);
                 break;
             case 'infos':
-                //TODO: recuperer les infos
                 recupInfos($page);
                 break;
         }
@@ -134,18 +124,18 @@ function affichePages($username, $idPortfolio, $db){
 
 function recupInfosCV($page){
 
-    global $adresse, $description, $nom, $prenom, $age;
+    global $cv, $adresse, $description, $nom, $prenom, $age;
 
     $jsonpage = $page->getJson();
-    $cvJson = json_decode($jsonpage, true); //array avec les infos du cv
+    $cvJson = json_decode($jsonpage, true); 
 
-    //$nomportfolio = $cvJson['nomportfolio'];
     $adresse = $cvJson['adresse'];
-    //$mail = $cvJson['mail'];
     $description = $cvJson['presentation'];
     $nom = $cvJson['nom'];
     $prenom = $cvJson['prenom'];
     $age = $cvJson['age'];
+    $cv = $cvJson["lienCv"];
+
 }
 
 function recupInfosCompetences($page){
@@ -174,12 +164,15 @@ function recupInfosProjets($page){
     $projets = array();
 
     foreach($tabProjets as $projet){
+
         $img = "";
+
         if ( !isset($projet['image'])) {
             $img = "";
         } else {
             $img = $projet['image'];
         }
+
         array_push($projets, new Projet($projet['nom'], $projet['description'], $projet['taille'], $projet['lien'], $projet['image']));
     }
 }

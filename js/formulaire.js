@@ -46,7 +46,7 @@ class Competence {
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var nbTab = 4;
 var tabElements = new Array();
-var mapReseaux = new Map();
+var mapReseaux;
 
 function showTab(n) {
     // This function will display the specified tab of the form ...
@@ -81,6 +81,7 @@ function showTab(n) {
 var avancement = 0;
 
 function nextPrev(n) {
+
 
     var x = document.querySelectorAll(" .tab");
 
@@ -376,30 +377,26 @@ function gereLien( elmt1, elmt2 ) {
     }
 }
 
-function remplirLien( reseau ) {
-    if(mapReseaux.has(reseau)){
-        document.getElementById('typeLien').value = mapReseaux.get(reseau);
-    }
-}
-
 function initMapReseaux() {
 
-    mapReseaux.set("LinkedIn", "https://www.linkedin.com/in/");
-    mapReseaux.set("Facebook", "https://www.facebook.com/");
-    mapReseaux.set("Discord", "https://discord.com/");
-    mapReseaux.set("Signal", "https://signal.org/fr/");
-    mapReseaux.set("Telegram", "https://telegram.org/");
-    mapReseaux.set("Stackoverflow", "https://stackoverflow.com/");
-    mapReseaux.set("Instagram", "https://www.instagram.com/");    
-    mapReseaux.set("Twitter", "https://twitter.com/");
-    mapReseaux.set("Github", "https://github.com/");
-    mapReseaux.set("Youtube", "https://www.youtube.com/");
-    mapReseaux.set("Twitch", "https://www.twitch.tv/");
+    mapReseaux.set("linkedin", "https://www.linkedin.com/in/");
+    mapReseaux.set("facebook", "https://www.facebook.com/");
+    mapReseaux.set("discord", "https://discord.com/");
+    mapReseaux.set("signal", "https://signal.org/fr/");
+    mapReseaux.set("telegram", "https://telegram.org/");
+    mapReseaux.set("stackoverflow", "https://stackoverflow.com/");
+    mapReseaux.set("instagram", "https://www.instagram.com/");    
+    mapReseaux.set("twitter", "https://twitter.com/");
+    mapReseaux.set("github", "https://github.com/");
+    mapReseaux.set("youtube", "https://www.youtube.com/");
+    mapReseaux.set("twitch", "https://www.twitch.tv/");
 }
 
 
 window.onload = () => {
 
+
+    mapReseaux = new Map();
     initMapReseaux();
 
     showTab(currentTab);
@@ -413,10 +410,13 @@ window.onload = () => {
     const lienProjet = document.getElementById("lienProjet");
     const lien = document.getElementById("lienNonProjet");
 
-    document.getElementById("typeReseau").addEventListener("keyup", (e)=>{ 
-        if(e.key === 'Enter') {
-            remplirLien(e.target.value); 
-        }
+    document.getElementById("typeReseau").addEventListener("input", (e)=>{ 
+        var reseau = e.target.value.toLowerCase();
+        if(mapReseaux.has(reseau)){
+            document.getElementById('typeLien').value = mapReseaux.get(reseau);
+        }else{
+            document.getElementById('typeLien').value = "";
+        } 
     });
 
     Array.prototype.slice.call(tabBtnSuiv).forEach((btnSuivant) => {

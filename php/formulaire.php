@@ -355,7 +355,11 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                                         <div class="invalid-feedback">Veuillez entrer un lien</div>
                                     </div>
 
-                                    <select class="browser-default custom-select form-outline mb-4" id="lienProjet"></select>                                  
+                                    <div class="form-floating form-outline mb-4">
+                                        <select class="form-select" id="lienProjet" aria-label="Floating label select example">
+                                        </select>
+                                        <label for="floatingSelect">Lier un projet</label>
+                                    </div>                                 
                                 
                                 </div>                                                 
                             </div>                       
@@ -372,7 +376,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-check mb-1">
+                                    <div class="form-check mt-2">
                                             <input type="checkbox" id="accesible" class="form-check-input"  name="accesible"/>
                                             <label class="form-check-label" for="accesible">Accessible</label>
                                             <div class="invalid-feedback">Veuillez entrer une visibilité</div>
@@ -389,13 +393,18 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
       </div>
     </div>
   </section>
+    <script>
+        document.querySelectorAll('.form-outline').forEach((formOutline) => {
+            new mdb.Input(formOutline).init();
+        });
+    </script>
     <!-- MDB -->
     <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
     <!-- jQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <!-- jQuery Cookie plugin -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <!-- our scirpt -->
+    <!-- our script -->
     <script type="text/javascript" src="../js/formulaire.js"></script>
     
 </body>

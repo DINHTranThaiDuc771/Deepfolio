@@ -140,6 +140,11 @@ function formulaire(){
               <input type="submit" value="Se Déconnecter" class="btn btn-primary">
             </form>
           </ul>
+          <ul>
+            <form action="supprimercompte.php" method="get">
+              <input type="button" value="Supprimer compte" class="btn btn-danger">
+            </form>
+          </ul>
         </li>
       </div>
     </div>
