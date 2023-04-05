@@ -37,3 +37,23 @@
 
 
 }
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 5px dashed rgb(190, 190, 190);
+}
+
+@media only screen and (max-width: 767px) {
+    .sidebar {
+        height: 100%;
+        transform: translateX(-240px);
+        width: 240px;
+    }
+
+
+}
