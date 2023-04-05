@@ -18,6 +18,7 @@
         if ($_POST['action'] == 'getMessages') { getMessages(); }
         if ($_POST['action'] == 'deleteMessage') { deleteMessage(); } 
         if ($_POST['action'] == 'deletePortfolio') { deletePortfolio(); }
+        if ($_POST['action'] == 'getPage') { getPage(); }
         if ($_POST['action'] == 'uploadFiles') { dlImg(); }
     }
 
@@ -100,12 +101,13 @@
         $DB->deletePortfolio($user->getNomUtilisateur(), $idPortfolio);
     }
 
-    function getPages() {
+    function getPage() {
         $DB = DB::getInstance();
         $user = $_SESSION["user"];
         $idPortfolio = $_POST['idPortfolio'];
-        $pages = $DB->getPages($user->getNomUtilisateur(), $idPortfolio);
-        echo json_encode($pages);
+        $type = $_POST['type'];
+        $page = $DB->getPage($user->getNomUtilisateur(), $idPortfolio, $type);
+        echo json_encode($page);
     }
 
 

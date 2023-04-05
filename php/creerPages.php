@@ -55,6 +55,7 @@ function creerPages($portfolioJSON, $db){
     $projets = $portfolioJSON->projets;
     $parcours = $portfolioJSON->parcours;
     $diplomes = $portfolioJSON->diplomes;
+    $reseaux = $portfolioJSON->reseaux;
 
     $numPortfolio   = $db->getNewestPortfolioId($username);
 
@@ -62,6 +63,7 @@ function creerPages($portfolioJSON, $db){
     creerPageDiplomes($diplomes);
     creerPageProjets($projets);
     creerPageParcours($parcours);
+    creerPageReseaux($reseaux);
     creerPageCV($portfolioJSON);
     creerPageInfo($portfolioJSON);
 
@@ -132,6 +134,19 @@ function creerPageCV($portfolio_json){
     $stringCV = '{' . substr($stringCV, 1, strlen($stringCV) -1 );
 
     $db->addPage($username, $numPortfolio, $stringCV, "cv");
+}
+
+function creerPageReseaux($reseaux) {
+
+    global $db, $username, $numPortfolio;
+
+    $reseauxString = '{"reseaux": ';
+    
+    $reseauxString .= json_encode($reseaux);
+
+    $reseauxString .= "}";
+
+    $db->addPage($username, $numPortfolio, $reseauxString, "reseaux");
 }
 
 function creerPageInfo($competences) {

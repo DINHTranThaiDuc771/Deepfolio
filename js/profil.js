@@ -67,16 +67,25 @@ function addPortfolio(p) {
     var portfolios = document.getElementById("tab-portfolio");
     var portfolio = p;
 
-    var ville = "test";
+    var ville;
+
     $.ajax({
         type:"POST",
         url:"./function.php",
-        data:"action=getPages&idPortfolio="+portfolio.idPortfolio,
+        data:"action=getPage&idPortfolio="+portfolio.idPortfolio+"&type=cv",
         complete: function(data) {
-            console.log(data.responseText);
+            var json = JSON.parse(data.responseText);
+
+            var jsonpage = JSON.parse(json[0].jsonpage);
+
+            ville = "" + jsonpage.adresse;
+
+            createPortfolio(portfolios, portfolio, ville);
         }
     })
+}
 
+function createPortfolio(portfolios, portfolio, ville) {
     var div0 = document.createElement("div");
     div0.classList.add("card");
     div0.classList.add("mb-3")
@@ -135,15 +144,35 @@ function addPortfolio(p) {
     btnDel.classList.add("btn-danger");
     btnDel.id = "btnDel"+portfolio.idPortfolio;
     btnDel.addEventListener("click", function(event) {
-        $.ajax({
-            type:"POST",
-            url:"./function.php",
-            data:"action=deletePortfolio&idPortfolio="+portfolio.idPortfolio,
-            complete: function() {
-                var btnSuppr = event.target;
-                btnSuppr.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(btnSuppr.parentNode.parentNode.parentNode.parentNode.parentNode);
-            }
-        })
+
+        let confirmation = "Voulez-vous vraiment supprimer ce portfolio ?";
+
+        if (confirm(confirmation) == true)
+        {
+            var form_data = new FormData();
+            form_data.append("idPortfolio", portfolio.idPortfolio);
+            form_data.append("action", "deletePortfolio");
+
+            $.ajax({
+                type:"POST",
+                dataType: 'script',
+                contentType: false,
+                processData: false,
+                url:"./function.php",
+                data: form_data,
+                complete: function() {
+                    var btnSuppr = event.target;
+                    var containerPortfolio = document.getElementById("tab-portfolio");
+
+                    var divParent = btnSuppr.parentElement;
+                    while (!divParent.classList.contains("card")) {
+                        divParent = divParent.parentElement;
+                    }
+
+                    containerPortfolio.removeChild(divParent); 
+                }
+            })
+        }
     })
 
     var imgDel = document.createElement("img");

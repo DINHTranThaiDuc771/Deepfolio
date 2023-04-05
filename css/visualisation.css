@@ -13,6 +13,7 @@ nav {
 }
 
 body {
+  position: relative;
   background-color: #FDF2ED;
 }
 
@@ -126,14 +127,24 @@ section article>* {
   display: none;
   position: fixed;
 
-  background-color: red;
-  width: 150px;
-  height: 50px;
   z-index: 2;
+}
+#editbar button {
+  width: 25px;
 }
 
 /*Editbar*/
-
+/*Delete buttons*/
+.deletetable {
+  position: relative;
+  transition: opacity 1 ease-out 0.5s;
+}
+.deletetable button {
+  display: none;
+  position: absolute;top: 0px;right: 0px;
+  border: none;
+  background-color: #fdf2ed;
+}
 
 /*Mobile*/
 @media (max-width: 767px) {
