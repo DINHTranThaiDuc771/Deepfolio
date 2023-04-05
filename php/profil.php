@@ -137,7 +137,7 @@ function formulaire(){
           <ul><a id="btn-portfolios" href="#">Vos portfolios</a></ul>
           <ul>
             <form action="deconnexion.php" method="get">
-              <input type="submit" value="Se Deconnexion" class="btn btn-primary">
+              <input type="submit" value="Se Déconnecter" class="btn btn-primary">
             </form>
           </ul>
         </li>

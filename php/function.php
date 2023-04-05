@@ -18,6 +18,7 @@
         if ($_POST['action'] == 'getMessages') { getMessages(); }
         if ($_POST['action'] == 'deleteMessage') { deleteMessage(); } 
         if ($_POST['action'] == 'deletePortfolio') { deletePortfolio(); }
+        if ($_POST['action'] == 'uploadFiles') { dlImg(); }
     }
 
     if(isset($_POST['nom'])) {
@@ -102,5 +103,29 @@
         $idPortfolio = $_POST['idPortfolio'];
         $pages = $DB->getPages($user->getNomUtilisateur(), $idPortfolio);
         echo json_encode($pages);
+    }
+
+
+    function dlImg() {
+        $target_dir = "img_user/";
+        $target_file = $target_dir . basename($_FILES["file"]["name"]);
+        $uploadOk = 1;
+
+        $check = getimagesize($_FILES["file"]["tmp_name"]);
+        if($check !== false) {
+            $uploadOk = 1;
+        } else {
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 0) {
+            echo "false";
+        } else {
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                echo "true";
+            } else {
+                echo "false";
+            }
+        }
     }
 ?>

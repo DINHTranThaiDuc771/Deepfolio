@@ -30,6 +30,7 @@ class Projet {
         this.description = description;
         this.taille = taille;
         this.lien = lien;
+        this.image = image;
     }
 }
 
@@ -131,9 +132,9 @@ function nextPrev(n) {
             input.required = tabRequired[cpt++];
     });
 
-    showTab(currentTab);
-
     updateProgressbar(currentTab-previousTab);
+
+    showTab(currentTab);
 }
 
 function updateProgressbar(n){
@@ -208,11 +209,26 @@ function ajouterTab(event) {
 
         if ( inputFile.files.length > 0 ) {
             img = inputFile.files[0];
+
+            var form_data = new FormData();
+            form_data.append("file", img);
+            form_data.append("action", "uploadFiles");
+
+            $.ajax({
+                type:"POST",
+                dataType: 'script',
+                contentType: false,
+                processData: false,
+                url:"../php/function.php",
+                data: form_data
+            });
+
+            tabElements[tabElements.length] = new Projet(tabText[0], tabText[1], tabText[2], tabText[3], img.name);   
+        } else {
+            tabElements[tabElements.length] = new Projet(tabText[0], tabText[1], tabText[2], tabText[3], img);
         }
 
         inputFile.value = "";
-
-        tabElements[tabElements.length] = new Projet(tabText[0], tabText[1], tabText[2], tabText[3], img);
     }
     
     if ( currentTab == 4 ) {
@@ -253,19 +269,6 @@ function maj( area ) {
         divChips.classList.add("chip");
         divChips.textContent = elmt.nom;
 
-        if ( currentTab == 3 ) {
-            if ( elmt.image != "" && elmt.image != null) {
-
-                var image = document.createElement("img");
-                image.src = URL.createObjectURL(elmt.image);
-                image.width = "96";
-                image.height = "96";
-                image.alt = "Image de la compétence";
-
-                divChips.appendChild(image);
-            }
-        }
-
         var spanChips = document.createElement("span");
         spanChips.classList.add("closebtn");
         spanChips.textContent = "x";
@@ -290,6 +293,7 @@ function valider(event, form, indexSuivant)
         event.preventDefault();
         event.stopPropagation();
     } else {
+
         if ( currentTab == nbTab)
         {
             terminer();
@@ -304,6 +308,8 @@ function valider(event, form, indexSuivant)
 }
 
 function terminer(){
+
+    updateProgressbar(1);
 
     const inputs = document.getElementById("formCreerPortfolio").elements;
     var tabReseaux     = new Array();

@@ -317,7 +317,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                                 <div class="col-md-6">
                                 <div class="form-check mb-1">
                                         <input type="checkbox" id="accesible" class="form-check-input"  name="accesible"/>
-                                        <label class="form-check-label" for="accesible">Accesible</label>
+                                        <label class="form-check-label" for="accesible">Accessible</label>
                                         <div class="invalid-feedback">Veuillez entrer une visibilité</div>
                                     </div>
                                 </div>
