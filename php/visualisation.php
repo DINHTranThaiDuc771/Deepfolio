@@ -8,6 +8,7 @@ require_once "../Twig/lib/Twig/Autoloader.php";
 require '../server/Competence.inc.php';
 require '../server/Projet.inc.php';
 require '../server/Diplome.inc.php';
+require '../server/Reseau.inc.php';
 require '../server/ExperiencePro.inc.php';
 
 
@@ -92,8 +93,6 @@ function affichePages($username, $idPortfolio, $db){
     
     $pages = $db->getPages($username, $idPortfolio);
 
-    
-
     foreach($pages as $page) {
 
         $typePage = $page->getType();
@@ -120,6 +119,10 @@ function affichePages($username, $idPortfolio, $db){
                 //TODO: recuperer les infos
                 recupInfosDiplomes($page);
                 break;
+            case 'reseaux':
+                //TODO: recuperer les infos
+                recupReseaux($page);
+                break;
             case 'infos':
                 //TODO: recuperer les infos
                 recupInfos($page);
@@ -131,7 +134,7 @@ function affichePages($username, $idPortfolio, $db){
 
 function recupInfosCV($page){
 
-    global $adresse, $reseaux, $description, $nom, $prenom, $age;
+    global $adresse, $description, $nom, $prenom, $age;
 
     $jsonpage = $page->getJson();
     $cvJson = json_decode($jsonpage, true); //array avec les infos du cv
@@ -139,7 +142,6 @@ function recupInfosCV($page){
     //$nomportfolio = $cvJson['nomportfolio'];
     $adresse = $cvJson['adresse'];
     //$mail = $cvJson['mail'];
-    $reseaux = $cvJson['reseaux'];
     $description = $cvJson['presentation'];
     $nom = $cvJson['nom'];
     $prenom = $cvJson['prenom'];
@@ -166,7 +168,7 @@ function recupInfosProjets($page){
     global $projets;
 
     $jsonPage       = $page->getJson();
-    $projetsJson    = json_decode($jsonPage, true); //tableau de projets
+    $projetsJson    = json_decode($jsonPage, true);
     $tabProjets     = $projetsJson['projets'];
 
     $projets = array();
@@ -210,6 +212,24 @@ function recupInfosDiplomes($page){
     foreach($tabDiplomes as $diplome){
         array_push($diplomes, new Diplome($diplome['nom'], $diplome['etablissement'], $diplome['annee']));
     }
+}
+
+function recupReseaux($page){
+
+    global $reseaux;
+
+    $jsonPage       = $page->getJson();
+    $reseauxJson   = json_decode($jsonPage, true);
+    $tabReseaux    = $reseauxJson['reseaux'];
+
+    $reseaux = array();
+
+    foreach($tabReseaux as $reseau){
+        $nomClasse = strtolower($reseau['nom']);
+        array_push($reseaux, new Reseau($reseau['nom'], $nomClasse, $reseau['lien']));
+    }
+
+
 }
 
 function recupInfos($page) {

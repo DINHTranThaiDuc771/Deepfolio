@@ -93,24 +93,11 @@
 
             <!-- Right -->
             <div>
-                <a href="" class="me-4 link-secondary">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="me-4 link-secondary">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="" class="me-4 link-secondary">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="" class="me-4 link-secondary">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="" class="me-4 link-secondary">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="" class="me-4 link-secondary">
-                    <i class="fab fa-github"></i>
-                </a>
+                {% for reseau in reseaux %}
+                    <a href="{{ reseau.lien }}" class="me-4 link-secondary"> {{reseau.nom}}
+                        <i class="fab fa-{{reseau.nomClasse}}"></i>
+                    </a>
+                {% endfor %}
             </div>
             <!-- Right -->
         </section>
