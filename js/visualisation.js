@@ -106,7 +106,11 @@ function telechargerCV()
 }
 
 function afficherEditorBar(event){
-    lstEditableTextChanged.add(event.target);
+    if (event.target.closest('.deletetable') != null) 
+        lstEditableTextChanged.add(event.target.closest('.deletetable'));
+    else
+        lstEditableTextChanged.add(event.target);
+    
     editbar.style.display="flex";
     editbar.style.left = `${xEditBar}px`;
     editbar.style.top = `${yEditBar-50}px`;
