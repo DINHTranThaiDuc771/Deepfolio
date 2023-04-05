@@ -129,9 +129,10 @@ section article>* {
 
   z-index: 2;
 }
-#editbar button {
+#editbar button,#editbar input {
   width: 25px;
 }
+
 
 /*Editbar*/
 /*Delete buttons*/
