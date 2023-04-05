@@ -159,6 +159,11 @@ function ajouterComp ()
 }
 function toggleEdit() {
     isEditing = !isEditing;
+    /*Close nav when link clicked*/
+    if (window.matchMedia("(max-width: 767px)").matches)
+    {   
+        btnNavbar.click();
+    }
     if (isEditing)
     {
         for (var i=0; i< lstEditableText.length; i++)
