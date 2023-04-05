@@ -138,7 +138,10 @@ section article>* {
 /*Delete buttons*/
 .deletetable {
   position: relative;
-  transition: opacity 1 ease-out 0.5s;
+  opacity:1;
+  transition : all .3s;
+  -wekit-transition : all .3s;
+  -moz-transition : all .3s;
 }
 .deletetable button {
   display: none;
