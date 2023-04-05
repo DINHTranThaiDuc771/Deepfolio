@@ -82,6 +82,7 @@ var avancement = 0;
 
 function nextPrev(n) {
 
+
     var x = document.querySelectorAll(" .tab");
 
     x[currentTab].style.display = "none";
@@ -393,6 +394,7 @@ function initMapReseaux() {
 
 
 window.onload = () => {
+
 
     mapReseaux = new Map();
     initMapReseaux();
