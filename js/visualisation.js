@@ -5,8 +5,8 @@ var lstEditableText,lstDeletable,lstButtonSupprimer;
 var editbar;
 var btnBold,btnUnderline,btnItalic;
 var selectFont,selectSize,selectColor;
-
-
+var lstEditableTextChanged;
+lstEditableTextChanged = new Set();
 
 document.addEventListener("mousemove", function(event) {
     xEditBar = event.clientX;
@@ -107,8 +107,9 @@ function telechargerCV()
     });
 }
 
-function afficherEditorBar(){
-
+function afficherEditorBar(event){
+    lstEditableTextChanged.add(event.target);
+    console.log (lstEditableTextChanged);
     editbar.style.display="flex";
     editbar.style.left = `${xEditBar}px`;
     editbar.style.top = `${yEditBar-50}px`;
@@ -177,7 +178,7 @@ function toggleEdit() {
         {   
             lstEditableText[i].setAttribute("contenteditable","true");
             lstEditableText[i].setAttribute("tabindex","0");
-            lstEditableText[i].addEventListener("focus",afficherEditorBar,false);
+            lstEditableText[i].addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
 
 
             lstEditableText[i].classList.add("isEditText");
@@ -284,7 +285,7 @@ function refreshListEditable() {
         lstEditableText[i].setAttribute("contenteditable","true");
         lstEditableText[i].setAttribute("tabindex","0");
         lstEditableText[i].classList.add("isEditText");
-        lstEditableText[i].addEventListener("focus",afficherEditorBar,false);
+        lstEditableText[i].addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
 
     }
     // list button supprimer
