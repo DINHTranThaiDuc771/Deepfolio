@@ -106,13 +106,26 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                                     <div id="informationsDroite" class="col-md-6">
                                         <p class="text-white-50 mb-5"></p>
                                         <div class="form-outline mb-4 autocomplete">                    
-                                            <input type="text" id="typeReseau" class="form-control form-control-lg require" />
+                                            <input type="text" id="typeReseau" list="lstReseaux" class="form-control form-control-lg require" />
+                                            <datalist id="lstReseaux">
+                                                <option class="lstReseaux" value="LinkedIn">
+                                                <option class="lstReseaux" value="Facebook">
+                                                <option class="lstReseaux" value="Discord">
+                                                <option class="lstReseaux" value="Signal">
+                                                <option class="lstReseaux" value="Telegram">
+                                                <option class="lstReseaux" value="Stackoverflow">
+                                                <option class="lstReseaux" value="Instagram">
+                                                <option class="lstReseaux" value="Twitter">
+                                                <option class="lstReseaux" value="GitHub">
+                                                <option class="lstReseaux" value="Twitch">
+                                                <option class="lstReseaux" value="Youtube">
+                                            </datalist>
                                             <label class="form-label" for="typeReseau">Réseau</label>
                                             <div class="invalid-feedback">Veuillez entrer un réseau</div>
                                         </div>                                 
                                         
                                         <div class="form-outline mb-4">
-                                            <input type="url" id="typeLien" class="form-control form-control-lg require"></textarea>
+                                            <input type="url" id="typeLien" class="form-control form-control-lg require"/>
                                             <label class="form-label" for="typeLien">Lien</label>
                                             <div class="invalid-feedback">Veuillez entrer un lien</div>
                                         </div>
