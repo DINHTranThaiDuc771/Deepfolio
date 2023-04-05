@@ -25,24 +25,26 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>Création de Portfolio - DeepFolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Création de Portfolio - DeepFolio</title>
 
-  <!-- Bootstrap CSS-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-  <!-- Bootstrap JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-  <!-- MDB icon -->
-  <link rel="icon" href="../img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-  <!-- MDB -->
-  <link rel="stylesheet" href="../css/mdb.min.css" />
-  <link rel="stylesheet" href="../css/formulaire.css" />
+    <!-- OUR icon -->
+    <link rel="icon" href="../img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
+    <!-- Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <!-- Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <!-- MDB icon -->
+    <link rel="icon" href="../img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="../css/mdb.min.css" />
+    <link rel="stylesheet" href="../css/formulaire.css" />
 </head>
 
 <body>  
@@ -71,7 +73,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
             <div class="col d-flex justify-content-end align-items-center">
 
                 <div class="me-3">
-                    <a class="fs-4 text"> <?php echo $user->getNomUtilisateur(); ?> </a>
+                    <a class="fs-4 text" style="color: black"> <?php echo $user->getNomUtilisateur(); ?> </a>
                  </div>
                 
                 <!-- Avatar -->
