@@ -25,27 +25,71 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>Création de compte - DeepFolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Création de Portfolio - DeepFolio</title>
 
-  <!-- Bootstrap CSS-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-  <!-- Bootstrap JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-  <!-- MDB icon -->
-  <link rel="icon" href="../img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
-  <!-- MDB -->
-  <link rel="stylesheet" href="../css/mdb.min.css" />
-  <link rel="stylesheet" href="../css/formulaire.css" />
+    <!-- OUR icon -->
+    <link rel="icon" href="../img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
+    <!-- Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <!-- Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <!-- MDB icon -->
+    <link rel="icon" href="../img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="../css/mdb.min.css" />
+    <link rel="stylesheet" href="../css/formulaire.css" />
 </head>
 
-<body>
+<body>  
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="col " id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="accueil.php">
+                    <img src="../img/logolong.png" height="50" alt="Logo" loading="lazy" />
+                </a>
+
+            </div>           
+
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <div class="col d-flex justify-content-end align-items-center">
+
+                <div class="me-3">
+                    <a class="fs-4 text" style="color: black"> <?php echo $user->getNomUtilisateur(); ?> </a>
+                 </div>
+                
+                <!-- Avatar -->
+                <div>  
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="profil.php"
+                        id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
+                        <img src="../img/profil.png" class="rounded-circle" height="50"
+                            alt="Image Profil" loading="lazy" />
+                    </a>
+                </div>
+            </div>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
   <section class="vh-100 ">
     <div class="container-fluid py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">

@@ -144,21 +144,26 @@ function addMessage(m) {
     var divNomPrenom = document.createElement("div");
 
     var pNomPrenom = document.createElement("p");
+    pNomPrenom.classList.add("text-break");
     pNomPrenom.textContent = "de " + message.nom + " " + message.prenom;
 
     var divMail = document.createElement("div");
 
     var pMail = document.createElement("p");
+    pMail.classList.add("text-break");
     pMail.textContent = message.mail;
 
     var divObjet = document.createElement("div");
 
     var pObjet = document.createElement("p");
+    pObjet.classList.add("text-break");
     pObjet.textContent = message.objet;
 
     var divText = document.createElement("div");
+    divText.classList.add("text-wrap");
 
     var pText = document.createElement("p");
+    pText.classList.add("text-break");
     pText.textContent = message.text;
 
     var divBtn = document.createElement("div");
