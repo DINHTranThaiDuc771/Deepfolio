@@ -93,6 +93,16 @@ window.onload = () => {
 function telechargerCV()
 {
     console.log("dl cv pdf");
+
+    var div = document.getElementById("contentAll");
+    var oldPage = document.body.innerHTML;
+
+    document.body.innerHTML = 
+        "<html><head><title></title></head><body>" +
+        div.innerHTML + "</body>";
+
+    window.print();
+    document.body.innerHTML = oldPage;
 }
 
 function afficherEditorBar(event){

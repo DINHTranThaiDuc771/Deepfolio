@@ -180,12 +180,12 @@
     <!-- MDB -->
     <script type="text/javascript" src="../js/mdbjs/mdb.min.js"></script>
 
-    <!-- jsPDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
-
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Openjs shortcuts -->
+    <!--<script src="http://www.openjs.com/scripts/events/keyboard_shortcuts/shortcut.js"></script>-->
+
     <!-- Custom scripts -->
     <script type="text/javascript" src="../js/visualisation.js">
     </script>
