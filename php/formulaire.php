@@ -104,20 +104,20 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
 
                         <div class="mb-md-5 mt-md-4 pb-5"><!-- col-md-6 -->
 
-                            <h2 class="fw-bold mb-2 text-uppercase">Informations</h2>
+                            <h2 class="fw-bold mb-2 text-uppercase unselectable">Informations</h2>
                             <div class="container" id="conteneur2Elements">
                                 <div class="row">
                                     <div id="informationsGauche" class="col-md-6">
                                         <p class="text-white-50 mb-5"></p>
                                         <div class="form-outline mb-4">
                                             <input type="text" id="typeNom" class="form-control form-control-lg <?php if ($nom != "") echo "active"; ?>" value=<?php echo "\"$nom\"";?> name="nom" required/>
-                                            <label class="form-label" for="typeNom">Nom</label>
+                                            <label class="form-label unselectable" for="typeNom">Nom</label>
                                             <div class="invalid-feedback">Veuillez entrer un nom</div>
                                         </div>
                                         
                                         <div class="form-outline mb-4">
                                             <input type="text" id="typePrenom" class="form-control form-control-lg <?php if ($prenom != "") echo "active"; ?>" value=<?php echo "\"$prenom\"";?> name="prenom" required />
-                                            <label class="form-label" for="typePrenom">Prénom</label>
+                                            <label class="form-label unselectable" for="typePrenom">Prénom</label>
                                             <div class="invalid-feedback">Veuillez entrer un prénom</div>
                                         </div>
         
@@ -190,7 +190,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                 
                         <div class="mb-md-5 mt-md-4 pb-5 ">
 
-                            <h2 class="fw-bold mb-2 text-uppercase">Educations</h2>
+                            <h2 class="fw-bold mb-2 text-uppercase unselectable">Diplomes</h2>
                             <p class="text-white-50 mb-5"></p>
 
                             <div class="form-outline mb-4">
@@ -226,7 +226,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                 
                         <div class="mb-md-5 mt-md-4 pb-5 ">
 
-                            <h2 class="fw-bold mb-2 text-uppercase">Parcours professionnel</h2>
+                            <h2 class="fw-bold mb-2 text-uppercase unselectable">Parcours professionnel</h2>
                             <p class="text-white-50 mb-5"></p>
 
                             <div class="form-outline mb-4">
@@ -271,7 +271,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                     <div class="card-body p-5 text-center hiddenCards">
                 
                         <div class="mb-md-5 mt-md-4 pb-5 ">                            
-                            <h2 class="fw-bold mb-2 text-uppercase">Ajouter des projets</h2>
+                            <h2 class="fw-bold mb-2 text-uppercase unselectable">Projets</h2>
 
                             <div class="row">
                                 <div class="col-md-6">
