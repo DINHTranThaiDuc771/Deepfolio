@@ -70,19 +70,33 @@
 
     <!------------------->
     <!--    Editbar------>
-    <!--------
+    <!---------------------->
     <div id="editbar">
-        <div class="form-outline">
-            <input type="text" id="form16" class="form-control" data-mdb-showcounter="true" maxlength="20" />
-            <label class="form-label" for="form16">Example label</label>
-            <div class="form-helper"></div>
-          </div>
+        <button id="btnBold">B</button>
+        <button id="btnUnderline">U</button>
+        <button id="btnItalic">I</button>
+        <select name="" id="selectSize">
+            <option value="1"> Petit</option>
+            <option value="2">Medium</option>
+            <option value="3"> Large</option>
+            <option value="4"> 4</option>
+            <option value="5">5</option>
+            <option value="6"> 6</option>
+            <option value="7"> 7</option>
+
+        </select>
+        <select name="" id="selectFont">
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+        </select>
+        <input  style="height: 40px;" type="color" id="selectColor">
 
     </div>
-           -------------->
+
     <!--    Editbar------>
-    <!------------------->
-<footer class="text-center text-lg-start bg-white text-muted">
+    <!------------------>
+    <footer class="text-center text-lg-start bg-white text-muted">
         <!-- Section: Social media -->
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <!-- Left -->
@@ -120,6 +134,16 @@
                         </p>
                     </div>
                     <!-- Grid column -->
+
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-address-card"></i> Mon CV
+                        </h6>
+                        <p class="editableText">
+                            <a href="#">linkCV.com</a>
+                        </p>
+                    </div>
 
     
 

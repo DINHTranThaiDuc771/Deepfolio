@@ -4,7 +4,7 @@ var yEditBar;
 var lstEditableText,lstDeletable,lstButtonSupprimer;
 var editbar;
 var btnBold,btnUnderline,btnItalic;
-var selectFont,selectSize;
+var selectFont,selectSize,selectColor;
 btnAjouterProjet.style.display = "none";
 btnAjouterComp  .style.display = "none";
 btnSauver       .style.display = "none";
@@ -21,16 +21,19 @@ window.onload = () => {
     btnItalic       = document.getElementById("btnItalic");
     selectFont      = document.getElementById("selectFont");    
     selectSize      = document.getElementById("selectSize");
-
+    selectColor     = document.getElementById("selectColor");
     btnBold     .addEventListener("click",()=>{styleBUI("bold")},false);
     btnUnderline.addEventListener("click",()=>{styleBUI("underline")},false);
     btnItalic   .addEventListener("click",()=>{styleBUI("italic")},false);
     selectFont  .addEventListener("change",()=>{
         styleFont(selectFont.value);
-    });
+    },false);
     selectSize  ;addEventListener("change",()=>{
         styleSize(selectSize.value);
-    });
+    },false);
+    selectColor.addEventListener("input",()=>{
+        styleColor(selectColor.value);
+    },false)
     /**Changer Tab */
     var pageAccueil             = document.getElementById("pageAccueil");
     var pageCompetences         = document.getElementById("pageCompetences");
@@ -278,6 +281,14 @@ function styleSize(size){
         document.execCommand("fontsize",false,size);
     }
 }
+function styleColor(color){
+    const selection = window.getSelection().toString();
+    if (selection.length > 0) {
+        document.execCommand("foreColor", false, color);
+    }
+}
+
+
 function saveEdition (){
     toggleEdit();
     //Faire ajax pour envoyer le json
