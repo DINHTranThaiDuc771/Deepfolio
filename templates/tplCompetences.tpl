@@ -3,8 +3,8 @@
 
     {% for competence in competences %}
 
-        <section class="content deletetable">
-            <h1 class="editableText"> {{competence.getNom() }} </h1>
+        <section class="content deletetable competence">
+            <h1 class="editableText "> {{competence.getNom() }} </h1>
             <article  class="editableText">
                 <div class="left">
                     <ul>
