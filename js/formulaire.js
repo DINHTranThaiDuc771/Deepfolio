@@ -46,6 +46,7 @@ class Competence {
 var currentTab = 0; // Current tab is set to be the first tab (0)
 var nbTab = 4;
 var tabElements = new Array();
+var mapReseaux = new Map();
 
 function showTab(n) {
     // This function will display the specified tab of the form ...
@@ -376,21 +377,48 @@ function gereLien( elmt1, elmt2 ) {
     }
 }
 
+function remplirLien( reseau ) {
+    if(mapReseaux.has(reseau)){
+        document.getElementById('typeLien').value = mapReseaux.get(reseau);
+    }
+}
+
+function initMapReseaux() {
+
+    mapReseaux.set("LinkedIn", "https://www.linkedin.com/in/");
+    mapReseaux.set("Facebook", "https://www.facebook.com/");
+    mapReseaux.set("Discord", "https://discord.com/");
+    mapReseaux.set("Signal", "https://signal.org/fr/");
+    mapReseaux.set("Telegram", "https://telegram.org/");
+    mapReseaux.set("Stackoverflow", "https://stackoverflow.com/");
+    mapReseaux.set("Instagram", "https://www.instagram.com/");    
+    mapReseaux.set("Twitter", "https://twitter.com/");
+    mapReseaux.set("Github", "https://github.com/");
+    mapReseaux.set("Youtube", "https://www.youtube.com/");
+    mapReseaux.set("Twitch", "https://www.twitch.tv/");
+}
 
 
 window.onload = () => {
 
+    initMapReseaux();
+
     showTab(currentTab);
 
-    const tabBtnPrec = document.querySelectorAll(" .precedent");
-    const tabBtnSuiv = document.querySelectorAll(" .suivant");
-    const tabBtnAjouter = document.querySelectorAll(" .ajouter");
+    const tabBtnPrec        = document.querySelectorAll(" .precedent");
+    const tabBtnSuiv        = document.querySelectorAll(" .suivant");
+    const tabBtnAjouter     = document.querySelectorAll(" .ajouter");
 
     const form = document.getElementById("formCreerPortfolio");
 
     const lienProjet = document.getElementById("lienProjet");
     const lien = document.getElementById("lienNonProjet");
 
+    document.getElementById("typeReseau").addEventListener("keyup", (e)=>{ 
+        if(e.key === 'Enter') {
+            remplirLien(e.target.value); 
+        }
+    });
 
     Array.prototype.slice.call(tabBtnSuiv).forEach((btnSuivant) => {
         btnSuivant.addEventListener("click", (event) => {
@@ -410,6 +438,8 @@ window.onload = () => {
 
     addEventListener("keypress", (event) => {
         if (event.key === 'Enter') {
+            event.preventDefault();
+            event.stopPropagation();
             valider(event, form, 1);     
         }
     });
