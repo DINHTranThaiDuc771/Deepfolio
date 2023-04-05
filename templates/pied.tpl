@@ -108,7 +108,7 @@
             <!-- Right -->
             <div>
                 {% for reseau in reseaux %}
-                    <a href="{{ reseau.lien }}" class="me-4 link-secondary"> {{reseau.nom}}
+                    <a href="{{ reseau.lien }}" target="_blank" class="me-4 link-secondary"> {{reseau.nom}}
                         <i class="fab fa-{{reseau.nomClasse}}"></i>
                     </a>
                 {% endfor %}
@@ -141,7 +141,7 @@
                             <i class="fas fa-address-card"></i> Mon CV
                         </h6>
                         <p class="editableText">
-                            <a href="#">linkCV.com</a>
+                            <a href="{{ lienCv }}" target="_blank">{{ lienCv }}</a>
                         </p>
                     </div>
 
