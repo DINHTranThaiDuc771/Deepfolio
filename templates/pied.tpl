@@ -47,6 +47,7 @@
                                             <textarea class="form-control z-depth-1 " id="exampleFormControlTextarea6"
                                                 rows="3" name="message" placeholder="Message" required></textarea>
                                         </div>
+                                        <input type="hidden" name='cle' value={{cle}}>
 
                                         <button id="envoyer" class="btn btn-primary btn-lg px-5 ml-2"
                                             type="submit">Envoyer</button>

@@ -30,16 +30,16 @@ $twig = new Twig_Environment( new Twig_Loader_Filesystem("../templates"));
 
 $cle = $_GET['cle'];
 
-$cle = base64_decode($cle);
+$cleDecode = base64_decode($cle);
 
-$jsonCle = json_decode($cle);
+$jsonCle = json_decode($cleDecode);
 
 $username = $jsonCle->auteur;
 $idPortfolio = $jsonCle->idPortfolio;
 
 $db = DB::getInstance();
 
-if($db->isPortfolioAccessible($username, $idPortfolio) !=0){
+if($db->isPortfolioAccessible($username, $idPortfolio) !=0){    
     if(!isset($_SESSION["user"]) || $_SESSION["user"]->getNomUtilisateur() != $username){
         header("Location: accueil.php");
         exit();
@@ -87,7 +87,8 @@ echo $tpl->render(array(
     'age' => $age,
     'projets' => $projets,
     'postes' => $parcours,
-    'diplomes' => $diplomes
+    'diplomes' => $diplomes,
+    'cle' => $cle
 ));
         
 function affichePages($username, $idPortfolio, $db){
