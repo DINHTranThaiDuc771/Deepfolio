@@ -50,7 +50,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
     <div class="container-fluid py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <form id="formCreerPortfolio"  action="creerPages.php" class="needs-avalidation" method="POST" novalidate>
+            <form id="formCreerPortfolio" autocomplete="off" action="creerPages.php" class="needs-avalidation" method="POST" novalidate>
 
                 <div class="progress" style="height: 20px; border-radius: 1rem 1rem 0 0">
                     <div class="progress-bar" role="progressbar" id="progressbarPortfolio"  style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -105,7 +105,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
 
                                     <div id="informationsDroite" class="col-md-6">
                                         <p class="text-white-50 mb-5"></p>
-                                        <div class="form-outline mb-4">                    
+                                        <div class="form-outline mb-4 autocomplete">                    
                                             <input type="text" id="typeReseau" class="form-control form-control-lg require" />
                                             <label class="form-label" for="typeReseau">Réseau</label>
                                             <div class="invalid-feedback">Veuillez entrer un réseau</div>

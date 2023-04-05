@@ -1,6 +1,16 @@
 var isEditing = false;
+var xEditBar;
+var yEditBar;
+var lstEditableText;
+var editbar;
+window.addEventListener("mousemove", function(event) {
+    xEditBar = event.clientX;
+    yEditBar = event.clientY;
 
+    });
 window.onload = () => {
+    editbar = document.getElementById("editbar");
+
     /**Changer Tab */
     var pageAccueil             = document.getElementById("pageAccueil");
     var pageCompetences         = document.getElementById("pageCompetences");
@@ -21,9 +31,10 @@ window.onload = () => {
     linkContact     .addEventListener("click",function(){changerTab("linkContact");},false);
     
     //Editer
-    var lstEditableText = document.getElementsByClassName("editableText");
+    lstEditableText = document.getElementsByClassName("editableText");
+
     var btnToggleEdit = document.getElementById("btnToggleEdit");
-    btnToggleEdit       .addEventListener("click",()=>{toggleEdit(lstEditableText)},false);
+    btnToggleEdit       .addEventListener("click",()=>{toggleEdit()},false);
     //Les btn pour ajouter
     var btnAjouterProjet = document.getElementById("btnAjouterProjet");
     var btnAjouterComp   = document.getElementById("btnAjouterComp");
@@ -33,6 +44,12 @@ window.onload = () => {
 }
 btnAjouterProjet.style.display = "none";
 btnAjouterComp  .style.display = "none";
+function afficherEditorBar(event){
+
+    editbar.style.display="flex";
+    editbar.style.left = `${xEditBar}px`;
+    editbar.style.top = `${yEditBar}px`;
+}
 function ajouterProjet()
 {
     var html = '<div class="row">' +
@@ -89,7 +106,7 @@ function ajouterComp ()
         lstEditableText[i].classList.add("isEditText");
     }
 }
-function toggleEdit(lstEditableText) {
+function toggleEdit() {
     isEditing = !isEditing;
     if (isEditing)
     {
@@ -97,6 +114,10 @@ function toggleEdit(lstEditableText) {
 
         {   
             lstEditableText[i].setAttribute("contenteditable","true");
+            lstEditableText[i].setAttribute("tabindex","0");
+            lstEditableText[i].addEventListener("focus",afficherEditorBar,false);
+            lstEditableText[i].addEventListener("blur",()=>{editbar.style.display="none";},false);
+
             lstEditableText[i].classList.add("isEditText");
         }
         btnAjouterProjet.style.display = "inline-block";
@@ -108,6 +129,7 @@ function toggleEdit(lstEditableText) {
         for (var i=0; i< lstEditableText.length; i++)
         {
             lstEditableText[i].setAttribute("contenteditable","false");
+            lstEditableText[i].removeAttribute("tabindex");
             lstEditableText[i].classList.remove("isEditText");
 
         }

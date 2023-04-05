@@ -123,13 +123,12 @@ section article>* {
 
 /*Editbar*/
 #editbar {
-  display: block;
+  display: none;
   position: fixed;
-  top: 0;
-  right: 0;
-  background-color: white;
-  width: 240px;
-  height: 100%;
+
+  background-color: red;
+  width: 150px;
+  height: 50px;
   z-index: 2;
 }
 
