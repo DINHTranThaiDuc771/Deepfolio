@@ -26,7 +26,8 @@
         $prenomE    = htmlspecialchars($_POST['prenom']);
         $mailE      = htmlspecialchars($_POST['mail']);
         $objet      = htmlspecialchars($_POST['objet']);
-        $message   = htmlspecialchars($_POST['message']);
+        $message    = htmlspecialchars($_POST['message']);
+        $cle        = htmlspecialchars($_POST['cle']);
 
         $username = $_COOKIE['proprio_portfolio'];
 
@@ -35,7 +36,9 @@
         }else{
             updateMessage($username, $mailE, $nomE, $prenomE, $objet, $message);            
         }
-        header("Location: ./visualisation.php");
+        //$cle = substr($cle, 1, -1);
+        header("Location: ./visualisation.php?cle=$cle");
+        exit(); 
     }
 
 
