@@ -142,8 +142,8 @@
                   <label class="form-label" for="typeMail">Mail</label>
                 </div>
 				<div class="form-check mb-1">
-					<input type="checkbox" id="mentionsLegales" class="form-check-input"  name="accesible"/>
-					<label class="form-check-label" for="accesible"><a href="../html/mentions-legales.html#conditions-utilisation" target="_blank">Accepter les mentions légales</a></label>
+					<input type="checkbox" id="mentionsLegales" class="form-check-input"  name="mentionsLegales"/>
+					<label class="form-check-label" for="mentionsLegales"><a href="../html/mentions-legales.html#conditions-utilisation" target="_blank">Accepter les mentions légales</a></label>
 					<div class="invalid-feedback">Veuillez entrer une visibilité</div>
 				</div>
                 <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
