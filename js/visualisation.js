@@ -71,6 +71,33 @@ window.onload = () => {
     btnHome = document.getElementById("btnHome");
     btnSauver = document.getElementById("btnSauver");
     btnSauver.addEventListener("click",saveEdition,false);
+
+    // Telechargement du CV
+    var btnTelecharger = document.getElementById("btnTelecharger");
+    btnTelecharger.addEventListener("click",telechargerCV,false);
+}
+
+function telechargerCV()
+{
+    var doc = new jsPDF();
+
+    var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+    };
+
+    $('#btnTelecharger').click(function() {
+        doc.fromHTML($('#content').html(), 15, 15, {
+            'width': 170,
+            'elementHandlers':specialElementHandlers
+        });
+
+        doc.save('cv.pdf');
+        console.log("end");
+    })
+
+
 }
 
 function afficherEditorBar(){
