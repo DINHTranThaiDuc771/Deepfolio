@@ -5,8 +5,10 @@ var lstEditableText,lstDeletable,lstButtonSupprimer;
 var editbar;
 var btnBold,btnUnderline,btnItalic;
 var selectFont,selectSize,selectColor;
-
-
+var lstEditableTextChanged;
+var btnNavbar;
+var lstLinkAtNav;
+lstEditableTextChanged = new Set();
 
 document.addEventListener("mousemove", function(event) {
     xEditBar = event.clientX;
@@ -14,7 +16,8 @@ document.addEventListener("mousemove", function(event) {
 });
 
 window.onload = () => {
-    
+    btnNavbar       = document.querySelector('.navbar-toggler');
+    lstLinkAtNav    = document.getElementsByClassName("nav-link");
     editbar         = document.getElementById("editbar");
     btnBold         = document.getElementById("btnBold");
     btnUnderline    = document.getElementById("btnUnderline");
@@ -38,6 +41,14 @@ window.onload = () => {
     selectColor.addEventListener("input",()=>{
         styleColor(selectColor.value);
     },false);
+    /*Close nav when link clicked*/
+    if (window.matchMedia("(max-width: 767px)").matches)
+    {   
+        for (var i =0; i<= lstLinkAtNav.length;i++)
+        {
+            lstLinkAtNav[i].addEventListener("click",()=>{btnNavbar.click()},false);
+        }
+    }
     /**Changer Tab */
     var pageAccueil             = document.getElementById("pageAccueil");
     var pageCompetences         = document.getElementById("pageCompetences");
@@ -89,26 +100,12 @@ window.onload = () => {
 
 function telechargerCV()
 {
-    var doc = new jsPDF();
-
-    var specialElementHandlers = {
-        '#editor': function (element, renderer) {
-            return true;
-        }
-    };
-
-    $('#btnTelecharger').click(function() {
-        doc.fromHTML($('#content').html(), 15, 15, {
-            'width': 170,
-            'elementHandlers': specialElementHandlers
-        });
-
-        doc.save('sample-file.pdf');
-    });
+    console.log("dl cv pdf");
 }
 
-function afficherEditorBar(){
-
+function afficherEditorBar(event){
+    lstEditableTextChanged.add(event.target);
+    console.log (lstEditableTextChanged);
     editbar.style.display="flex";
     editbar.style.left = `${xEditBar}px`;
     editbar.style.top = `${yEditBar-50}px`;
@@ -177,7 +174,7 @@ function toggleEdit() {
         {   
             lstEditableText[i].setAttribute("contenteditable","true");
             lstEditableText[i].setAttribute("tabindex","0");
-            lstEditableText[i].addEventListener("focus",afficherEditorBar,false);
+            lstEditableText[i].addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
 
 
             lstEditableText[i].classList.add("isEditText");
@@ -284,7 +281,7 @@ function refreshListEditable() {
         lstEditableText[i].setAttribute("contenteditable","true");
         lstEditableText[i].setAttribute("tabindex","0");
         lstEditableText[i].classList.add("isEditText");
-        lstEditableText[i].addEventListener("focus",afficherEditorBar,false);
+        lstEditableText[i].addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
 
     }
     // list button supprimer
