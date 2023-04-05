@@ -90,9 +90,8 @@
             <option value="Times New Roman">Times New Roman</option>
             <option value="Verdana">Verdana</option>
         </select>
-        <select name="" id="selectColor">
-            
-        </select>
+        <input  style="height: 40px;" type="color" id="selectColor">
+
     </div>
 
     <!--    Editbar------>
