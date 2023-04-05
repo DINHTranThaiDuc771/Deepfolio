@@ -96,14 +96,11 @@ function telechargerCV()
     $('#btnTelecharger').click(function() {
         doc.fromHTML($('#content').html(), 15, 15, {
             'width': 170,
-            'elementHandlers':specialElementHandlers
+            'elementHandlers': specialElementHandlers
         });
 
-        doc.save('cv.pdf');
-        console.log("end");
-    })
-
-
+        doc.save('sample-file.pdf');
+    });
 }
 
 function afficherEditorBar(){

@@ -1,7 +1,7 @@
 .sidebar {
     padding: 5px;
     height: 100%;
-    width: 240px;
+    width: 480px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -16,7 +16,6 @@
 .bloc-message {
     padding: 15px;
     margin: 10px;
-    border-radius: 10%;
     background-color: #fafafa;
 }
 
@@ -26,7 +25,17 @@
 }
 
 .add {
-    border:5px dashed rgb(190, 190, 190);
+    border: 5px dashed rgb(190, 190, 190);
+}
+
+@media only screen and (max-width: 767px) {
+    .sidebar {
+        height: 100%;
+        transform: translateX(-240px);
+        width: 240px;
+    }
+
+
 }
 
 .unselectable {
@@ -36,4 +45,15 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    border: 5px dashed rgb(190, 190, 190);
+}
+
+@media only screen and (max-width: 767px) {
+    .sidebar {
+        height: 100%;
+        transform: translateX(-240px);
+        width: 240px;
+    }
+
+
 }
