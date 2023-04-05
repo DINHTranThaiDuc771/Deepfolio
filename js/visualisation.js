@@ -92,8 +92,6 @@ window.onload = () => {
 
 function telechargerCV()
 {
-    console.log("dl cv pdf");
-
     var div = document.getElementById("contentAll");
     var oldPage = document.body.innerHTML;
 
