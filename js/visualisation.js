@@ -97,7 +97,6 @@ function telechargerCV()
 
 function afficherEditorBar(event){
     lstEditableTextChanged.add(event.target);
-    console.log (lstEditableTextChanged);
     editbar.style.display="flex";
     editbar.style.left = `${xEditBar}px`;
     editbar.style.top = `${yEditBar-50}px`;
@@ -333,6 +332,70 @@ function styleColor(color){
 
 function saveEdition (){
     toggleEdit();
-    console.log(lstEditableText);
-    
+  
+   for ( var edit of lstEditableTextChanged ) {
+        var classList = edit.classList;
+
+        if ( classList.contains("nom-portfolio"))
+        {
+            console.log("changement nom : " + edit);
+        } 
+
+        if ( classList.contains("accessibilité"))
+        {
+            console.log("changement accessibilité : " + edit);
+        } 
+
+        if ( classList.contains("description-site"))
+        {
+            console.log("changement description-site : " + edit);
+        } 
+
+        if ( classList.contains("lien-cv"))
+        {
+            console.log("changement cv : " + edit);
+        } 
+
+        if ( classList.contains("ville"))
+        {
+            console.log("changement ville : " + edit);
+        } 
+
+        if ( classList.contains("mail"))
+        {
+            console.log("changement mail : " + edit);
+        } 
+
+        if ( classList.contains("description"))
+        {
+            console.log("changement description : " + edit);
+        } 
+
+        if ( classList.contains("competence"))
+        {
+            console.log("changement competence : " + edit);
+        } 
+
+        if ( classList.contains("projet"))
+        {
+            console.log("changement projet : " + edit);
+        } 
+
+        if ( classList.contains("age"))
+        {
+            console.log("changement age : " + edit);
+        } 
+
+        if ( classList.contains("nom-prenom"))
+        {
+            console.log("changement prenom : " + edit);
+        } 
+
+        if ( classList.contains("diplome"))
+        {
+            console.log("changement diplome : " + edit);
+        } 
+    }
+
+    lstEditableTextChanged = new Set();
 }
