@@ -67,7 +67,7 @@
                             id="flexSwitchCheckDefault" />
                         <label class="form-check-label" for="flexSwitchCheckDefault">Accessibilité</label>
                     </div>
-                    <a href="#" id="btnHome">
+                    <a href="accueil.php" id="btnHome">
                         <img src="..\img\favicon_io\home.png" alt="accueil">
                     </a>
                     <a href="#" id="btnSauver">
