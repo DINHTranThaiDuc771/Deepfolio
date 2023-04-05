@@ -62,9 +62,20 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col d-flex justify-content-end">
+                <div class="col d-flex justify-content-end gap-3">
+                    <div id="cbAccess" class="form-check form-switch d-flex align-items-center">
+                        <input class="form-check-input me-3" type="checkbox" role="switch"
+                            id="flexSwitchCheckDefault" />
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Accessibilité</label>
+                    </div>
+                    <a href="#" id="btnHome">
+                        <img src="..\img\favicon_io\home.png" alt="accueil">
+                    </a>
+                    <a href="#" id="btnSauver">
+                        <img src="..\img\favicon_io\floppy-disk.png" alt="sauver">
+                    </a>
                     <a href="#" id="btnToggleEdit">
-                        <img src="..\img\favicon_io\editer.png" alt="">
+                        <img src="..\img\favicon_io\editer.png" alt="editer">
                     </a>
 
                 </div>
@@ -109,7 +120,7 @@
     <!------------------->
 
     <div id="pageCompetences" class="container-fluid tab " style="display:flex; flex-direction: column;">
-        <section class="content ">
+        <section class="content deletetable">
             <h1 class="editableText">Elaborer des conceptions simples</h1>
             <article class="editableText">
                 <div class="left">
@@ -118,10 +129,11 @@
                         <li>Je sais utiliser Github pour gerer les versions de mon projet</li>
                     </ul>
                 </div>
-
             </article>
+            <button><img src="../img/trash.png" alt=""></button>
+
         </section>
-        <section class="content ">
+        <section class="content deletetable">
             <h1 class="editableText">Elaborer des conceptions simples</h1>
             <article class="editableText">
                 <div class="left">
@@ -130,12 +142,14 @@
                         <li>Je sais utiliser Github pour gerer les versions de mon projet</li>
                     </ul>
                 </div>
-
             </article>
+            <button><img src="../img/trash.png" alt=""></button>
+
         </section>
 
         <div class="container d-flex justify-content-center align-items-center">
-            <button id="btnAjouterComp"class=" btn btn-floating btn-primary btn-lg"><i class="fas fa-plus"></i></button>
+            <button id="btnAjouterComp" class=" btn btn-floating btn-primary btn-lg"><i
+                    class="fas fa-plus"></i></button>
         </div>
     </div>
     <!------------------->
@@ -146,15 +160,16 @@
     <!--    Projets------>
     <!------------------->
     <div id="pageProjets" class="container-fluid tab">
-        <div class="row">
+        <div class="row deletetable">
             <div class="mb-5 col-md-4 d-flex justify-content-center">
                 <img src="..\img\favicon_io\android-chrome-192x192.png" alt="">
             </div>
             <div style="padding:30px;" class="col-md-8 d-flex justify-content-center">
 
-                <p class="editableText">
+                <p style="position: relative;" class="editableText">
                     <strong class="editableText" style="font-size: 24px;">Nom Projet</strong><br>
-                    <strong class="editableText">5 personnes</strong><br>
+                    <strong class="editableText">5 personnes</strong>
+                    <button><img src="../img/trash.png" alt=""></button> <br>
 
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -165,18 +180,23 @@
                     veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequatunt in
                     culpa qui officia deserunt mollit anim id est laborum.
                 </p>
+
             </div>
+
         </div>
 
 
-        <div class="row">
+        <div class="row deletetable">
             <div class="mb-5 col-md-4 d-flex justify-content-center">
                 <img src="..\img\favicon_io\android-chrome-192x192.png" alt="">
             </div>
             <div style="padding:30px;" class="col-md-8 d-flex justify-content-center">
-                <p class="editableText">
+
+                <p style="position: relative;" class="editableText">
                     <strong class="editableText" style="font-size: 24px;">Nom Projet</strong><br>
-                    <strong class="editableText">5 personnes</strong><br>
+                    <strong class="editableText">5 personnes</strong>
+                    <button><img src="../img/trash.png" alt=""></button> <br>
+
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                     aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -186,10 +206,13 @@
                     veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequatunt in
                     culpa qui officia deserunt mollit anim id est laborum.
                 </p>
+
             </div>
+
         </div>
         <div class="container d-flex justify-content-center align-items-center">
-            <button id="btnAjouterProjet"class=" btn btn-floating btn-primary btn-lg"><i class="fas fa-plus"></i></button>
+            <button id="btnAjouterProjet" class=" btn btn-floating btn-primary btn-lg"><i
+                    class="fas fa-plus"></i></button>
         </div>
     </div>
 
@@ -279,7 +302,7 @@
                 </ul>
             </li>
         </div>
-        <button class="btn btn-primary btn-lg px-5 ml-2  mb-4">Télécharger</button>
+        <button id="btnTelecharger" class="btn btn-primary btn-lg px-5 ml-2  mb-4">Télécharger</button>
     </div>
     <!------------------->
     <!--    Contact------>
@@ -354,15 +377,29 @@
     <!--    Editbar------>
     <!---------------------->
     <div id="editbar">
-        <span style="display:block;height: 20px;width:20px;background-color: white;">B</span>
-        <span style="display:block;height: 20px;width:20px;background-color: white;">U</span>
-        <span style="display:block;height: 20px;width:20px;background-color: white;">I</span>
-        <span style="display:block;height: 20px;width:20px;background-color: black;"></span>
+        <button id="btnBold">B</button>
+        <button id="btnUnderline">U</button>
+        <button id="btnItalic">I</button>
+        <select name="" id="selectSize">
+            <option value="1"> Petit</option>
+            <option value="2">Medium</option>
+            <option value="3"> Large</option>
+            <option value="4"> 4</option>
+            <option value="5">5</option>
+            <option value="6"> 6</option>
+            <option value="7"> 7</option>
 
-        <select name="" id=""></select>
-        <select name="" id=""></select>
+        </select>
+        <select name="" id="selectFont">
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+        </select>
+        <select name="" id="selectColor">
+            
+        </select>
     </div>
-           
+
     <!--    Editbar------>
     <!------------------->
 
@@ -413,7 +450,7 @@
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3 text-secondary" class="editableText"></i>Portfolio de Duc
+                            <i class="fas fa-gem me-3 text-secondary"></i>Portfolio de Duc
                         </h6>
                         <p class="editableText">
                             Here you can use rows and columns to organize your footer content. Lorem ipsum
@@ -422,7 +459,15 @@
                     </div>
                     <!-- Grid column -->
 
-
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-address-card"></i> Mon CV
+                        </h6>
+                        <p class="editableText">
+                            <a href="#">linkCV.com</a>
+                        </p>
+                    </div>
 
 
                     <!-- Grid column -->
@@ -435,7 +480,7 @@
                             <i class="fas fa-envelope me-3 text-secondary"></i>
                             info@example.com
                         </p>
-                        
+
                     </div>
                     <!-- Grid column -->
                 </div>
