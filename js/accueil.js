@@ -257,7 +257,7 @@ function init() {
 
     var btnCloseSideBar = document.getElementById("btnCloseSideBar");
     btnCloseSideBar.addEventListener("click", () => {
-        document.getElementById("sidebar").style.transform = "translateX(-240px)";
+        document.getElementById("sidebar").style.transform = "translateX(-480px)";
     }, false)
 
     var search = document.getElementById("search-bar");

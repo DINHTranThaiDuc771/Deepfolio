@@ -5,18 +5,16 @@ var lstEditableText,lstDeletable,lstButtonSupprimer;
 var editbar;
 var btnBold,btnUnderline,btnItalic;
 var selectFont,selectSize,selectColor;
-btnAjouterProjet.style.display = "none";
-btnAjouterComp  .style.display = "none";
-btnSauver       .style.display = "none";
+var lstEditableTextChanged;
+lstEditableTextChanged = new Set();
 
 document.addEventListener("mousemove", function(event) {
     xEditBar = event.clientX;
     yEditBar = event.clientY;
-
-    });
+});
 
 window.onload = () => {
-
+    
     editbar         = document.getElementById("editbar");
     btnBold         = document.getElementById("btnBold");
     btnUnderline    = document.getElementById("btnUnderline");
@@ -69,6 +67,10 @@ window.onload = () => {
     //Les btn pour ajouter
     var btnAjouterProjet = document.getElementById("btnAjouterProjet");
     var btnAjouterComp   = document.getElementById("btnAjouterComp");
+
+    btnAjouterProjet.style.display = "none";
+    btnAjouterComp  .style.display = "none";
+
     btnAjouterProjet.addEventListener("click",ajouterProjet,false);
     btnAjouterComp  .addEventListener("click",ajouterComp  ,false);
     //
@@ -77,6 +79,8 @@ window.onload = () => {
     btnHome = document.getElementById("btnHome");
     btnSauver = document.getElementById("btnSauver");
     btnSauver.addEventListener("click",saveEdition,false);
+
+    btnSauver       .style.display = "none";
 
     // Telechargement du CV
     var btnTelecharger = document.getElementById("btnTelecharger");
@@ -88,16 +92,18 @@ function telechargerCV()
     console.log("dl cv pdf");
 }
 
-function afficherEditorBar(){
-
+function afficherEditorBar(event){
+    lstEditableTextChanged.add(event.target);
+    console.log (lstEditableTextChanged);
     editbar.style.display="flex";
     editbar.style.left = `${xEditBar}px`;
     editbar.style.top = `${yEditBar-50}px`;
 }
+
 function ajouterProjet()
 {
     var html = `
-        <div class="row deletetable">
+        <div class="row deletetable projet">
         <div class="mb-5 col-md-4 d-flex justify-content-center">
             <img src="../img/favicon_io/android-chrome-192x192.png" alt="">
         </div>
@@ -130,7 +136,7 @@ function ajouterProjet()
 function ajouterComp () 
 {
     const newHtml = `
-            <section class="content deletetable">
+            <section class="content deletetable competence">
             <h1 class="editableText">Elaborer des conceptions simples</h1>
             <article class="editableText">
                 <div class="left">
@@ -157,7 +163,7 @@ function toggleEdit() {
         {   
             lstEditableText[i].setAttribute("contenteditable","true");
             lstEditableText[i].setAttribute("tabindex","0");
-            lstEditableText[i].addEventListener("focus",afficherEditorBar,false);
+            lstEditableText[i].addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
 
 
             lstEditableText[i].classList.add("isEditText");
@@ -250,7 +256,6 @@ function changerTab(tab){
 
         return;
     }
-
 }
 
 
@@ -265,7 +270,7 @@ function refreshListEditable() {
         lstEditableText[i].setAttribute("contenteditable","true");
         lstEditableText[i].setAttribute("tabindex","0");
         lstEditableText[i].classList.add("isEditText");
-        lstEditableText[i].addEventListener("focus",afficherEditorBar,false);
+        lstEditableText[i].addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
 
     }
     // list button supprimer
@@ -316,5 +321,6 @@ function styleColor(color){
 
 function saveEdition (){
     toggleEdit();
-    lstEditableText;
+    console.log(lstEditableText);
+    
 }

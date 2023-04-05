@@ -6,7 +6,6 @@
         <div class="row deletetable">
                 <div class="mb-5 col-md-4 d-flex justify-content-center">
                     {% if projet.getImage() is empty %}
-                        pas bon {{projet.getImage()}}
                     {% else %}
                         <img src="../php/img_user/{{ projet.getImage() }}" alt="image projet" width="100%" >
                     {% endif %}
