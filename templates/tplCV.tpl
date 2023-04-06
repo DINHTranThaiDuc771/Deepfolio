@@ -11,7 +11,7 @@
         <div id="contentProfil" class="row">
             <h2>Profil</h2>
             <p>
-                <strong class="editableText ville" >Ville : &nbsp {{ ville }}</strong> <br>
+                <strong>Ville : &nbsp<strong class="editableText ville" > {{ ville }}</strong> <br>
                 {{ description }}
             </p >
         </div>

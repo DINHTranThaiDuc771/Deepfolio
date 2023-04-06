@@ -139,11 +139,27 @@
 
         $json = json_decode($pages[0]->getJson(), true);   
 
+        if ( $nomAttr == "competence") {
+
+        }
+
+        if ( $nomAttr == "projet") {
+
+        }
+
+        if ( $nomAttr == "nom" && $type = "infos") {
+            $db;
+        }
+
+        var_dump($json);
+
         if ( array_key_exists($nomAttr, $json)) {
             $json[$nomAttr] = $text;
         } else {
             array_push($nomAttr, $text);
         }
+
+        var_dump($json);
 
 
         $db->changePage($auteur, $idPortfolio,$pages[0]->getIdPage() , json_encode($json));

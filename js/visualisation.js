@@ -464,7 +464,7 @@ function saveEdition (){
         updatePage(form_data);
     }
 
-    location.reload();
+    //location.reload();
     lstEditableTextChanged = new Set();
 }
 
