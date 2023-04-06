@@ -258,6 +258,25 @@ class DB {
             }else{return false;}
         }
 
+        public function copierPortfolio($username, $idPortfolio){
+            $requeteNom = 'select nomportfolio, accesible from portfolio where idportfolio = ?';
+            $tparamNom = array($idPortfolio);
+            $result = $this->execQuery($requeteNom, $tparamNom, '');
+            $nomPortfolio = $result[0]['nomportfolio'];
+            $accesible = (int)$result[0]['accesible'];
+            $requete = 'insert into portfolio (nomutilisateur, nomportfolio, accesible) values(?,?,?)';
+            $tparam = array($username, 'Copie de '.$nomPortfolio, $accesible);
+            $result = $this->execMaj($requete,$tparam);
+            if(strcmp($result,"int(1)")){
+                $requetesPages = 'select * from page where idportfolio = ?';
+                $tparamsPages = array($idPortfolio);
+                $pages = $this->execQuery($requetesPages, $tparamsPages, 'Page');
+                foreach($pages as $page){
+                    $this->addPage($username, $this->getNewestPortfolioId($username), $page->getJson(), $page->getType());
+                }
+            }
+        }
+
         
         //*********************************************************//
         //                     UPDATE                              //
@@ -271,7 +290,7 @@ class DB {
 
         public function changeAccesibility($username, $idPortfolio, $accesibilite) {
             $requete = 'update portfolio set accesible = ? where nomUtilisateur = ? and idPortfolio = ?';
-            $tparam = array($username, $idPortfolio, $accesibilite);
+            $tparam = array($accesibilite, $username, $idPortfolio);
             return $this->execMaj($requete,$tparam);
         }
 
@@ -288,6 +307,12 @@ class DB {
         }
 
         public function changePortfolioName($username, $idPortfolio, $nomPortfolio) {
+            $requete = 'update portfolio set nomPortfolio = ? where nomUtilisateur = ? and idPortfolio = ?';
+            $tparam = array( $nomPortfolio, $username, $idPortfolio);
+            return $this->execMaj($requete,$tparam);
+        }
+
+        public function renamePortfolio($username, $idPortfolio, $nomPortfolio) {
             $requete = 'update portfolio set nomPortfolio = ? where nomUtilisateur = ? and idPortfolio = ?';
             $tparam = array( $nomPortfolio, $username, $idPortfolio);
             return $this->execMaj($requete,$tparam);

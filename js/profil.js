@@ -60,7 +60,7 @@ function addPortfolios() {
                 addPortfolio(p);
             }
         }
-    })
+    });
 }
 
 function addPortfolio(p) {
@@ -85,7 +85,15 @@ function addPortfolio(p) {
     })
 }
 
+function getKey(url) {
+    return btoa(JSON.stringify(url));
+}
+
 function createPortfolio(portfolios, portfolio, ville) {
+    var url = {};
+    url.auteur = portfolio.nomUtilisateur;
+    url.idPortfolio = portfolio.idPortfolio;
+
     var div0 = document.createElement("div");
     div0.classList.add("card");
     div0.classList.add("mb-3")
@@ -94,14 +102,23 @@ function createPortfolio(portfolios, portfolio, ville) {
     var div1 = document.createElement("div");
     div1.classList.add("row");
 
+    var redirection1 = document.createElement("a");
+    redirection1.setAttribute("href", "../php/visualisation.php?cle=\"" + getKey(url) + "\"");
+
     var div2 = document.createElement("div");
     div2.classList.add("col-md-3");
 
-    var img = document.createElement("img");
-    img.classList.add("img-fluid");
-    img.classList.add("rounded-start");
-    img.setAttribute("src", "../img/portfolio.jpeg");
-    img.setAttribute("width", "100%");
+    if (portfolio.nomUtilisateur == "admin") {
+        var imgiframe = document.createElement("img");
+        imgiframe.classList.add("img-fluid");
+        imgiframe.setAttribute("src", "../img/add.png");
+        imgiframe.setAttribute("style", "height:8rem;margin:auto;opacity:0.25;margin-top:40%;");
+    } 
+    else {
+        var imgiframe = document.createElement("iframe");
+        imgiframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"");
+        imgiframe.setAttribute("style","-webkit-transform:scale(0.5);-webkit-transform-origin:0 0;pointer-events:none;width:200%;height:200%;opacity:0.70;");
+    }
 
     var div3 = document.createElement("div");
     div3.classList.add("col-md-9");
@@ -110,6 +127,9 @@ function createPortfolio(portfolios, portfolio, ville) {
     div4.classList.add("row");
     div4.setAttribute("style","margin:auto;height:100%;");
 
+    var redirection2 = document.createElement("a");
+    redirection2.setAttribute("href", "../php/visualisation.php?cle=\"" + getKey(url) + "\"");
+
     var div5 = document.createElement("div");
     div5.classList.add("col-md-8");
     div5.setAttribute("style","margin:auto;text-align:center;");
@@ -117,9 +137,43 @@ function createPortfolio(portfolios, portfolio, ville) {
     var div6 = document.createElement("div");
     div6.classList.add("col-md-8");
     
-    var h5 = document.createElement("h5");
-    h5.classList.add("card-title");
-    h5.textContent = portfolio.nom;
+    var inputNom = document.createElement("INPUT");
+    inputNom.setAttribute('type', 'text');
+    inputNom.setAttribute('method', 'post');
+    inputNom.setAttribute('name', 'renamePortfolio');
+    inputNom.style.border = "none";
+    inputNom.classList.add("card-title");
+    inputNom.classList.add("text-center");
+    inputNom.value = portfolio.nom;
+
+    inputNom.addEventListener("keyup", function(event) {
+        if(event.key === "Enter") {
+            if(inputNom.value == portfolio.nom || inputNom.value == ""){
+                inputNom.value = portfolio.nom;
+                return;
+            }
+            var form_data = new FormData();
+            form_data.append("idPortfolio", portfolio.idPortfolio);
+            form_data.append("action", "renamePortfolio");
+            form_data.append("newName", inputNom.value);
+
+            $.ajax({
+                type:"POST",
+                dataType: 'script',
+                contentType: false,
+                processData: false,
+                url:"./function.php",
+                data: form_data,
+                complete: function(data) {
+                    //refresh la page mais sur
+                }
+            });
+        }
+    });
+
+    inputNom.addEventListener("focusout", function(event) {
+        inputNom.value = portfolio.nom;
+    });
 
     var div7 = document.createElement("div");
     div7.classList.add("col-md-8");
@@ -132,6 +186,38 @@ function createPortfolio(portfolios, portfolio, ville) {
     div8.classList.add("col-md-4");
     div8.setAttribute("style","margin:auto;text-align:center;");
 
+    var btnCopy = document.createElement("button");
+    btnCopy.classList.add("btn");
+    btnCopy.classList.add("btn-primary");
+    btnCopy.style.backgroundColor = "#ffd285";
+
+    var imagecopy = document.createElement("img");
+    imagecopy.setAttribute("src", "../img/copy.png");
+
+    btnCopy.addEventListener("click", function(event) {
+        //TODO: copier le portfolio
+        let confirmation = "Voulez-vous vraiment copier ce portfolio ?";
+
+        if (confirm(confirmation) == true)
+        {
+            var form_data = new FormData();
+            form_data.append("idPortfolio", portfolio.idPortfolio);
+            form_data.append("action", "copyPortfolio");
+
+            $.ajax({
+                type:"POST",
+                dataType: 'script',
+                contentType: false,
+                processData: false,
+                url:"./function.php",
+                data: form_data,
+                complete: function(data) {
+                    //refresh la page mais sur
+                    location.reload();
+                }
+            });
+        }
+        });
     var btnDl = document.createElement("button");
     btnDl.classList.add("btn");
     btnDl.classList.add("btn-primary");
@@ -183,20 +269,22 @@ function createPortfolio(portfolios, portfolio, ville) {
     portfolios.appendChild(div0);
     div0.appendChild(div1);
     div1.appendChild(div2);
-    div2.appendChild(img);
+    div2.appendChild(imgiframe);
     div1.appendChild(div3);
     div3.appendChild(div4);
     div4.appendChild(div5);
     div5.appendChild(div6);
-    div6.appendChild(h5);
-    div5.appendChild(div7);
+    div6.appendChild(inputNom);
+    redirection2.appendChild(div7);
+    div5.appendChild(redirection2);
     div7.appendChild(small);
     div4.appendChild(div8);
+    div8.appendChild(btnCopy);
+    btnCopy.appendChild(imagecopy);
     div8.appendChild(btnDl);
     btnDl.appendChild(imgDl);
     div8.appendChild(btnDel);
     btnDel.appendChild(imgDel);
-
 }
 
 window.onload = () => {
