@@ -21,7 +21,6 @@ if(!isset($_GET['cle'])){
     exit();
 }
 
-
 $cle = $_GET['cle'];
 
 $cleDecode = base64_decode($cle);
@@ -67,8 +66,12 @@ $cv;
 $descriptionSite = "";
 $mail = "";
 $descriptionReseau = "";
+$debug = "";
 //------------ Variables globales ------------//
 
+if ( array_key_exists("debug", $_GET)) {
+    $debug = $_GET['debug'];
+}
 
 
 setcookie('proprio_portfolio', $username, []);
@@ -97,7 +100,8 @@ echo $tpl->render(array(
     'auteur' => $username,
     'estProprio' => $estProprio,
     'descriptionsite' => $descriptionSite,
-    'descriptionreseau' => $descriptionReseau
+    'descriptionreseau' => $descriptionReseau,
+    'debug' => $debug
 ));
         
 function affichePages($username, $idPortfolio, $db){
@@ -162,7 +166,7 @@ function recupInfosCompetences($page){
     $competences = array();
 
     foreach($tabCompetences as $competence){
-       array_push($competences, new Competence($competence['nom'], $competence['description'], $competence['lien']));
+        array_push($competences, new Competence($competence['nom'], $competence['description'], $competence['lien']));
     }
 }
 

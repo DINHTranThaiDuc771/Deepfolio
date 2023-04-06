@@ -39,9 +39,8 @@ h1 {
   letter-spacing: -0.5px;
 
   color: #000000;
-
-
 }
+
 
 #hero-image {
   /* image-removebg-preview 1 */
@@ -187,6 +186,7 @@ section article>* {
 .editableText {
   block-size: fit-content;
 }
+
 a {
   text-decoration: none;
   color : #4f4f4f;

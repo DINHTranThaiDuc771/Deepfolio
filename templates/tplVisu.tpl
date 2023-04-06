@@ -4,11 +4,11 @@
 {{ block("accueil", "tplAccueil.tpl") }}
 </div>
 
-<div id="pageCompetences"class="container-fluid tab">
+<div id="pageCompetences"class="container-fluid tab print">
 {{ block("competence", "tplCompetences.tpl") }}
 </div>
 
-<div id="pageProjets" class="container-fluid tab">
+<div id="pageProjets" class="container-fluid tab print">
 {{ block("projet", "tplProjets.tpl") }}
 </div>
 

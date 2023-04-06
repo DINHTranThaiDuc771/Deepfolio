@@ -365,9 +365,9 @@ function refreshListEditable() {
 }
 
 function supprimerDeleteable(event){
-    console.log("supprimer");
     const deletableDiv = event.target.closest('.deletetable');
     lstDeleted.add(deletableDiv);
+
     deletableDiv.style.opacity = '0';
     setTimeout(() => {
         deletableDiv.remove();
@@ -421,6 +421,7 @@ function updatePage(form_data) {
 
 function saveEdition (){
     toggleEdit();
+
   
    for ( var edit of lstEditableTextChanged ) {
         var classList = edit.classList;
@@ -430,6 +431,7 @@ function saveEdition (){
         var form_data = new FormData();
         form_data.append("type", type);
         form_data.append("action", "updatePage");
+        form_data.append("delete", false);
 
         form_data.append("idPortfolio", idPortfolio );
         form_data.append("auteur", auteur );
@@ -537,8 +539,44 @@ function saveEdition (){
         updatePage(form_data);
     }
 
-    location.reload();
+    for ( var edit of lstDeleted ) {
+        var classList = edit.classList;
+
+        var type = getType(classList);
+        var form_data = new FormData();
+        form_data.append("type", type);
+        form_data.append("action", "updatePage");
+
+        form_data.append("idPortfolio", idPortfolio );
+        form_data.append("auteur", auteur );
+
+        form_data.append("text", "");
+
+
+        if ( classList.contains("competence"))
+        {
+            form_data.append("nomAttr", "competence");
+
+            form_data.append("delete", true);
+
+            form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
+        } 
+
+        if ( classList.contains("projet"))
+        {
+            form_data.append("nomAttr", "projet");
+
+            form_data.append("delete", true);
+
+            form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
+        } 
+
+        updatePage(form_data);
+    }
+
+    //location.reload();
     lstEditableTextChanged = new Set();
+    lstDeleted = new Set();
 }
 
 function getType( classList ) {

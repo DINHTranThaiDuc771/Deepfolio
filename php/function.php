@@ -149,6 +149,28 @@
         
         if ( $nomAttr == "competence") {
 
+            if ( $_POST["delete"] == "true") {
+
+                $ancienNom = $_POST["ancienneValeur"];
+
+                $indexSuppr = 0;
+                $cpt = 0;
+                foreach ( $json["competences"] as $proj) {
+                    if ( $proj['nom'] == $ancienNom) {
+                        $indexSuppr = $cpt;
+                        var_dump($proj['nom'] == $ancienNom);
+                    }
+
+                    $cpt++;
+                }
+
+                unset($json["competences"][$indexSuppr]);
+
+                $db->changePage($auteur, $idPortfolio, $pages[0]->getIdPage(), json_encode($json));
+
+                return;
+            }
+
             $tabStr = explode(";", $text);
 
             $nomComp = $tabStr[0];
@@ -187,6 +209,28 @@
 
         if ( $nomAttr == "projet") {
 
+            if ( $_POST["delete"] == "true") {
+
+                $ancienNom = $_POST["ancienneValeur"];
+
+                $indexSuppr = 0;
+                $cpt = 0;
+                foreach ( $json["projets"] as $proj) {
+                    if ( $proj['nom'] == $ancienNom) {
+                        $indexSuppr = $cpt;
+                        var_dump($proj['nom'] == $ancienNom);
+                    }
+
+                    $cpt++;
+                }
+
+                unset($json["projets"][$indexSuppr]);
+
+                $db->changePage($auteur, $idPortfolio, $pages[0]->getIdPage(), json_encode($json));
+
+                return;
+            }
+
             $tabStr = explode(";", $text);
 
             $nomPeojet = $tabStr[0];
@@ -196,6 +240,7 @@
             $image = $tabStr[4];
 
             $projet = new Projet($nomPeojet, $description, $tailleEquipe, $lien, $image);
+
 
             if ( $_POST["nouveau"] == "false")
             {

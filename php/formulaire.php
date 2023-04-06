@@ -102,7 +102,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                 <div class="card tab" style="border-radius: 0 0 1rem 1rem;">
                     <div class="card-body p-5 text-center">
 
-                        <div class="mb-md-5 mt-md-4 pb-5"><!-- col-md-6 -->
+                        <div class="mb-md-5 mt-md-4 pb-5">
 
                             <h2 class="fw-bold mb-2 text-uppercase unselectable">Informations</h2>
                             <div class="container" id="conteneur2Elements">
@@ -206,10 +206,11 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                             </div>
 
                             <div class="form-outline mb-4">
-                                <input type="number" min="1950" max="2030" id="typeAnneeObtention" class="form-control form-control-lg require" />
+                                <input class="form-control form-control-lg require" type="number" min="1950" max="2030" id="typeAnneeObtention"  />
                                 <label class="form-label" for="typeAnneeObtention">Année d'obtention</label>
                                 <div class="invalid-feedback">Veuillez entrer votre l'année d'obtention du diplome</div>
                             </div>
+
                             <a class="ajouter" type="button">Ajouter</a>
                             <div class="form-outline mb-4 tableauElmt" id="divDiplomes"></div>
 
@@ -221,16 +222,16 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                 </div>
 
                 <!-- 3ème onglet: parcours professionnel -->
-                <div class="card tab " style="border-radius: 0 0 1rem 1rem;">
+                <div class="card tab" style="border-radius: 0 0 1rem 1rem;">
                     <div class="card-body p-5 text-center hiddenCards">
                 
-                        <div class="mb-md-5 mt-md-4 pb-5 ">
+                        <div class="mb-md-5 mt-md-4 pb-5">
 
                             <h2 class="fw-bold mb-2 text-uppercase unselectable">Parcours professionnel</h2>
                             <p class="text-white-50 mb-5"></p>
 
-                            <div class="form-outline mb-4">
-                                <input type="text" id="typeEtablissement" class="form-control form-control-lg require"  />
+                            <div class="form-outline mb-4" >
+                                <input type="text"  class="form-control form-control-lg require" id="typeEtablissement"  />
                                 <label class="form-label" for="typeEtablissement">Poste</label>
                                 <div class="invalid-feedback">Veuillez entrer le nom du poste que vous avez occupé</div>
                             </div>

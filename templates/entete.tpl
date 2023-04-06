@@ -17,6 +17,18 @@
     <link rel="stylesheet" href="../css/mdb.min.css" />
     <link rel="stylesheet" href="../css/visualisation.css" />
 
+    {% if debug == "true" %}
+        <style>
+            .print {
+                display: block !important;
+            }
+            
+            .pagebreak {
+                page-break-after: always;
+            }
+        </style>
+    {% endif %}
+
 </head>
 
 <body>
