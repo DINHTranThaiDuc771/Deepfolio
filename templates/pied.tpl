@@ -168,7 +168,7 @@
                                 {{ mail }}
                             {% else %}
                                 mail a changer
-                            {% endif %} 
+                            {% endif %}
                             </span>
                         </p>
                         <input type="hidden" id="idPortfolio" value={{idPortfolio}}></p>
