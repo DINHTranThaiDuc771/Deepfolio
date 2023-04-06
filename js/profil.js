@@ -270,9 +270,9 @@ function createPortfolio(portfolios, portfolio, ville) {
     div3.appendChild(div4);
     div4.appendChild(div5);
     div5.appendChild(div6);
-    div6.appendChild(redirection2);
-    redirection2.appendChild(inputNom);
-    div5.appendChild(div7);
+    div6.appendChild(inputNom);
+    redirection2.appendChild(div7);
+    div5.appendChild(redirection2);
     div7.appendChild(small);
     div4.appendChild(div8);
     div8.appendChild(btnCopy);
