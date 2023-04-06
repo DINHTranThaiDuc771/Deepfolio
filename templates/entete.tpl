@@ -64,7 +64,7 @@
                 <div class="col d-flex justify-content-end gap-3">
                     {% if estProprio == true %}
                         <div id="cbAccess" class="form-check form-switch d-flex align-items-center">
-                            <input class="form-check-input me-3 accessibilité" type="checkbox" role="switch"
+                            <input class="form-check-input me-3 accessibilité" id="cbAccessible" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault" />
                             <label class="form-check-label" for="flexSwitchCheckDefault">Accessibilité</label>
                         </div>

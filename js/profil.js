@@ -62,7 +62,7 @@ function addPortfolios() {
                 addPortfolio(p);
             }
         }
-    })
+    });
 }
 
 function addPortfolio(p) {
@@ -171,6 +171,10 @@ function createPortfolio(portfolios, portfolio, ville) {
                 }
             });
         }
+    });
+
+    inputNom.addEventListener("focusout", function(event) {
+        inputNom.value = portfolio.nom;
     });
 
     var div7 = document.createElement("div");

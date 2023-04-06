@@ -290,7 +290,7 @@ class DB {
 
         public function changeAccesibility($username, $idPortfolio, $accesibilite) {
             $requete = 'update portfolio set accesible = ? where nomUtilisateur = ? and idPortfolio = ?';
-            $tparam = array($username, $idPortfolio, $accesibilite);
+            $tparam = array($accesibilite, $username, $idPortfolio);
             return $this->execMaj($requete,$tparam);
         }
 
@@ -307,7 +307,7 @@ class DB {
         }
 
         public function changePortfolioName($username, $idPortfolio, $nomPortfolio) {
-            $requete = 'update page set nomPortfolio = ? where nomUtilisateur = ? and idPortfolio = ?';
+            $requete = 'update portfolio set nomPortfolio = ? where nomUtilisateur = ? and idPortfolio = ?';
             $tparam = array( $nomPortfolio, $username, $idPortfolio);
             return $this->execMaj($requete,$tparam);
         }
