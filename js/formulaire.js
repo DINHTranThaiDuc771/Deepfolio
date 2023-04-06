@@ -181,7 +181,7 @@ function ajouterTab(event) {
         return;
     } else {
         Array.prototype.slice.call(tabInput).forEach((input) => {
-            if ( input.type != "file") {
+            if ( input.type != "file" && input.id != "nomPortfolio") {
                 input.value = "";
             }
         });
