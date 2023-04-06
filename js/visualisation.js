@@ -352,7 +352,7 @@ function supprimerDeleteable(event){
     lstDeleted.add(deletableDiv);
     deletableDiv.style.opacity = '0';
     setTimeout(() => {
-        deletable.remove();
+        deletableDiv.remove();
     }, 500);
 }
 
