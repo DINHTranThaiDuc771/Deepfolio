@@ -84,7 +84,9 @@ echo $tpl->render(array(
     'postes' => $parcours,
     'diplomes' => $diplomes,
     'cle' => $cle,
-    'lienCv'=>$cv
+    'lienCv'=>$cv,
+    'idPortfolio' => $idPortfolio,
+    'auteur' => $username
 ));
         
 function affichePages($username, $idPortfolio, $db){

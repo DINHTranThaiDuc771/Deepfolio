@@ -8,8 +8,6 @@
 
     session_start();
 
-    $db;
-
     $db = DB::getInstance();
 
     if(isset($_POST['action'])) {

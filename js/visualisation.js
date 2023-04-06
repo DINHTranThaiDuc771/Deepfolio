@@ -1,13 +1,20 @@
 var isEditing = false;
+
 var xEditBar;
 var yEditBar;
-var lstEditableText,lstDeletable,lstButtonSupprimer;
 var editbar;
+
+var lstEditableText,lstDeletable,lstButtonSupprimer;
+var lstEditableTextChanged;
+
 var btnBold,btnUnderline,btnItalic;
 var selectFont,selectSize,selectColor;
-var lstEditableTextChanged;
+
 var btnNavbar;
-lstEditableTextChanged = new Set();
+
+var idPortfolio;
+var auteur;
+
 
 document.addEventListener("mousemove", function(event) {
     xEditBar = event.clientX;
@@ -15,6 +22,12 @@ document.addEventListener("mousemove", function(event) {
 });
 
 window.onload = () => {
+    lstEditableTextChanged = new Set();
+
+    auteur = document.getElementById("auteur").value;
+    idPortfolio = document.getElementById("idPortfolio").value;
+
+
     btnNavbar       = document.querySelector('.navbar-toggler');
     editbar         = document.getElementById("editbar");
     btnBold         = document.getElementById("btnBold");
@@ -342,6 +355,22 @@ function styleColor(color){
     }
 }
 
+function updatePage(form_data) {
+
+    $.ajax({
+        type:"POST",
+        dataType: 'script',
+        contentType: false,
+        processData: false,
+        url:"../php/function.php",
+        data: form_data,
+        complete: function(data) {
+            console.log(data.responseText);
+        }
+    });
+}
+
+
 
 function saveEdition (){
     toggleEdit();
@@ -349,66 +378,122 @@ function saveEdition (){
    for ( var edit of lstEditableTextChanged ) {
         var classList = edit.classList;
 
+        var type = getType(classList);
+
+        var form_data = new FormData();
+        form_data.append("type", type);
+        form_data.append("action", "updatePage");
+
+        form_data.append("idPortfolio", idPortfolio );
+        form_data.append("auteur", auteur );
+
+        form_data.append("text", edit.textContent);
+        
+
         if ( classList.contains("nom-portfolio"))
         {
-            console.log("changement nom : " + edit);
-        } 
-
-        if ( classList.contains("accessibilité"))
-        {
-            console.log("changement accessibilité : " + edit);
+            form_data.append("nomAttr", "nom-portfolio");
         } 
 
         if ( classList.contains("description-site"))
         {
-            console.log("changement description-site : " + edit);
+            form_data.append("nomAttr", "description-site");
+
         } 
 
         if ( classList.contains("lien-cv"))
         {
-            console.log("changement cv : " + edit);
+            form_data.append("nomAttr", "lien-cv");
+
         } 
 
         if ( classList.contains("ville"))
         {
-            console.log("changement ville : " + edit);
+            form_data.append("nomAttr", "ville");
+
         } 
 
         if ( classList.contains("mail"))
         {
-            console.log("changement mail : " + edit);
+            form_data.append("nomAttr", "mail");
+
         } 
 
         if ( classList.contains("description"))
         {
-            console.log("changement description : " + edit);
+            form_data.append("nomAttr", "description");
+
+        } 
+
+        if ( classList.contains("description-reseau"))
+        {
+            form_data.append("nomAttr", "description-reseau");
+
         } 
 
         if ( classList.contains("competence"))
         {
-            console.log("changement competence : " + edit);
+            form_data.append("nomAttr", "competence");
+
         } 
 
         if ( classList.contains("projet"))
         {
-            console.log("changement projet : " + edit);
+            form_data.append("nomAttr", "projet");
+
         } 
 
         if ( classList.contains("age"))
         {
-            console.log("changement age : " + edit);
+            form_data.append("nomAttr", "age");
+
         } 
 
         if ( classList.contains("nom-prenom"))
         {
-            console.log("changement prenom : " + edit);
+            form_data.append("nomAttr", "nom-prenom");
+
         } 
 
         if ( classList.contains("diplome"))
         {
-            console.log("changement diplome : " + edit);
+            form_data.append("nomAttr", "diplome");
+
         } 
+
+        updatePage(form_data);
     }
 
     lstEditableTextChanged = new Set();
+}
+
+function getType( classList ) {
+
+    var type;
+
+    if ( classList.contains("nom-portfolio") || classList.contains("description-site") || classList.contains("mail")) {
+        type = "infos";
+    }
+
+    if ( classList.contains("lien-cv") || classList.contains("ville") || classList.contains("description") || classList.contains("projet") || classList.contains("age") || classList.contains("nom-prenom")) {
+        type = "cv";
+    }
+
+    if ( classList.contains("projet") ) {
+        type = "projets";
+    }
+
+    if ( classList.contains("competence") ) {
+        type = "competences";
+    }
+
+    if ( classList.contains("description-reseau") ) {
+        type = "reseaux";
+    }
+
+    if ( classList.contains("diplome") ) {
+        type = "parcours";
+    }
+
+    return type;
 }

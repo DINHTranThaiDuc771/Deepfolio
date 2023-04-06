@@ -171,7 +171,7 @@ function createPortfolio(portfolios, portfolio, ville) {
 
                     containerPortfolio.removeChild(divParent); 
                 }
-            })
+            });
         }
     })
 
