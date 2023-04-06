@@ -18,6 +18,7 @@
                         <button><img src="../img/trash.png" alt=""></button> <br>
                         <h class="description">
                         {{projet.getDescription()}}<br>
+                        <a href="{{ projet.getLien() }}"<strong class="editableText"> En savoir plus </strong></a><br>
                         </h>
                         <a href="{{ projet.getLien() }}"><strong class="editableText lien" > En savoir plus </strong></a><br>
                     </p>
@@ -32,4 +33,6 @@
                     class="fas fa-plus"></i></button>
     </div>
 
-{% endblock %}
+    <div class="pagebreak"> </div>
+
+{% endblock %}+
