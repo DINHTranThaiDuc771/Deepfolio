@@ -85,6 +85,10 @@ function addPortfolio(p) {
     })
 }
 
+function getKey(url) {
+    return btoa(JSON.stringify(url));
+}
+
 function createPortfolio(portfolios, portfolio, ville) {
     var div0 = document.createElement("div");
     div0.classList.add("card");
@@ -97,11 +101,26 @@ function createPortfolio(portfolios, portfolio, ville) {
     var div2 = document.createElement("div");
     div2.classList.add("col-md-3");
 
-    var img = document.createElement("img");
+    if (portfolio.nomUtilisateur == "admin") {
+        var imgiframe = document.createElement("img");
+        imgiframe.classList.add("img-fluid");
+        imgiframe.setAttribute("src", "../img/add.png");
+        imgiframe.setAttribute("style", "height:8rem;margin:auto;opacity:0.25;margin-top:40%;");
+    } 
+    else {
+        var url = {};
+        url.auteur = portfolio.nomUtilisateur;
+        url.idPortfolio = portfolio.idPortfolio;
+
+        var imgiframe = document.createElement("iframe");
+        imgiframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"");
+        imgiframe.setAttribute("style","-webkit-transform:scale(0.5);-webkit-transform-origin:0 0;pointer-events:none;width:200%;height:200%;opacity:0.70;");
+    }
+    /*var img = document.createElement("img");
     img.classList.add("img-fluid");
     img.classList.add("rounded-start");
     img.setAttribute("src", "../img/portfolio.jpeg");
-    img.setAttribute("width", "100%");
+    img.setAttribute("width", "100%");*/
 
     var div3 = document.createElement("div");
     div3.classList.add("col-md-9");
@@ -192,7 +211,7 @@ function createPortfolio(portfolios, portfolio, ville) {
     portfolios.appendChild(div0);
     div0.appendChild(div1);
     div1.appendChild(div2);
-    div2.appendChild(img);
+    div2.appendChild(imgiframe);
     div1.appendChild(div3);
     div3.appendChild(div4);
     div4.appendChild(div5);

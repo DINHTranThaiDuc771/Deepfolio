@@ -95,25 +95,27 @@
     <!------------------>
 
 
-    <footer id="contentFooter" class="text-center text-lg-start bg-white text-muted">
+    <footer class="text-center text-lg-start bg-white text-muted">
         <!-- Section: Social media -->
-        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-            <!-- Left -->
-            <div class="me-5 d-none d-lg-block">
-                <span class="editableText description-reseau">Connectez-vous avec nous sur les réseaux sociaux</span>
-            </div>
-            <!-- Left -->
+        <div id="contentReseaux">
+            <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+                <!-- Left -->
+                <div class="me-5 d-none d-lg-block">
+                    <span class="editableText description-reseau">Connectez-vous avec nous sur les réseaux sociaux</span>
+                </div>
+                <!-- Left -->
 
-            <!-- Right -->
-            <div>
-                {% for reseau in reseaux %}
-                    <a href="{{ reseau.lien }}" target="_blank" class="me-4 link-secondary"> {{reseau.nom}}
-                        <i class="fab fa-{{reseau.nomClasse}}"></i>
-                    </a>
-                {% endfor %}
-            </div>
-            <!-- Right -->
-        </section>
+                <!-- Right -->
+                <div>
+                    {% for reseau in reseaux %}
+                        <a href="{{ reseau.lien }}" target="_blank" class="me-4 link-secondary"> {{reseau.nom}}
+                            <i class="fab fa-{{reseau.nomClasse}}"></i>
+                        </a>
+                    {% endfor %}
+                </div>
+                <!-- Right -->
+            </section>
+        </div>
         <!-- Section: Social media -->
 
         <!-- Section: Links  -->
@@ -165,9 +167,11 @@
         <!-- Section: Links  -->
 
         <!-- Copyright -->
-        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
-            © 2023 Copyright:
-            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Deepfolio</a>
+        <div id="contentCopyright">
+            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+                © 2023 Copyright:
+                <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Deepfolio</a>
+            </div>
         </div>
         <!-- Copyright -->
     </footer>

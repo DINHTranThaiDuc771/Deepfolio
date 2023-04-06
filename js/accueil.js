@@ -1,5 +1,7 @@
 var isSideBarOpened = false;
 
+let balisesImg = document.querySelectorAll(".couverturePortfolio");  
+
 function Message(nomUtilisateur, nom, prenom, mail, objet, text) {
     this.nomUtilisateur = nomUtilisateur;
     this.nom = nom;
@@ -20,6 +22,10 @@ function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
 }
 
 var listPortfolios = [new Portfolio("admin", 0, "Créer un portfolio", false)];
+
+function getKey(url) {
+    return btoa(JSON.stringify(url));
+}
 
 function searchPortfolio() {
     var container = document.getElementById("portfolios");
@@ -88,7 +94,7 @@ function addPortfolio(p, i) {
         url.auteur =  p.nomUtilisateur;
         url.idPortfolio =  p.idPortfolio;
 
-        a.setAttribute("href", "visualisation.php?cle=\"" + btoa(JSON.stringify(url)) + "\"");
+        a.setAttribute("href", "visualisation.php?cle=\"" + getKey(url) + "\"");
     }
 
     var div2 = document.createElement("div");
@@ -103,17 +109,18 @@ function addPortfolio(p, i) {
     div3.classList.add("hover-overlay");
     div3.classList.add("ripple");
     div3.setAttribute("data-mdb-ripple-color", "light");
-    div3.setAttribute("style", "height:12rem;margin:auto;")
+    div3.setAttribute("style","height:12rem;margin:auto;")
 
-    var img = document.createElement("img");
-    img.classList.add("img-fluid");
     if (p.nomUtilisateur == "admin") {
-        img.setAttribute("src", "../img/add.png");
-        img.setAttribute("style", "height:8rem;margin:auto;opacity:0.25;margin-top:40%;");
-    }
+        var imgiframe = document.createElement("img");
+        imgiframe.classList.add("img-fluid");
+        imgiframe.setAttribute("src", "../img/add.png");
+        imgiframe.setAttribute("style", "height:8rem;margin:auto;opacity:0.25;margin-top:40%;");
+    } 
     else {
-        img.setAttribute("src", "../img/portfolio.jpeg");
-        img.setAttribute("style", "height:12rem;margin:auto;opacity:0.60;");
+        var imgiframe = document.createElement("iframe");
+        imgiframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"");
+        imgiframe.setAttribute("style","-webkit-transform:scale(0.5);-webkit-transform-origin:0 0;pointer-events:none;width:200%;height:200%;opacity:0.70;");
     }
 
     var div4 = document.createElement("div");
@@ -129,7 +136,7 @@ function addPortfolio(p, i) {
     div1.appendChild(a);
     a.appendChild(div2);
     div2.appendChild(div3);
-    div3.appendChild(img);
+    div3.appendChild(imgiframe);
     div2.appendChild(div4);
     div4.appendChild(h5);
 }
@@ -169,7 +176,6 @@ function addMessage(m) {
     var divBtn = document.createElement("div");
 
     var btn = document.createElement("button");
-    console.log("btn" + message.nomUtilisateur + message.mail);
     btn.id = "btn" + message.nomUtilisateur + message.mail;
     btn.classList.add("btn");
     btn.classList.add("btn-danger");
@@ -249,6 +255,10 @@ function addMessages() {
         }
     });
 }
+
+
+
+
 function init() {
     var btn = document.getElementById("btnMail");
     btn.addEventListener("click", () => {

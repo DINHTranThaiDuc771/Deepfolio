@@ -106,12 +106,13 @@ window.onload = () => {
 function telechargerCV()
 {
     var divCv = document.getElementById("contentAll");
-    var divFooter = document.getElementById("contentFooter");
+    var divReseaux = document.getElementById("contentReseaux");
+    var divCopyright = document.getElementById("contentCopyright");
     var oldPage = document.body.innerHTML;
 
     document.body.innerHTML = 
         "<html><head><title></title></head><body>" +
-        divCv.innerHTML + divFooter.innerHTML + "</body>";
+        divCv.innerHTML + divReseaux.innerHTML + divCopyright.innerHTML + "</body>";
 
     window.print();
     document.body.innerHTML = oldPage;
