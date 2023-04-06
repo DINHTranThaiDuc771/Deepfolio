@@ -100,7 +100,13 @@
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <!-- Left -->
             <div class="me-5 d-none d-lg-block">
-                <span class="editableText description-reseau">Connectez-vous avec nous sur les réseaux sociaux</span>
+                <span class="editableText description-reseau">
+                    {% if descriptionreseau == "" %}
+                    Connectez-vous avec nous sur les réseaux sociaux
+                    {% else %}
+                        {{ descriptionreseau }}
+                    {% endif %}
+                </span>
             </div>
             <!-- Left -->
 
@@ -128,8 +134,12 @@
                             <i class="fas fa-gem me-3 text-secondary"></i>{{nomPortfolio}}
                         </h6>
                         <p class="editableText description-site">
+                            {% if descriptionsite == "" %}
                             Here you can use rows and columns to organize your footer content. Lorem ipsum
                             dolor sit amet, consectetur adipisicing elit.
+                            {% else %}
+                                {{ descriptionsite }}
+                            {% endif %}
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -149,10 +159,10 @@
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                        <p class="editableText ville"><i class="fas fa-home me-3 text-secondary"></i> {{ ville }}</p>
-                        <p class="editableText mail">
+                        <p ><i class="fas fa-home me-3 text-secondary"></i> <h class="editableText ville">{{ ville }}</h></p>
+                        <p>
                             <i class="fas fa-envelope me-3 text-secondary text-break"></i>
-                            {{ mail }}
+                            <h class="editableText mail">{{ mail }}</h>
                         </p>
                         <input type="hidden" id="idPortfolio" value={{idPortfolio}}></p>
                         <input type="hidden" id="auteur" value={{auteur}}></p>

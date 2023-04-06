@@ -48,7 +48,6 @@ $twig = new Twig_Environment( new Twig_Loader_Filesystem("../templates"));
 //------------ Variables globales ------------//
 $nomPortfolio; 
 $adresse; 
-$mail;
 $reseaux; 
 $description; 
 $nom;
@@ -59,6 +58,9 @@ $projets;
 $parcours; 
 $diplomes;
 $cv;
+$descriptionSite = "";
+$mail = "";
+$descriptionReseau = "";
 //------------ Variables globales ------------//
 
 
@@ -86,7 +88,9 @@ echo $tpl->render(array(
     'cle' => $cle,
     'lienCv'=>$cv,
     'idPortfolio' => $idPortfolio,
-    'auteur' => $username
+    'auteur' => $username,
+    'descriptionsite' => $descriptionSite,
+    'descriptionreseau' => $descriptionReseau
 ));
         
 function affichePages($username, $idPortfolio, $db){
@@ -229,15 +233,26 @@ function recupReseaux($page){
 
 function recupInfos($page) {
 
-    global $db, $nomPortfolio, $username, $mail;
+    global $db, $nomPortfolio, $username, $mail, $descriptionSite, $descriptionReseau;
 
-    $json = json_decode($page->getJson());
+    $json = json_decode($page->getJson(), true);
 
     $mdpHash = $db->getMdp($username);
     $user = $db->getUser($username, $mdpHash);
 
-    $mail = $user[0]->getMail();
-    $nomPortfolio = $json->nomPortfolio;
+    if ( key_exists("mail", $json)) {
+        $mail = $json["mail"];
+    }
+
+    if ( key_exists("descriptionReseau", $json)) {
+        $descriptionReseau = $json["descriptionReseau"];
+    }
+
+    if ( key_exists("descriptionSite", $json)) {
+        $descriptionSite = $json["descriptionSite"];
+    }
+
+    $nomPortfolio = $json["nomPortfolio"];
 }
 
 ?>

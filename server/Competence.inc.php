@@ -1,6 +1,6 @@
 <?php
 
-class Competence{
+class Competence implements JsonSerializable{
 
     private $nom;
     private $description;
@@ -26,7 +26,14 @@ class Competence{
 
     public function setLien($lien) { $this->lien = $lien; }
 
-    public function setProjet($projet) { $this->projet = $projet; } 
+
+    public function jsonSerialize() {
+        return [
+            "nom"           => $this->nom,
+            "description"   => $this->description,
+            "lien"          => $this->lien
+        ];
+    }
 
 }
 

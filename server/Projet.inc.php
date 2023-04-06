@@ -1,7 +1,7 @@
 <?php
 
 
-class Projet{
+class Projet implements JsonSerializable{
 
     private $nom;   
     private $description;
@@ -40,6 +40,17 @@ class Projet{
     public function setLien($lien) { $this->lien = $lien; }
 
     public function setImage($image) { $this->image = $image; }
+
+    public function jsonSerialize()
+    {
+        return [
+            "nom"           => $this->nom,
+            "description"   => $this->description,
+            "taille"        =>$this->tailleEquipe,
+            "image"         =>$this->image,
+            "lien"          => $this->lien
+        ];
+    }
     
 }
 ?>

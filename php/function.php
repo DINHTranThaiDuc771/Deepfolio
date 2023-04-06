@@ -4,7 +4,10 @@
     ini_set('display_startup_errors', 1);
 
 
-    include("../server/DB.inc.php");
+    require ("../server/DB.inc.php");
+    require "../server/Competence.inc.php";
+    require "../server/Projet.inc.php";
+
 
     session_start();
 
@@ -139,15 +142,86 @@
 
         $json = json_decode($pages[0]->getJson(), true);   
 
+        
         if ( $nomAttr == "competence") {
 
+            $tabStr = explode(";", $text);
+
+            $nomComp = $tabStr[0];
+            $description = $tabStr[1];
+            $lien = $tabStr[2];
+
+            $competence = new Competence($nomComp, $description, $lien);
+
+            if ( $_POST["nouveau"] == "false")
+            {
+                $ancienNom = $_POST["ancienneValeur"];
+
+                $indexSuppr = 0;
+                $cpt = 0;
+                foreach ( $json["competences"] as $comp) {
+                    if ( $comp['nom'] == $ancienNom) {
+                        $indexSuppr = $cpt;
+                        var_dump($comp['nom'] == $ancienNom);
+                    }
+
+                    $cpt++;
+                }
+
+                unset($json["competences"][$indexSuppr]);
+
+                array_splice($json["competences"], $indexSuppr, 0, [$competence]);
+                
+            } else {
+                array_push($json['competences'], $competence);
+            }
+
+            $db->changePage($auteur, $idPortfolio, $pages[0]->getIdPage(), json_encode($json));
+
+            return;
         }
 
         if ( $nomAttr == "projet") {
 
+            $tabStr = explode(";", $text);
+
+            $nomPeojet = $tabStr[0];
+            $description = $tabStr[1];
+            $tailleEquipe = $tabStr[2];
+            $lien = $tabStr[3];
+            $image = $tabStr[4];
+
+            $projet = new Projet($nomPeojet, $description, $tailleEquipe, $lien, $image);
+
+            if ( $_POST["nouveau"] == "false")
+            {
+                $ancienNom = $_POST["ancienneValeur"];
+
+                $indexSuppr = 0;
+                $cpt = 0;
+                foreach ( $json["projets"] as $proj) {
+                    if ( $proj['nom'] == $ancienNom) {
+                        $indexSuppr = $cpt;
+                        var_dump($proj['nom'] == $ancienNom);
+                    }
+
+                    $cpt++;
+                }
+
+                unset($json["projets"][$indexSuppr]);
+
+                array_splice($json["projets"], $indexSuppr, 0, [$projet]);
+                
+            } else {
+                array_push($json['projets'], $projet);
+            }
+
+            $db->changePage($auteur, $idPortfolio, $pages[0]->getIdPage(), json_encode($json));
+
+            return;
         }
 
-        if ( $nomAttr == "nom" && $type = "infos") {
+        if ( $nomAttr == "nomPortfolio" && $type = "infos") {
             $db->changePortfolioName($auteur, $idPortfolio, $text);
         }
 
@@ -156,13 +230,10 @@
         if ( array_key_exists($nomAttr, $json)) {
             $json[$nomAttr] = $text;
         } else {
-            array_push($nomAttr, $text);
+            $json[$nomAttr] = $text;
         }
 
-        var_dump($json);
-
-
-        $db->changePage($auteur, $idPortfolio,$pages[0]->getIdPage() , json_encode($json));
+        $db->changePage($auteur, $idPortfolio, $pages[0]->getIdPage(), json_encode($json));
     }
 
 
