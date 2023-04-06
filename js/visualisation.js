@@ -17,6 +17,8 @@ var idPortfolio;
 var auteur;
 
 var cbAccess;
+var cbAccessible;
+
 document.addEventListener("mousemove", function(event) {
     xEditBar = event.clientX;
     yEditBar = event.clientY;
@@ -26,12 +28,18 @@ window.onload = () => {
     lstEditableTextChanged = new Set();
     lstAdded              = new Set();
     lstDeleted            = new Set();
+
     auteur = document.getElementById("auteur").value;
     idPortfolio = document.getElementById("idPortfolio").value;
 
+    cbAccessible = document.getElementById("cbAccessible");
+    cbAccessible.addEventListener("click", changeAccessibility)
+    console.log('avant init', cbAccessible.checked);
 
-    btnNavbar       = document.querySelector('.navbar-toggler');
+
+
     cbAccess        = document.getElementById("cbAccess");
+    btnNavbar       = document.querySelector('.navbar-toggler');
     editbar         = document.getElementById("editbar");
     btnBold         = document.getElementById("btnBold");
     btnUnderline    = document.getElementById("btnUnderline");
@@ -190,6 +198,10 @@ function ajouterComp ()
     refreshListEditable();
 }
 function toggleEdit() {
+
+    getAccessibility();
+    console.log('apres init', cbAccessible.checked);
+
     isEditing = !isEditing;
     /*Close nav when link clicked*/
     if (window.matchMedia("(max-width: 767px)").matches)
@@ -509,4 +521,39 @@ function getType( classList ) {
     }
 
     return type;
+}
+
+function changeAccessibility() {
+    var form_data = new FormData();
+    form_data.append("idPortfolio", idPortfolio);
+    form_data.append("action", "changeAccessibility");
+    form_data.append("accessible", event.target.checked);
+    $.ajax({
+        type:"POST",
+        dataType: 'script',
+        contentType: false,
+        processData: false,
+        url:"./function.php",
+        data: form_data,
+        complete: function(data) {
+            //console.log(data.responseText);
+        }
+    });
+}
+
+function getAccessibility() {
+    var form_data = new FormData();
+    form_data.append("idPortfolio", idPortfolio);
+    form_data.append("action", "getAccessibility");
+    $.ajax({
+        type:"POST",
+        dataType: 'script',
+        contentType: false,
+        processData: false,
+        url:"./function.php",
+        data: form_data,
+        complete: function(data) {
+            cbAccessible.checked = (data.responseText==0);
+        }
+    });
 }

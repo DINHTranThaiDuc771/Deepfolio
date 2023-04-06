@@ -60,7 +60,7 @@ function addPortfolios() {
                 addPortfolio(p);
             }
         }
-    })
+    });
 }
 
 function addPortfolio(p) {

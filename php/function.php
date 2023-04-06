@@ -23,6 +23,8 @@
         if ($_POST['action'] == 'updatePage') { updatePage(); }
         if ($_POST['action'] == 'copyPortfolio') { copyPortfolio(); }
         if ($_POST['action'] == 'renamePortfolio') { renamePortfolio(); }
+        if ($_POST['action'] == 'changeAccessibility') { changeAccessibility(); }
+        if ($_POST['action'] == 'getAccessibility') { getAccessibility(); }
     }
 
     if(isset($_POST['nom'])) {
@@ -208,5 +210,27 @@
         $newName = htmlspecialchars($_POST['newName']);
 
         $db->renamePortfolio($user->getNomUtilisateur(), $idPortfolio, $newName);
+    }
+
+    function changeAccessibility(){
+        global $db;
+
+        $user = $_SESSION["user"];
+        $idPortfolio = htmlspecialchars($_POST['idPortfolio']);
+        $accessibilityvalue = $_POST['accessible'];
+
+        $result = $db->changeAccesibility($user->getNomUtilisateur(), $idPortfolio, $accessibilityvalue);
+        echo $result;
+    }
+
+    function getAccessibility(){
+        global $db;
+
+        $user = $_SESSION["user"];
+        $idPortfolio = htmlspecialchars($_POST['idPortfolio']);
+
+        $accessibilityvalue = $db->isPortfolioAccessible($user->getNomUtilisateur(), $idPortfolio);
+
+        echo $accessibilityvalue;
     }
 ?>
