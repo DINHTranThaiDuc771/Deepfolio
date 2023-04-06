@@ -3,6 +3,8 @@ var tabPortfolio;
 
 var isSideBarOpened;
 
+var btnProfil     ;
+var btnPortfolios ;
 function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
     this.nomUtilisateur = nomUtilisateur;
     this.idPortfolio = idPortfolio;
@@ -178,7 +180,14 @@ function createPortfolio(portfolios, portfolio, ville) {
                 data: form_data,
                 complete: function(data) {
                     //refresh la page mais sur
-                    location.reload();
+                    var elements = document.getElementsByClassName("card");
+
+                    while(elements.length > 0){
+                        elements[0].parentNode.removeChild(elements[0]);
+                    }
+                    listPortfolios.splice(0,listPortfolios.length); //vider lstPortfolios
+                    addPortfolios();
+                    
                 }
             });
         }
@@ -253,8 +262,8 @@ function createPortfolio(portfolios, portfolio, ville) {
 
 window.onload = () => {
 
-    var btnProfil       = document.getElementById("btn-profil");
-    var btnPortfolios   = document.getElementById("btn-portfolios");
+    btnProfil       = document.getElementById("btn-profil");
+    btnPortfolios   = document.getElementById("btn-portfolios");
     tabProfil       = document.getElementById("tab-profil");
     tabPortfolio    = document.getElementById("tab-portfolio");
 
