@@ -90,6 +90,10 @@ function getKey(url) {
 }
 
 function createPortfolio(portfolios, portfolio, ville) {
+    var url = {};
+    url.auteur = portfolio.nomUtilisateur;
+    url.idPortfolio = portfolio.idPortfolio;
+
     var div0 = document.createElement("div");
     div0.classList.add("card");
     div0.classList.add("mb-3")
@@ -97,6 +101,9 @@ function createPortfolio(portfolios, portfolio, ville) {
 
     var div1 = document.createElement("div");
     div1.classList.add("row");
+
+    var redirection1 = document.createElement("a");
+    redirection1.setAttribute("href", "../php/visualisation.php?cle=\"" + getKey(url) + "\"");
 
     var div2 = document.createElement("div");
     div2.classList.add("col-md-3");
@@ -108,19 +115,10 @@ function createPortfolio(portfolios, portfolio, ville) {
         imgiframe.setAttribute("style", "height:8rem;margin:auto;opacity:0.25;margin-top:40%;");
     } 
     else {
-        var url = {};
-        url.auteur = portfolio.nomUtilisateur;
-        url.idPortfolio = portfolio.idPortfolio;
-
         var imgiframe = document.createElement("iframe");
         imgiframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"");
         imgiframe.setAttribute("style","-webkit-transform:scale(0.5);-webkit-transform-origin:0 0;pointer-events:none;width:200%;height:200%;opacity:0.70;");
     }
-    /*var img = document.createElement("img");
-    img.classList.add("img-fluid");
-    img.classList.add("rounded-start");
-    img.setAttribute("src", "../img/portfolio.jpeg");
-    img.setAttribute("width", "100%");*/
 
     var div3 = document.createElement("div");
     div3.classList.add("col-md-9");
@@ -128,6 +126,9 @@ function createPortfolio(portfolios, portfolio, ville) {
     var div4 = document.createElement("div");
     div4.classList.add("row");
     div4.setAttribute("style","margin:auto;height:100%;");
+
+    var redirection2 = document.createElement("a");
+    redirection2.setAttribute("href", "../php/visualisation.php?cle=\"" + getKey(url) + "\"");
 
     var div5 = document.createElement("div");
     div5.classList.add("col-md-8");
@@ -239,7 +240,8 @@ function createPortfolio(portfolios, portfolio, ville) {
     div3.appendChild(div4);
     div4.appendChild(div5);
     div5.appendChild(div6);
-    div6.appendChild(h5);
+    div6.appendChild(redirection2);
+    redirection2.appendChild(h5);
     div5.appendChild(div7);
     div7.appendChild(small);
     div4.appendChild(div8);
