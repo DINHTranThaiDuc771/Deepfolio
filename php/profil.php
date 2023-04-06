@@ -141,8 +141,8 @@ function formulaire(){
             </form>
           </ul>
           <ul>
-            <form action="supprimercompte.php" method="get">
-              <input type="button" value="Supprimer compte" class="btn btn-danger">
+            <form action="supprimercompte.php" method="POST">
+              <input type="submit" value="Supprimer compte" class="btn btn-danger" name="supprimerCompte">
             </form>
           </ul>
         </li>
