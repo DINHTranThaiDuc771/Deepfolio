@@ -5,6 +5,7 @@ var yEditBar;
 var editbar;
 
 var lstEditableText,lstDeletable,lstButtonSupprimer;
+var lstAdded, lstDeleted;
 var lstEditableTextChanged;
 
 var btnBold,btnUnderline,btnItalic;
@@ -23,7 +24,8 @@ document.addEventListener("mousemove", function(event) {
 
 window.onload = () => {
     lstEditableTextChanged = new Set();
-
+    lstAdded              = new Set();
+    lstDeleted            = new Set();
     auteur = document.getElementById("auteur").value;
     idPortfolio = document.getElementById("idPortfolio").value;
 
@@ -160,6 +162,7 @@ function ajouterProjet()
     `       
     ;
     btnAjouterProjet.parentNode.insertAdjacentHTML("beforebegin", html);
+    lstAdded.add(btnAjouterProjet.parentNode.previousElementSibling);
     refreshListEditable();
 
 }
@@ -182,6 +185,8 @@ function ajouterComp ()
     `;
 
     btnAjouterComp.parentNode.insertAdjacentHTML('beforebegin', newHtml);
+    lstAdded.add(btnAjouterComp.parentNode.previousElementSibling);
+
     refreshListEditable();
 }
 function toggleEdit() {
@@ -327,9 +332,10 @@ function refreshListEditable() {
 function supprimerDeleteable(event){
     console.log("supprimer");
     const deletableDiv = event.target.closest('.deletetable');
+    lstDeleted.add(deletableDiv);
     deletableDiv.style.opacity = '0';
     setTimeout(() => {
-        deletableDiv.remove();
+        deletable.remove();
     }, 500);
 }
 
