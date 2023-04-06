@@ -148,7 +148,7 @@
         }
 
         if ( $nomAttr == "nom" && $type = "infos") {
-            $db;
+            $db->changePortfolioName($auteur, $idPortfolio, $text);
         }
 
         var_dump($json);
