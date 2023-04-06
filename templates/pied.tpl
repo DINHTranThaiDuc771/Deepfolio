@@ -163,7 +163,13 @@
                         <p ><i class="fas fa-home me-3 text-secondary"></i> <h class="editableText ville">{{ ville }}</h></p>
                         <p>
                             <i class="fas fa-envelope me-3 text-secondary text-break"></i>
-                            <h class="editableText mail">{{ mail }}</h>
+                            <span class="editableText mail"> 
+                            {% if mail != "" %}
+                                {{ mail }}
+                            {% else %}
+                                mail a changer
+                            {% endif %} 
+                            </span>
                         </p>
                         <input type="hidden" id="idPortfolio" value={{idPortfolio}}></p>
                         <input type="hidden" id="auteur" value={{auteur}}></p>
