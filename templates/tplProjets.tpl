@@ -15,7 +15,7 @@
                     <p style="position: relative;" class="editableText">
                         <strong class="editableText nom" style="font-size: 24px;"> {{ projet.getNom() }}</strong><br>
                         <strong class="editableText taille" > Taille de l'équipe &nbsp {{ projet.getTailleEquipe() }} personnes</strong><br>
-                        <button><img src="../img/trash.png" alt=""></button> <br>
+                        <button class="btn btn-danger"><img src="../img/trash.png" alt=""></button>
                         <h class="description">
                         {{projet.getDescription()}}<br>
                         </h>

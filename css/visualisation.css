@@ -146,8 +146,6 @@ section article>* {
 .deletetable button {
   display: none;
   position: absolute;top: 0px;right: 0px;
-  border: none;
-  background-color: #fdf2ed;
 }
 
 /*Mobile*/

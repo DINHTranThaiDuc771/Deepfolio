@@ -18,6 +18,7 @@ var auteur;
 
 var cbAccess;
 var cbAccessible;
+var btnChangerBackgroundColor;
 
 document.addEventListener("mousemove", function(event) {
     xEditBar = event.clientX;
@@ -25,6 +26,19 @@ document.addEventListener("mousemove", function(event) {
 });
 
 window.onload = () => {
+    //Btn color background
+    btnChangerBackgroundColor = document.createElement("input");
+    btnChangerBackgroundColor.setAttribute("type","color");
+    btnChangerBackgroundColor.style.position = "fixed";
+    btnChangerBackgroundColor.style.bottom   = "50px";
+    btnChangerBackgroundColor.style.right   = "50px";
+    btnChangerBackgroundColor.style.display    = "none";
+    btnChangerBackgroundColor.style.width    = "50px";
+    btnChangerBackgroundColor.style.height    = "50px";
+    btnChangerBackgroundColor.addEventListener("input",(event)=> {document.body.style.background=event.target.value;});
+    document.body.appendChild(btnChangerBackgroundColor);
+
+
     lstEditableTextChanged = new Set();
     lstAdded              = new Set();
     lstDeleted            = new Set();
@@ -154,7 +168,7 @@ function ajouterProjet()
             <p style="position: relative;"class="editableText desc">
                 <strong class="editableText nom" style="font-size: 24px;">Nom Projet</strong><br>
                 <strong class="editableText taille">5 personnes</strong>
-                <button><img src="../img/trash.png" alt=""></button> <br>
+                <button class="btn btn-danger"><img src="../img/trash.png" alt=""></button>
                 <h class="description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                 et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -191,7 +205,7 @@ function ajouterComp ()
                     </ul>
                 </div>
             </article>
-            <button ><img src="../img/trash.png" alt=""></button>
+            <button class="btn btn-danger"><img src="../img/trash.png" alt=""></button>
 
         </section>
     `;
@@ -231,9 +245,11 @@ function toggleEdit() {
             lstButtonSupprimer[i].style.display = "block";
 
         }
-        btnAjouterProjet.style.display = "inline-block";
-        btnAjouterComp  .style.display = "inline-block";
-        btnSauver       .style.display = "inline-block";
+        btnAjouterProjet                .style.display = "inline-block";
+        btnAjouterComp                  .style.display = "inline-block";
+        btnSauver                       .style.display = "inline-block";
+        btnChangerBackgroundColor       .style.display = "inline-block";
+
         cbAccess        .classList.remove("tab");
 
         return;
@@ -257,6 +273,8 @@ function toggleEdit() {
         btnAjouterComp  .style.display = "none";
         btnSauver       .style.display = "none";
         editbar         .style.display = "none";
+        btnChangerBackgroundColor       .style.display = "none";
+
         cbAccess        .classList.add("tab");
 
         return;

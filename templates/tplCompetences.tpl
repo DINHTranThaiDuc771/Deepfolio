@@ -15,7 +15,7 @@
                     </ul>
                 </div>
             </article>
-            <button><img src="../img/trash.png" alt=""></button>
+            <button class="btn btn-danger"><img src="../img/trash.png" alt=""></button>
         </section>
 
     {% endfor %}
