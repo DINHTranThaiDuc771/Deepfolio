@@ -62,20 +62,25 @@
                     </ul>
                 </div>
                 <div class="col d-flex justify-content-end gap-3">
-                    <div id="cbAccess" class="form-check form-switch d-flex align-items-center">
-                        <input class="form-check-input me-3 accessibilité" type="checkbox" role="switch"
-                            id="flexSwitchCheckDefault" />
-                        <label class="form-check-label" for="flexSwitchCheckDefault">Accessibilité</label>
-                    </div>
+                    {% if estProprio == true %}
+                        <div id="cbAccess" class="form-check form-switch d-flex align-items-center">
+                            <input class="form-check-input me-3 accessibilité" type="checkbox" role="switch"
+                                id="flexSwitchCheckDefault" />
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Accessibilité</label>
+                        </div>
+                    {% endif %}
+                   
                     <a href="accueil.php" id="btnHome">
                         <img src="..\img\favicon_io\home.png" alt="accueil">
                     </a>
-                    <a href="#" id="btnSauver">
-                        <img src="..\img\favicon_io\floppy-disk.png" alt="sauver">
-                    </a>
-                    <a href="#" id="btnToggleEdit">
-                        <img src="..\img\favicon_io\editer.png" alt="editer">
-                    </a>
+                    {% if estProprio == true %}
+                        <a href="#" id="btnSauver">
+                            <img src="..\img\favicon_io\floppy-disk.png" alt="sauver">
+                        </a>
+                        <a href="#" id="btnToggleEdit">
+                            <img src="..\img\favicon_io\editer.png" alt="editer">
+                        </a>
+                    {% endif %}
 
                 </div>
 

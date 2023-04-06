@@ -40,6 +40,12 @@ if($db->isPortfolioAccessible($username, $idPortfolio) !=0){
     }
 }
 
+if(isset($_SESSION["user"]) && $_SESSION["user"]->getNomUtilisateur() == $username){
+    $estProprio = true;
+}else{
+    $estProprio = false;
+}
+
 
 Twig_Autoloader::register();
 $twig = new Twig_Environment( new Twig_Loader_Filesystem("../templates"));
@@ -86,7 +92,8 @@ echo $tpl->render(array(
     'cle' => $cle,
     'lienCv'=>$cv,
     'idPortfolio' => $idPortfolio,
-    'auteur' => $username
+    'auteur' => $username,
+    'estProprio' => $estProprio
 ));
         
 function affichePages($username, $idPortfolio, $db){
