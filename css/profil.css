@@ -114,3 +114,9 @@ a {
   -ms-user-select: none;
   user-select: none;
 }
+.card {
+  opacity:1;
+  transition : all .3s;
+  -wekit-transition : all .3s;
+  -moz-transition : all .3s;
+}
