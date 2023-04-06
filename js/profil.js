@@ -168,8 +168,10 @@ function createPortfolio(portfolios, portfolio, ville) {
                     while (!divParent.classList.contains("card")) {
                         divParent = divParent.parentElement;
                     }
-
-                    containerPortfolio.removeChild(divParent); 
+                    divParent.style.opacity = '0';
+                    setTimeout(() => {
+                        containerPortfolio.removeChild(divParent); 
+                    }, 500);
                 }
             });
         }
