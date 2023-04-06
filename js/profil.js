@@ -136,9 +136,39 @@ function createPortfolio(portfolios, portfolio, ville) {
     var div6 = document.createElement("div");
     div6.classList.add("col-md-8");
     
-    var h5 = document.createElement("h5");
-    h5.classList.add("card-title");
-    h5.textContent = portfolio.nom;
+    var inputNom = document.createElement("INPUT");
+    inputNom.setAttribute('type', 'text');
+    inputNom.setAttribute('method', 'post');
+    inputNom.setAttribute('name', 'renamePortfolio');
+    inputNom.style.border = "none";
+    inputNom.classList.add("card-title");
+    inputNom.classList.add("text-center");
+    inputNom.value = portfolio.nom;
+
+    inputNom.addEventListener("keyup", function(event) {
+        if(event.key === "Enter") {
+            if(inputNom.value == portfolio.nom || inputNom.value == ""){
+                inputNom.value = portfolio.nom;
+                return;
+            }
+            var form_data = new FormData();
+            form_data.append("idPortfolio", portfolio.idPortfolio);
+            form_data.append("action", "renamePortfolio");
+            form_data.append("newName", inputNom.value);
+
+            $.ajax({
+                type:"POST",
+                dataType: 'script',
+                contentType: false,
+                processData: false,
+                url:"./function.php",
+                data: form_data,
+                complete: function(data) {
+                    //refresh la page mais sur
+                }
+            });
+        }
+    });
 
     var div7 = document.createElement("div");
     div7.classList.add("col-md-8");
@@ -239,7 +269,7 @@ function createPortfolio(portfolios, portfolio, ville) {
     div3.appendChild(div4);
     div4.appendChild(div5);
     div5.appendChild(div6);
-    div6.appendChild(h5);
+    div6.appendChild(inputNom);
     div5.appendChild(div7);
     div7.appendChild(small);
     div4.appendChild(div8);

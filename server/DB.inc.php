@@ -312,6 +312,12 @@ class DB {
             return $this->execMaj($requete,$tparam);
         }
 
+        public function renamePortfolio($username, $idPortfolio, $nomPortfolio) {
+            $requete = 'update portfolio set nomPortfolio = ? where nomUtilisateur = ? and idPortfolio = ?';
+            $tparam = array( $nomPortfolio, $username, $idPortfolio);
+            return $this->execMaj($requete,$tparam);
+        }
+
 
         //*********************************************************//
         //                     DELETE                              //
