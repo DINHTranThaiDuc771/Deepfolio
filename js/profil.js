@@ -3,8 +3,6 @@ var tabPortfolio;
 
 var isSideBarOpened;
 
-var btnProfil     ;
-var btnPortfolios ;
 function Portfolio(nomUtilisateur, idPortfolio, nom, accessible) {
     this.nomUtilisateur = nomUtilisateur;
     this.idPortfolio = idPortfolio;
@@ -181,14 +179,7 @@ function createPortfolio(portfolios, portfolio, ville) {
                 data: form_data,
                 complete: function(data) {
                     //refresh la page mais sur
-                    var elements = document.getElementsByClassName("card");
-
-                    while(elements.length > 0){
-                        elements[0].parentNode.removeChild(elements[0]);
-                    }
-                    listPortfolios.splice(0,listPortfolios.length); //vider lstPortfolios
-                    addPortfolios();
-                    
+                    location.reload();
                 }
             });
         }
@@ -196,6 +187,32 @@ function createPortfolio(portfolios, portfolio, ville) {
     var btnDl = document.createElement("button");
     btnDl.classList.add("btn");
     btnDl.classList.add("btn-primary");
+    btnDl.id = "btnDl" + portfolio.idPortfolio;
+    btnDl.addEventListener("click", function(event) {
+        var btnTele = event.target;
+        if ( btnTele.nodeName == "IMG" )
+        {
+            btnTele = btnTele.parentElement;
+        }
+
+        console.log("print portfolio " + btnTele.id);
+        console.log("key : " + getKey(url));
+
+        var test = document.getElementById("frame");
+        if (test != null)
+            document.getElementById("frame").remove();
+            
+
+        var iframe = document.createElement("iframe");
+        iframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"&debug=true");
+        iframe.setAttribute("style","display:none");
+        iframe.setAttribute("name","frame");
+        iframe.id = "frame";
+
+        document.getElementsByTagName("body")[0].appendChild(iframe);
+
+        frames['frame'].print();
+    });
     
     var imgDl = document.createElement("img");
     imgDl.setAttribute("src", "../img/download.png");
@@ -264,8 +281,8 @@ function createPortfolio(portfolios, portfolio, ville) {
 
 window.onload = () => {
 
-    btnProfil       = document.getElementById("btn-profil");
-    btnPortfolios   = document.getElementById("btn-portfolios");
+    var btnProfil       = document.getElementById("btn-profil");
+    var btnPortfolios   = document.getElementById("btn-portfolios");
     tabProfil       = document.getElementById("tab-profil");
     tabPortfolio    = document.getElementById("tab-portfolio");
 
