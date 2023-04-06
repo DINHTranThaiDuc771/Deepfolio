@@ -5,6 +5,7 @@ var yEditBar;
 var editbar;
 
 var lstEditableText,lstDeletable,lstButtonSupprimer;
+var lstAdded, lstDeleted;
 var lstEditableTextChanged;
 
 var btnBold,btnUnderline,btnItalic;
@@ -15,7 +16,7 @@ var btnNavbar;
 var idPortfolio;
 var auteur;
 
-
+var cbAccess;
 document.addEventListener("mousemove", function(event) {
     xEditBar = event.clientX;
     yEditBar = event.clientY;
@@ -23,12 +24,14 @@ document.addEventListener("mousemove", function(event) {
 
 window.onload = () => {
     lstEditableTextChanged = new Set();
-
+    lstAdded              = new Set();
+    lstDeleted            = new Set();
     auteur = document.getElementById("auteur").value;
     idPortfolio = document.getElementById("idPortfolio").value;
 
 
     btnNavbar       = document.querySelector('.navbar-toggler');
+    cbAccess        = document.getElementById("cbAccess");
     editbar         = document.getElementById("editbar");
     btnBold         = document.getElementById("btnBold");
     btnUnderline    = document.getElementById("btnUnderline");
@@ -97,7 +100,7 @@ window.onload = () => {
     btnSauver.addEventListener("click",saveEdition,false);
 
     btnSauver       .style.display = "none";
-
+    cbAccess.classList.add("tab");
     // Telechargement du CV
     var btnTelecharger = document.getElementById("btnTelecharger");
     btnTelecharger.addEventListener("click",telechargerCV,false);
@@ -106,12 +109,13 @@ window.onload = () => {
 function telechargerCV()
 {
     var divCv = document.getElementById("contentAll");
-    var divFooter = document.getElementById("contentFooter");
+    var divReseaux = document.getElementById("contentReseaux");
+    var divCopyright = document.getElementById("contentCopyright");
     var oldPage = document.body.innerHTML;
 
     document.body.innerHTML = 
         "<html><head><title></title></head><body>" +
-        divCv.innerHTML + divFooter.innerHTML + "</body>";
+        divCv.innerHTML + divReseaux.innerHTML + divCopyright.innerHTML + "</body>";
 
     window.print();
     document.body.innerHTML = oldPage;
@@ -158,6 +162,7 @@ function ajouterProjet()
     `       
     ;
     btnAjouterProjet.parentNode.insertAdjacentHTML("beforebegin", html);
+    lstAdded.add(btnAjouterProjet.parentNode.previousElementSibling);
     refreshListEditable();
 
 }
@@ -180,6 +185,8 @@ function ajouterComp ()
     `;
 
     btnAjouterComp.parentNode.insertAdjacentHTML('beforebegin', newHtml);
+    lstAdded.add(btnAjouterComp.parentNode.previousElementSibling);
+
     refreshListEditable();
 }
 function toggleEdit() {
@@ -210,6 +217,8 @@ function toggleEdit() {
         btnAjouterProjet.style.display = "inline-block";
         btnAjouterComp  .style.display = "inline-block";
         btnSauver       .style.display = "inline-block";
+        cbAccess        .classList.remove("tab");
+
         return;
     }
 
@@ -231,6 +240,8 @@ function toggleEdit() {
         btnAjouterComp  .style.display = "none";
         btnSauver       .style.display = "none";
         editbar         .style.display = "none";
+        cbAccess        .classList.add("tab");
+
         return;
     }
 }
@@ -321,9 +332,10 @@ function refreshListEditable() {
 function supprimerDeleteable(event){
     console.log("supprimer");
     const deletableDiv = event.target.closest('.deletetable');
+    lstDeleted.add(deletableDiv);
     deletableDiv.style.opacity = '0';
     setTimeout(() => {
-        deletableDiv.remove();
+        deletable.remove();
     }, 500);
 }
 
