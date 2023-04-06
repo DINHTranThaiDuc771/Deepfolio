@@ -118,9 +118,12 @@ function addPortfolio(p, i) {
         imgiframe.setAttribute("style", "height:8rem;margin:auto;opacity:0.25;margin-top:40%;");
     } 
     else {
-        var imgiframe = document.createElement("iframe");
-        imgiframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"");
-        imgiframe.setAttribute("style","-webkit-transform:scale(0.5);-webkit-transform-origin:0 0;pointer-events:none;width:200%;height:200%;opacity:0.70;");
+        var imgiframe = document.createElement("img");
+        imgiframe.setAttribute("src","../img/portfolio.jpeg");
+        imgiframe.setAttribute("style","height:12rem;margin:auto;opacity:0.5;");
+        //imgiframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"");
+        //imgiframe.setAttribute("scrolling","no");
+        //imgiframe.setAttribute("style","pointer-events:none;border:none;width:1000px;rem;height:400%;transform:scale(0.25);transform-origin:0 0;display:flex;justify-content:center;align-items:center;");
     }
 
     var div4 = document.createElement("div");

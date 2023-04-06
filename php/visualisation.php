@@ -21,7 +21,6 @@ if(!isset($_GET['cle'])){
     exit();
 }
 
-
 $cle = $_GET['cle'];
 
 $cleDecode = base64_decode($cle);
@@ -54,7 +53,6 @@ $twig = new Twig_Environment( new Twig_Loader_Filesystem("../templates"));
 //------------ Variables globales ------------//
 $nomPortfolio; 
 $adresse; 
-$mail;
 $reseaux; 
 $description; 
 $nom;
@@ -65,8 +63,15 @@ $projets;
 $parcours; 
 $diplomes;
 $cv;
+$descriptionSite = "";
+$mail = "";
+$descriptionReseau = "";
+$debug = "";
 //------------ Variables globales ------------//
 
+if ( array_key_exists("debug", $_GET)) {
+    $debug = $_GET['debug'];
+}
 
 
 setcookie('proprio_portfolio', $username, []);
@@ -93,7 +98,10 @@ echo $tpl->render(array(
     'lienCv'=>$cv,
     'idPortfolio' => $idPortfolio,
     'auteur' => $username,
-    'estProprio' => $estProprio
+    'estProprio' => $estProprio,
+    'descriptionsite' => $descriptionSite,
+    'descriptionreseau' => $descriptionReseau,
+    'debug' => $debug
 ));
         
 function affichePages($username, $idPortfolio, $db){
@@ -158,7 +166,7 @@ function recupInfosCompetences($page){
     $competences = array();
 
     foreach($tabCompetences as $competence){
-       array_push($competences, new Competence($competence['nom'], $competence['description'], $competence['lien']));
+        array_push($competences, new Competence($competence['nom'], $competence['description'], $competence['lien']));
     }
 }
 
@@ -236,15 +244,26 @@ function recupReseaux($page){
 
 function recupInfos($page) {
 
-    global $db, $nomPortfolio, $username, $mail;
+    global $db, $nomPortfolio, $username, $mail, $descriptionSite, $descriptionReseau;
 
-    $json = json_decode($page->getJson());
+    $json = json_decode($page->getJson(), true);
 
     $mdpHash = $db->getMdp($username);
     $user = $db->getUser($username, $mdpHash);
 
-    $mail = $user[0]->getMail();
-    $nomPortfolio = $json->nomPortfolio;
+    if ( key_exists("mail", $json)) {
+        $mail = $json["mail"];
+    }
+
+    if ( key_exists("descriptionReseau", $json)) {
+        $descriptionReseau = $json["descriptionReseau"];
+    }
+
+    if ( key_exists("descriptionSite", $json)) {
+        $descriptionSite = $json["descriptionSite"];
+    }
+
+    $nomPortfolio = $json["nomPortfolio"];
 }
 
 ?>

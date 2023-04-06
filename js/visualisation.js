@@ -56,7 +56,7 @@ window.onload = () => {
         styleFont(selectFont.value);
     },false);
 
-    selectSize  ;addEventListener("change",()=>{
+    selectSize  .addEventListener("change",()=>{
         styleSize(selectSize.value);
     },false);
 
@@ -130,6 +130,8 @@ function telechargerCV()
 }
 
 function afficherEditorBar(event){
+    event.target.setAttribute("anciennevaleur",event.target.textContent);
+    console.log(event.target.textContent);
     if (event.target.closest('.deletetable') != null) 
         lstEditableTextChanged.add(event.target.closest('.deletetable'));
     else
@@ -143,17 +145,17 @@ function afficherEditorBar(event){
 function ajouterProjet()
 {
     var html = `
-        <div class="row deletetable projet">
+        <div class="row deletetable projet nouveau">
         <div class="mb-5 col-md-4 d-flex justify-content-center">
-            <img src="../img/favicon_io/android-chrome-192x192.png" alt="">
+            <img class="image" src="../img/favicon_io/android-chrome-192x192.png" alt="">
         </div>
         <div style="padding:30px;" class="col-md-8 d-flex justify-content-center">
 
-            <p style="position: relative;"class="editableText">
-                <strong class="editableText" style="font-size: 24px;">Nom Projet</strong><br>
-                <strong class="editableText">5 personnes</strong>
+            <p style="position: relative;"class="editableText desc">
+                <strong class="editableText nom" style="font-size: 24px;">Nom Projet</strong><br>
+                <strong class="editableText taille">5 personnes</strong>
                 <button><img src="../img/trash.png" alt=""></button> <br>
-
+                <h class="description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                 et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                 aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -162,6 +164,8 @@ function ajouterProjet()
                 adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                 veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequatunt in
                 culpa qui officia deserunt mollit anim id est laborum.
+                </h>
+                <strong class="editableText lien" > Lien </strong><br>
             </p>
 
         </div>
@@ -177,13 +181,13 @@ function ajouterProjet()
 function ajouterComp () 
 {
     const newHtml = `
-            <section class="content deletetable competence">
-            <h1 class="editableText">Elaborer des conceptions simples</h1>
+            <section class="content deletetable competence nouveau">
+            <h1 class="editableText nom">Nom</h1>
             <article class="editableText">
                 <div class="left">
                     <ul>
-                        <li>Je sais construire UML diagram (en respectant les normes grâce à uml-diagrams.org)</li>
-                        <li>Je sais utiliser Github pour gerer les versions de mon projet</li>
+                        <li class="text-break description" >Description</li>
+                        <li class="lien">Lien</li>
                     </ul>
                 </div>
             </article>
@@ -208,6 +212,7 @@ function toggleEdit() {
     {   
         btnNavbar.click();
     }
+
     if (isEditing)
     {
         for (var i=0; i< lstEditableText.length; i++)
@@ -342,12 +347,12 @@ function refreshListEditable() {
 }
 
 function supprimerDeleteable(event){
-    console.log("supprimer");
     const deletableDiv = event.target.closest('.deletetable');
     lstDeleted.add(deletableDiv);
+
     deletableDiv.style.opacity = '0';
     setTimeout(() => {
-        deletable.remove();
+        deletableDiv.remove();
     }, 500);
 }
 
@@ -398,6 +403,7 @@ function updatePage(form_data) {
 
 function saveEdition (){
     toggleEdit();
+
   
    for ( var edit of lstEditableTextChanged ) {
         var classList = edit.classList;
@@ -407,12 +413,12 @@ function saveEdition (){
         var form_data = new FormData();
         form_data.append("type", type);
         form_data.append("action", "updatePage");
+        form_data.append("delete", false);
 
         form_data.append("idPortfolio", idPortfolio );
         form_data.append("auteur", auteur );
 
         form_data.append("text", edit.textContent);
-        
 
         if ( classList.contains("nom-portfolio"))
         {
@@ -421,19 +427,19 @@ function saveEdition (){
 
         if ( classList.contains("description-site") )
         {
-            form_data.append("nomAttr", "description-site");
+            form_data.append("nomAttr", "descriptionSite");
 
         } 
 
         if ( classList.contains("lien-cv"))
         {
-            form_data.append("nomAttr", "lien-cv");
+            form_data.append("nomAttr", "lienCv");
 
         } 
 
         if ( classList.contains("ville"))
         {
-            form_data.append("nomAttr", "ville");
+            form_data.append("nomAttr", "adresse");
 
         } 
 
@@ -451,7 +457,7 @@ function saveEdition (){
 
         if ( classList.contains("description-reseau"))
         {
-            form_data.append("nomAttr", "description-reseau");
+            form_data.append("nomAttr", "descriptionReseau");
 
         } 
 
@@ -459,12 +465,39 @@ function saveEdition (){
         {
             form_data.append("nomAttr", "competence");
 
+
+            form_data.append("nouveau", edit.classList.contains("nouveau"));
+            if ( edit.classList.contains("nouveau") ) edit.classList.remove("nouveau");
+
+            form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
+
+
+            var nom = edit.querySelector(".nom").textContent;
+            var description = edit.querySelector(".description").textContent;
+            var lien = edit.querySelector(".lien").textContent;
+
+            var text = nom + ";" + description + ";" + lien + ";";
+            form_data.append("text", text);
         } 
 
         if ( classList.contains("projet"))
         {
             form_data.append("nomAttr", "projet");
 
+            form_data.append("nouveau", edit.classList.contains("nouveau"));
+            if ( edit.classList.contains("nouveau") ) edit.classList.remove("nouveau");
+
+            form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
+
+            var nom = edit.querySelector(".nom").textContent;
+            var taille = edit.querySelector(".taille").textContent;
+            var description = edit.querySelector(".description").textContent;
+            var lien = edit.querySelector(".lien").textContent;
+            var image = edit.querySelector(".image");
+            //revoir l'ilage
+
+            var text = nom + ";" + description + ";" + taille + ";" + lien + ";" + image + ";";
+            form_data.append("text", text);
         } 
 
         if ( classList.contains("age"))
@@ -488,19 +521,55 @@ function saveEdition (){
         updatePage(form_data);
     }
 
+    for ( var edit of lstDeleted ) {
+        var classList = edit.classList;
+
+        var type = getType(classList);
+        var form_data = new FormData();
+        form_data.append("type", type);
+        form_data.append("action", "updatePage");
+
+        form_data.append("idPortfolio", idPortfolio );
+        form_data.append("auteur", auteur );
+
+        form_data.append("text", "");
+
+
+        if ( classList.contains("competence"))
+        {
+            form_data.append("nomAttr", "competence");
+
+            form_data.append("delete", true);
+
+            form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
+        } 
+
+        if ( classList.contains("projet"))
+        {
+            form_data.append("nomAttr", "projet");
+
+            form_data.append("delete", true);
+
+            form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
+        } 
+
+        updatePage(form_data);
+    }
+
     //location.reload();
     lstEditableTextChanged = new Set();
+    lstDeleted = new Set();
 }
 
 function getType( classList ) {
 
     var type;
 
-    if ( classList.contains("nom-portfolio") || classList.contains("description-site") || classList.contains("mail")) {
+    if ( classList.contains("nom-portfolio") || classList.contains("description-site") || classList.contains("mail") || classList.contains("description-reseau") ) {
         type = "infos";
     }
 
-    if ( classList.contains("lien-cv") || classList.contains("ville") || classList.contains("description") || classList.contains("projet") || classList.contains("age") || classList.contains("nom-prenom")) {
+    if ( classList.contains("lien-cv") || classList.contains("ville") || classList.contains("description") || classList.contains("projet") || classList.contains("age") || classList.contains("nom-prenom") ) {
         type = "cv";
     }
 
@@ -512,9 +581,6 @@ function getType( classList ) {
         type = "competences";
     }
 
-    if ( classList.contains("description-reseau") ) {
-        type = "reseaux";
-    }
 
     if ( classList.contains("diplome") ) {
         type = "parcours";

@@ -4,12 +4,14 @@
     {% for competence in competences %}
 
         <section class="content deletetable competence">
-            <h1 class="editableText "> {{competence.getNom() }} </h1>
+            <h1 class="editableText nom">{{competence.getNom() }}</h1>
             <article  class="editableText">
                 <div class="left">
                     <ul>
-                        <li>{{competence.getDescription() }}</li>
-                        <li><a href="{{competence.getLien()}}">Ce qui prouve ma competence</a> </li>
+                        <li class="text-break description" >{{competence.getDescription() }}</li>
+                        {% if competence.getLien() != "" %}
+                            <li><a class="lien" href="{{competence.getLien()}}">Ce qui prouve ma competence :&nbsp{{ competence.getLien() }} </a> </li>
+                        {% endif %} 
                     </ul>
                 </div>
             </article>
@@ -22,5 +24,7 @@
             <button id="btnAjouterComp" class=" btn btn-floating btn-primary btn-lg"><i
                     class="fas fa-plus"></i></button>
     </div>
+
+    <div class="pagebreak"> </div>
 
 {% endblock %}

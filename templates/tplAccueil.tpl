@@ -8,4 +8,5 @@
             <img id="hero-image" src="..\img\favicon_io\hero-image.jpg" alt="hero-image">
         </div>
     </div>
+    <div class="pagebreak"> </div>
 {% endblock %}
