@@ -26,7 +26,7 @@ $portfolio_cookie =  html_entity_decode($_COOKIE['portfolio']);
 $portfolio_json = json_decode($portfolio_cookie);
 
 $username = $_SESSION['user']->getNomUtilisateur();
-$nomPortfolio = $_POST['nomPortfolio'];
+$nomPortfolio = htmlspecialchars($_POST['nomPortfolio']);
 $accesible  = isset($_POST['accesible']);
 
 $db = DB::getInstance();

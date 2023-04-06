@@ -52,7 +52,7 @@
     function userExists() {
         global $db;
 
-        $user = $_POST["username"];
+        $user = htmlspecialchars($_POST["username"]);
 
         if(count($db->userExists($user)) > 0) {
             echo "true";
@@ -100,7 +100,7 @@
     function deleteMessage() {
         global $db;
         
-        $nomEnvoyeur = $_POST['nomUtilisateur'];
+        $nomEnvoyeur = htmlspecialchars($_POST['nomUtilisateur']);
         $mailEnvoyeur = $_POST['mail'];
 
         $db->deleteMessage($nomEnvoyeur, $mailEnvoyeur);
@@ -110,7 +110,7 @@
         global $db;
 
         $user = $_SESSION["user"];
-        $idPortfolio = $_POST['idPortfolio'];
+        $idPortfolio = htmlspecialchars($_POST['idPortfolio']);
 
         $db->deletePortfolio($user->getNomUtilisateur(), $idPortfolio);
     }
@@ -119,8 +119,8 @@
         global $db;
 
         $user = $_SESSION["user"];
-        $idPortfolio = $_POST['idPortfolio'];
-        $type = $_POST['type'];
+        $idPortfolio = htmlspecialchars($_POST['idPortfolio']);
+        $type = htmlspecialchars($_POST['type']);
 
         $page = $db->getPage($user->getNomUtilisateur(), $idPortfolio, $type);
 
@@ -137,7 +137,7 @@
         $pages = $db->getPage($auteur, $idPortfolio, $type);
 
         $nomAttr = $_POST["nomAttr"];
-        $text    = $_POST["text"];
+        $text    = htmlspecialchars($_POST["text"]);
 
         $json = json_decode($pages[0]->getJson(), true);   
 
@@ -195,7 +195,7 @@
         global $db;
 
         $user = $_SESSION["user"];
-        $idPortfolio = $_POST['idPortfolio'];
+        $idPortfolio = htmlspecialchars($_POST['idPortfolio']);
 
         $db->copierPortfolio($user->getNomUtilisateur(), $idPortfolio);
     }
@@ -204,8 +204,8 @@
         global $db;
 
         $user = $_SESSION["user"];
-        $idPortfolio = $_POST['idPortfolio'];
-        $newName = $_POST['newName'];
+        $idPortfolio = htmlspecialchars($_POST['idPortfolio']);
+        $newName = htmlspecialchars($_POST['newName']);
 
         $db->renamePortfolio($user->getNomUtilisateur(), $idPortfolio, $newName);
     }
