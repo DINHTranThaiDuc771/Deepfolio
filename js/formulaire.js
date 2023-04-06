@@ -1,3 +1,5 @@
+import * as mdb from 'mdb-ui-kit';
+
 class Reseau {
     constructor(nom, lien) {
       this.nom = nom;
@@ -395,6 +397,11 @@ function initMapReseaux() {
 
 window.onload = () => {
 
+    application.config.globalProperties.$mdb = mdb
+
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+        new mdb.Input(formOutline).init();
+    });
 
     mapReseaux = new Map();
     initMapReseaux();
