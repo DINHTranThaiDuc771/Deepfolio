@@ -258,21 +258,21 @@ class DB {
             }else{return false;}
         }
 
-        public function copierPortfolio($idPortfolio, $username){
+        public function copierPortfolio($username, $idPortfolio){
             $requeteNom = 'select nomportfolio, accesible from portfolio where idportfolio = ?';
             $tparamNom = array($idPortfolio);
             $result = $this->execQuery($requeteNom, $tparamNom, '');
             $nomPortfolio = $result[0]['nomportfolio'];
-            $accesible = $result[0]['accesible'];
-            $requete = 'insert into portfolio (idportfolio, nomutilisateur, nomportfolio, accesible) values(?,?,?,?)';
-            $tparam = array($idPortfolio, $username, 'Copie de '.$nomPortfolio, $accesible);
+            $accesible = (int)$result[0]['accesible'];
+            $requete = 'insert into portfolio (nomutilisateur, nomportfolio, accesible) values(?,?,?)';
+            $tparam = array($username, 'Copie de '.$nomPortfolio, $accesible);
             $result = $this->execMaj($requete,$tparam);
             if(strcmp($result,"int(1)")){
                 $requetesPages = 'select * from page where idportfolio = ?';
                 $tparamsPages = array($idPortfolio);
                 $pages = $this->execQuery($requetesPages, $tparamsPages, 'Page');
                 foreach($pages as $page){
-                    $this->addPage($username, $this->getNewestPortfolioId($username), $page->getJsonPage(), $page->getType());
+                    $this->addPage($username, $this->getNewestPortfolioId($username), $page->getJson(), $page->getType());
                 }
             }
         }

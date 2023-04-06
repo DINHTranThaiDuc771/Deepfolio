@@ -140,7 +140,30 @@ function createPortfolio(portfolios, portfolio, ville) {
     var imagecopy = document.createElement("img");
     imagecopy.setAttribute("src", "../img/copy.png");
 
-    btnCopy.addEventListener("click", copyPortfolio());
+    btnCopy.addEventListener("click", function(event) {
+        //TODO: copier le portfolio
+        let confirmation = "Voulez-vous vraiment copier ce portfolio ?";
+
+        if (confirm(confirmation) == true)
+        {
+            var form_data = new FormData();
+            form_data.append("idPortfolio", portfolio.idPortfolio);
+            form_data.append("action", "copyPortfolio");
+
+            $.ajax({
+                type:"POST",
+                dataType: 'script',
+                contentType: false,
+                processData: false,
+                url:"./function.php",
+                data: form_data,
+                complete: function(data) {
+                    //refresh la page mais sur
+                    location.reload();
+                }
+            });
+        }
+        });
     var btnDl = document.createElement("button");
     btnDl.classList.add("btn");
     btnDl.classList.add("btn-primary");
@@ -207,10 +230,6 @@ function createPortfolio(portfolios, portfolio, ville) {
     btnDl.appendChild(imgDl);
     div8.appendChild(btnDel);
     btnDel.appendChild(imgDel);
-}
-
-function copyPortfolio(event) {
-    //TODO: copier le portfolio
 }
 
 window.onload = () => {

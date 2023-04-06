@@ -21,6 +21,7 @@
         if ($_POST['action'] == 'getPage') { getPage(); }
         if ($_POST['action'] == 'uploadFiles') { dlImg(); }
         if ($_POST['action'] == 'updatePage') { updatePage(); }
+        if ($_POST['action'] == 'copyPortfolio') { copyPortfolio(); }
     }
 
     if(isset($_POST['nom'])) {
@@ -187,5 +188,14 @@
                 echo "false";
             }
         }
+    }
+
+    function copyPortfolio(){
+        global $db;
+
+        $user = $_SESSION["user"];
+        $idPortfolio = $_POST['idPortfolio'];
+
+        $db->copierPortfolio($user->getNomUtilisateur(), $idPortfolio);
     }
 ?>
