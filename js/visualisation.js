@@ -15,7 +15,7 @@ var btnNavbar;
 var idPortfolio;
 var auteur;
 
-
+var cbAccess;
 document.addEventListener("mousemove", function(event) {
     xEditBar = event.clientX;
     yEditBar = event.clientY;
@@ -29,6 +29,7 @@ window.onload = () => {
 
 
     btnNavbar       = document.querySelector('.navbar-toggler');
+    cbAccess        = document.getElementById("cbAccess");
     editbar         = document.getElementById("editbar");
     btnBold         = document.getElementById("btnBold");
     btnUnderline    = document.getElementById("btnUnderline");
@@ -97,7 +98,7 @@ window.onload = () => {
     btnSauver.addEventListener("click",saveEdition,false);
 
     btnSauver       .style.display = "none";
-
+    cbAccess.classList.add("tab");
     // Telechargement du CV
     var btnTelecharger = document.getElementById("btnTelecharger");
     btnTelecharger.addEventListener("click",telechargerCV,false);
@@ -210,6 +211,8 @@ function toggleEdit() {
         btnAjouterProjet.style.display = "inline-block";
         btnAjouterComp  .style.display = "inline-block";
         btnSauver       .style.display = "inline-block";
+        cbAccess        .classList.remove("tab");
+
         return;
     }
 
@@ -231,6 +234,8 @@ function toggleEdit() {
         btnAjouterComp  .style.display = "none";
         btnSauver       .style.display = "none";
         editbar         .style.display = "none";
+        cbAccess        .classList.add("tab");
+
         return;
     }
 }
@@ -464,7 +469,7 @@ function saveEdition (){
         updatePage(form_data);
     }
 
-    location.reload();
+    //location.reload();
     lstEditableTextChanged = new Set();
 }
 
