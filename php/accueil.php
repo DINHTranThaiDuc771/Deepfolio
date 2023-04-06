@@ -55,12 +55,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <!-- Container wrapper -->
             <div class="container-fluid">
-                <!-- Toggle button -->
-                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
+
 
                 <!-- Collapsible wrapper -->
                 <div class="col " id="navbarSupportedContent">
