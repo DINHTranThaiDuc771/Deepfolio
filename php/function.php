@@ -22,6 +22,7 @@
         if ($_POST['action'] == 'uploadFiles') { dlImg(); }
         if ($_POST['action'] == 'updatePage') { updatePage(); }
         if ($_POST['action'] == 'copyPortfolio') { copyPortfolio(); }
+        if ($_POST['action'] == 'renamePortfolio') { renamePortfolio(); }
     }
 
     if(isset($_POST['nom'])) {
@@ -197,5 +198,15 @@
         $idPortfolio = $_POST['idPortfolio'];
 
         $db->copierPortfolio($user->getNomUtilisateur(), $idPortfolio);
+    }
+
+    function renamePortfolio(){
+        global $db;
+
+        $user = $_SESSION["user"];
+        $idPortfolio = $_POST['idPortfolio'];
+        $newName = $_POST['newName'];
+
+        $db->renamePortfolio($user->getNomUtilisateur(), $idPortfolio, $newName);
     }
 ?>
