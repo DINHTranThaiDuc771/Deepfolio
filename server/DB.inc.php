@@ -317,6 +317,26 @@ class DB {
             return $this->execMaj($requete,$tparam);
         }
 
+        public function deleteUser($username) {
+            $this->deletePagesUser($username);
+            $this->deleteAllPortfolio($username);
+            $requete = 'delete from utilisateur where nomUtilisateur = ?';
+            $tparam = array( $username);
+            return $this->execMaj($requete,$tparam);
+        }
+
+        public function deletePagesUser($username){
+            $requete = 'delete from page where nomUtilisateur = ?';
+            $tparam = array( $username);
+            return $this->execMaj($requete,$tparam);
+        }
+
+        public function deleteAllPortfolio($username){
+            $requete = 'delete from portfolio where nomUtilisateur = ?';
+            $tparam = array( $username);
+            return $this->execMaj($requete,$tparam);
+        }
+
 
 } //fin classe DB
 

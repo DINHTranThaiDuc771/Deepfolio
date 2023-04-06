@@ -43,6 +43,7 @@
 
 
 
+
     function userExists() {
         $DB = DB::getInstance();
         $user = $_POST["username"];
