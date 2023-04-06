@@ -132,6 +132,15 @@ function createPortfolio(portfolios, portfolio, ville) {
     div8.classList.add("col-md-4");
     div8.setAttribute("style","margin:auto;text-align:center;");
 
+    var btnCopy = document.createElement("button");
+    btnCopy.classList.add("btn");
+    btnCopy.classList.add("btn-primary");
+    btnCopy.style.backgroundColor = "#ffd285";
+
+    var imagecopy = document.createElement("img");
+    imagecopy.setAttribute("src", "../img/copy.png");
+
+    btnCopy.addEventListener("click", copyPortfolio());
     var btnDl = document.createElement("button");
     btnDl.classList.add("btn");
     btnDl.classList.add("btn-primary");
@@ -192,11 +201,16 @@ function createPortfolio(portfolios, portfolio, ville) {
     div5.appendChild(div7);
     div7.appendChild(small);
     div4.appendChild(div8);
+    div8.appendChild(btnCopy);
+    btnCopy.appendChild(imagecopy);
     div8.appendChild(btnDl);
     btnDl.appendChild(imgDl);
     div8.appendChild(btnDel);
     btnDel.appendChild(imgDel);
+}
 
+function copyPortfolio(event) {
+    //TODO: copier le portfolio
 }
 
 window.onload = () => {

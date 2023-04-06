@@ -120,3 +120,7 @@ a {
   -wekit-transition : all .3s;
   -moz-transition : all .3s;
 }
+
+button{
+  margin-left: 0.5rem;
+}

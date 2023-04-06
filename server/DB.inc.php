@@ -258,7 +258,12 @@ class DB {
             }else{return false;}
         }
 
-        public function copierPortfolio($idPortfolio, $username, $nomPortfolio, $accesible){
+        public function copierPortfolio($idPortfolio, $username){
+            $requeteNom = 'select nomportfolio, accesible from portfolio where idportfolio = ?';
+            $tparamNom = array($idPortfolio);
+            $result = $this->execQuery($requeteNom, $tparamNom, '');
+            $nomPortfolio = $result[0]['nomportfolio'];
+            $accesible = $result[0]['accesible'];
             $requete = 'insert into portfolio (idportfolio, nomutilisateur, nomportfolio, accesible) values(?,?,?,?)';
             $tparam = array($idPortfolio, $username, 'Copie de '.$nomPortfolio, $accesible);
             $result = $this->execMaj($requete,$tparam);
