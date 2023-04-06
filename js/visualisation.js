@@ -392,10 +392,10 @@ function saveEdition (){
 
         if ( classList.contains("nom-portfolio"))
         {
-            form_data.append("nomAttr", "nom-portfolio");
+            form_data.append("nomAttr", "nomPortfolio");
         } 
 
-        if ( classList.contains("description-site"))
+        if ( classList.contains("description-site") )
         {
             form_data.append("nomAttr", "description-site");
 
@@ -421,8 +421,8 @@ function saveEdition (){
 
         if ( classList.contains("description"))
         {
-            form_data.append("nomAttr", "description");
-
+            form_data.append("nomAttr", "presentation");
+            form_data.append("text", edit.textContent.replaceAll("\"", ""));
         } 
 
         if ( classList.contains("description-reseau"))
@@ -464,6 +464,7 @@ function saveEdition (){
         updatePage(form_data);
     }
 
+    location.reload();
     lstEditableTextChanged = new Set();
 }
 
