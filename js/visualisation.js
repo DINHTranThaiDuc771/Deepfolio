@@ -20,6 +20,21 @@ var cbAccess;
 var cbAccessible;
 var btnChangerBackgroundColor;
 
+var isCtrl = false;
+document.onkeyup=function(e){
+    if(e.keyCode == 17) isCtrl=false;
+}
+
+document.onkeydown=function(e){
+    if(e.keyCode == 17) isCtrl=true;
+    if(e.keyCode == 83 && isCtrl == true && isEditing == true) {
+        saveEdition();
+        console.log('control + s')
+        return false;
+    }
+}
+
+
 document.addEventListener("mousemove", function(event) {
     xEditBar = event.clientX;
     yEditBar = event.clientY;
@@ -132,6 +147,17 @@ window.onload = () => {
     var btnHome,btnSauver;
 
     btnHome = document.getElementById("btnHome");
+    btnHome.addEventListener("click",()=>{
+        if(isEditing == true)
+        {
+            if(confirm("Voulez-vous sauvegarder les modifications ?"))
+            {
+                saveEdition();
+            }
+        }
+    });
+
+
     btnSauver = document.getElementById("btnSauver");
     btnSauver.addEventListener("click",saveEdition,false);
 
