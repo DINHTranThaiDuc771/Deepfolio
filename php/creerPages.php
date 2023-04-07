@@ -37,7 +37,12 @@ $parcours_json      = json_decode($parcoursCookie);
 $projets_json       = json_decode($projetsCookie);
 $competences_json   = json_decode($competencesCookie);
 
-$portfolioComplet_json["reseaux"] = json_encode($reseaux_json); //TODO: PIERRE: CONCATERNER TOUTES LES INFOS DANS CE TABLEAU
+$portfolioComplet_json["reseaux"] = json_encode($reseaux_json);
+$portfolioComplet_json["diplomes"] = json_encode($diplomes_json);
+$portfolioComplet_json["parcours"] = json_encode($parcours_json);
+$portfolioComplet_json["projets"] = json_encode($projets_json);
+$portfolioComplet_json["competences"] = json_encode($competences_json); //TODO: PIERRE: CONCATERNER TOUTES LES INFOS DANS CE TABLEAU
+$portfolioComplet_json = array_merge($portfolio_json, $portfolioComplet_json );
 var_dump($portfolioComplet_json);
 
 
@@ -48,7 +53,6 @@ $accesible  = isset($_POST['accesible']);
 $db = DB::getInstance();
 
 $result = $db->addPortfolio($username, $nomPortfolio, var_export($accesible, true));
-var_dump($reseaux_json);
 
 if($result) {
     //creerPages($portfolio_json, $db);
