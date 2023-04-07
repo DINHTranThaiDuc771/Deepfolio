@@ -44,13 +44,18 @@ document.addEventListener("mousemove", function(event) {
 window.onload = () => {
     quote           = document.getElementById("quote");
     while (quote.scrollHeight > quote.clientHeight) {
+        quote.style.lineHeight= parseInt(window.getComputedStyle(quote).lineHeight) -1 +'px';
         quote.style.fontSize = parseInt(window.getComputedStyle(quote).fontSize) - 1 + 'px';
     }
+
     quote.addEventListener("input",()=>{
-        while (quote.scrollHeight > quote.clientHeight) {
+        if (quote.scrollHeight > quote.clientHeight) {
+            quote.style.lineHeight= parseInt(window.getComputedStyle(quote).lineHeight) -1 +'px';
             quote.style.fontSize = parseInt(window.getComputedStyle(quote).fontSize) - 1 + 'px';
-        }  
+        }
     });
+
+
     var competences = document.querySelectorAll("#pageCompetences .lien");
     for ( var lien of competences) {
         var href = lien.getAttribute("href").toString();
@@ -221,7 +226,7 @@ function ajouterProjet()
     var html = `
         <div class="row deletetable projet nouveau">
         <div class="mb-5 col-md-4 d-flex justify-content-center">
-            <input type="file" accept=".jpg, .jpeg, .png, .svg" class="form-control form-control-lg image"  />
+            <input type="file" accept=".png" class="form-control form-control-lg image"  />
         </div>
         <div style="padding:30px;" class="col-md-8 justify-content-center">
             <button class="btn btn-danger"><img src="../img/trash.png" alt=""></button>

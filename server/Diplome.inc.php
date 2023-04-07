@@ -1,7 +1,7 @@
 <?php
 
 
-class Diplome{
+class Diplome implements JsonSerializable{
 
     private $nom;
     private $etablissement;
@@ -29,5 +29,14 @@ class Diplome{
 
     public function setAnneeObtention($anneeObtention) { $this->anneeObtention = $anneeObtention; }
 
+
+    public function jsonSerialize()
+    {
+        return [
+            "poste"           => $this->nom,
+            "etablissement"      => $this->etablissement,
+            "anneeObtention"       =>$this->anneeObtention
+        ];
+    }
 }
 ?>
