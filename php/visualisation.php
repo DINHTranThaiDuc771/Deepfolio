@@ -21,7 +21,7 @@ if(!isset($_GET['cle'])){
     exit();
 }
 
-$cle = $_GET['cle'];
+$cle = $_GET['cle'];    
 
 $cleDecode = base64_decode($cle);
 

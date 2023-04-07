@@ -46,7 +46,7 @@
         }else{
             updateMessage($username, $mailE, $nomE, $prenomE, $objet, $message);            
         }
-        //$cle = substr($cle, 1, -1);
+        $cle = str_replace('&quot;', "", $cle);
         header("Location: ./visualisation.php?cle=$cle");
         exit(); 
     }

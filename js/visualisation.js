@@ -65,10 +65,6 @@ window.onload = () => {
     auteur = document.getElementById("auteur").value;
     idPortfolio = document.getElementById("idPortfolio").value;
 
-    cbAccessible = document.getElementById("cbAccessible");
-    cbAccessible.addEventListener("click", changeAccessibility)
-
-
 
     cbAccess        = document.getElementById("cbAccess");
     btnNavbar       = document.querySelector('.navbar-toggler');
@@ -243,6 +239,9 @@ function ajouterComp ()
 
 function toggleEdit() {
 
+    cbAccessible = document.getElementById("cbAccessible");
+    cbAccessible.addEventListener("click", changeAccessibility)
+
     getAccessibility();
 
     isEditing = !isEditing;
@@ -274,8 +273,11 @@ function toggleEdit() {
         btnAjouterComp                  .style.display = "inline-block";
         btnSauver                       .style.display = "inline-block";
         btnChangerBackgroundColor       .style.display = "inline-block";
-
         cbAccess        .classList.remove("tab");
+
+        rgbValue                                       = window.getComputedStyle(document.body, null).backgroundColor;
+        const hexValue = '#' + rgbValue.match(/\d+/g).map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
+        btnChangerBackgroundColor       .value         = hexValue;
 
         return;
     }

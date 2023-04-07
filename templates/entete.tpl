@@ -5,9 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title class="nom-portfolio"> {{ nomPortfolio }}</title>
-    <!-- MDB icon -->
-    <link rel="icon" href="../img/mdb-favicon.ico" type="image/x-icon" />
+    <title class="nom-portfolio"> {{ nomPortfolio }} - DeepFolio</title>
+    <!-- OUR icon -->
+    <link rel="icon" href="../img/favicon_io/android-chrome-512x512.png" type="image/x-icon" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <!-- Google Fonts Roboto -->
@@ -31,9 +31,9 @@
 
     {% if colorBck != "" %}
         <style>
-        body {
-            background-color : {{colorBck}};
-        }
+            body {
+                background-color : {{colorBck}};
+            }
         </style>
     {% endif %}
 
@@ -86,7 +86,7 @@
                         <div id="cbAccess" class="form-check form-switch d-flex align-items-center">
                             <input class="form-check-input me-3 accessibilité" id="cbAccessible" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault" />
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Accessibilité</label>
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Visible</label>
                         </div>
                     {% endif %}
                    
