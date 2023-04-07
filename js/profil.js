@@ -117,7 +117,8 @@ function createPortfolio(portfolios, portfolio, ville) {
     else {
         var imgiframe = document.createElement("iframe");
         imgiframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"");
-        imgiframe.setAttribute("style","-webkit-transform:scale(0.5);-webkit-transform-origin:0 0;pointer-events:none;width:200%;height:200%;opacity:0.70;");
+        imgiframe.setAttribute("scrolling","no");
+        imgiframe.setAttribute("style","pointer-events:none;border:none;width:400%;height:400%;transform:scale(0.25);transform-origin:0 0;display:flex;justify-content:center;align-items:center;");
     }
 
     var div3 = document.createElement("div");
@@ -137,9 +138,44 @@ function createPortfolio(portfolios, portfolio, ville) {
     var div6 = document.createElement("div");
     div6.classList.add("col-md-8");
     
-    var h5 = document.createElement("h5");
-    h5.classList.add("card-title");
-    h5.textContent = portfolio.nom;
+    var inputNom = document.createElement("INPUT");
+    inputNom.setAttribute('type', 'text');
+    inputNom.setAttribute('method', 'post');
+    inputNom.setAttribute('name', 'renamePortfolio');
+    inputNom.style.border = "none";
+    inputNom.classList.add("card-title");
+    inputNom.classList.add("text-center");
+    inputNom.value = portfolio.nom;
+
+    inputNom.addEventListener("keyup", function(event) {
+        if(event.key === "Enter") {
+            if(inputNom.value == portfolio.nom || inputNom.value == ""){
+                inputNom.value = portfolio.nom;
+                return;
+            }
+            var form_data = new FormData();
+            form_data.append("idPortfolio", portfolio.idPortfolio);
+            form_data.append("action", "renamePortfolio");
+            form_data.append("newName", inputNom.value);
+
+            $.ajax({
+                type:"POST",
+                dataType: 'script',
+                contentType: false,
+                processData: false,
+                url:"./function.php",
+                data: form_data,
+                complete: function(data) {
+                    //refresh la page mais sur
+                    portfolio.nom = inputNom.value;
+                }
+            });
+        }
+    });
+
+    inputNom.addEventListener("focusout", function(event) {
+        inputNom.value = portfolio.nom;
+    });
 
     var div7 = document.createElement("div");
     div7.classList.add("col-md-8");
@@ -272,9 +308,9 @@ function createPortfolio(portfolios, portfolio, ville) {
     div3.appendChild(div4);
     div4.appendChild(div5);
     div5.appendChild(div6);
-    div6.appendChild(redirection2);
-    redirection2.appendChild(h5);
-    div5.appendChild(div7);
+    div6.appendChild(inputNom);
+    redirection2.appendChild(div7);
+    div5.appendChild(redirection2);
     div7.appendChild(small);
     div4.appendChild(div8);
     div8.appendChild(btnCopy);

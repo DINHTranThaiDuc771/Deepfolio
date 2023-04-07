@@ -26,6 +26,25 @@ document.addEventListener("mousemove", function(event) {
 });
 
 window.onload = () => {
+
+    var competences = document.querySelectorAll("#pageCompetences .lien");
+    for ( var lien of competences) {
+        var href = lien.getAttribute("href").toString();
+        if ( href.includes("#")) {
+            lien.addEventListener("click", (event) => {
+                changerTab("linkProjets");
+            });
+        }
+    }
+
+    var projets = document.querySelectorAll("#contentProjet .projetli");
+    for ( var lien of projets) {
+        lien.addEventListener("click", (event) => {
+            changerTab("linkProjets");
+        });
+    }
+    
+
     //Btn color background
     btnChangerBackgroundColor = document.createElement("input");
     btnChangerBackgroundColor.setAttribute("type","color");
@@ -45,10 +64,6 @@ window.onload = () => {
 
     auteur = document.getElementById("auteur").value;
     idPortfolio = document.getElementById("idPortfolio").value;
-
-    cbAccessible = document.getElementById("cbAccessible");
-    cbAccessible.addEventListener("click", changeAccessibility)
-
 
 
     cbAccess        = document.getElementById("cbAccess");
@@ -219,6 +234,9 @@ function ajouterComp ()
 }
 
 function toggleEdit() {
+
+    cbAccessible = document.getElementById("cbAccessible");
+    cbAccessible.addEventListener("click", changeAccessibility)
 
     getAccessibility();
 
@@ -566,13 +584,21 @@ function saveEdition (){
         if ( classList.contains("age"))
         {
             form_data.append("nomAttr", "age");
-
+            form_data.append("text", edit.textContent.replaceAll("(", "").replaceAll(")", ""));
         } 
 
         if ( classList.contains("nom-prenom"))
         {
-            form_data.append("nomAttr", "nom-prenom");
+            var nom = edit.textContent.split(" ")[0];
+            var prenom = edit.textContent.split(" ")[1];
 
+            form_data.append("text", nom);
+            form_data.append("nomAttr", "nom");
+
+            updatePage(form_data);
+
+            form_data.append("text", prenom);
+            form_data.append("nomAttr", "prenom");
         } 
 
         if ( classList.contains("diplome"))

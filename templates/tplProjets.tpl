@@ -3,7 +3,7 @@
 
     {% for projet in projets %}
 
-            <div class="row deletetable projet">
+        <div class="row deletetable projet" id="{{ projet.getNom() }}">
                 <div class="mb-5 col-md-4 d-flex justify-content-center">
                     {% if projet.getImage() is empty %}
                     {% else %}
