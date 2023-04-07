@@ -350,6 +350,13 @@ function toggleEdit() {
         const hexValue = '#' + rgbValue.match(/\d+/g).map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
         btnChangerBackgroundColor       .value         = hexValue;
 
+        var lstLink  = document.getElementsByTagName("a");
+        for (var i=0;i<lstLink.length;i++)
+        {
+            lstLink[i].addEventListener('click', function(event) {
+                event.preventDefault();
+                });
+        }
         return;
     }
 
@@ -374,7 +381,13 @@ function toggleEdit() {
         btnChangerBackgroundColor       .style.display = "none";
 
         cbAccess        .classList.add("tab");
-
+        var lstLink  = document.getElementsByTagName("a");
+        for (var i=0;i<lstLink.length;i++)
+        {
+            lstLink[i].removeEventListener('click', function(event) {
+                event.preventDefault();
+                });
+        }
         return;
     }
 }
