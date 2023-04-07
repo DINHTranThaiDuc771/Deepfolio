@@ -27,12 +27,20 @@
                 display:none;
             }
 
+            #btnAjouterComp, #btnAjouterProjet {
+                display:none;
+            }
+
             #pageAccueil {
-                margin-top:300px;
+                margin-top:30%;
             }
             
             .pagebreak {
                 page-break-after: always;
+            }
+
+            .pagebreakb {
+                page-break-before: always;
             }
         </style>
     {% endif %}
