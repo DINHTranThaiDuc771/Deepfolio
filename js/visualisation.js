@@ -21,6 +21,7 @@ var cbAccessible;
 var btnChangerBackgroundColor;
 
 var isCtrl = false;
+var quote;
 document.onkeyup=function(e){
     if(e.keyCode == 17) isCtrl=false;
 }
@@ -41,7 +42,15 @@ document.addEventListener("mousemove", function(event) {
 });
 
 window.onload = () => {
-
+    quote           = document.getElementById("quote");
+    while (quote.scrollHeight > quote.clientHeight) {
+        quote.style.fontSize = parseInt(window.getComputedStyle(quote).fontSize) - 1 + 'px';
+    }
+    quote.addEventListener("input",()=>{
+        while (quote.scrollHeight > quote.clientHeight) {
+            quote.style.fontSize = parseInt(window.getComputedStyle(quote).fontSize) - 1 + 'px';
+        }  
+    });
     var competences = document.querySelectorAll("#pageCompetences .lien");
     for ( var lien of competences) {
         var href = lien.getAttribute("href").toString();
