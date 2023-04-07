@@ -32,11 +32,15 @@
             }
 
             #pageAccueil {
-                margin-top:30%;
+                margin-top:5%;
             }
             
             .pagebreak {
                 page-break-after: always;
+            }
+
+            .pagebreakb {
+                page-break-before: always;
             }
         </style>
     {% endif %}
