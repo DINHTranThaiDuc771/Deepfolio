@@ -8,3 +8,5 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     session_destroy();
     header('location: connexion.php');
 }
+
+header('location: connexion.php');

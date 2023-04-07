@@ -182,13 +182,14 @@ function formulaire(){
     </a>
   </div>
 
+  
   <!-- JQuery -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <!-- Custom scripts -->
   <script type="text/javascript" src="../js/profil.js"></script>
 
   <?php echo "<script> changerSvg(\"" . $_SESSION["user"]->getNomUtilisateur() . "\"); </script>" ?>
-</body>
+  
 </body>
 
 </html>

@@ -185,7 +185,7 @@
         <div id="contentCopyright">
             <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
                 © 2023 Copyright:
-                <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Deepfolio</a>
+                <a class="text-reset fw-bold" href="../html/mentions-legales.html">Deepfolio</a>
             </div>
         </div>
         <!-- Copyright -->
