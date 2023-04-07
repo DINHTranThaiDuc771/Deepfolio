@@ -33,8 +33,8 @@
             <h2>Projet</h2>
             <ul style="list-style: none;">
                 {% for projet in projets %}
-                    <li>
-                        <a href="#"><h3> {{ projet.getNom() }} </h3></a>
+                    <li class="projetli">
+                        <a href="#{{ projet.getNom() }}"><h3> {{ projet.getNom() }} </h3></a>
                         <p > {{ projet.getDescription() }}</p>
                     </li>
                 {% endfor %}
