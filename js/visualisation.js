@@ -35,7 +35,7 @@ window.onload = () => {
     btnChangerBackgroundColor.style.display    = "none";
     btnChangerBackgroundColor.style.width    = "50px";
     btnChangerBackgroundColor.style.height    = "50px";
-    btnChangerBackgroundColor.addEventListener("input",(event)=> {document.body.style.background=event.target.value;});
+    btnChangerBackgroundColor.addEventListener("input",(event)=> {changementBackground(event.target.value);});
     document.body.appendChild(btnChangerBackgroundColor);
 
 
@@ -217,6 +217,7 @@ function ajouterComp ()
 
     refreshListEditable();
 }
+
 function toggleEdit() {
 
     cbAccessible = document.getElementById("cbAccessible");
@@ -253,8 +254,11 @@ function toggleEdit() {
         btnAjouterComp                  .style.display = "inline-block";
         btnSauver                       .style.display = "inline-block";
         btnChangerBackgroundColor       .style.display = "inline-block";
-
         cbAccess        .classList.remove("tab");
+
+        rgbValue                                       = window.getComputedStyle(document.body, null).backgroundColor;
+        const hexValue = '#' + rgbValue.match(/\d+/g).map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
+        btnChangerBackgroundColor       .value         = hexValue;
 
         return;
     }
@@ -419,11 +423,14 @@ function updatePage(form_data) {
         url:"../php/function.php",
         data: form_data,
         complete: function(data) {
-            console.log(data.responseText);
+            //console.log(data.responseText);
         }
     });
 }
 
+function changementBackground(col) {
+    document.body.style.background= col;
+}
 
 
 function saveEdition (){
@@ -581,9 +588,8 @@ function saveEdition (){
     for ( var edit of lstDeleted ) {
         var classList = edit.classList;
 
-        console.log(edit);
-
         var type = getType(classList);
+
         var form_data = new FormData();
         form_data.append("type", type);
         form_data.append("action", "updatePage");
@@ -615,17 +621,21 @@ function saveEdition (){
         updatePage(form_data);
     }
 
-    var form_data = new FormData();
-    form_data.append("type", "infos");
-    form_data.append("action", "updatePage");
-    form_data.append("nomAttr", "bckCol");
+    if ( document.body.style.backgroundColor != "") {
+        var form_data = new FormData();
+        form_data.append("type", "infos");
+        form_data.append("action", "updatePage");
+        form_data.append("nomAttr", "bckCol");
 
-    form_data.append("idPortfolio", idPortfolio );
-    form_data.append("auteur", auteur );
+        form_data.append("idPortfolio", idPortfolio );
+        form_data.append("auteur", auteur );
 
-    form_data.append("text", document.body.style.backgroundColor);
-    
-    updatePage(form_data);
+        form_data.append("text", document.body.style.backgroundColor);
+
+        console.log();
+        
+        updatePage(form_data);
+    }
 
     //location.reload();
     lstEditableTextChanged = new Set();
