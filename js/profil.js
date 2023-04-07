@@ -237,9 +237,6 @@ function createPortfolio(portfolios, portfolio, ville) {
             btnTele = btnTele.parentElement;
         }
 
-        console.log("print portfolio " + btnTele.id);
-        console.log("key : " + getKey(url));
-
         var test = document.getElementById("frame");
         if (test != null)
             document.getElementById("frame").remove();
@@ -248,7 +245,9 @@ function createPortfolio(portfolios, portfolio, ville) {
         var iframe = document.createElement("iframe");
         iframe.id = "frame";
         iframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"&debug=true");
-        iframe.setAttribute("style","display:none");
+        iframe.setAttribute("style","display:none;");
+        iframe.setAttribute("onload","custom()");
+
         iframe.setAttribute("name","frame");
 
         document.getElementsByTagName("body")[0].appendChild(iframe);
@@ -319,6 +318,10 @@ function createPortfolio(portfolios, portfolio, ville) {
     btnDl.appendChild(imgDl);
     div8.appendChild(btnDel);
     btnDel.appendChild(imgDel);
+}
+
+function custom(){
+    document.getElementById("frame").contentWindow.document.getElementById("smallp").style.fontSize = "20px";
 }
 
 window.onload = () => {
