@@ -50,7 +50,6 @@ h1 {
 
 #pageAccueil {
   position: relative;
-  z-index: -1;
 }
 
 .tab {
@@ -181,7 +180,6 @@ section article>* {
 .isEditText {
   border: 2px dashed blue;
   padding: 5px;
-  margin : 10px; 
 }
 
 .editableText {

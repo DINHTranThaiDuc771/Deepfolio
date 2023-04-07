@@ -4,14 +4,6 @@
 body {
     background-color: #f6f4f0;
   }
-
-  /* Print */
-@media print {
-  @page { margin: 0;}
-  body { margin: 1.6cm;
-    background-color: red;
-  color:blue; }
-}
   
   /* Sidebar */
 

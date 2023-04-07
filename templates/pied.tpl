@@ -210,6 +210,5 @@
     <script type="text/javascript" src="../js/visualisation.js">
     </script>
 </body>
-</body>
 
 </html>
