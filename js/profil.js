@@ -179,7 +179,13 @@ function createPortfolio(portfolios, portfolio, ville) {
                 data: form_data,
                 complete: function(data) {
                     //refresh la page mais sur
-                    location.reload();
+                    var elements = document.getElementsByClassName("card");
+
+                    while(elements.length > 0){
+                        elements[0].parentNode.removeChild(elements[0]); //faut pas utiliser for, car le length change
+                    }
+                    listPortfolios.splice(0,listPortfolios.length);
+                    addPortfolios();
                 }
             });
         }
