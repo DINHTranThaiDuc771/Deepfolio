@@ -38,6 +38,10 @@
             .pagebreak {
                 page-break-after: always;
             }
+
+            .pagebreakb {
+                page-break-before: always;
+            }
         </style>
     {% endif %}
 

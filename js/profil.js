@@ -321,7 +321,7 @@ function createPortfolio(portfolios, portfolio, ville) {
 }
 
 function custom(){
-    document.getElementById("frame").contentWindow.document.getElementById("smallp").style.fontSize = "20px";
+    document.getElementById("frame").contentWindow.document.getElementById("smallp").style.textAlign = "justify";
 }
 
 window.onload = () => {

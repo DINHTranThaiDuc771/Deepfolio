@@ -2,7 +2,11 @@
 {% block accueil %}
     <div class="row">
         <div class="col-md-6 d-flex justify-content-center text-break">
-            <p id="smallp" class="editableText description" id="quote"> " {{ description }} "</p>
+            {% if debug == "true" %}
+            <p id="smallp" class="smallp editableText description"> " {{ description }} "</p>
+            {% else %}
+            <p id="quote" class="smallp editableText description"> " {{ description }} "</p>
+            {% endif %}
         </div>
 
         <div class="col-md-6 d-flex justify-content-center" >
