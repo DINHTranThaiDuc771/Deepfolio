@@ -88,11 +88,14 @@
                                 id="flexSwitchCheckDefault" />
                             <label class="form-check-label" for="flexSwitchCheckDefault">Visible</label>
                         </div>
+
+                        
                     {% endif %}
-                   
                     <a href="accueil.php" id="btnHome">
                         <img src="..\img\favicon_io\home.png" alt="accueil">
                     </a>
+                   
+                   
                     {% if estProprio == true %}
                         <a href="#" id="btnSauver">
                             <img src="..\img\favicon_io\floppy-disk.png" alt="sauver">
