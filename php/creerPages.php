@@ -44,9 +44,11 @@ $accesible  = isset($_POST['accesible']);
 $db = DB::getInstance();
 
 $result = $db->addPortfolio($username, $nomPortfolio, var_export($accesible, true));
+var_dump($reseaux_json);
 
 if($result) {
-    creerPages($portfolio_json, $db);
+    var_dump($reseaux_json);
+    //creerPages($portfolio_json, $db);
 }
 else {
     echo "Erreur lors de la création du portfolio";
@@ -58,31 +60,30 @@ $db;
 $username;
 $numPortfolio;
 
-function creerPages($portfolioJSON, $db){
+function creerPages($portfolioJSON, $reseaux_json, $diplomes_json, $parcours_json, $projets_json, $competences_json, $db){
 
     global $username, $numPortfolio;
 
-    $jsonCV = null;
-    $competences = $portfolioJSON->competences;
-    $projets = $portfolioJSON->projets;
-    $parcours = $portfolioJSON->parcours;
-    $diplomes = $portfolioJSON->diplomes;
-    $reseaux = $portfolioJSON->reseaux;
 
     $numPortfolio   = $db->getNewestPortfolioId($username);
 
-    creerPageCompetences($competences);
-    creerPageDiplomes($diplomes);
-    creerPageProjets($projets);
-    creerPageParcours($parcours);
-    creerPageReseaux($reseaux);
-    creerPageCV($portfolioJSON);
-    creerPageInfo($portfolioJSON);
+    $portfolioComplet_json = $portfolioJSON; //TODO: PIERRE: CONCATERNER TOUTES LES INFOS DANS CE TABLEAU
+    var_dump($portfolioComplet_json);
+
+    /*
+    creerPageCompetences($competences_json);
+    creerPageDiplomes($diplomes_json);
+    creerPageProjets($projets_json);
+    creerPageParcours($parcours_json);
+    creerPageReseaux($reseaux_json);
+    creerPageCV($portfolioComplet_json);
+    creerPageInfo($portfolioComplet_json);
 
     $url['auteur'] = $username;
     $url['idPortfolio'] = $numPortfolio;
 
     header("Location: visualisation.php?cle=\"" . base64_encode(json_encode($url)) . "\""); 
+    */
 }
 
 function creerPageCompetences($competences) {
