@@ -264,6 +264,10 @@ function ajouterComp ()
 
 function toggleEdit() {
 
+    if(isEditing == true){
+        location.reload();
+    }
+
     cbAccessible = document.getElementById("cbAccessible");
     cbAccessible.addEventListener("click", changeAccessibility)
 

@@ -151,9 +151,12 @@ function addMessage(m) {
 
     var divNomPrenom = document.createElement("div");
 
-    var pNomPrenom = document.createElement("p");
+    var pNomPrenom = document.createElement("h5");
     pNomPrenom.classList.add("text-break");
-    pNomPrenom.textContent = "de " + message.nom + " " + message.prenom;
+    pNomPrenom.classList.add("fw-bold");
+    pNomPrenom.classList
+    pNomPrenom.classList.add("mb-0");
+    pNomPrenom.textContent = message.nom + " " + message.prenom;
 
     var divMail = document.createElement("div");
 
@@ -165,6 +168,7 @@ function addMessage(m) {
 
     var pObjet = document.createElement("p");
     pObjet.classList.add("text-break");
+    pObjet.classList.add("fw-bold");
     pObjet.textContent = message.objet;
 
     var divText = document.createElement("div");
@@ -172,6 +176,8 @@ function addMessage(m) {
 
     var pText = document.createElement("p");
     pText.classList.add("text-break");
+    pText.classList.add("small");
+    pText.classList.add("text-muted");
     pText.textContent = message.text;
 
     var divBtn = document.createElement("div");

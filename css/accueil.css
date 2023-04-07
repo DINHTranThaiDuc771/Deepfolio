@@ -6,7 +6,8 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #FFEAC8;
+    background-color: #ffd285;
+    opacity: 0.97;
     overflow-x: hidden;
     transition: .5s;
     padding-top: 60px;
@@ -16,7 +17,7 @@
 .bloc-message {
     padding: 15px;
     margin: 10px;
-    background-color: #fafafa;
+    background-color: white;
 }
 
 #btnCloseSideBar {
