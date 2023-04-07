@@ -300,13 +300,12 @@ function valider(event, form, indexSuivant)
             terminer();
         } else {
             form.classList.remove('was-validated');
-            nextPrev(indexSuivant, event.target);
-            // ajouterTabwith the closest button
             div = event.target.parentElement;
             while(div.classList.contains("tab") == false){
                 div = div.parentElement;
             }
             div.querySelector(".ajouter").click();
+            nextPrev(indexSuivant, event.target);           
         }
 
         return;
