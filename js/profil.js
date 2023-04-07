@@ -246,10 +246,10 @@ function createPortfolio(portfolios, portfolio, ville) {
             
 
         var iframe = document.createElement("iframe");
+        iframe.id = "frame";
         iframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"&debug=true");
         iframe.setAttribute("style","display:none");
         iframe.setAttribute("name","frame");
-        iframe.id = "frame";
 
         document.getElementsByTagName("body")[0].appendChild(iframe);
 

@@ -22,6 +22,14 @@
             .print {
                 display: block !important;
             }
+
+            body > *:not(#contentToPrint) {
+                display:none;
+            }
+
+            #pageAccueil {
+                margin-top:300px;
+            }
             
             .pagebreak {
                 page-break-after: always;
@@ -89,7 +97,6 @@
                             <label class="form-check-label" for="flexSwitchCheckDefault">Visible</label>
                         </div>
                     {% endif %}
-                   
                     <a href="accueil.php" id="btnHome">
                         <img src="..\img\favicon_io\home.png" alt="accueil">
                     </a>
