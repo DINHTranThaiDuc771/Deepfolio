@@ -32,7 +32,7 @@
             }
 
             #pageAccueil {
-                margin-top:5%;
+                margin-top:30%;
             }
             
             .pagebreak {
