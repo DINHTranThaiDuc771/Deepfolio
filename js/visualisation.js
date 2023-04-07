@@ -255,8 +255,11 @@ function toggleEdit() {
         btnAjouterComp                  .style.display = "inline-block";
         btnSauver                       .style.display = "inline-block";
         btnChangerBackgroundColor       .style.display = "inline-block";
-
         cbAccess        .classList.remove("tab");
+
+        rgbValue                                       = window.getComputedStyle(document.body, null).backgroundColor;
+        const hexValue = '#' + rgbValue.match(/\d+/g).map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
+        btnChangerBackgroundColor       .value         = hexValue;
 
         return;
     }
