@@ -1,4 +1,3 @@
-
 {% block projet %}
 
     {% for projet in projets %}
@@ -13,7 +12,7 @@
                 <div style="padding:30px;" class="col-md-8 justify-content-center">
                     <button class="btn btn-danger"><img src="../img/trash.png" alt=""></button>
                     <p style="position: relative;" class="editableText">
-                        <span style="display:block" class="editableText nom" style="font-size: 24px;">{{ projet.getNom() }}</span>
+                        <span class="editableText" style="display:block" style="font-size: 24px;"><strong  class="nom">{{ projet.getNom() }}</strong></span>
                         <strong>Taille de l'équipe &nbsp</strong>
                         <span style="display:inline-block">
                             <strong style="display:block" class="editableText taille" >{{ projet.getTailleEquipe() }}</strong>
@@ -37,5 +36,4 @@
 
     <div class="pagebreak"> </div>
 
-{% endblock %}+
-
+{% endblock %}

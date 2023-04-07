@@ -189,7 +189,9 @@ function afficherEditorBar(event){
         lstEditableTextChanged.add(event.target.closest('.deletetable'));
         var edit = event.target.closest('.deletetable');
         var nom = edit.querySelector('.nom');
-        nom.setAttribute("anciennevaleur", nom.textContent);
+
+        if ( !nom.hasAttribute("anciennevaleur"))
+            nom.setAttribute("anciennevaleur", nom.textContent);
     }
     else
         lstEditableTextChanged.add(event.target);
@@ -204,23 +206,24 @@ function afficherEditorBar(event){
 function ajouterProjet()
 {
     var html = `
-        <div class="row deletetable projet">
+        <div class="row deletetable projet nouveau">
         <div class="mb-5 col-md-4 d-flex justify-content-center">
             <input type="file" accept=".jpg, .jpeg, .png, .svg" class="form-control form-control-lg image"  />
         </div>
         <div style="padding:30px;" class="col-md-8 justify-content-center">
             <button class="btn btn-danger"><img src="../img/trash.png" alt=""></button>
             <p style="position: relative;" class="editableText">
-                <span style="display:block" class="editableText nom" style="font-size: 24px;">Nom projet</span><br>
+                <span style="display:block" class="editableText" style="font-size: 24px;"><strong class="nom">Nom projet</strong></span><br>
                 <strong>Taille de l'équipe &nbsp</strong><span style="display:inline-block"><strong style="display:block" class="editableText taille" >?</strong></span><strong> personnes</strong><br>
                 <span style="display:block" class="description editableText">Description</span>
                 <span style="display:block">
-                    <strong  style="display:block" class="editableText lien" >Lien</strong><br>
+                    <a href="{{ projet.getLien() }}" target="_blank" ><strong  style="display:block" class="editableText lien" >Lien</strong></a><br>
                 </span>
             </p>
         </div>
-    </div>
-    `
+    </div>  
+    `       
+    ;
     btnAjouterProjet.parentNode.insertAdjacentHTML("beforebegin", html);
     lstAdded.add(btnAjouterProjet.parentNode.previousElementSibling);
     refreshListEditable();
@@ -282,7 +285,6 @@ function toggleEdit() {
             lstEditableText[i].setAttribute("tabindex","0");
             lstEditableText[i].addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
             lstEditableText[i].addEventListener("keydown",event=>preventKeydown(event),false);
-
 
             lstEditableText[i].classList.add("isEditText");
         }
@@ -405,7 +407,6 @@ function refreshListEditable() {
         lstEditableText[i].classList.add("isEditText");
         lstEditableText[i].addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
         lstEditableText[i].addEventListener("keydown",event=>preventKeydown(event),false);
-
     }
     // list button supprimer
     for (var i=0; i< lstButtonSupprimer.length; i++)
@@ -466,7 +467,7 @@ function updatePage(form_data) {
         url:"../php/function.php",
         data: form_data,
         complete: function(data) {
-            //console.log(data.responseText);
+            console.log(data.responseText);
         }
     });
 }
@@ -519,9 +520,12 @@ function saveEdition (){
 
         if ( classList.contains("projet"))
         {
+
             form_data.append("nomAttr", "projet");
 
             form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
+
+            console.log(edit.querySelector(".nom").getAttribute("anciennevaleur"));
 
             var nom = edit.querySelector(".nom").textContent;
             var taille = edit.querySelector(".taille").textContent;
@@ -721,6 +725,32 @@ function getType( classList ) {
     return type;
 }
 
+function preventKeydown(event) {
+    /**
+     *     // Get the selection and range
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    
+    // Check if the cursor is at the beginning or end of the editable element
+    if (range.startOffset === 0 && range.endOffset === 0 && (event.key === 'Backspace' || event.key === 'Delete')) {
+        event.preventDefault();
+    } else if (range.startOffset === editableElement.textContent.length && range.endOffset === editableElement.textContent.length && (event.key === 'Backspace' || event.key === 'Delete')) {
+        event.preventDefault();
+    }
+     * 
+     */
+    var selection = window.getSelection();
+    var positionCursor = selection.getRangeAt(0);
+    if (positionCursor.startOffset ===0 && event.key==="Backspace")
+    {
+        event.preventDefault();
+    }
+    if (positionCursor.endOffset ===0 && event.which===13) //enter key
+    {
+        event.preventDefault();
+    }
+}
+
 function changeAccessibility() {
     var form_data = new FormData();
     form_data.append("idPortfolio", idPortfolio);
@@ -754,30 +784,4 @@ function getAccessibility() {
             cbAccessible.checked = (data.responseText==0);
         }
     });
-}
-
-function preventKeydown(event) {
-    /**
-     *     // Get the selection and range
-    var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
-    
-    // Check if the cursor is at the beginning or end of the editable element
-    if (range.startOffset === 0 && range.endOffset === 0 && (event.key === 'Backspace' || event.key === 'Delete')) {
-        event.preventDefault();
-    } else if (range.startOffset === editableElement.textContent.length && range.endOffset === editableElement.textContent.length && (event.key === 'Backspace' || event.key === 'Delete')) {
-        event.preventDefault();
-    }
-     * 
-     */
-    var selection = window.getSelection();
-    var positionCursor = selection.getRangeAt(0);
-    if (positionCursor.startOffset ===0 && event.key==="Backspace")
-    {
-        event.preventDefault();
-    }
-    if (positionCursor.endOffset ===0 && event.which===13) //enter key
-    {
-        event.preventDefault();
-    }
 }
