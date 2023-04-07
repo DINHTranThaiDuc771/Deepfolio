@@ -10,7 +10,7 @@
 
         <div id="contentProfil" class="row">
             <h2>Profil</h2>
-            <p>
+            <p style="font-style: normal">
                 <strong>Ville : &nbsp<strong class="editableText ville" > {{ ville }}</strong> <br>
                 {{ description }}
             </p >
@@ -20,9 +20,9 @@
 
         <div id="contentCompetence" class="row  mb-2">
             <h2>Compétences</h2>
-            <ul style="list-style: none;">
+            <ul style="list-style: inside;">
                 {% for competence in competences %}
-                    <li> {{ competence.getNom() }} </li>
+                    <li style="font-style: normal;margin-bottom:10px"> {{ competence.getNom() }} </li>
                 {% endfor %}
             </ul>
         </div>
@@ -34,8 +34,8 @@
             <ul style="list-style: none;">
                 {% for projet in projets %}
                     <li class="projetli">
-                        <a href="#{{ projet.getNom() }}"><h3> {{ projet.getNom() }} </h3></a>
-                        <p > {{ projet.getDescription() }}</p>
+                        <a href="#{{ projet.getNom() }}"><h4 style="font-style: italic;"> {{ projet.getNom() }} </h4></a>
+                        <p style="font-style: normal"> {{ projet.getDescription() }}</p>
                     </li>
                 {% endfor %}
             </ul>
@@ -48,7 +48,7 @@
             <ul style="list-style: none;">
                 {% for poste in postes %}
                     <li class="editableText poste">
-                        <h3> {{ poste.getPoste() }}-{{poste.getEntreprise() }}</h3>
+                        <h4 style="font-style: italic;"> {{ poste.getPoste() }}-{{poste.getEntreprise() }}</h4>
                         <strong>{{ poste.getDateDebut() }}/{{ poste.getDateFin() }}</strong><br>
                         <p> {{ poste.getDescription() }}</p>
                     </li>
@@ -63,7 +63,7 @@
             <ul style="list-style: none;">
                 {% for diplome in diplomes %}
                     <li class="editableText diplome">
-                        <h3 >{{ diplome.getNom() }}-{{ diplome.getEtablissement() }}</h3>
+                        <h4 style="font-style: italic;">{{ diplome.getNom() }}-{{ diplome.getEtablissement() }}</h4>
                         <p >{{ diplome.getAnneeObtention() }}</p>
                     </li>
                 {% endfor %}

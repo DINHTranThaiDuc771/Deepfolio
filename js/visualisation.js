@@ -53,7 +53,6 @@ window.onload = () => {
             quote.style.lineHeight= parseInt(window.getComputedStyle(quote).lineHeight) -1 +'px';
             quote.style.fontSize = parseInt(window.getComputedStyle(quote).fontSize) - 1 + 'px';
         }
-
     });
 
 
