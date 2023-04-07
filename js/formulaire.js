@@ -301,6 +301,12 @@ function valider(event, form, indexSuivant)
         } else {
             form.classList.remove('was-validated');
             nextPrev(indexSuivant, event.target);
+            // ajouterTabwith the closest button
+            div = event.target.parentElement;
+            while(div.classList.contains("tab") == false){
+                div = div.parentElement;
+            }
+            div.querySelector(".ajouter").click();
         }
 
         return;
@@ -414,6 +420,7 @@ window.onload = () => {
         var reseau = e.target.value.toLowerCase();
         if(mapReseaux.has(reseau)){
             document.getElementById('typeLien').value = mapReseaux.get(reseau);
+            document.getElementById('typeLien').classList.add("active");
         }else{
             document.getElementById('typeLien').value = "";
         } 

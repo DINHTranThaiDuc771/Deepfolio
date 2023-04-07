@@ -22,6 +22,14 @@
             .print {
                 display: block !important;
             }
+
+            body > *:not(#contentToPrint) {
+                display:none;
+            }
+
+            #pageAccueil {
+                margin-top:300px;
+            }
             
             .pagebreak {
                 page-break-after: always;
