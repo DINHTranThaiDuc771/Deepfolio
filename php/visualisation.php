@@ -68,6 +68,7 @@ $mail = "";
 $descriptionReseau = "";
 $debug = "";
 $colorBck = "";
+$imageAccueil = "";
 //------------ Variables globales ------------//
 
 if ( array_key_exists("debug", $_GET)) {
@@ -103,7 +104,8 @@ echo $tpl->render(array(
     'descriptionsite' => $descriptionSite,
     'descriptionreseau' => $descriptionReseau,
     'debug' => $debug,
-    'colorBck' => $colorBck
+    'colorBck' => $colorBck,
+    'imageAccueil' => $imageAccueil
 ));
         
 function affichePages($username, $idPortfolio, $db){
@@ -246,7 +248,7 @@ function recupReseaux($page){
 
 function recupInfos($page) {
 
-    global $db, $nomPortfolio, $username, $mail, $descriptionSite, $descriptionReseau, $colorBck;
+    global $db, $nomPortfolio, $username, $mail, $descriptionSite, $descriptionReseau, $colorBck, $imageAccueil;
 
     $json = json_decode($page->getJson(), true);
 
@@ -268,6 +270,11 @@ function recupInfos($page) {
     if ( key_exists("bckCol", $json)) {
         $colorBck = $json["bckCol"];
     }
+
+    if ( key_exists("imageAccueil", $json)) {
+        $imageAccueil = $json["imageAccueil"];
+    }
+    
 
     $nomPortfolio = $json["nomPortfolio"];
 }

@@ -111,25 +111,25 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                                         <p class="text-white-50 mb-5"></p>
                                         <div class="form-outline mb-4">
                                             <input type="text" id="typeNom" class="form-control form-control-lg <?php if ($nom != "") echo "active"; ?>" value=<?php echo "\"$nom\"";?> name="nom" required/>
-                                            <label class="form-label unselectable" for="typeNom">Nom</label>
+                                            <label class="form-label unselectable" for="typeNom">Nom *</label>
                                             <div class="invalid-feedback">Veuillez entrer un nom</div>
                                         </div>
                                         
                                         <div class="form-outline mb-4">
                                             <input type="text" id="typePrenom" class="form-control form-control-lg <?php if ($prenom != "") echo "active"; ?>" value=<?php echo "\"$prenom\"";?> name="prenom" required />
-                                            <label class="form-label unselectable" for="typePrenom">Prénom</label>
+                                            <label class="form-label unselectable" for="typePrenom">Prénom *</label>
                                             <div class="invalid-feedback">Veuillez entrer un prénom</div>
                                         </div>
         
                                         <div class="form-outline mb-4">
                                             <input type="number" min="13" id="typeAge" class="form-control form-control-lg <?php if ($age != "") echo "active"; ?>" name="age" value=<?php echo "\"$age\"";?> required />
-                                            <label class="form-label" for="typeAge">Age</label>
+                                            <label class="form-label" for="typeAge">Age *</label>
                                             <div class="invalid-feedback">Veuillez entrer votre age</div>
                                         </div>
         
                                         <div class="form-outline mb-4">
                                             <input type="url" id="typeLienCv" class="form-control form-control-lg" name="lienCv" required />
-                                            <label class="form-label" for="typeLienCv">Lien CV</label>
+                                            <label class="form-label" for="typeLienCv">Lien CV *</label>
                                             <div class="invalid-feedback">Veuillez entrer un lien vers votre CV</div>
                                         </div>
         
@@ -142,7 +142,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
         
                                         <div class="form-outline mb-4">
                                             <textarea id="typePresentation" class="form-control form-control-lg" placeholder="Présentez vous en quelques lignes" name="presentation"required></textarea>
-                                            <label class="form-label" for="typePresentation">Présentation</label>
+                                            <label class="form-label" for="typePresentation">Présentation *</label>
                                             <div class="invalid-feedback">Veuillez vous présenter</div>
                                         </div>
                                     </div>
@@ -181,6 +181,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                                 </div>                
                             </div>
                             <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
+                            <p style="color:red">* Champs obligatoires</p>
                         </div>
                     </div>
                 </div>
@@ -216,7 +217,6 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
 
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
                             <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
-
                         </div>
                     </div>
                 </div>
@@ -262,7 +262,6 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
 
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
                             <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
-
                         </div>
                     </div>
                 </div>
@@ -321,7 +320,6 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
 
                             <button class="btn btn-secondary btn-lg px-5 mt-5 precedent" type="button">Précédent</button>
                             <button class="btn btn-primary btn-lg px-5 ml-2 suivant" type="button">Suivant</button>
-
                         </div>
                     </div>
                 </div>
@@ -372,20 +370,21 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                                 <div class="col-md-6">
                                 <div class="form-outline mb-1">
                                         <input type="text" id="nomPortfolio" class="form-control form-control-lg"  name="nomPortfolio"/>
-                                        <label class="form-label" for="nomPortfolio">Nom du portfolio</label>
+                                        <label class="form-label" for="nomPortfolio">Nom du portfolio *</label>
                                         <div class="invalid-feedback">Veuillez entrer un nom pour ce portfolio</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check mt-2">
                                             <input type="checkbox" id="accesible" class="form-check-input"  name="accesible"/>
-                                            <label class="form-check-label" for="accesible">Accessible</label>
+                                            <label class="form-check-label" for="accesible">Visible</label>
                                             <div class="invalid-feedback">Veuillez entrer une visibilité</div>
                                     </div>
                                 </div>
                             </div>
                             <button class="btn btn-secondary btn-lg px-5 mt-2 precedent" type="button">Précédent</button>
                             <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Terminer</button>
+                            <p style="color:red">* Champs obligatoires</p>
                         </div>
                     </div>
                 </div>
