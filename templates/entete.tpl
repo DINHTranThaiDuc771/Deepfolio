@@ -31,9 +31,9 @@
 
     {% if colorBck != "" %}
         <style>
-        body {
-            background-color : {{colorBck}};
-        }
+            body {
+                background-color : {{colorBck}};
+            }
         </style>
     {% endif %}
 

@@ -117,7 +117,8 @@ function createPortfolio(portfolios, portfolio, ville) {
     else {
         var imgiframe = document.createElement("iframe");
         imgiframe.setAttribute("src","../php/visualisation.php?cle=\"" + getKey(url) + "\"");
-        imgiframe.setAttribute("style","-webkit-transform:scale(0.5);-webkit-transform-origin:0 0;pointer-events:none;width:200%;height:200%;opacity:0.70;");
+        imgiframe.setAttribute("scrolling","no");
+        imgiframe.setAttribute("style","pointer-events:none;border:none;width:400%;height:400%;transform:scale(0.25);transform-origin:0 0;display:flex;justify-content:center;align-items:center;");
     }
 
     var div3 = document.createElement("div");
