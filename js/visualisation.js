@@ -189,7 +189,7 @@ function ajouterProjet()
                 <strong>Taille de l'équipe &nbsp</strong><span style="display:inline-block"><strong style="display:block" class="editableText taille" >?</strong></span><strong> personnes</strong><br>
                 <span style="display:block" class="description editableText">Description</span>
                 <span style="display:block">
-                    <a href="{{ projet.getLien() }}" target="_blank" ><strong  style="display:block" class="editableText lien" >Lien</strong></a><br>
+                    <strong  style="display:block" class="editableText lien" >Lien</strong><br>
                 </span>
             </p>
         </div>
