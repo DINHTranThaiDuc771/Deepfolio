@@ -86,7 +86,7 @@
                         <div id="cbAccess" class="form-check form-switch d-flex align-items-center">
                             <input class="form-check-input me-3 accessibilité" id="cbAccessible" type="checkbox" role="switch"
                                 id="flexSwitchCheckDefault" />
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Accessibilité</label>
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Visible</label>
                         </div>
                     {% endif %}
                    
