@@ -23,6 +23,13 @@ if(!isset($_POST['nomPortfolio'])) {
 
 
 $portfolio_cookie =  html_entity_decode($_COOKIE['portfolio']);
+
+$reseauxCookie = html_entity_decode($_COOKIE['tabReseaux']);
+$diplomesCookie = html_entity_decode($_COOKIE['tabDiplomes']);
+$parcoursCookie = html_entity_decode($_COOKIE['tabParcours']);
+$projetsCookie = html_entity_decode($_COOKIE['tabProjets']);
+$competencesCookie = html_entity_decode($_COOKIE['tabCompetences']);
+
 $portfolio_json = json_decode($portfolio_cookie);
 
 $username = $_SESSION['user']->getNomUtilisateur();

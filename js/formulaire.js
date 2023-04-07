@@ -359,15 +359,25 @@ function terminer(){
     var presentation = inputs["presentation"].value;
     var adresse      = inputs["adresse"].value;
 
+    /*
     let json =  {
         "nom" : nom, "prenom" : prenom, "age" : age, "lienCv" : lienCv, 
         "presentation" : presentation, "adresse" : adresse, "reseaux" : tabReseaux, 
         "diplomes" : tabDiplomes, "parcours" : tabParcourss, "projets" : tabProjets, 
         "competences" : tabCompetences
-    };
+    };*/
+
+    let json =  {
+        "nom" : nom, "prenom" : prenom, "age" : age, "lienCv" : lienCv,
+        "presentation" : presentation, "adresse" : adresse};
 
     var jsonString = JSON.stringify(json);
     $.cookie('portfolio', jsonString, { expires: 1 });
+    $.cookie('tabReseaux', JSON.stringify(tabReseaux), { expires: 1 });
+    $.cookie('tabDiplomes', JSON.stringify(tabDiplomes), { expires: 1 });
+    $.cookie('tabParcours', JSON.stringify(tabParcourss), { expires: 1 });
+    $.cookie('tabProjets', JSON.stringify(tabProjets), { expires: 1 });
+    $.cookie('tabCompetences', JSON.stringify(tabCompetences), { expires: 1 });
 
 }
 
