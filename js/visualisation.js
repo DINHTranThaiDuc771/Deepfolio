@@ -44,11 +44,13 @@ document.addEventListener("mousemove", function(event) {
 window.onload = () => {
     quote           = document.getElementById("quote");
     while (quote.scrollHeight > quote.clientHeight) {
+        quote.style.lineHeight= parseInt(window.getComputedStyle(quote).lineHeight) -1 +'px';
         quote.style.fontSize = parseInt(window.getComputedStyle(quote).fontSize) - 1 + 'px';
     }
 
     quote.addEventListener("input",()=>{
         if (quote.scrollHeight > quote.clientHeight) {
+            quote.style.lineHeight= parseInt(window.getComputedStyle(quote).lineHeight) -1 +'px';
             quote.style.fontSize = parseInt(window.getComputedStyle(quote).fontSize) - 1 + 'px';
         }
 
