@@ -190,6 +190,8 @@ function telechargerCV()
 
     window.print();
     document.body.innerHTML = oldPage;
+
+    location.reload();
 }
 
 function afficherEditorBar(event){
