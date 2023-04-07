@@ -161,8 +161,10 @@ window.onload = () => {
     btnSauver = document.getElementById("btnSauver");
     btnSauver.addEventListener("click",saveEdition,false);
 
-    btnSauver       .style.display = "none";
+    btnSauver.style.display = "none";
     cbAccess.classList.add("tab");
+
+
     // Telechargement du CV
     var btnTelecharger = document.getElementById("btnTelecharger");
     btnTelecharger.addEventListener("click",telechargerCV,false);
@@ -170,14 +172,12 @@ window.onload = () => {
 
 function telechargerCV()
 {
-    var divCv = document.getElementById("contentAll");
-    var divReseaux = document.getElementById("contentReseaux");
-    var divCopyright = document.getElementById("contentCopyright");
+    var divAll = document.getElementById("contentAll");
     var oldPage = document.body.innerHTML;
 
     document.body.innerHTML = 
         "<html><head><title></title></head><body>" +
-        divCv.innerHTML + divReseaux.innerHTML + divCopyright.innerHTML + "</body>";
+        divAll.innerHTML + "</body>";
 
     window.print();
     document.body.innerHTML = oldPage;
