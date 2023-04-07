@@ -152,10 +152,12 @@ function afficherEditorBar(event){
     }
     else
         lstEditableTextChanged.add(event.target);
-    
+   
+    /*
     editbar.style.display="flex";
     editbar.style.left = `${xEditBar}px`;
     editbar.style.top = `${yEditBar-50}px`;
+    */
 }
 
 function ajouterProjet()
@@ -432,6 +434,8 @@ function saveEdition (){
    for ( var edit of lstEditableTextChanged ) {
         var classList = edit.classList;
 
+        console.log(edit);
+
         var type = getType(classList);
 
         var form_data = new FormData();
@@ -509,14 +513,6 @@ function saveEdition (){
                     nomImg = edit.querySelector(".image").getAttribute("nom");
             }
 
-            console.log(nom);
-            console.log(description);
-            console.log(taille);
-            console.log(lien);
-            console.log(nomImg)
-
-
-            
             var text = nom + ";" + description + ";" + taille + ";" + lien + ";" + nomImg + ";";
             form_data.append("text", text);
         } 
@@ -620,6 +616,19 @@ function saveEdition (){
         updatePage(form_data);
     }
 
+    var form_data = new FormData();
+    form_data.append("type", "infos");
+    form_data.append("action", "updatePage");
+    form_data.append("nomAttr", "bckCol");
+
+    form_data.append("idPortfolio", idPortfolio );
+    form_data.append("auteur", auteur );
+
+    form_data.append("text", "");
+
+    form_data.append("couleur", document.body.style.backgroundColor);
+    updatePage(form_data);
+    
     //location.reload();
     lstEditableTextChanged = new Set();
     lstDeleted = new Set();

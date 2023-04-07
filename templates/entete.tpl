@@ -29,6 +29,14 @@
         </style>
     {% endif %}
 
+    {% if colorBck != "" %}
+        <style>
+        body {
+            background-color : colorBck;
+        }
+        </style>
+    {% endif %}
+
 </head>
 
 <body>

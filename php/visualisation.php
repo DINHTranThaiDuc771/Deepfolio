@@ -67,6 +67,7 @@ $descriptionSite = "";
 $mail = "";
 $descriptionReseau = "";
 $debug = "";
+$colorBck = "";
 //------------ Variables globales ------------//
 
 if ( array_key_exists("debug", $_GET)) {
@@ -81,6 +82,7 @@ affichePages($username, $idPortfolio, $db);
 
 $tpl = $twig->loadTemplate( "tplVisu.tpl" );
 
+var_dump ($colorBck);
 
 echo $tpl->render(array(
     'nomPortfolio' => $nomPortfolio,
@@ -102,7 +104,8 @@ echo $tpl->render(array(
     'estProprio' => $estProprio,
     'descriptionsite' => $descriptionSite,
     'descriptionreseau' => $descriptionReseau,
-    'debug' => $debug
+    'debug' => $debug,
+    'colorBck' => $colorBck
 ));
         
 function affichePages($username, $idPortfolio, $db){
@@ -245,7 +248,7 @@ function recupReseaux($page){
 
 function recupInfos($page) {
 
-    global $db, $nomPortfolio, $username, $mail, $descriptionSite, $descriptionReseau;
+    global $db, $nomPortfolio, $username, $mail, $descriptionSite, $descriptionReseau, $colorBck;
 
     $json = json_decode($page->getJson(), true);
 
@@ -262,6 +265,10 @@ function recupInfos($page) {
 
     if ( key_exists("descriptionSite", $json)) {
         $descriptionSite = $json["descriptionSite"];
+    }
+
+    if ( key_exists("bckCol", $json)) {
+        $colorBck = $json["bckCol"];
     }
 
     $nomPortfolio = $json["nomPortfolio"];

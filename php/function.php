@@ -146,8 +146,6 @@
 
         $json = json_decode($pages[0]->getJson(), true);   
 
-    
-
         //-----------------------//
         // COMPETENCE            //
         //-----------------------//
@@ -223,8 +221,6 @@
                     if ( $proj['nom'] == $ancienNom) {
                         $indexSuppr = array_search($proj, $json["projets"], true);
                     }
-
-                    $cpt++;
                 }
 
                 unset($json["projets"][$indexSuppr]);
@@ -276,6 +272,8 @@
         if ( $nomAttr == "nomPortfolio" && $type = "infos") {
             $db->changePortfolioName($auteur, $idPortfolio, $text);
         }
+
+        var_dump($json);
 
         if ( array_key_exists($nomAttr, $json)) {
             $json[$nomAttr] = $text;
