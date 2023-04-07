@@ -30,7 +30,7 @@ $parcoursCookie = html_entity_decode($_COOKIE['tabParcours']);
 $projetsCookie = html_entity_decode($_COOKIE['tabProjets']);
 $competencesCookie = html_entity_decode($_COOKIE['tabCompetences']);
 
-$portfolio_json     = json_decode($portfolio_cookie);
+$portfolio_json     = json_decode($portfolio_cookie, true);
 $reseaux_json       = json_decode($reseauxCookie);
 $diplomes_json      = json_decode($diplomesCookie);
 $parcours_json      = json_decode($parcoursCookie);
