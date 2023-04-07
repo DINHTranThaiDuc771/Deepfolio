@@ -46,10 +46,6 @@ window.onload = () => {
     auteur = document.getElementById("auteur").value;
     idPortfolio = document.getElementById("idPortfolio").value;
 
-    cbAccessible = document.getElementById("cbAccessible");
-    cbAccessible.addEventListener("click", changeAccessibility)
-
-
 
     cbAccess        = document.getElementById("cbAccess");
     btnNavbar       = document.querySelector('.navbar-toggler');
@@ -222,6 +218,9 @@ function ajouterComp ()
     refreshListEditable();
 }
 function toggleEdit() {
+
+    cbAccessible = document.getElementById("cbAccessible");
+    cbAccessible.addEventListener("click", changeAccessibility)
 
     getAccessibility();
 
