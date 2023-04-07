@@ -37,6 +37,9 @@ $parcours_json      = json_decode($parcoursCookie);
 $projets_json       = json_decode($projetsCookie);
 $competences_json   = json_decode($competencesCookie);
 
+$portfolioComplet_json["reseaux"] = json_encode($reseaux_json); //TODO: PIERRE: CONCATERNER TOUTES LES INFOS DANS CE TABLEAU
+var_dump($portfolioComplet_json);
+
 
 $username = $_SESSION['user']->getNomUtilisateur();
 $nomPortfolio = htmlspecialchars($_POST['nomPortfolio']);
@@ -67,8 +70,7 @@ function creerPages($portfolioJSON, $reseaux_json, $diplomes_json, $parcours_jso
 
     $numPortfolio   = $db->getNewestPortfolioId($username);
 
-    $portfolioComplet_json["reseaux"] = json_encode($reseaux_json); //TODO: PIERRE: CONCATERNER TOUTES LES INFOS DANS CE TABLEAU
-    var_dump($portfolioComplet_json);
+   
 
     /*
     creerPageCompetences($competences_json);
