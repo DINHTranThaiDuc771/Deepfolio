@@ -178,7 +178,7 @@ function afficherEditorBar(event){
 function ajouterProjet()
 {
     var html = `
-        <div class="row deletetable projet">
+        <div class="row deletetable projet nouveau">
         <div class="mb-5 col-md-4 d-flex justify-content-center">
             <input type="file" accept=".jpg, .jpeg, .png, .svg" class="form-control form-control-lg image"  />
         </div>
@@ -192,9 +192,12 @@ function ajouterProjet()
                     <strong  style="display:block" class="editableText lien" >Lien</strong><br>
                 </span>
             </p>
+
         </div>
-    </div>
-    `
+
+        </div>    
+    `       
+    ;
     btnAjouterProjet.parentNode.insertAdjacentHTML("beforebegin", html);
     lstAdded.add(btnAjouterProjet.parentNode.previousElementSibling);
     refreshListEditable();
@@ -255,7 +258,6 @@ function toggleEdit() {
             lstEditableText[i].setAttribute("contenteditable","true");
             lstEditableText[i].setAttribute("tabindex","0");
             lstEditableText[i].addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
-            lstEditableText[i].addEventListener("keydown",event=>preventKeydown(event),false);
 
 
             lstEditableText[i].classList.add("isEditText");
@@ -378,7 +380,6 @@ function refreshListEditable() {
         lstEditableText[i].setAttribute("tabindex","0");
         lstEditableText[i].classList.add("isEditText");
         lstEditableText[i].addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
-        lstEditableText[i].addEventListener("keydown",event=>preventKeydown(event),false);
 
     }
     // list button supprimer
@@ -728,30 +729,4 @@ function getAccessibility() {
             cbAccessible.checked = (data.responseText==0);
         }
     });
-}
-
-function preventKeydown(event) {
-    /**
-     *     // Get the selection and range
-    var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
-    
-    // Check if the cursor is at the beginning or end of the editable element
-    if (range.startOffset === 0 && range.endOffset === 0 && (event.key === 'Backspace' || event.key === 'Delete')) {
-        event.preventDefault();
-    } else if (range.startOffset === editableElement.textContent.length && range.endOffset === editableElement.textContent.length && (event.key === 'Backspace' || event.key === 'Delete')) {
-        event.preventDefault();
-    }
-     * 
-     */
-    var selection = window.getSelection();
-    var positionCursor = selection.getRangeAt(0);
-    if (positionCursor.startOffset ===0 && event.key==="Backspace")
-    {
-        event.preventDefault();
-    }
-    if (positionCursor.endOffset ===0 && event.which===13) //enter key
-    {
-        event.preventDefault();
-    }
 }
