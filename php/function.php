@@ -273,8 +273,6 @@
             $db->changePortfolioName($auteur, $idPortfolio, $text);
         }
 
-        var_dump($json);
-
         if ( array_key_exists($nomAttr, $json)) {
             $json[$nomAttr] = $text;
         } else {

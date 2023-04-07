@@ -624,11 +624,10 @@ function saveEdition (){
     form_data.append("idPortfolio", idPortfolio );
     form_data.append("auteur", auteur );
 
-    form_data.append("text", "");
-
-    form_data.append("couleur", document.body.style.backgroundColor);
-    updatePage(form_data);
+    form_data.append("text", document.body.style.backgroundColor);
     
+    updatePage(form_data);
+
     //location.reload();
     lstEditableTextChanged = new Set();
     lstDeleted = new Set();

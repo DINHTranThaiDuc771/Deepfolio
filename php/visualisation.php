@@ -82,8 +82,6 @@ affichePages($username, $idPortfolio, $db);
 
 $tpl = $twig->loadTemplate( "tplVisu.tpl" );
 
-var_dump ($colorBck);
-
 echo $tpl->render(array(
     'nomPortfolio' => $nomPortfolio,
     'ville' => $adresse,

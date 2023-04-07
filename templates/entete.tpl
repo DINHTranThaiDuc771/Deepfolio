@@ -32,7 +32,7 @@
     {% if colorBck != "" %}
         <style>
         body {
-            background-color : colorBck;
+            background-color : {{colorBck}};
         }
         </style>
     {% endif %}
