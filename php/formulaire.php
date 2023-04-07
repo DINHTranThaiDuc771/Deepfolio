@@ -293,7 +293,7 @@ if (!isset($_SESSION["loggedin"]) && !isset($_SESSION["user"])) {
                                 <div class="col-md-6">
                                     <p class="text-white-50 mb-5"></p>
                                     <div class="form-outline mb-4">
-                                        <input type="number" id="typeTailleEquipe" class="form-control form-control-lg require"  />
+                                        <input type="number" id="typeTailleEquipe" class="form-control form-control-lg require"  min="1" max="99"/>
                                         <label class="form-label" for="typeTailleEquipe">Taille de l'équipe</label>
                                         <div class="invalid-feedback">Veuillez entrer la taille de l'équipe</div>
                                     </div>
