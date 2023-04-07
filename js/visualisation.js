@@ -161,8 +161,10 @@ window.onload = () => {
     btnSauver = document.getElementById("btnSauver");
     btnSauver.addEventListener("click",saveEdition,false);
 
-    btnSauver       .style.display = "none";
+    btnSauver.style.display = "none";
     cbAccess.classList.add("tab");
+
+
     // Telechargement du CV
     var btnTelecharger = document.getElementById("btnTelecharger");
     btnTelecharger.addEventListener("click",telechargerCV,false);
@@ -170,14 +172,12 @@ window.onload = () => {
 
 function telechargerCV()
 {
-    var divCv = document.getElementById("contentAll");
-    var divReseaux = document.getElementById("contentReseaux");
-    var divCopyright = document.getElementById("contentCopyright");
+    var divAll = document.getElementById("contentAll");
     var oldPage = document.body.innerHTML;
 
     document.body.innerHTML = 
         "<html><head><title></title></head><body>" +
-        divCv.innerHTML + divReseaux.innerHTML + divCopyright.innerHTML + "</body>";
+        divAll.innerHTML + "</body>";
 
     window.print();
     document.body.innerHTML = oldPage;
@@ -185,6 +185,7 @@ function telechargerCV()
 
 function afficherEditorBar(event){
     event.target.setAttribute("anciennevaleur",event.target.textContent);
+    
     if (event.target.closest('.deletetable') != null) {
         lstEditableTextChanged.add(event.target.closest('.deletetable'));
         var edit = event.target.closest('.deletetable');
@@ -193,8 +194,9 @@ function afficherEditorBar(event){
         if ( !nom.hasAttribute("anciennevaleur"))
             nom.setAttribute("anciennevaleur", nom.textContent);
     }
-    else
+    else {
         lstEditableTextChanged.add(event.target);
+    }
    
     /*
     editbar.style.display="flex";
@@ -264,6 +266,10 @@ function ajouterComp ()
 
 function toggleEdit() {
 
+    if(isEditing == true){
+        location.reload();
+    }
+
     cbAccessible = document.getElementById("cbAccessible");
     cbAccessible.addEventListener("click", changeAccessibility)
 
@@ -278,8 +284,27 @@ function toggleEdit() {
 
     if (isEditing)
     {
-        for (var i=0; i< lstEditableText.length; i++)
 
+        var img = document.getElementById("editableImg");
+        var parent = img.parentElement;
+
+        parent.removeChild(img);
+
+        img = document.createElement("input");
+
+        img.setAttribute("type","file");
+        img.setAttribute("accept", ".jpg, .jpeg, .png, .svg");
+
+        img.classList.add("form-control");
+        img.classList.add("form-control-lg");
+        img.classList.add("imageAccueil");
+
+        img.setAttribute("id", "editableImg");
+
+        parent.appendChild(img);
+
+        img.addEventListener("focus",(event)=>{afficherEditorBar(event)} ,false);
+        for (var i=0; i< lstEditableText.length; i++)
         {   
             if (!lstEditableText[i].classList.contains("notEditable"))
                 lstEditableText[i].setAttribute("contenteditable","true");
@@ -291,12 +316,14 @@ function toggleEdit() {
             lstEditableText[i].classList.add("isEditText");
 
         }
+
         for (var i=0; i< lstButtonSupprimer.length; i++)
         {   
             lstButtonSupprimer[i].addEventListener("click",(event)=>{supprimerDeleteable(event)},false);
             lstButtonSupprimer[i].style.display = "block";
 
         }
+
         btnAjouterProjet                .style.display = "inline-block";
         btnAjouterComp                  .style.display = "inline-block";
         btnSauver                       .style.display = "inline-block";
@@ -337,11 +364,12 @@ function toggleEdit() {
 }
 
 function changerTab(tab){
-        /*Close nav when link clicked*/
-        if (window.matchMedia("(max-width: 767px)").matches)
-        {   
-            btnNavbar.click();
-        }
+    /*Close nav when link clicked*/
+    if (window.matchMedia("(max-width: 767px)").matches)
+    {   
+        btnNavbar.click();
+    }
+
     if (tab==="linkAccueil") {
         pageAccueil     .classList.remove("tab");
         pageCompetences .classList.add("tab");
@@ -403,7 +431,6 @@ function refreshListEditable() {
     lstButtonSupprimer  = document.querySelectorAll('.deletetable button');
     //list Editable Text
     for (var i=0; i< lstEditableText.length; i++)
-
     {   
         if (!lstEditableText[i].classList.contains("notEditable"))
             lstEditableText[i].setAttribute("contenteditable","true");
@@ -488,8 +515,6 @@ function saveEdition (){
    for ( var edit of lstEditableTextChanged ) {
         var classList = edit.classList;
 
-        console.log(edit);
-
         var type = getType(classList);
 
         var form_data = new FormData();
@@ -502,6 +527,33 @@ function saveEdition (){
 
         form_data.append("text", edit.textContent);
 
+
+        if ( classList.contains("imageAccueil")) {
+
+            var nomImg = ""
+            var img = "";
+            if ( edit.files.length > 0 ) {
+                img = edit.files[0];
+    
+                var form_dataImg = new FormData();
+                form_dataImg.append("file", img);
+                form_dataImg.append("action", "uploadFiles");
+    
+                $.ajax({
+                    type:"POST",
+                    dataType: 'script',
+                    contentType: false,
+                    processData: false,
+                    url:"../php/function.php",
+                    data: form_dataImg
+                });
+
+                nomImg = img.name;
+            }
+
+            form_data.append("nomAttr", "imageAccueil")
+            form_data.append("text", nomImg);
+        }
 
         if ( classList.contains("competence"))
         {
@@ -696,7 +748,7 @@ function saveEdition (){
         updatePage(form_data);
     }
 
-    //location.reload();
+    location.reload();
     lstEditableTextChanged = new Set();
     lstDeleted = new Set();
 }
@@ -705,7 +757,7 @@ function getType( classList ) {
 
     var type;
 
-    if ( classList.contains("nom-portfolio") || classList.contains("description-site") || classList.contains("mail") || classList.contains("description-reseau") ) {
+    if ( classList.contains("nom-portfolio") || classList.contains("description-site") || classList.contains("mail") || classList.contains("description-reseau") || classList.contains("imageAccueil")) {
         type = "infos";
     }
 

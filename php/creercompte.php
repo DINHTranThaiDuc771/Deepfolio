@@ -112,13 +112,13 @@
 
                 <div class="form-outline mb-4">
                   <input type="prenom" name="prenom" id="typePrenom" class="form-control form-control-lg"/>
-                  <label class="form-label" for="typePrenom">Prenom</label>
+                  <label class="form-label" for="typePrenom">Prenom *</label>
                   <div class="invalid-feedback">Veuillez entrer un Prenom</div>
                 </div>
 
                 <div class="form-outline mb-4">
                   <input type="text" name="nom" id="typeNom" class="form-control form-control-lg"/>
-                  <label class="form-label" for="typeNom">Nom</label>
+                  <label class="form-label" for="typeNom">Nom *</label>
                   <div class="invalid-feedback">Veuillez entrer un Nom</div>
                 </div>
 
@@ -141,13 +141,14 @@
                   <input type="email" name="mail" id="typeMail" class="form-control form-control-lg" />
                   <label class="form-label" for="typeMail">Mail</label>
                 </div>
-				<div class="form-check mb-1">
-					<input type="checkbox" id="mentionsLegales" class="form-check-input"  name="mentionsLegales"/>
-					<label class="form-check-label" for="mentionsLegales"><a href="../html/mentions-legales.html#conditions-utilisation" target="_blank">Accepter les conditions d'utilisation</a></label>
-					<div class="invalid-feedback">Veuillez accepter les conditions d'utilisation</div>
-				</div>
+                <div class="form-check mb-1">
+                  <input type="checkbox" id="mentionsLegales" class="form-check-input"  name="mentionsLegales"/>
+                  <label class="form-check-label" for="mentionsLegales"><a href="../html/mentions-legales.html#conditions-utilisation" target="_blank">Accepter les conditions d'utilisation *</a></label>
+                  <div class="invalid-feedback">Veuillez accepter les conditions d'utilisation</div>
+                </div>
                 <button id="precedent" class="btn btn-secondary btn-lg px-5 mt-5" type="button">Précédent</button>
                 <button class="btn btn-primary btn-lg px-5 ml-2" type="submit">Terminer</button>
+                <p style="color:red">* Champs obligatoires</p>
               </div>
             </div>
           </div>

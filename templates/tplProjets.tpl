@@ -1,3 +1,4 @@
+
 {% block projet %}
 
     {% for projet in projets %}
@@ -29,11 +30,12 @@
 
     {% endfor %}
 
-    <div class="container d-flex justify-content-center align-items-center">
-            <button id="btnAjouterProjet" class=" btn btn-floating btn-primary btn-lg"><i
-                    class="fas fa-plus"></i></button>
-    </div>
+            <div class="container d-flex justify-content-center align-items-center">
+                    <button id="btnAjouterProjet" class=" btn btn-floating btn-primary btn-lg"><i
+                            class="fas fa-plus"></i></button>
+            </div>
 
     <div class="pagebreak"> </div>
 
 {% endblock %}
+
