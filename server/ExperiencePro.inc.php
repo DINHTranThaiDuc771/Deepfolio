@@ -1,6 +1,6 @@
 <?php
 
-class ExperiencePro{
+class ExperiencePro implements JsonSerializable{
 
     private $poste;
     private $entreprise;
@@ -37,6 +37,17 @@ class ExperiencePro{
     public function setDateDebut($dateDebut) { $this->dateDebut = $dateDebut; }
 
     public function setDateFin($dateFin) { $this->dateFin = $dateFin; }
+
+    public function jsonSerialize()
+    {
+        return [
+            "poste"           => $this->poste,
+            "entreprise"      => $this->entreprise,
+            "dateDebut"       =>$this->dateDebut,
+            "dateFin"         =>$this->dateFin,
+            "description"     => $this->description
+        ];
+    }
 }
 
 

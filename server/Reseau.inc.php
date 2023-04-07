@@ -1,6 +1,6 @@
 <?php
 
-    class Reseau{
+    class Reseau implements JsonSerializable{
 
         public $nom;
         public $nomClasse;
@@ -23,5 +23,13 @@
         public function setNom($nom) { $this->nom = $nom; }
 
         public function setLien($lien) { $this->lien = $lien; }
+
+        public function jsonSerialize()
+        {
+            return [
+                "nom"           => $this->nom,
+                "lien"          => urlencode($this->lien)
+            ];
+        }
     }
 ?>
