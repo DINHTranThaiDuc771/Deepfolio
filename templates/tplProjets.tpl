@@ -7,20 +7,17 @@
                 <div class="mb-5 col-md-4 d-flex justify-content-center">
                     {% if projet.getImage() is empty %}
                     {% else %}
-                        <img class="image" src="../php/img_user/{{ projet.getImage() }}" alt="image projet" width="100%" >
+                        <img class="image" src="../php/img_user/{{ projet.getImage() }}" alt="image projet" width="100%" nom="{{ projet.getImage() }}">
                     {% endif %}
                 </div>
                 <div style="padding:30px;" class="col-md-8 justify-content-center">
 
                     <p style="position: relative;" class="editableText">
-                        <strong class="editableText nom" style="font-size: 24px;"> {{ projet.getNom() }}</strong><br>
-                        <strong class="editableText taille" > Taille de l'équipe &nbsp {{ projet.getTailleEquipe() }} personnes</strong><br>
+                        <strong class="editableText nom" style="font-size: 24px;">{{ projet.getNom() }}</strong><br>
+                        <strong>Taille de l'équipe &nbsp</strong><strong class="editableText taille" >{{ projet.getTailleEquipe() }}</strong><strong> personnes</strong><br>
                         <button class="btn btn-danger"><img src="../img/trash.png" alt=""></button>
-                        <h class="description">
-                        {{projet.getDescription()}}<br>
-                        <a href="{{ projet.getLien() }}"<strong class="editableText"> En savoir plus </strong></a><br>
-                        </h>
-                        <a href="{{ projet.getLien() }}"><strong class="editableText lien" > En savoir plus </strong></a><br>
+                        <span class="description editableText">{{projet.getDescription()}}</span><br>
+                        <a href="{{ projet.getLien() }}" target="_blank" ><strong class="editableText lien" >Lien</strong></a><br>
                     </p>
                 </div>
             </div>

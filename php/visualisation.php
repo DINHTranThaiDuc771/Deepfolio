@@ -81,6 +81,7 @@ affichePages($username, $idPortfolio, $db);
 
 $tpl = $twig->loadTemplate( "tplVisu.tpl" );
 
+
 echo $tpl->render(array(
     'nomPortfolio' => $nomPortfolio,
     'ville' => $adresse,
@@ -190,7 +191,7 @@ function recupInfosProjets($page){
             $img = $projet['image'];
         }
 
-        array_push($projets, new Projet($projet['nom'], $projet['description'], $projet['taille'], $projet['lien'], $projet['image']));
+        array_push($projets, new Projet($projet['nom'], $projet['description'], $projet['taille'], trim(urldecode($projet['lien'])), $projet['image']));
     }
 }
 

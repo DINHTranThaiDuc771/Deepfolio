@@ -48,7 +48,6 @@ window.onload = () => {
 
     cbAccessible = document.getElementById("cbAccessible");
     cbAccessible.addEventListener("click", changeAccessibility)
-    console.log('avant init', cbAccessible.checked);
 
 
 
@@ -145,9 +144,12 @@ function telechargerCV()
 
 function afficherEditorBar(event){
     event.target.setAttribute("anciennevaleur",event.target.textContent);
-    console.log(event.target.textContent);
-    if (event.target.closest('.deletetable') != null) 
+    if (event.target.closest('.deletetable') != null) {
         lstEditableTextChanged.add(event.target.closest('.deletetable'));
+        var edit = event.target.closest('.deletetable');
+        var nom = edit.querySelector('.nom');
+        nom.setAttribute("anciennevaleur", nom.textContent);
+    }
     else
         lstEditableTextChanged.add(event.target);
     
@@ -161,25 +163,18 @@ function ajouterProjet()
     var html = `
         <div class="row deletetable projet nouveau">
         <div class="mb-5 col-md-4 d-flex justify-content-center">
-            <img class="image" src="../img/favicon_io/android-chrome-192x192.png" alt="">
+            <input type="file" accept=".jpg, .jpeg, .png, .svg" class="form-control form-control-lg image"  />
         </div>
-        <div style="padding:30px;" class="col-md-8 d-flex justify-content-center">
+        <div style="padding:30px;" class="col-md-8 d-flex">
 
-            <p style="position: relative;"class="editableText desc">
+            <p style="position: relative;"class="desc editableText">
                 <strong class="editableText nom" style="font-size: 24px;">Nom Projet</strong><br>
-                <strong class="editableText taille">5 personnes</strong>
+                <srtong>Taille de l'équipe :</strong><strong class="editableText taille">5</strong><br>
                 <button class="btn btn-danger"><img src="../img/trash.png" alt=""></button>
-                <h class="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequatunt in
-                culpa qui officia deserunt mollit anim id est laborum.
-                </h>
-                <strong class="editableText lien" > Lien </strong><br>
+                Description : <h class="editableText description">
+                &nbsp
+                </h><br>
+                Lien : <strong class="editableText lien" > &nbsp </strong><br>
             </p>
 
         </div>
@@ -200,8 +195,17 @@ function ajouterComp ()
             <article class="editableText">
                 <div class="left">
                     <ul>
-                        <li class="text-break description" >Description</li>
-                        <li class="lien">Lien</li>
+                        <li class="text-break description" >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequatunt in
+                        culpa qui officia deserunt mollit anim id est laborum.
+                        </li>
+                        <li class="lien"> Lien : </li>
                     </ul>
                 </div>
             </article>
@@ -218,7 +222,6 @@ function ajouterComp ()
 function toggleEdit() {
 
     getAccessibility();
-    console.log('apres init', cbAccessible.checked);
 
     isEditing = !isEditing;
     /*Close nav when link clicked*/
@@ -365,7 +368,9 @@ function refreshListEditable() {
 }
 
 function supprimerDeleteable(event){
-    const deletableDiv = event.target.closest('.deletetable');
+    var deletableDiv = event.target.closest('.deletetable');
+    var nom = deletableDiv.querySelector('.nom');
+    nom.setAttribute("anciennevaleur", nom.textContent);
     lstDeleted.add(deletableDiv);
 
     deletableDiv.style.opacity = '0';
@@ -409,6 +414,7 @@ function updatePage(form_data) {
         dataType: 'script',
         contentType: false,
         processData: false,
+        async: false,
         url:"../php/function.php",
         data: form_data,
         complete: function(data) {
@@ -431,12 +437,89 @@ function saveEdition (){
         var form_data = new FormData();
         form_data.append("type", type);
         form_data.append("action", "updatePage");
-        form_data.append("delete", false);
+        form_data.append("delete", "false");
 
         form_data.append("idPortfolio", idPortfolio );
         form_data.append("auteur", auteur );
 
         form_data.append("text", edit.textContent);
+
+
+        if ( classList.contains("competence"))
+        {
+            form_data.append("nomAttr", "competence");
+
+
+            form_data.append("nouveau", edit.classList.contains("nouveau"));
+            if ( edit.classList.contains("nouveau") ) edit.classList.remove("nouveau");
+
+            form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
+
+
+            var nom = edit.querySelector(".nom").textContent;
+            var description = edit.querySelector(".description").textContent;
+            var lien = edit.querySelector(".lien").textContent.replaceAll("Lien :", "");
+
+            var text = nom + ";" + description + ";" + lien + ";";
+            form_data.append("text", text);
+        } 
+
+        if ( classList.contains("projet"))
+        {
+            form_data.append("nomAttr", "projet");
+
+            form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
+
+            var nom = edit.querySelector(".nom").textContent;
+            var taille = edit.querySelector(".taille").textContent;
+            var description = edit.querySelector(".description").textContent;
+            var lien = edit.querySelector(".lien").textContent.replace("Lien", "");
+
+            form_data.append("nouveau", edit.classList.contains("nouveau"));
+
+            var nomImg = "";
+            if ( edit.classList.contains("nouveau") )
+            {
+                edit.classList.remove("nouveau");
+
+                var image = edit.querySelector(".image");
+
+                var img = "";
+                if ( image.files.length > 0 ) {
+                    img = image.files[0];
+        
+                    var form_dataImg = new FormData();
+                    form_dataImg.append("file", img);
+                    form_dataImg.append("action", "uploadFiles");
+        
+                    $.ajax({
+                        type:"POST",
+                        dataType: 'script',
+                        contentType: false,
+                        processData: false,
+                        url:"../php/function.php",
+                        data: form_dataImg
+                    });
+
+                    nomImg = img.name;
+                }
+
+            } else {
+                if ( edit.querySelector(".image") != null)
+                    nomImg = edit.querySelector(".image").getAttribute("nom");
+            }
+
+            console.log(nom);
+            console.log(description);
+            console.log(taille);
+            console.log(lien);
+            console.log(nomImg)
+
+
+            
+            var text = nom + ";" + description + ";" + taille + ";" + lien + ";" + nomImg + ";";
+            form_data.append("text", text);
+        } 
 
         if ( classList.contains("nom-portfolio"))
         {
@@ -479,45 +562,6 @@ function saveEdition (){
 
         } 
 
-        if ( classList.contains("competence"))
-        {
-            form_data.append("nomAttr", "competence");
-
-
-            form_data.append("nouveau", edit.classList.contains("nouveau"));
-            if ( edit.classList.contains("nouveau") ) edit.classList.remove("nouveau");
-
-            form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
-
-
-            var nom = edit.querySelector(".nom").textContent;
-            var description = edit.querySelector(".description").textContent;
-            var lien = edit.querySelector(".lien").textContent;
-
-            var text = nom + ";" + description + ";" + lien + ";";
-            form_data.append("text", text);
-        } 
-
-        if ( classList.contains("projet"))
-        {
-            form_data.append("nomAttr", "projet");
-
-            form_data.append("nouveau", edit.classList.contains("nouveau"));
-            if ( edit.classList.contains("nouveau") ) edit.classList.remove("nouveau");
-
-            form_data.append("ancienneValeur", edit.querySelector(".nom").getAttribute("anciennevaleur"));
-
-            var nom = edit.querySelector(".nom").textContent;
-            var taille = edit.querySelector(".taille").textContent;
-            var description = edit.querySelector(".description").textContent;
-            var lien = edit.querySelector(".lien").textContent;
-            var image = edit.querySelector(".image");
-            //revoir l'ilage
-
-            var text = nom + ";" + description + ";" + taille + ";" + lien + ";" + image + ";";
-            form_data.append("text", text);
-        } 
-
         if ( classList.contains("age"))
         {
             form_data.append("nomAttr", "age");
@@ -541,6 +585,8 @@ function saveEdition (){
 
     for ( var edit of lstDeleted ) {
         var classList = edit.classList;
+
+        console.log(edit);
 
         var type = getType(classList);
         var form_data = new FormData();

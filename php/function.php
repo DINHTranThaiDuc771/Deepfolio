@@ -146,7 +146,12 @@
 
         $json = json_decode($pages[0]->getJson(), true);   
 
-        
+    
+
+        //-----------------------//
+        // COMPETENCE            //
+        //-----------------------//
+
         if ( $nomAttr == "competence") {
 
             if ( $_POST["delete"] == "true") {
@@ -154,14 +159,10 @@
                 $ancienNom = $_POST["ancienneValeur"];
 
                 $indexSuppr = 0;
-                $cpt = 0;
-                foreach ( $json["competences"] as $proj) {
-                    if ( $proj['nom'] == $ancienNom) {
-                        $indexSuppr = $cpt;
-                        var_dump($proj['nom'] == $ancienNom);
+                foreach ( $json["competences"] as $comp) {
+                    if ( $comp['nom'] == $ancienNom) {
+                        $indexSuppr = array_search($comp, $json["competences"], true);
                     }
-
-                    $cpt++;
                 }
 
                 unset($json["competences"][$indexSuppr]);
@@ -184,14 +185,10 @@
                 $ancienNom = $_POST["ancienneValeur"];
 
                 $indexSuppr = 0;
-                $cpt = 0;
                 foreach ( $json["competences"] as $comp) {
                     if ( $comp['nom'] == $ancienNom) {
-                        $indexSuppr = $cpt;
-                        var_dump($comp['nom'] == $ancienNom);
+                        $indexSuppr = array_search($comp, $json["competences"], true);
                     }
-
-                    $cpt++;
                 }
 
                 unset($json["competences"][$indexSuppr]);
@@ -207,24 +204,31 @@
             return;
         }
 
+
+        //-----------------------//
+        // PROJET                //
+        //-----------------------//
+
         if ( $nomAttr == "projet") {
 
             if ( $_POST["delete"] == "true") {
 
+
                 $ancienNom = $_POST["ancienneValeur"];
 
+                var_dump($ancienNom);
+
                 $indexSuppr = 0;
-                $cpt = 0;
                 foreach ( $json["projets"] as $proj) {
                     if ( $proj['nom'] == $ancienNom) {
-                        $indexSuppr = $cpt;
-                        var_dump($proj['nom'] == $ancienNom);
+                        $indexSuppr = array_search($proj, $json["projets"], true);
                     }
 
                     $cpt++;
                 }
 
                 unset($json["projets"][$indexSuppr]);
+
 
                 $db->changePage($auteur, $idPortfolio, $pages[0]->getIdPage(), json_encode($json));
 
@@ -246,17 +250,16 @@
             {
                 $ancienNom = $_POST["ancienneValeur"];
 
+                var_dump($ancienNom);
+                var_dump($json["projets"]);
+
                 $indexSuppr = 0;
-                $cpt = 0;
                 foreach ( $json["projets"] as $proj) {
                     if ( $proj['nom'] == $ancienNom) {
-                        $indexSuppr = $cpt;
-                        var_dump($proj['nom'] == $ancienNom);
+                        $indexSuppr = array_search($proj, $json["projets"], true);
                     }
-
-                    $cpt++;
                 }
-
+                
                 unset($json["projets"][$indexSuppr]);
 
                 array_splice($json["projets"], $indexSuppr, 0, [$projet]);
@@ -273,8 +276,6 @@
         if ( $nomAttr == "nomPortfolio" && $type = "infos") {
             $db->changePortfolioName($auteur, $idPortfolio, $text);
         }
-
-        var_dump($json);
 
         if ( array_key_exists($nomAttr, $json)) {
             $json[$nomAttr] = $text;

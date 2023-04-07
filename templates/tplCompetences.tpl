@@ -10,7 +10,7 @@
                     <ul>
                         <li class="text-break description" >{{competence.getDescription() }}</li>
                         {% if competence.getLien() != "" %}
-                            <li><a class="lien" href="{{competence.getLien()}}">Ce qui prouve ma competence :&nbsp{{ competence.getLien() }} </a> </li>
+                            <li><a class="lien" href="{{competence.getLien()}}">Lien</a> </li>
                         {% endif %} 
                     </ul>
                 </div>

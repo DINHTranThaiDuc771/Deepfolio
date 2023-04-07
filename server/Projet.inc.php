@@ -48,7 +48,7 @@ class Projet implements JsonSerializable{
             "description"   => $this->description,
             "taille"        =>$this->tailleEquipe,
             "image"         =>$this->image,
-            "lien"          => $this->lien
+            "lien"          => urlencode($this->lien)
         ];
     }
     
