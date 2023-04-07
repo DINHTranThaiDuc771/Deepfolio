@@ -46,11 +46,15 @@ window.onload = () => {
     while (quote.scrollHeight > quote.clientHeight) {
         quote.style.fontSize = parseInt(window.getComputedStyle(quote).fontSize) - 1 + 'px';
     }
+
     quote.addEventListener("input",()=>{
-        while (quote.scrollHeight > quote.clientHeight) {
+        if (quote.scrollHeight > quote.clientHeight) {
             quote.style.fontSize = parseInt(window.getComputedStyle(quote).fontSize) - 1 + 'px';
-        }  
+        }
+
     });
+
+
     var competences = document.querySelectorAll("#pageCompetences .lien");
     for ( var lien of competences) {
         var href = lien.getAttribute("href").toString();
