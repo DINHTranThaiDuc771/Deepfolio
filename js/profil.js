@@ -94,6 +94,12 @@ function createPortfolio(portfolios, portfolio, ville) {
     url.auteur = portfolio.nomUtilisateur;
     url.idPortfolio = portfolio.idPortfolio;
 
+
+    var aTag = document.createElement("a");
+    aTag.setAttribute("href", "../php/visualisation.php?cle=\"" + getKey(url) + "\"");
+    aTag.classList.add("zIndex1");
+    aTag.addEventListener("click",()=>console.log("aTagClicked"),true);
+    
     var div0 = document.createElement("div");
     div0.classList.add("card");
     div0.classList.add("mb-3")
@@ -145,9 +151,14 @@ function createPortfolio(portfolios, portfolio, ville) {
     inputNom.style.border = "none";
     inputNom.classList.add("card-title");
     inputNom.classList.add("text-center");
+    inputNom.classList.add("zIndex2");
     inputNom.value = portfolio.nom;
-
+    inputNom.addEventListener("click",(event)=>{
+        event.preventDefault(); // prevent default behavior of the button
+        event.stopPropagation();
+    });
     inputNom.addEventListener("keyup", function(event) {
+
         if(event.key === "Enter") {
             if(inputNom.value == portfolio.nom || inputNom.value == ""){
                 inputNom.value = portfolio.nom;
@@ -191,6 +202,7 @@ function createPortfolio(portfolios, portfolio, ville) {
     var btnCopy = document.createElement("button");
     btnCopy.classList.add("btn");
     btnCopy.classList.add("btn-primary");
+    btnCopy.classList.add("zIndex2");
     btnCopy.style.backgroundColor = "#ffd285";
 
     var imagecopy = document.createElement("img");
@@ -198,6 +210,10 @@ function createPortfolio(portfolios, portfolio, ville) {
 
     btnCopy.addEventListener("click", function(event) {
         //TODO: copier le portfolio
+        event.preventDefault(); // prevent default behavior of the button
+
+        event.stopPropagation();
+
         let confirmation = "Voulez-vous vraiment copier ce portfolio ?";
 
         if (confirm(confirmation) == true)
@@ -225,12 +241,18 @@ function createPortfolio(portfolios, portfolio, ville) {
                 }
             });
         }
+
         });
     var btnDl = document.createElement("button");
     btnDl.classList.add("btn");
     btnDl.classList.add("btn-primary");
+    btnDl.classList.add("zIndex2");
+
     btnDl.id = "btnDl" + portfolio.idPortfolio;
     btnDl.addEventListener("click", function(event) {
+        event.preventDefault(); // prevent default behavior of the button
+
+        event.stopPropagation();
         var btnTele = event.target;
         if ( btnTele.nodeName == "IMG" )
         {
@@ -253,6 +275,7 @@ function createPortfolio(portfolios, portfolio, ville) {
         document.getElementsByTagName("body")[0].appendChild(iframe);
 
         frames['frame'].print();
+
     });
     
     var imgDl = document.createElement("img");
@@ -261,9 +284,12 @@ function createPortfolio(portfolios, portfolio, ville) {
     var btnDel = document.createElement("button");
     btnDel.classList.add("btn");
     btnDel.classList.add("btn-danger");
+    btnDel.classList.add("zIndex2");
     btnDel.id = "btnDel"+portfolio.idPortfolio;
     btnDel.addEventListener("click", function(event) {
+        event.preventDefault(); // prevent default behavior of the button
 
+        event.stopPropagation();
         let confirmation = "Voulez-vous vraiment supprimer ce portfolio ?";
 
         if (confirm(confirmation) == true)
@@ -284,7 +310,7 @@ function createPortfolio(portfolios, portfolio, ville) {
                     var containerPortfolio = document.getElementById("tab-portfolio");
 
                     var divParent = btnSuppr.parentElement;
-                    while (!divParent.classList.contains("card")) {
+                    while (!divParent.classList.contains("zIndex1")) {
                         divParent = divParent.parentElement;
                     }
                     divParent.style.opacity = '0';
@@ -294,12 +320,14 @@ function createPortfolio(portfolios, portfolio, ville) {
                 }
             });
         }
-    })
+
+    });
 
     var imgDel = document.createElement("img");
     imgDel.setAttribute("src", "../img/trash.png");
 
-    portfolios.appendChild(div0);
+    portfolios.appendChild(aTag);
+    aTag.appendChild(div0);
     div0.appendChild(div1);
     div1.appendChild(div2);
     div2.appendChild(imgiframe);

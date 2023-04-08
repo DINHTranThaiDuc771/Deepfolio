@@ -124,3 +124,13 @@ a {
 button{
   margin-left: 0.5rem;
 }
+.zIndex1{
+  z-index: 1;
+  opacity:1;
+  transition : all .3s;
+  -wekit-transition : all .3s;
+  -moz-transition : all .3s;
+}
+.zIndex2{
+  z-index: 2;
+}
