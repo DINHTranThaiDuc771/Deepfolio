@@ -27,6 +27,7 @@ if(isset($_POST['supprimerCompte'])){
 }
 
 header('Location: accueil.php');
+session_destroy();
 die;
 
 
