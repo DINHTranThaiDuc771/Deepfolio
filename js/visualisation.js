@@ -527,7 +527,7 @@ function updatePage(form_data) {
         url:"../php/function.php",
         data: form_data,
         complete: function(data) {
-            console.log(data.responseText);
+            //console.log(data.responseText);
         }
     });
 }
@@ -573,6 +573,7 @@ function saveEdition (){
                     dataType: 'script',
                     contentType: false,
                     processData: false,
+                    async: false,
                     url:"../php/function.php",
                     data: form_dataImg
                 });
