@@ -147,7 +147,7 @@ window.onload = () => {
     lstButtonSupprimer  = document.querySelectorAll('.deletetable button');
 
     var btnToggleEdit   = document.getElementById("btnToggleEdit");
-    btnToggleEdit       .addEventListener("click",()=>{toggleEdit()},false);
+    if (btnToggleEdit != null)       btnToggleEdit.addEventListener("click",()=>{toggleEdit()},false);
     //Les btn pour ajouter
     var btnAjouterProjet = document.getElementById("btnAjouterProjet");
     var btnAjouterComp   = document.getElementById("btnAjouterComp");
