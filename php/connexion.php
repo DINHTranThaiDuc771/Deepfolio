@@ -154,22 +154,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							data-mdb-slide-to="2"
 							aria-label="Slide 3"
 						></button>
-						<button
+            <button
 							type="button"
 							data-mdb-target="#carouselBasicExample"
 							data-mdb-slide-to="3"
 							aria-label="Slide 4"
-						></button>
-						<button
-							type="button"
-							data-mdb-target="#carouselBasicExample"
-							data-mdb-slide-to="4"
-							aria-label="Slide 5"
-						></button><button
-							type="button"
-							data-mdb-target="#carouselBasicExample"
-							data-mdb-slide-to="5"
-							aria-label="Slide 6"
 						></button>
 					</div>
 
@@ -177,32 +166,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					<div class="carousel-inner">
 						<!-- Single item -->
 						<div class="carousel-item active">
-							<img src="../img/image1.jpg" class="d-block w-100" alt="Enzo 1"/>
+							<img src="../img/image1.png" class="d-block w-100" alt="Pierre"/>
 						</div>
 
 						<!-- Single item -->
 						<div class="carousel-item">
-							<img src="../img/image2.jpg" class="d-block w-100" alt="Enzo 2"/>
+							<img src="../img/image2.png" class="d-block w-100" alt="Eliott"/>
 						</div>
 
 						<!-- Single item -->
 						<div class="carousel-item">
-							<img src="../img/image3.jpg" class="d-block w-100" alt="Duc"/>
+							<img src="../img/image3.png" class="d-block w-100 img-fluid" alt="Duc"/>
 						</div>
-
-						<!-- Single item -->
+            <!-- Single item -->
 						<div class="carousel-item">
-							<img src="../img/image4.jpg" class="d-block w-100" alt="Duc"/>
-						</div>
-
-						<!-- Single item -->
-						<div class="carousel-item">
-							<img src="../img/image5.jpg" class="d-block w-100" alt="Duc"/>
-						</div>
-
-						<!-- Single item -->
-						<div class="carousel-item">
-							<img src="../img/image6.jpg" class="d-block w-100" alt="Duc"/>
+							<img src="../img/image4.png" class="d-block w-100 img-fluid" alt="Enzo"/>
 						</div>
 					</div>
 					<!-- Inner -->
